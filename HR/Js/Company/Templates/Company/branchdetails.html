@@ -113,16 +113,16 @@
         </div>
 
         <div class="col-xs-12 col-md-6 form-group">
-             <md-input-container class="md-block" flex-gt-sm>
-                    <label>Country</label>
-                    <md-select name="BranchDetails.Address.CountryId"
-                               ng-model="BranchDetails.Address.CountryId">
-                        <md-option md-option-empty></md-option>
-                        <md-option ng-repeat="item in Countries" ng-value="item.Id">
-                            {{item.CountryName}}
-                        </md-option>
-                    </md-select>
-                </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Country</label>
+                <md-select name="BranchDetails.Address.CountryId"
+                           ng-model="BranchDetails.Address.CountryId">
+                    <md-option md-option-empty></md-option>
+                    <md-option ng-repeat="item in Countries" ng-value="item.Id">
+                        {{item.CountryName}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
             <!--<select name="users" ng-options="s.Id as s.CountryName for s in Countries" ng-model="BranchDetails.Address.CountryId" class="form-control">
                 <option value="">--Select User--</option>
             </select>-->
