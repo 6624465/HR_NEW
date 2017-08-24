@@ -6736,6 +6736,7 @@
     <Content Include="fonts\roboto\Roboto-Medium-webfont.svg" />
     <Content Include="fonts\roboto\Roboto-Regular-webfont.svg" />
     <Content Include="Global.asax" />
+    <Content Include="img\search.png" />
     <Content Include="Js\Account\Controllers\LoginController.js" />
     <Content Include="Js\Account\Services\LoginService.js" />
     <Content Include="Js\Company\Controllers\CompanyController.js" />
@@ -6932,9 +6933,6 @@
     <Content Include="fonts\roboto\Roboto-Regular-webfont.eot" />
     <Content Include="fonts\roboto\Roboto-Regular-webfont.ttf" />
     <Content Include="fonts\roboto\Roboto-Regular-webfont.woff" />
-    <Content Include="Areas\Account\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Account\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Account\Views\Login\Login.cshtml" />
     <Content Include="Areas\Master\Views\EmployeeType\Index.cshtml" />
     <Content Include="Areas\Master\Views\web.config" />
     <Content Include="fonts\Material-Design-Iconic-Font.eot" />
