@@ -21,30 +21,32 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
-                                            <div class="form-group fg-line">
-                                                <label>Employee Department Name</label>
-                                                <input class="form-control input-mask" type="text" ng-model="EmployeeDepartment.LookUpCode">
-                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label> Employee Department Name</label>
+                                                <input type="text"
+                                                       ng-model="EmployeeDepartment.LookUpCode"
+                                                       ng-maxlength="50" />
+                                            </md-input-container>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
-                                            <div class="form-group fg-line">
-                                                <label>
-                                                    Employee Department Description
-                                                </label>
-                                                <input class="form-control input-mask" type="text" ng-model="EmployeeDepartment.LookUpDescription">
-                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label> Employee Department Description</label>
+                                                <input type="text"
+                                                       ng-model="EmployeeDepartment.LookUpDescription"
+                                                       ng-maxlength="50" />
+                                            </md-input-container>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-12 col-md-8">
-                                            <div class="form-group fg-line">
-                                                <label>
-                                                    IsActive
-                                                </label>
-                                                <input type="checkbox" ng-model="EmployeeDepartment.IsActive" />
-                                            </div>
+                                        <div class="col-md-4 col-xs-12 ">
+                                            <label>
+                                                <input type="checkbox"
+                                                       ng-model="EmployeeDepartment.IsActive"
+                                                       name="EmployeeDepartment.IsActive" />
+                                                IsActive
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +70,7 @@
                                 <tr ng-repeat="employeeDepartment in EmployeeDepartments">
                                     <td><a ng-click="onEditEmployeeDepartment(employeeDepartment)">{{employeeDepartment.LookUpCode}}</a></td>
                                     <td>{{employeeDepartment.LookUpDescription}}</td>
-                                    <td><input type="checkbox" ng-model="employeeDepartment.IsActive" disabled/></td>
+                                    <td><input type="checkbox" ng-model="employeeDepartment.IsActive" disabled /></td>
                                 </tr>
                             </tbody>
                         </table>

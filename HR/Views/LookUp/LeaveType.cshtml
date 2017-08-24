@@ -21,30 +21,32 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
-                                            <div class="form-group fg-line">
-                                                <label>Leave Type Name</label>
-                                                <input class="form-control input-mask" type="text" ng-model="LeaveType.LookUpCode">
-                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label> Leave Type Name</label>
+                                                <input type="text"
+                                                       ng-model="LeaveType.LookUpCode"
+                                                       ng-maxlength="50" />
+                                            </md-input-container>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
-                                            <div class="form-group fg-line">
-                                                <label>
-                                                    Leave Type Description
-                                                </label>
-                                                <input class="form-control input-mask" type="text" ng-model="LeaveType.LookUpDescription">
-                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <label> Leave Type Description</label>
+                                                <input type="text"
+                                                       ng-model="LeaveType.LookUpDescription"
+                                                       ng-maxlength="50" />
+                                            </md-input-container>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-12 col-md-8">
-                                            <div class="form-group fg-line">
-                                                <label>
-                                                    IsActive
-                                                </label>
-                                                <input type="checkbox" ng-model="LeaveType.IsActive" />
-                                            </div>
+                                        <div class="col-md-4 col-xs-12 ">
+                                            <label>
+                                                <input type="checkbox"
+                                                       ng-model="LeaveType.IsActive"
+                                                       name="LeaveType.IsActive" />
+                                                IsActive
+                                            </label>
                                         </div>
                                     </div>
                                 </div>
