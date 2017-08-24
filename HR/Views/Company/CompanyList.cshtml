@@ -1,0 +1,67 @@
+﻿<style type="text/css">
+    .ellipsisCss, .ellipsisCss:hover {
+        text-overflow: ellipsis !important;
+        white-space: nowrap;
+        color: black;
+        width: 100px !important;
+        z-index: 999999 !important;
+    }
+
+    .tooltipCss {
+        z-index: 999999 !important;
+    }
+</style>
+<div class="row" ng-controller="CompanyListController as Cntrl">
+    <div class="col-md-4">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">Other Profiles</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-12 ">
+
+
+                        <h4>
+                            Companies
+                        </h4>
+                        <div class="tree-light" style="max-height: 500px;overflow-y:auto;min-height:500px;">
+                            <treecontrol class="tree-light" tree-model="CompanyList" expanded-nodes="expandedNodes" on-selection="showSelected(node)">
+                                <a tabindex="0" class="ellipsisCss">{{node.label}}</a><!-- uib-tooltip="{{node.label}}" -->
+                            </treecontrol>
+                        </div>
+
+                        @*<treecontrol class="tree-light" tree-model="CompanyList" expanded-nodes="expandedNodes" on-selection="showSelected(node)">
+                            <a tabindex="0" class="ellipsisCss">{{node.CompanyName}}</a>
+                        </treecontrol>*@
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    Company Details
+
+
+                </h3>
+            </div>
+            <div class="box-body">
+                <div ng-show="isSelected">
+                    <div ng-show="detailsUrl == '/Js/Company/Templates/Company/branchdetails.html'" ng-include="detailsUrl"></div>
+                    <div ng-show="detailsUrl == '/Js/Company/Templates/Company/companydetails.html'" ng-include="detailsUrl"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
