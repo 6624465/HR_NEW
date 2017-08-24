@@ -7566,6 +7566,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Account\Controllers\LoginController.cs" />
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Leave\Controllers\EmployeeLeaveController.cs" />
+    <Compile Include="Areas\Leave\Controllers\SetUpController.cs" />
     <Compile Include="Areas\Leave\Views\Controllers\EmployeeLeaveController.cs" />
     <Compile Include="Areas\Leave\Views\Controllers\SetUpController.cs" />
     <Compile Include="Areas\Master\Controllers\LookUpController.cs" />
