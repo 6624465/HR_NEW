@@ -9,16 +9,23 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-xs-12 col-md-4">
-                        <div class="form-group">
-                            <label for="Location">Location</label>
-                            <select name="Locations" ng-options="s.Id as s.CountryName for s in Locations" data-ng-model="countryId" class="form-control">
-                                <option value="">--Select Location--</option>
-                            </select>
-                        </div>
-                        <div class="form-group fg-line">
-                            <button type="button" id="btn-SearchHolidays" class="btn btn-primary" ng-click="SearchByLocation()">Search</button>
-                        </div>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <div class="form-group">
+                                <label for="Location">Location</label>
+                                <md-select name="countryId" ng-model="countryId">
+                                    <md-option md-option-empty></md-option>
+                                    <md-option ng-repeat="item in Locations" ng-value="item.Id">{{item.CountryName}}</md-option>
+                                </md-select>
+                                @*<select name="Locations" ng-options="s.Id as s.CountryName for s in Locations" data-ng-model="countryId" class="form-control">
+                                        <option value="">--Select Location--</option>
+                                    </select>*@
+                            </div>
+                            <div class="form-group fg-line">
+                                <button type="button" id="btn-SearchHolidays" class="btn btn-primary" ng-click="SearchByLocation()">Search</button>
+                            </div>
+                        </md-input-container>
                     </div>
+
                     <div class="col-xs-12 col-md-8 text-right">
                         <button class="btn btn-primary " id="btn-add-Holiday" ng-click="addHolidayList(table)">Add an Holiday</button>
                     </div>
@@ -103,14 +110,14 @@
                                                         <div class="input-group">
                                                             @*<input type="text" class="form-control"
                                                                 data-ng-model="HolidayList.Date" format="{{dateFormat}}" />*@
-                                                          
-                                                            <input type="text" class="form-control input-sm datepicker" 
+
+                                                            <input type="text" class="form-control input-sm datepicker"
                                                                    ng-model="formatDate(HolidayList.Date)">
                                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                                         </div>
                                                     </a>
                                                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                        <datetimepicker data-ng-model="HolidayList.Date" 
+                                                        <datetimepicker data-ng-model="HolidayList.Date"
                                                                         data-datetimepicker-config="{ dropdownSelector: '#dropdown2' , startView:'day', minView:'day' }" />
                                                     </ul>
                                                 </div>
@@ -120,23 +127,35 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
-                                            <div class="form-group fg-line">
-                                                <label>
-                                                    Occasion
-                                                </label>
-                                                <input class="form-control input-mask" type="text" ng-model="HolidayList.Description">
-                                            </div>
+                                            <md-input-container class="md-block" flex-gt-sm>
+                                                <div class="form-group fg-line">
+                                                    <label>
+                                                        Occasion
+                                                    </label>
+                                                    <input class="form-control input-mask" type="text" ng-model="HolidayList.Description">
+                                                </div>
+                                            </md-input-container>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
-                                                <label>
-                                                    Location
-                                                </label>
-                                                <select name="Locations" ng-options="s.Id as s.CountryName for s in Locations" ng-model="HolidayList.CountryId" class="form-control">
-                                                    <option value="">--Select Location--</option>
-                                                </select>
+                                                <md-input-container class="md-block" flex-gt-sm>
+                                                    <div class="form-group">
+                                                        <label for="HolidayListLocation">Location</label>
+                                                        <md-select name="countryId" ng-model="HolidayList.CountryId" id="CountryId">
+                                                            <md-option md-option-empty></md-option>
+                                                            <md-option ng-repeat="item in Locations" 
+                                                                       ng-value="HolidayList.CountryId">{{item.CountryName}}</md-option>
+                                                        </md-select>
+                                                        @*<select name="Locations" ng-options="s.Id as s.CountryName for s in Locations" data-ng-model="countryId" class="form-control">
+                                                                <option value="">--Select Location--</option>
+                                                            </select>*@
+                                                    </div>
+                                                    <div class="form-group fg-line">
+                                                        <button type="button" id="btn-SearchHolidays" class="btn btn-primary" ng-click="SearchByLocation()">Search</button>
+                                                    </div>
+                                                </md-input-container>
                                                 @*<input type="checkbox" ng-model="EmployeeDesignation.IsActive" />*@
                                             </div>
                                         </div>
