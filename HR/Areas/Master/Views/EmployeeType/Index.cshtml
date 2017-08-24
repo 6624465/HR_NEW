@@ -26,23 +26,35 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-xs-12 col-md-8">
-                            <div class="form-group fg-line">
+                            @*<div class="form-group fg-line">
                                 <label>Employee Type Name</label>
                                 <input class="form-control input-mask" type="text" ng-model="EmployeeType.LookUpCode">
-                            </div>
+                            </div>*@
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Employee Type Name</label>
+                                <input type="text"
+                                       ng-model="EmployeeType.LookUpCode"
+                                       ng-maxlength="50" />
+                            </md-input-container>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-md-8">
-                            <div class="form-group fg-line">
+                            @*<div class="form-group fg-line">
                                 <label>
                                     Employee Type Description
                                 </label>
                                 <input class="form-control input-mask" type="text" ng-model="EmployeeType.LookUpDescription">
-                            </div>
+                            </div>*@
+                            <md-input-container class="md-block" flex-gt-sm>
+                                <label>Employee Type Description</label>
+                                <input type="text"
+                                       ng-model="EmployeeType.LookUpDescription"
+                                       ng-maxlength="50"  />
+                            </md-input-container>
                         </div>
                     </div>
-                    <div class="row">
+                    @*<div class="row">
                         <div class="col-xs-12 col-md-8">
                             <div class="form-group fg-line">
                                 <label>
@@ -50,6 +62,16 @@
                                 </label>
                                 <input type="checkbox" ng-model="EmployeeType.IsActive" />
                             </div>
+                        </div>
+                    </div>*@
+                    <div class="row">
+                        <div class="col-md-4 col-xs-12 ">
+                            <label>
+                                <input type="checkbox"
+                                       ng-model="EmployeeType.IsActive"
+                                       name="EmployeeType.IsActive" />
+                                IsActive
+                            </label>
                         </div>
                     </div>
                 </div>
