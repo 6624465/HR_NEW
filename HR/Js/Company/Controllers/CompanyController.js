@@ -1,5 +1,5 @@
-﻿angular.module('ngHR').controller('CompanyListController', ['$scope', '$http', 'CompanyService', '$timeout', 'growl', '$filter',
-    function ($scope, $http, CompanyService, $timeout, growl, $filter) {
+﻿angular.module('ngHR').controller('CompanyListController', ['$scope', '$http', 'CompanyService', '$timeout', 'growl', '$filter', 'growlService','$state',
+    function ($scope, $http, CompanyService, $timeout, growl, $filter, growlService,$state) {
         $scope.isSelected = true;
         $scope.showLoading = false;
         $scope.init = function () {
@@ -74,20 +74,31 @@
             return arr;
         }
 
+        
+
         //Region for Clear
         $scope.Clear = function () {
-            $scope.CompanyDetails = "";
+            debugger;
+                $scope.CompanyDetails = "";
+        
+            debugger;
         };
         //Region end
 
         //region for Save
 
         $scope.SaveCompany = function (details) {
-            if (details) {
+            debugger;
+            if (details!=null&&details||details=="") {
                 CompanyService.SaveCompany(details).then(function (res) {
+                    debugger;
                     if (res.data && res.data.success == true) {
                         growlService.growl(res.data.message, 'success');
-                        $scope.CompanyDetails = {};
+                       // $scope.CompanyDetails = {};
+                    }
+                    else
+                    {
+                        growlService.growl('Please Enter All Mandtory Fields', 'danger');
                     }
                 })
             }
@@ -101,6 +112,8 @@
                     }
 
                 })
+
+                growlService.growl('Please Enter All Mandtory Fields', 'danger');
             }
         }
 
