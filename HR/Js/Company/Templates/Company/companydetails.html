@@ -269,18 +269,29 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-6">
+        <!--<div class="col-xs-6">
 
-            <div class="form-group">
+            <div class="form-group-->">
                 <!--<label for="exampleInputFile">File input</label>
                 <input type="file" id="exampleInputFile">-->
                 <!--<span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>-->
-                <p class="help-block">File input</p>
+                <!--<p class="help-block">File input</p>
                 <input type="file"
                        id="containerFile"
                        name="containerFile"
                       >
-            </div>
+            </div>-->
+            <span class="fileinput fileinput-new pull-right" data-provides="fileinput">
+                <span class="btn btn-primary btn-file m-r-10">
+                    <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
+                    <input type="file"
+                           id="containerFile"
+                           name="containerFile"
+                           onchange="angular.element(this).scope().ContainerFileUpload(this)">
+                </span>
+                <span class="fileinput-filename"></span>
+                <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+            </span>
             <!--<label class="pull-left">Company Logo</label>
             <span class="fileinput fileinput-new pull-left m-l-10" data-provides="fileinput">
                 <span class="btn btn-primary btn-file m-r-10">

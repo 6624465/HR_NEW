@@ -53,12 +53,19 @@
                                 <datetimepicker data-ng-model="EmployeeLeaveForm.FromDate"
                                                 data-datetimepicker-config="{ dropdownSelector: '#fromDate' , startView:'day', minView:'day' }" />
                             </ul>*@
+                        
+                            <md-input-container class="md-block" flex-gt-sm>
+
+                                <input mdc-datetime-picker="" class="date-icon" date="true" time="false" type="text" id="dateFrom" format="{{format}}"
+                                       max-date="maxdate" ng-model="EmployeeLeaveForm.FromDate" />
+                            </md-input-container>
+                      
                     </div>
                 </div>
                 <div class="row ">
                     <div class="col-xs-12 col-md-6 form-group">
                         <label>To Date</label>
-                        <p class="input-group">
+                        @*<p class="input-group">
                             <input type="text" class="form-control"
                                    datetime-picker="mediumDate"
                                    ng-model="picker1.date"
@@ -70,7 +77,12 @@
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-default" ng-click="openCalendar($event, 'picker1')"><i class="fa fa-calendar"></i></button>
                             </span>
-                        </p>
+                        </p>*@
+                        <md-input-container class="md-block" flex-gt-sm>
+
+                            <input mdc-datetime-picker="" class="date-icon" date="true" time="false" type="text" id="dateFrom" format="{{format}}"
+                                   max-date="maxdate" ng-model="EmployeeLeaveForm.ToDate" />
+                        </md-input-container>
                         @*<div class="input-group">
                                 <label class="input-group-btn" for="date-fld">
                                     <span class="btn btn-default">
@@ -147,7 +159,7 @@
 
                         <!--has-permission data-securable="Save" data-linkid="Company"-->
                         <button class="btn btn-primary" type="submit" ng-click="onSaveEmployeeLeave(EmployeeLeaveForm)"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
-                        <button class="btn btn-clear" type="button"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
+                        <button class="btn btn-clear" type="button" ng-click="OnClearEmployeeLeave(EmployeeLeaveFrom)"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
                     </div>
                 </div>
             </div>

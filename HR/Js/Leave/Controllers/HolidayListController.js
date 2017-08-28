@@ -26,6 +26,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
         else
             return null;
     }
+    /*Save */
 
     $scope.onClickSaveHoliDayList = function (holiDayList) {
         holiDayList.Date = moment(holiDayList.Date).format('MM/DD/YYYY');
@@ -36,6 +37,8 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
             }
         })
     }
+    /*SAVE*/
+
 
     $scope.onClickCancelHoliDayList = function () {
         $('#AddHolidayListDialog').modal('hide');
