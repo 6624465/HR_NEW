@@ -79,9 +79,13 @@
         //Region for Clear
         $scope.Clear = function () {
             debugger;
+            if ($scope.CompanyDetails == null || $scope.CompanyDetails == "" || $scope.CompanyDetails!=null) {
                 $scope.CompanyDetails = "";
-        
-            debugger;
+            }
+            else
+            {
+                $scope.BranchDetails = "";
+            }
         };
         //Region end
 
@@ -104,16 +108,20 @@
             }
         }
         $scope.SaveBranch = function (branchDetails) {
-            if (branchDetails) {
+            debugger;
+            if (branchDetails != null && branchDetails || branchDetails == "") {
+                debugger;
                 CompanyService.SaveBranch(branchDetails).then(function (res) {
+                    debugger;
                     if (res.data && res.data.success == true) {
                         growlService.growl(res.data.message, 'success');
-                        $scope.CompanyDetails = {};
+                        //$scope.CompanyDetails = {};
                     }
-
+                    else
+                    {
+                        growlService.growl('Please Enter All Mandtory Fields', 'danger');
+                    }
                 })
-
-                growlService.growl('Please Enter All Mandtory Fields', 'danger');
             }
         }
 
