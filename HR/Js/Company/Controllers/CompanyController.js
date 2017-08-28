@@ -74,6 +74,12 @@
             return arr;
         }
 
+        //Region for Clear
+        $scope.Clear = function () {
+            $scope.CompanyDetails = "";
+        };
+        //Region end
+
         //region for Save
 
         $scope.SaveCompany = function (details) {
