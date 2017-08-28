@@ -15,7 +15,9 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
 
   
     $scope.EmployeeList = function (text) {
+        debugger;
         return EmployeeLeave.GetEmployees(text).then(function (response) {
+            debugger;
             return limitToFilter(response.data.employies, 15);
         }, function (err) { });
     };

@@ -78,9 +78,10 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
 
     
     $scope.eventClicked = function (event) {
+        debugger;
         $scope.HolidayList.Id = event.Id;
         $scope.HolidayList.CountryId = event.LocationId;
-        $scope.HolidayList.Date = moment(event.startsAt).format('DD/MM/YYYY');
+        $scope.HolidayList.Date = event.startsAt;
         $scope.HolidayList.Description = event.title;
         $('#AddHolidayListDialog').modal('show');
     };
@@ -96,6 +97,9 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
         growlService.growl(err, 'danger');
 
     })
+
+
+
 
     $scope.init();
 }])
