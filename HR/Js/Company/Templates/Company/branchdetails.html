@@ -7,11 +7,11 @@
 
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Branch Code</label>
 
-                <input id="BranchCode" class="form-control" type="text" ng-minlength="3" maxlength="3" ng-model="BranchDetails.BranchCode" ng-required="true" />
-            </md-input-container>
+            <label for="BranchCode">Branch Code</label>
+
+            <input id="BranchCode" class="form-control" type="text" ng-minlength="3" maxlength="3" ng-model="BranchDetails.BranchCode" ng-required="true" />
+
         </div>
 
         <div class="col-xs-12 col-md-6 form-group">
@@ -19,23 +19,21 @@
         </div>
     </div>
     <div class="row">
-
         <div class="col-xs-12 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Branch Name</label>
 
-                <input id="BranchName" class="form-control" type="text" ng-model="BranchDetails.BranchName" ng-required="true" />
-            </md-input-container>
+            <label for="BranchName">Branch Name</label>
+
+            <input id="BranchName" class="form-control" type="text" ng-model="BranchDetails.BranchName" ng-required="true" />
+
         </div>
-
     </div>
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Registration No.</label>
 
-                <input id="RegistrationNo" class="form-control" type="text" ng-model="BranchDetails.RegNo" ng-required="true" />
-            </md-input-container>
+            <label for="RegistrationNo">Registration No.</label>
+
+            <input id="RegistrationNo" class="form-control" type="text" ng-model="BranchDetails.RegNo"/>
+
         </div>
 
         <!--<div class="col-xs-12 col-md-6 form-group">
@@ -55,84 +53,75 @@
     </div>-->
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>GST No.</label>
 
-                <input id="GSTNo" class="form-control" type="text" ng-model="BranchDetails.GSTNo" ng-required="BranchDetails.Address.CountryCode == 'MY'" />
-            </md-input-container>
+            <label for="GSTNo">GST No.</label>
+
+            <input id="GSTNo" class="form-control" type="text" ng-model="BranchDetails.GSTNo" ng-required="BranchDetails.Address.CountryCode == 'MY'" />
+
         </div>
         <div class="col-xs-12 col-md-6 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>TAX ID</label>
 
-                <input id="TAXID" class="form-control" type="text" ng-model="BranchDetails.TaxID" />
-            </md-input-container>
+            <label for="TAXID">TAX ID</label>
+
+            <input id="TAXID" class="form-control" type="text" ng-model="BranchDetails.TaxID" />
+
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Address</label>
 
-                <input id="Address" class="form-control" type="text" ng-model="BranchDetails.Address.Address1" ng-required="true" />
-            </md-input-container>
+            <label for="Address">Address</label>
+
+            <input id="Address" class="form-control" type="text" ng-model="BranchDetails.Address.Address1" ng-required="true" />
+
         </div>
     </div>
     <div class="row">
 
         <div class="col-xs-12 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Address2</label>
-                <input id="Address2" class="form-control" type="text" ng-model="BranchDetails.Address.Address2" ng-required="true" />
-            </md-input-container>
+
+            <label for="Address2">Address2</label>
+            <input id="Address2" class="form-control" type="text" ng-model="BranchDetails.Address.Address2" ng-required="true" />
+
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Post Code</label>
 
-                <input id="PostCode" class="form-control" type="text" ng-model="BranchDetails.Address.ZipCode" ng-required="true" logicon-number />
-            </md-input-container>
+            <label for="PostCode">Post Code</label>
+
+            <input id="PostCode" class="form-control" type="text" ng-model="BranchDetails.Address.ZipCode" ng-required="true" logicon-number />
+
         </div>
         <div class="col-xs-12 col-md-6 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>City/Suburb</label>
 
-                <input id="City/Suburb" class="form-control" type="text" ng-model="BranchDetails.Address.CityName" ng-required="true" />
-            </md-input-container>
+            <label for="City/Suburb">City/Suburb</label>
+
+            <input id="City/Suburb" class="form-control" type="text" ng-model="BranchDetails.Address.CityName" ng-required="true" />
+
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>State</label>
 
-                <input id="State" class="form-control" type="text" ng-model="BranchDetails.Address.StateName" ng-required="true" />
-            </md-input-container>
+            <label for="State">State</label>
+
+            <input id="State" class="form-control" type="text" ng-model="BranchDetails.Address.StateName" ng-required="true" />
+
         </div>
 
         <div class="col-xs-12 col-md-6 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Country</label>
-                <md-select name="BranchDetails.Address.CountryId"
-                           ng-model="BranchDetails.Address.CountryId">
-                    <md-option md-option-empty></md-option>
-                    <md-option ng-repeat="item in Countries" ng-value="item.Id">
-                        {{item.CountryName}}
-                    </md-option>
-                </md-select>
-            </md-input-container>
-            <!--<select name="users" ng-options="s.Id as s.CountryName for s in Countries" ng-model="BranchDetails.Address.CountryId" class="form-control">
-                <option value="">--Select User--</option>
-            </select>-->
+            <label for="Country">Country</label>
+            <select name="users" ng-options="s.Id as s.CountryName for s in Countries" ng-model="BranchDetails.Address.CountryId" class="form-control">
+                <option value="">--Select Country--</option>
+            </select>
         </div>
         <div class="col-xs-12 col-md-6 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Tel No.</label>
 
-                <input id="TelNo" class="form-control" type="text" ng-model="BranchDetails.Address.TelNo" ng-required="true" logicon-number />
-            </md-input-container>
+            <label for="TelNo">Tel No.</label>
+
+            <input id="TelNo" class="form-control" type="text" ng-model="BranchDetails.Address.TelNo" ng-required="true" logicon-number />
+
         </div>
         <!--<div class="col-xs-12 col-md-7">
           <input id="companyCode" class="form-control" type="text"  />
@@ -147,29 +136,29 @@
           <input id="companyCode" class="form-control" type="text"  />
         </div>-->
         <div class="col-xs-12 col-md-6 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Mobile No.</label>
 
-                <input id="MobileNo" class="form-control" type="text" ng-model="BranchDetails.Address.MobileNo" ng-required="true" logicon-number />
-            </md-input-container>
+            <label for="MobileNo">Mobile No.</label>
+
+            <input id="MobileNo" class="form-control" type="text" ng-model="BranchDetails.Address.MobileNo" ng-required="true" logicon-number />
+
         </div>
 
         <div class="col-xs-12 col-md-6 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Fax No.</label>
 
-                <input id="FaxNo" class="form-control" type="text" ng-model="BranchDetails.Address.FaxNo" ng-required="true" />
-            </md-input-container>
+            <label for="FaxNo">Fax No.</label>
+
+            <input id="FaxNo" class="form-control" type="text" ng-model="BranchDetails.Address.FaxNo" ng-required="true" />
+
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-12 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Email</label>
 
-                <input id="Email" class="form-control" type="email" ng-model="BranchDetails.Address.Email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-required="true" />
-            </md-input-container>
+            <label for="Email">Email</label>
+
+            <input id="Email" class="form-control" type="email" ng-model="BranchDetails.Address.Email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-required="true" />
+
         </div>
     </div>
     <!--<div class="row">
@@ -182,18 +171,18 @@
     </div>-->
     <div class="row">
         <div class="col-xs-12 form-group">
-            <md-input-container class="md-block" flex-gt-sm>
-                <label>Website</label>
 
-                <input id="Website" class="form-control" type="text" ng-model="BranchDetails.Address.WebSite" />
-            </md-input-container>
+            <label for="Website">Website</label>
+
+            <input id="Website" class="form-control" type="text" ng-model="BranchDetails.Address.WebSite" />
+
         </div>
     </div>
 
     <div class="row">
         <div class="col-xs-12 text-right">
             <button class="btn btn-primary" type="submit" ng-click="submitted = true;" ng-disabled="BranchDetails.BranchCode=='HQ'"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
-            <button class="btn btn-default" type="button" ng-click="Clear()"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
+            <button class="btn btn-default" type="button"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
         </div>
     </div>
 

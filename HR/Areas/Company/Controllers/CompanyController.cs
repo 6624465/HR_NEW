@@ -52,6 +52,7 @@ namespace HR.Areas.Company.Controllers
                         branchViewModel.BranchCode = branch.BranchCode;
                         branchViewModel.BranchName = branch.BranchName;
                         branchViewModel.IsActive = branch.IsActive;
+                        branchViewModel.RegNo = branch.RegNo;
                         branchViewModel.Address = BindAddressViewModel(branch.Address, country);
                         companyViewModel.Branches.Add(branchViewModel);
                     }

@@ -124,14 +124,15 @@
 
         // region end
 
-        $scope.AddBranch = function (CompanyCode, CompanyName) {
+        $scope.AddBranch = function (CompanyCode, CompanyName, CompanyId) {
             $scope.getCompanyList();
             $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html'
             $scope.isbranch = false;
             $scope.iscompany = false;
             $scope.BranchDetails = {
                 CompanyCode: CompanyCode,
-                CompanyName: CompanyName
+                CompanyName: CompanyName,
+                CompanyId: CompanyId,
             };
         };
 
