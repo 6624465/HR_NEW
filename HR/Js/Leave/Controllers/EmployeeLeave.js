@@ -25,17 +25,9 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         $scope.EmployeeLeaveForm.EmployeeName = obj.EmployeeName;
     }
     $scope.difference = function () {
-        debugger
         var diffDate = (Math.round(Math.abs((new Date($scope.EmployeeLeaveForm.FromDate).getTime() -new Date($scope.EmployeeLeaveForm.ToDate).getTime()) / (24 * 60 * 60 * 1000))));
             $scope.EmployeeLeaveForm.Days = diffDate +1;
-    }
-    $scope.onChangeToDate = function () {
-        debugger
-        var diffDate = moment($scope.EmployeeLeaveForm.ToDate).diff(moment($scope.EmployeeLeaveForm.FromDate), 'days');
-        $scope.EmployeeLeaveForm.Days = diffDate +1;
-        //var days = UtilityFunc.DateFormat($scope.EmployeeLeaveForm.ToDate) - UtilityFunc.DateFormat($scope.EmployeeLeaveForm.FromDate);
-    }
-
+    } 
  /*Save Section*/
     $scope.onSaveEmployeeLeave = function (employeeLeaveForm) {
         EmployeeLeave.SaveEmployeeLeave(employeeLeaveForm).then(function (response) {

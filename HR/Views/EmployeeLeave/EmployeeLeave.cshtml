@@ -11,7 +11,7 @@
 
                 <div class="row ">
                     <div class="col-xs-12 col-md-6 form-group">
-                            <label >Employee Name</label>
+                            <label class="required weak">Employee Name</label>
                             <input type="text"
                                    class="form-control"
                                    ng-model="EmployeeLeaveForm.EmployeeName" name="EmployeeLeaveForm.EmployeeName"
@@ -25,7 +25,7 @@
                 </div>
                 <div class="row " id="some">
                     <div class="col-xs-12 col-md-6 form-group">
-                        <label>From Date</label>
+                        <label class="required">From Date</label>
                         <div class="dropdown">
                             <a class="dropdown-toggle" id="FromDate" role="button" data-toggle="dropdown">
                                 <div class="input-group">
@@ -46,7 +46,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-6 form-group">
-                        <label>To Date</label>
+                        <label class="required">To Date</label>
                         <div class="dropdown">
                             <a class="dropdown-toggle" id="ToDate" role="button" data-toggle="dropdown">
                                 <div class="input-group">
@@ -80,7 +80,7 @@
                 </div>
                 <div class="row ">
                     <div class="col-xs-12 col-md-6 form-group">
-                        <label for="remarks">Remarks</label>
+                        <label for="remarks" >Remarks</label>
                             <input id="remarks" class="form-control" type="text" ng-model="EmployeeLeaveForm.Remarks" />
                     </div>
                 </div>

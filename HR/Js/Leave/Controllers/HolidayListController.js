@@ -6,7 +6,6 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
         $scope.dateFormat = UtilityFunc.DateFormat();
         $scope.HolidayListByLocation = {};
         $scope.HolidayList = {
-            //Date:UtilityFunc.DateFormat(Date),
             BranchID: UtilityFunc.BranchId(),
         }
         $scope.IsVisible=false;
@@ -42,6 +41,9 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
 
     $scope.onClickCancelHoliDayList = function () {
         $('#AddHolidayListDialog').modal('hide');
+        $scope.HolidayList = {
+            BranchID: UtilityFunc.BranchId(),
+        }
     }
 
     $scope.SearchByLocation = function () {
@@ -78,10 +80,9 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
 
     
     $scope.eventClicked = function (event) {
-        debugger;
         $scope.HolidayList.Id = event.Id;
         $scope.HolidayList.CountryId = event.LocationId;
-        $scope.HolidayList.Date = event.startsAt;
+        $scope.HolidayList.Date = $scope.formatDate(event.startsAt);
         $scope.HolidayList.Description = event.title;
         $('#AddHolidayListDialog').modal('show');
     };

@@ -5521,7 +5521,7 @@ function ($animate ,  $sce ,  $compile ,  $templateRequest) {
   return {
     replace: true,
     scope: { contentExp: '&', placement: '@', popupClass: '@', animation: '&', isOpen: '&' },
-    templateUrl: 'template/tooltip/tooltip-html-popup.html',
+    templateUrl: '/template/tooltip/tooltip-html-popup.html',
     link: function(scope, element) {
       element.addClass('tooltip');
     }
@@ -5690,7 +5690,7 @@ function ($animate ,  $sce ,  $compile ,  $templateRequest,   $log,   $tooltipSu
   return {
     replace: true,
     scope: { contentExp: '&', placement: '@', popupClass: '@', animation: '&', isOpen: '&' },
-    templateUrl: 'template/tooltip/tooltip-html-popup.html',
+    templateUrl: '/template/tooltip/tooltip-html-popup.html',
     link: function(scope, element) {
       if (!$tooltipSuppressWarning) {
         $log.warn('tooltip-html-popup is now deprecated. Use uib-tooltip-html-popup instead.');
