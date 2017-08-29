@@ -236,6 +236,7 @@ zmdi-plus:hover{
   .skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a, .skin-blue .sidebar-menu > li.menu-open > a {
     background: rgb(24, 65, 92) none repeat scroll 0 0;
     color: #fff;
+    
 }
   .skin-blue .sidebar-menu > li > .treeview-menu {
     background: rgb(20, 75, 109) none }
@@ -270,4 +271,12 @@ padding:20px;
 }
 a {
    outline: 0;
+}
+.sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
+  line-height:24px;
+}
+.treeview-menu > li > a {
+    display: block;
+    font-size: 12px;
+    padding: 7px 5px 7px 15px;
 }
