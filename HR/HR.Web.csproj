@@ -7538,6 +7538,7 @@
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="Areas\Master\Views\_ViewStart.cshtml" />
     <Content Include="scripts\calendar.js" />
+    <Content Include="scripts\dateTimeInput.js" />
     <Content Include="scripts\datetimepicker.js" />
     <Content Include="scripts\loading-bar.js" />
     <Content Include="scripts\services.js" />
