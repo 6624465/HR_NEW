@@ -5,8 +5,8 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         $scope.dateFormat = UtilityFunc.DateFormat();
         $scope.EmployeeLeaveForm = {}
         $scope.maxdate = moment();
-        $scope.formats = ['DD/MM/YYYY'];
-        $scope.format = $scope.formats[0];
+        //$scope.formats = ['DD/MM/YYYY'];
+        //$scope.format = $scope.formats[0];
     };
 
     //$scope.openCalendar = function (e, picker) {
