@@ -3,6 +3,7 @@
 
         $scope.isSelected = true;
         $scope.showLoading = false;
+        $scope.iscompany = true;
         $scope.init = function () {
             $scope.Companies = {},
             $scope.CompanyList = {},
@@ -126,6 +127,8 @@
         $scope.AddBranch = function (CompanyCode, CompanyName) {
             $scope.getCompanyList();
             $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html'
+            $scope.isbranch = false;
+            $scope.iscompany = false;
             $scope.BranchDetails = {
                 CompanyCode: CompanyCode,
                 CompanyName: CompanyName
