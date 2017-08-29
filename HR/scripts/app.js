@@ -1,8 +1,17 @@
 ﻿/// <reference path="D:\08042017\HR\HR\dist/js/datetime-picker.js" />
 
-var app = angular.module('ngHR', ['mwl.calendar', 'ui.bootstrap', 'angular-growl', 'ngAnimate', 'ui.router', 'angular-loading-bar', 'oc.lazyLoad',
-    'treeControl', 'ngMaterial', 'ngMaterialDatePicker']);
-
+var app = angular.module('ngHR', ['mwl.calendar',
+    'ui.bootstrap',
+    'angular-growl',
+    'ngAnimate',
+    'ui.router',
+    'angular-loading-bar',
+    'oc.lazyLoad',
+    'treeControl',
+    'ngMaterial',
+    'ui.bootstrap.datetimepicker',
+    'ui.dateTimeInput']);
+   
 app.controller('MainCtrl', function ($scope) {
     $scope.iframeHeight = window.innerHeight - 100;
 });

@@ -36,6 +36,23 @@
                 <div class="row " id="some">
                     <div class="col-xs-12 col-md-6 form-group">
                         <label>From Date</label>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" id="FromDate" role="button" data-toggle="dropdown">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-sm datepicker"
+                                               ng-model="EmployeeLeaveForm.FromDate"
+                                               name="EmployeeLeaveForm.FromDate"
+                                               ng-required="true"
+                                               date-time-input="{{dateFormat}}"
+                                               >
+                                        <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <datetimepicker ng-model="EmployeeLeaveForm.FromDate"
+                                                    data-datetimepicker-config="{ dropdownSelector: '#FromDate', startView:'day', minView:'day' }" />
+                                </ul>
+                            </div>
                         @*<div class="input-group">
                                 <label class="input-group-btn" for="date-fld2">
                                     <span class="btn btn-default">
@@ -61,11 +78,11 @@
                                                 data-datetimepicker-config="{ dropdownSelector: '#fromDate' , startView:'day', minView:'day' }" />
                             </ul>*@
                         
-                            <md-input-container class="md-block" flex-gt-sm>
+                            @*<md-input-container class="md-block" flex-gt-sm>
 
                                 <input mdc-datetime-picker="" class="date-icon" date="true" time="false" type="text" id="dateFrom" format="{{format}}"
                                        min-date="maxdate" ng-model="EmployeeLeaveForm.FromDate" />
-                            </md-input-container>
+                            </md-input-container>*@
                       
                     </div>
                 </div>
