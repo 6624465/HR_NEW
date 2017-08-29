@@ -18,6 +18,7 @@
     <link href="@Url.Content("~/Css/tree-control.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/angular-bootstrap-calendar.min.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/datetimepicker.css")" rel="stylesheet" />
+    <link href="~/Css/material-design-iconic-font.css" rel="stylesheet" />
     @*<link href="@url.content("~/css/angularjs-datetime-picker.css")" rel="stylesheet" />*@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     
@@ -153,34 +154,37 @@
                     <span class="sr-only">Toggle navigation</span>
                 </a>
                 <span style="padding-top: 15px; color: #fff;" class="pull-left">Loggedin Branch <b style="font-size: 15px;"></b></span>
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <span class="hidden-xs">
-                                    {{User.UserID }}
-                                </span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="user-header">
-                                    @*<img src="" class="img-circle"  />*@
-                                    <p>
-                                        {{User.UserID }}
+              
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown user user-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="hidden-xs">
+                                           
+                                            <i class="zmdi zmdi-face zmdi-hc-lg"></i> &nbsp; {{User.UserID }}  &nbsp;  <i class="fa fa-caret-down" aria-hidden="true"></i>
 
-                                    </p>
-                                </li>
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a class="btn btn-default btn-flat" ng-click="onClickLogOut()">LogOut</a>
-                                    </div>
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu ">
+                                       
+                                        <li class="user-footer user-other">
+                                            
+                                                <a href="#" class=""> <i class="fa fa-id-badge" aria-hidden="true"></i> &nbsp;Profile</a>
+                                            
+                                        </li>
+                                        <li class="user-footer user-other">
+
+                                            <a href="#" class=""><i class="zmdi zmdi-settings zmdi-hc-lg"></i> &nbsp; Setting</a>
+
+                                        </li>
+                                        <li class="user-footer">                                           
+                                                <a class="" ng-click="onClickLogOut()"> <i class="zmdi zmdi-power zmdi-hc-lg"></i> &nbsp; LogOut</a>
+                                           
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
-                        </li>
-                    </ul>
-                </div>
+                        </div>
             </nav>
         </header>
         <aside class="main-sidebar">
@@ -366,6 +370,7 @@
             </div>
         </div>
     </div>
+
     <!-- script files -->
     <!-- jQuery 3 -->
     <script src="@Url.Content("~/bower_components/jquery/dist/jquery.min.js")"></script>
