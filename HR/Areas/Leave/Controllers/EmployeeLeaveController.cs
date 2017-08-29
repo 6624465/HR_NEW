@@ -71,7 +71,7 @@ namespace HR.Areas.Leave.Controllers
                     _employeeLeaveList.Reason = employeeLeaveList.Reason;
                     _employeeLeaveList.Remarks = employeeLeaveList.Remarks;
                     _employeeLeaveList.ApplyDate = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
-                    _employeeLeaveList.Status = "";
+                    _employeeLeaveList.Status = "Applied";
 
                     Leaveservice.SaveEmployeeLeaveList(_employeeLeaveList);
 

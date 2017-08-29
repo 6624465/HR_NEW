@@ -6748,6 +6748,7 @@
     <Content Include="Js\Home\Controllers\HomeController.js" />
     <Content Include="Js\Home\Views\activitysummary.html" />
     <Content Include="Js\Home\Views\index.html" />
+    <Content Include="Js\Leave\Controllers\AppliedLeaveListController.js" />
     <Content Include="Js\Leave\Controllers\EmployeeLeave.js" />
     <Content Include="Js\Leave\Controllers\HolidayListController.js" />
     <Content Include="Js\Leave\Services\EmployeeLeaveService.js" />
@@ -7568,6 +7569,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Account\Controllers\LoginController.cs" />
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Leave\Controllers\AppliedLeaveListController.cs" />
     <Compile Include="Areas\Leave\Controllers\EmployeeLeaveController.cs" />
     <Compile Include="Areas\Leave\Controllers\SetUpController.cs" />
     <Compile Include="Areas\Master\Controllers\LookUpController.cs" />
@@ -7602,6 +7604,7 @@
     <Content Include="Views\SetUp\HolidayList.cshtml" />
     <Content Include="Views\EmployeeLeave\EmployeeLeave.cshtml" />
     <Content Include="Views\LookUp\LeaveType.cshtml" />
+    <Content Include="Views\AppliedLeaveList\AppliedLeaveList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7612,9 +7615,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Company\Views\Company\" />
-    <Folder Include="Areas\Leave\Views\Controllers\" />
-    <Folder Include="Areas\Leave\Views\EmployeeLeave\" />
-    <Folder Include="Areas\Leave\Views\SetUp\" />
     <Folder Include="Areas\Master\Views\LookUp\" />
     <Folder Include="Js\Account\Views\" />
     <Folder Include="Views\Base\" />

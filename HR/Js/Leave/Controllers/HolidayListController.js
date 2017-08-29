@@ -6,7 +6,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
         $scope.dateFormat = UtilityFunc.DateFormat();
         $scope.HolidayListByLocation = {};
         $scope.HolidayList = {
-            BranchID: UtilityFunc.BranchId(),
+            BranchId: UtilityFunc.BranchId(),
         }
         $scope.IsVisible=false;
         $scope.calendarView = 'month';

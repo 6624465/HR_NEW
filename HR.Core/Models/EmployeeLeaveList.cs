@@ -15,7 +15,7 @@ namespace HR.Core.Models
         public virtual Employee Employee { get; set; }
 
         public int BranchId { get; set; }
-        public virtual Branch MyProperty { get; set; }
+        public virtual Branch Branch { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
         public int Days { get; set; }

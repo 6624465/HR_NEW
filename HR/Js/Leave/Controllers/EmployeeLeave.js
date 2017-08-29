@@ -4,6 +4,7 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
     $scope.init = function () {
         $scope.dateFormat = UtilityFunc.DateFormat();
         $scope.EmployeeLeaveForm = {
+            BranchID: UtilityFunc.BranchId(),
             FromDate: moment(),
             ToDate: moment(),
         }
