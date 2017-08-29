@@ -44,11 +44,12 @@ function ($scope, $http, LookUp, growl, growlService) {
     },
     $scope.GetLookUpData();
     $scope.onEditPaymentType = function (paymentType) {
+        debugger
         $scope.PaymentType.LookUpCode = paymentType.LookUpCode;
         $scope.PaymentType.LookUpDescription = paymentType.LookUpDescription;
         $scope.PaymentType.IsActive = paymentType.IsActive;
         $scope.PaymentType.LookUpID = paymentType.LookUpID;
-        $('#AddpaymentTypeDialog').modal('show');
+        $('#AddPaymentTypeDialog').modal('show');
 
     }
 

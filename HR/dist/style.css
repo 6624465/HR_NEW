@@ -15,6 +15,25 @@ zmdi-plus:hover{
 .card {
     margin-bottom: 10px !important;
 }
+/*label.required.weak
+{
+	color: inherit;
+	font-weight: normal; 
+	color: #999;
+}*/
+/*.weak
+{
+	color: #999;
+}*/
+.required
+{
+	color: #B01717;
+}
+label.required:after
+{
+	content:'*';
+}
+
 
 .snn .card-stats-title, #card-stats .card-stats-title i {
      color: #fff;

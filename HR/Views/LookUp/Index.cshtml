@@ -60,6 +60,7 @@
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
+                                    <th>#Action</th>
                                     <th>Employee Type Name</th>
                                     <th>Employee Type Description</th>
                                     <th>Status</th>
@@ -67,6 +68,11 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="employeeType in EmployeeTypes">
+                                    <td>
+                                    <button type="button" ng-click="onEditEmployeeType(employeeType);" class="btn btn-default ng-scope waves-effect" aria-label="button">
+                                        <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                    </button>
+                                    </td>
                                     <td><a ng-click="onEditEmployeeType(employeeType)">{{employeeType.LookUpCode}}</a></td>
                                     <td>{{employeeType.LookUpDescription}}</td>
                                     <td><input type="checkbox" ng-model="employeeType.IsActive" disabled="true" /></td>
