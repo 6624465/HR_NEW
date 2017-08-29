@@ -1,6 +1,6 @@
 ﻿angular.module('ngHR').controller('CompanyListController', ['$scope', '$http', 'CompanyService', '$timeout', 'growl', '$filter', 'growlService','$state',
     function ($scope, $http, CompanyService, $timeout, growl, $filter, growlService, $state) {
-        debugger;
+
         $scope.isSelected = true;
         $scope.showLoading = false;
         $scope.init = function () {
@@ -17,16 +17,11 @@
 
         $scope.detailsUrl = '/Js/Company/Templates/Company/companydetails.html';
         $scope.init();
-        debugger;
         $scope.getCompanyList = function () {
-            debugger;
             CompanyService.GetCopmanyDetails().then(function (response) {
-                debugger;
                 if (response.data && response.data.success == true) {
-                    debugger;
                     var arr = new Array();
                     angular.forEach(response.data.CompaniesList, function (val, idx) {
-                        debugger;
                         var obj = {
                             'label': val.CompanyName,
                             'id': val.CompanyCode,
@@ -44,33 +39,27 @@
         $scope.showSelected = function (sel) {
             $scope.showLoading = true;
             $scope.selectedNode = sel;
-            debugger;
             if (sel.type == "company") {
                 $scope.isbranch = true;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/companydetails.html';
                 $scope.CompanyDetails = $scope.Companies[sel.i];
             }
             else if (sel.type == "branch") {
-                debugger;
                 $scope.isbranch = false;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html';
                 $scope.BranchDetails = $scope.Companies[sel.parentIndex].Branches[sel.i];
                 $scope.BranchDetails.Type = "Branch";
             }
         };
-        debugger;
         CompanyService.GetCountries().then(function (res) {
-            debugger;
             $scope.Countries = res.data.countries;
             $scope.CompanyDetails.Address.CountryId =
                 $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
-            debugger;
             $scope.BranchDetails.Address.CountryId =
                 $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
         }, function (err) { })
 
         $scope.GetBranchArr = function (branchList, parentIndex) {
-            debugger;
             var arr = new Array();
             if (branchList) {
                 angular.forEach(branchList, function (val, idx) {
@@ -91,7 +80,6 @@
 
         //Region for Clear
         $scope.Clear = function () {
-            debugger;
             if ($scope.CompanyDetails == null || $scope.CompanyDetails == "" || $scope.CompanyDetails!=null) {
                 $scope.CompanyDetails = "";
             }
@@ -105,10 +93,8 @@
         //region for Save
 
         $scope.SaveCompany = function (details) {
-            debugger;
             if (details!=null&&details||details=="") {
                 CompanyService.SaveCompany(details).then(function (res) {
-                    debugger;
                     if (res.data && res.data.success == true) {
                         growlService.growl(res.data.message, 'success');
                        // $scope.CompanyDetails = {};
@@ -121,11 +107,8 @@
             }
         }
         $scope.SaveBranch = function (branchDetails) {
-            debugger;
             if (branchDetails != null && branchDetails || branchDetails == "") {
-                debugger;
                 CompanyService.SaveBranch(branchDetails).then(function (res) {
-                    debugger;
                     if (res.data && res.data.success == true) {
                         growlService.growl(res.data.message, 'success');
                         //$scope.CompanyDetails = {};
@@ -142,7 +125,6 @@
 
         $scope.AddBranch = function (CompanyCode, CompanyName) {
             $scope.getCompanyList();
-            debugger;
             $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html'
             $scope.BranchDetails = {
                 CompanyCode: CompanyCode,
