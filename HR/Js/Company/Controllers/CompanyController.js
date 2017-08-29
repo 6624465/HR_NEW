@@ -1,7 +1,9 @@
 ﻿angular.module('ngHR').controller('CompanyListController', ['$scope', '$http', 'CompanyService', '$timeout', 'growl', '$filter', 'growlService','$state',
-    function ($scope, $http, CompanyService, $timeout, growl, $filter, growlService,$state) {
+    function ($scope, $http, CompanyService, $timeout, growl, $filter, growlService, $state) {
+
         $scope.isSelected = true;
         $scope.showLoading = false;
+        $scope.iscompany = true;
         $scope.init = function () {
             $scope.Companies = {},
             $scope.CompanyList = {},
@@ -11,6 +13,7 @@
             $scope.BranchDetails = {
                 Address: {}
             }
+            $scope.isbranch = false;
         }
 
         $scope.detailsUrl = '/Js/Company/Templates/Company/companydetails.html';
@@ -37,18 +40,18 @@
         $scope.showSelected = function (sel) {
             $scope.showLoading = true;
             $scope.selectedNode = sel;
-
             if (sel.type == "company") {
+                $scope.isbranch = true;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/companydetails.html';
                 $scope.CompanyDetails = $scope.Companies[sel.i];
             }
             else if (sel.type == "branch") {
+                $scope.isbranch = false;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html';
                 $scope.BranchDetails = $scope.Companies[sel.parentIndex].Branches[sel.i];
                 $scope.BranchDetails.Type = "Branch";
             }
         };
-
         CompanyService.GetCountries().then(function (res) {
             $scope.Countries = res.data.countries;
             $scope.CompanyDetails.Address.CountryId =
@@ -78,7 +81,6 @@
 
         //Region for Clear
         $scope.Clear = function () {
-            debugger;
             if ($scope.CompanyDetails == null || $scope.CompanyDetails == "" || $scope.CompanyDetails!=null) {
                 $scope.CompanyDetails = "";
             }
@@ -92,10 +94,8 @@
         //region for Save
 
         $scope.SaveCompany = function (details) {
-            debugger;
             if (details!=null&&details||details=="") {
                 CompanyService.SaveCompany(details).then(function (res) {
-                    debugger;
                     if (res.data && res.data.success == true) {
                         growlService.growl(res.data.message, 'success');
                        // $scope.CompanyDetails = {};
@@ -108,11 +108,8 @@
             }
         }
         $scope.SaveBranch = function (branchDetails) {
-            debugger;
             if (branchDetails != null && branchDetails || branchDetails == "") {
-                debugger;
                 CompanyService.SaveBranch(branchDetails).then(function (res) {
-                    debugger;
                     if (res.data && res.data.success == true) {
                         growlService.growl(res.data.message, 'success');
                         //$scope.CompanyDetails = {};
@@ -127,6 +124,16 @@
 
         // region end
 
+        $scope.AddBranch = function (CompanyCode, CompanyName) {
+            $scope.getCompanyList();
+            $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html'
+            $scope.isbranch = false;
+            $scope.iscompany = false;
+            $scope.BranchDetails = {
+                CompanyCode: CompanyCode,
+                CompanyName: CompanyName
+            };
+        };
 
         $scope.getCompanyList();
     }])
