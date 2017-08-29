@@ -4,9 +4,10 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">Payment Type</h3>
-                    <div class="add-top box-tools">
-                        <a href="" class="btn btn-primary waves-effect pull-right btn-sm " ng-click="addPaymentType(table)"> <i class="zmdi zmdi-account-add"> Add Payment Type</i></a>
-                        <div class="clearfix"></div>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary waves-effect m-r-15" ng-click="addPaymentType(table)">
+                            <i class="zmdi zmdi-plus"></i>&nbsp; ADD
+                        </button>
                     </div>
                 </div>
                 <div>
@@ -21,32 +22,30 @@
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
-                                            <md-input-container class="md-block" flex-gt-sm>
+                                            <div class="form-group fg-line">
                                                 <label>Payment Type Name</label>
-                                                <input type="text"
-                                                       ng-model="PaymentType.LookUpCode"
-                                                       ng-maxlength="50" />
-                                            </md-input-container>
+                                                <input class="form-control input-mask" type="text" ng-model="PaymentType.LookUpCode">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
-                                            <md-input-container class="md-block" flex-gt-sm>
-                                                <label> Payment Type Description</label>
-                                                <input type="text"
-                                                       ng-model="PaymentType.LookUpDescription"
-                                                       ng-maxlength="50" />
-                                            </md-input-container>
+                                            <div class="form-group fg-line">
+                                                <label>
+                                                    Payment Type Description
+                                                </label>
+                                                <input class="form-control input-mask" type="text" ng-model="PaymentType.LookUpDescription">
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-4 col-xs-12 ">
-                                            <label>
-                                                <input type="checkbox"
-                                                       ng-model="PaymentType.IsActive"
-                                                       name="PaymentType.IsActive" />
-                                                IsActive
-                                            </label>
+                                        <div class="col-xs-12 col-md-8">
+                                            <div class="form-group fg-line">
+                                                <label>
+                                                    IsActive
+                                                </label>
+                                                <input type="checkbox" ng-model="PaymentType.IsActive" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
