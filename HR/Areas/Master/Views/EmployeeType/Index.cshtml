@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     }
 
-<h2>EmployeeType</h2>
+@*<h2>EmployeeType</h2>*@
 
 <div class="card-header">
     <h2>Employee Type </h2>
@@ -11,7 +11,7 @@
 
 <div class="card-body card-padding" ng-controller="EmployeeTypeController">
     <div class="add-top">
-        <a href="" class="btn btn-primary waves-effect pull-right btn-sm " ng-click="addEmployeeType(table)"> <i class="zmdi zmdi-account-add"> Add Employee Type</i></a>
+        <a href="" class="btn btn-primary btn-xs waves-effect pull-right  " ng-click="addEmployeeType(table)"> <i class="zmdi zmdi-account-add"> Add Employee Type</i></a>
         <div class="clearfix"></div>
     </div>
     <div class="modal fade in" id="AddEmployeeTypeDialog" role="dialog">
