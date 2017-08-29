@@ -3,8 +3,14 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
    
     $scope.init = function () {
         $scope.dateFormat = UtilityFunc.DateFormat();
-        $scope.EmployeeLeaveForm = {}
+        $scope.EmployeeLeaveForm = {
+            FromDate: moment(),
+            ToDate:moment(),
+        }
         $scope.maxdate = moment();
+        datepickerOptions: {
+            minDate: moment();
+        }
         //$scope.formats = ['DD/MM/YYYY'];
         //$scope.format = $scope.formats[0];
     };
