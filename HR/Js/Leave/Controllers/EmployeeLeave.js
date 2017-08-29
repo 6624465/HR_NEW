@@ -3,15 +3,15 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
    
     $scope.init = function () {
         $scope.dateFormat = UtilityFunc.DateFormat();
-        $scope.EmployeeLeaveForm = {}
+        $scope.EmployeeLeaveForm = {
+            FromDate: moment(),
+            ToDate: moment(),
+        }
         $scope.maxdate = moment();
-        //$scope.formats = ['DD/MM/YYYY'];
-        //$scope.format = $scope.formats[0];
+        datepickerOptions: {
+            minDate: moment();
+        }
     };
-
-    //$scope.openCalendar = function (e, picker) {
-    //    that[picker].open = true;
-    //};
 
   
     $scope.EmployeeList = function (text) {
@@ -24,16 +24,15 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         $scope.EmployeeLeaveForm.EmployeeId = obj.id;
         $scope.EmployeeLeaveForm.EmployeeName = obj.EmployeeName;
     }
-    $scope.difference = function (fromDate, toDate) {
-        if (fromDate && toDate) {
-            $scope.EmployeeLeaveForm.Days= Math.round(Math.abs((new Date(fromDate).getTime() - new Date(toDate).getTime()) / (24 * 60 * 60 * 1000)));
-        }
+    $scope.difference = function () {
+        debugger
+        var diffDate = (Math.round(Math.abs((new Date($scope.EmployeeLeaveForm.FromDate).getTime() -new Date($scope.EmployeeLeaveForm.ToDate).getTime()) / (24 * 60 * 60 * 1000))));
+            $scope.EmployeeLeaveForm.Days = diffDate +1;
     }
     $scope.onChangeToDate = function () {
         debugger
-        ToDate = $scope.EmployeeLeaveForm.ToDate;
-        $scope.EmployeeLeaveForm.FromDate;
-        $scope.EmployeeLeaveForm.Days = moment($scope.EmployeeLeaveForm.ToDate).diff(moment($scope.EmployeeLeaveForm.FromDate), 'days')
+        var diffDate = moment($scope.EmployeeLeaveForm.ToDate).diff(moment($scope.EmployeeLeaveForm.FromDate), 'days');
+        $scope.EmployeeLeaveForm.Days = diffDate +1;
         //var days = UtilityFunc.DateFormat($scope.EmployeeLeaveForm.ToDate) - UtilityFunc.DateFormat($scope.EmployeeLeaveForm.FromDate);
     }
 
