@@ -1,6 +1,8 @@
 ﻿@import "http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic";
 @import "http://fonts.googleapis.com/css?family=Roboto+Mono:400,400italic,500,500italic";
-body{font-family: Roboto,Noto Sans,Helvetica Neue,Helvetica,Arial,sans-serif;}
+body{font-family: Roboto,Noto Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+     font-size:12px;
+}
 .content-header {
     padding-top:20px;
 }
@@ -87,7 +89,7 @@ zmdi-plus:hover{
   top: 0;
   left: 0;
   width: 100%;
-  height: 70px;
+  height: 50px;
   border-bottom-right-radius: 1px;
   border-top-right-radius: 1px;
 }
@@ -253,4 +255,19 @@ width:220px;
 .user-menu .user-footer a:hover {
 color:rgb(159,25,31);
 background:none;
+}
+label {
+font-weight:500;
+margin-bottom:0px;
+}
+.form-control {
+border-width:0px;
+  padding: 5px;
+border-bottom-width:1px ;
+}
+.box-body {
+padding:20px;
+}
+a {
+   outline: 0;
 }
