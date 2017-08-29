@@ -61,6 +61,7 @@
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
+                                    <th>#Action</th>
                                     <th>Leave Type Name</th>
                                     <th>Leave Type  Description</th>
                                     <th>Status</th>
@@ -68,6 +69,11 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="LeaveType in LeaveTypes">
+                                    <td>
+                                        <button type="button" ng-click="onEditLeaveType(LeaveType);" class="btn btn-default ng-scope waves-effect" aria-label="button">
+                                            <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
                                     <td><a ng-click="onEditLeaveType(LeaveType)">{{LeaveType.LookUpCode}}</a></td>
                                     <td>{{LeaveType.LookUpDescription}}</td>
                                     <td><input type="checkbox" ng-model="LeaveType.IsActive" disabled /></td>
