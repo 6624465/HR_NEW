@@ -620,7 +620,7 @@ a:focus {
   left: 50px;
 }
 .sidebar-mini:not(.sidebar-mini-expand-feature).sidebar-collapse .sidebar-menu > li:hover > a > span {
-  top: 0;
+  top: 1px;
   margin-left: -3px;
   padding: 12px 5px 12px 20px;
   background-color: inherit;
