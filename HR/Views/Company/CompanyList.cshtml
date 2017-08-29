@@ -13,7 +13,7 @@
 </style>
 <div class="row" ng-controller="CompanyListController as Cntrl">
     <div class="col-md-4">
-        <div class="box box-widget" >
+        <div class="box box-widget">
             <div class="box-header with-border">
                 <h3 class="box-title">Other Profiles</h3>
             </div>
@@ -32,8 +32,8 @@
                         </div>
 
                         @*<treecontrol class="tree-light" tree-model="CompanyList" expanded-nodes="expandedNodes" on-selection="showSelected(node)">
-                            <a tabindex="0" class="ellipsisCss">{{node.CompanyName}}</a>
-                        </treecontrol>*@
+                                <a tabindex="0" class="ellipsisCss">{{node.CompanyName}}</a>
+                            </treecontrol>*@
 
 
                     </div>
@@ -46,16 +46,23 @@
     <div class="col-md-8">
         <div class="box box-widget">
             <div class="box-header with-border">
-                <h3 class="box-title" ng-if="iscompany">
-                    Company Details
-                </h3>
-                <div class="pull-right">                   
+                <div ng-if="iscompany">
+                    <h3 class="box-title"> Company Details </h3><div class="pull-right">
                         @*<button type="button" class="btn btn-primary waves-effect m-r-5" ng-if="isbranch" >
-                            <i class="zmdi zmdi-widgets"></i>
-                        </button>*@                    
-                        <button type="button" class="btn btn-primary waves-effect m-r-15" ng-if="isbranch"  ng-click="AddBranch(CompanyDetails.CompanyCode, CompanyDetails.CompanyName,CompanyDetails.Id)">
-                            <i class="zmdi zmdi-plus"></i>
+                                <i class="zmdi zmdi-widgets"></i>
+                            </button>*@
+                        <button type="button" class="btn btn-primary btn-xs waves-effect m-r-15" ng-if="isbranch" ng-click="AddBranch(CompanyDetails.CompanyCode, CompanyDetails.CompanyName,CompanyDetails.Id)">
+                            <i class="zmdi zmdi-plus"></i> Add New Branch
                         </button>
+                    </div>
+                </div>
+
+                <div ng-if="!iscompany">
+                    <h3 class="box-title" ng-if="!iscompany">
+                        New Branch
+
+                    </h3>
+                    <div class="pull-right"> <h3 class="box-title"> Branch Details &nbsp;<span style="text-align: right;">Company Code [<b>{{BranchDetails.CompanyCode }}</b>]</span></h3></div>
                 </div>
             </div>
             <div class="box-body">
