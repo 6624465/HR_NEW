@@ -7544,6 +7544,7 @@
     <Content Include="scripts\ui-bootstrap.js" />
     <Content Include="template\date-picker.html" />
     <Content Include="template\time-picker.html" />
+    <Content Include="template\typeahead\typeahead-match.html" />
     <Content Include="template\typeahead\typeahead-popup.html" />
     <Content Include="Views\LookUp\EmployeeDepartment.cshtml" />
     <Content Include="Views\LookUp\PaymentType.cshtml" />

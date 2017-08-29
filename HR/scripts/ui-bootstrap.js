@@ -7561,7 +7561,7 @@ angular.module('ui.bootstrap.typeahead', ['ui.bootstrap.position'])
         query: '='
       },
       link:function(scope, element, attrs) {
-        var tplUrl = $parse(attrs.templateUrl)(scope.$parent) || 'template/typeahead/typeahead-match.html';
+        var tplUrl = $parse(attrs.templateUrl)(scope.$parent) || '/template/typeahead/typeahead-match.html';
         $templateRequest(tplUrl).then(function(tplContent) {
           $compile(tplContent.trim())(scope, function(clonedElement) {
             element.replaceWith(clonedElement);
@@ -8082,7 +8082,7 @@ angular.module('ui.bootstrap.typeahead')
           $log.warn('typeahead-match is now deprecated. Use uib-typeahead-match instead.');
         }
 
-        var tplUrl = $parse(attrs.templateUrl)(scope.$parent) || 'template/typeahead/typeahead-match.html';
+        var tplUrl = $parse(attrs.templateUrl)(scope.$parent) || '/template/typeahead/typeahead-match.html';
         $templateRequest(tplUrl).then(function(tplContent) {
           $compile(tplContent.trim())(scope, function(clonedElement) {
             element.replaceWith(clonedElement);
