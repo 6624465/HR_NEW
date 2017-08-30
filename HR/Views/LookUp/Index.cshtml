@@ -80,10 +80,12 @@
                                     <td>{{employeeType.LookUpDescription}}</td>
                                     @*<td><input type="checkbox" ng-model="employeeType.IsActive" disabled="true" /></td>*@
                                     <td>
-                                        <label class="switch">
-                                            <input type="checkbox" ng-model="employeeType.IsActive" disabled>
-                                            <span class="slider round"></span>
-                                        </label>
+                                        <div class="switch-container">
+                                            <label class="switch">
+                                                <input type="checkbox" ng-model="employeeType.IsActive" disabled>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
