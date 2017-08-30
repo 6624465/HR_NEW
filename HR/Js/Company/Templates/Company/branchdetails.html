@@ -3,189 +3,211 @@
     <!--<h4>
         Branch Details &nbsp;<span style="text-align: right;">Company Code [<b>{{BranchDetails.CompanyCode }}</b>]</span>
     </h4>-->
+    <div class="box box-widget">
+        <div class="box-header with-border">
+            <!--<div ng-if="iscompany">
+                <h3 class="box-title"> Company Details </h3><div class="pull-right">
+                    @*<button type="button" class="btn btn-primary waves-effect m-r-5" ng-if="isbranch">
+                        <i class="zmdi zmdi-widgets"></i>
+                    </button>*@
+                    <button type="button" class="button" ng-if="isbranch" ng-click="AddBranch(CompanyDetails.CompanyCode, CompanyDetails.CompanyName,CompanyDetails.Id)">
+                        <i class="zmdi zmdi-plus"></i> Add
+                    </button>
+                </div>
+            </div>-->
 
+            <div >
+                <h3 class="box-title">
+                    New Branch
 
-    <div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak">Branch Code</label>
-
-            <input id="BranchCode" class="form-control" type="text" ng-minlength="3" maxlength="3" ng-model="BranchDetails.BranchCode" ng-required="true" />
-
+                </h3>
+                <div class="pull-right"> <h3 class="box-title"> Branch Details &nbsp;<span style="text-align: right;">Company Code [<b>{{BranchDetails.CompanyCode }}</b>]</span></h3></div>
+            </div>
         </div>
+        <div class="box-body">
 
-        <div class="col-xs-12 col-md-6 form-group">
-            <!--<md-switch class="md-primary" aria-label="Active Account" ng-model="BranchDetails.IsActive">Active Account</md-switch>-->
+            <div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak">Branch Code</label>
+
+                    <input id="BranchCode" class="form-control" type="text" ng-minlength="3" maxlength="3" ng-model="BranchDetails.BranchCode" ng-required="true" />
+
+                </div>
+
+                <div class="col-xs-12 col-md-6 form-group">
+                    <!--<md-switch class="md-primary" aria-label="Active Account" ng-model="BranchDetails.IsActive">Active Account</md-switch>-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+
+                    <label class="required weak">Branch Name</label>
+
+                    <input id="BranchName" class="form-control" type="text" ng-model="BranchDetails.BranchName" ng-required="true" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label for="RegistrationNo">Registration No.</label>
+
+                    <input id="RegistrationNo" class="form-control" type="text" ng-model="BranchDetails.RegNo" />
+
+                </div>
+
+                <!--<div class="col-xs-12 col-md-6 form-group">
+
+                    <label for="CustomsMailBoxNo">Customs Mail Box No.</label>
+                    <input id="CustomsMailBoxNo" class="form-control" type="text" ng-model="BranchDetails.EDIMailBoxNo" ng-disabled="true" />
+
+                </div>-->
+            </div>
+            <!--<div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label for="AgentCode">Agent Code</label>
+                    <input id="AgentCode" class="form-control" type="text" ng-model="BranchDetails.AgentCode" ng-disabled="true" />
+
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak">GST No.</label>
+
+                    <input id="GSTNo" class="form-control" type="text" ng-model="BranchDetails.GSTNo" ng-required="BranchDetails.Address.CountryCode == 'MY'" />
+
+                </div>
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label for="TAXID">TAX ID</label>
+
+                    <input id="TAXID" class="form-control" type="text" ng-model="BranchDetails.TaxID" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+
+                    <label class="required weak">Address</label>
+
+                    <input id="Address" class="form-control" type="text" ng-model="BranchDetails.Address.Address1" ng-required="true" />
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-xs-12 form-group">
+
+                    <label class="required weak">Address2</label>
+                    <input id="Address2" class="form-control" type="text" ng-model="BranchDetails.Address.Address2" ng-required="true" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak">Post Code</label>
+
+                    <input id="PostCode" class="form-control" type="text" ng-model="BranchDetails.Address.ZipCode" ng-required="true" logicon-number />
+
+                </div>
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak">City/Suburb</label>
+
+                    <input id="City/Suburb" class="form-control" type="text" ng-model="BranchDetails.Address.CityName" ng-required="true" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+
+                    <label class="required weak">State</label>
+
+                    <input id="State" class="form-control" type="text" ng-model="BranchDetails.Address.StateName" ng-required="true" />
+
+                </div>
+
+                <div class="col-xs-12 col-md-6 form-group">
+                    <label for="Country">Country</label>
+                    <select name="users" ng-options="s.Id as s.CountryName for s in Countries" ng-model="BranchDetails.Address.CountryId" class="form-control">
+                        <option value="">--Select Country--</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak">Tel No.</label>
+
+                    <input id="TelNo" class="form-control" type="text" ng-model="BranchDetails.Address.TelNo" ng-required="true" logicon-number />
+
+                </div>
+                <!--<div class="col-xs-12 col-md-7">
+                  <input id="companyCode" class="form-control" type="text"  />
+                </div>-->
+            </div>
+            <div class="row">
+
+                <!--<div class="col-xs-12 col-md-2">
+                     <label for="">Contact</label>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                  <input id="companyCode" class="form-control" type="text"  />
+                </div>-->
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak">Mobile No.</label>
+
+                    <input id="MobileNo" class="form-control" type="text" ng-model="BranchDetails.Address.MobileNo" ng-required="true" logicon-number />
+
+                </div>
+
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak">Fax No.</label>
+
+                    <input id="FaxNo" class="form-control" type="text" ng-model="BranchDetails.Address.FaxNo" ng-required="true" />
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 form-group">
+
+                    <label class="required weak">Email</label>
+
+                    <input id="Email" class="form-control" type="email" ng-model="BranchDetails.Address.Email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-required="true" />
+
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col-xs-12 col-md-2">
+                     <label for="">Remarks</label>
+                </div>
+                <div class="col-xs-12 col-md-10">
+                    <textarea ></textarea>
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-xs-12 form-group">
+
+                    <label for="Website">Website</label>
+
+                    <input id="Website" class="form-control" type="text" ng-model="BranchDetails.Address.WebSite" />
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 text-right">
+                    <button class="button " type="submit" ng-click="submitted = true;" ng-disabled="BranchDetails.BranchCode=='HQ'"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+                    <button class="button button-default" type="button"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
+                </div>
+            </div>
+
+</div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 form-group">
-
-            <label class="required weak">Branch Name</label>
-
-            <input id="BranchName" class="form-control" type="text" ng-model="BranchDetails.BranchName" ng-required="true" />
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label for="RegistrationNo">Registration No.</label>
-
-            <input id="RegistrationNo" class="form-control" type="text" ng-model="BranchDetails.RegNo"/>
-
-        </div>
-
-        <!--<div class="col-xs-12 col-md-6 form-group">
-
-            <label for="CustomsMailBoxNo">Customs Mail Box No.</label>
-            <input id="CustomsMailBoxNo" class="form-control" type="text" ng-model="BranchDetails.EDIMailBoxNo" ng-disabled="true" />
-
-        </div>-->
-    </div>
-    <!--<div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label for="AgentCode">Agent Code</label>
-            <input id="AgentCode" class="form-control" type="text" ng-model="BranchDetails.AgentCode" ng-disabled="true" />
-
-        </div>
-    </div>-->
-    <div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak">GST No.</label>
-
-            <input id="GSTNo" class="form-control" type="text" ng-model="BranchDetails.GSTNo" ng-required="BranchDetails.Address.CountryCode == 'MY'" />
-
-        </div>
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label for="TAXID">TAX ID</label>
-
-            <input id="TAXID" class="form-control" type="text" ng-model="BranchDetails.TaxID" />
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 form-group">
-
-            <label class="required weak">Address</label>
-
-            <input id="Address" class="form-control" type="text" ng-model="BranchDetails.Address.Address1" ng-required="true" />
-
-        </div>
-    </div>
-    <div class="row">
-
-        <div class="col-xs-12 form-group">
-
-            <label class="required weak">Address2</label>
-            <input id="Address2" class="form-control" type="text" ng-model="BranchDetails.Address.Address2" ng-required="true" />
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak">Post Code</label>
-
-            <input id="PostCode" class="form-control" type="text" ng-model="BranchDetails.Address.ZipCode" ng-required="true" logicon-number />
-
-        </div>
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak">City/Suburb</label>
-
-            <input id="City/Suburb" class="form-control" type="text" ng-model="BranchDetails.Address.CityName" ng-required="true" />
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 form-group">
-
-            <label class="required weak">State</label>
-
-            <input id="State" class="form-control" type="text" ng-model="BranchDetails.Address.StateName" ng-required="true" />
-
-        </div>
-
-        <div class="col-xs-12 col-md-6 form-group">
-            <label for="Country">Country</label>
-            <select name="users" ng-options="s.Id as s.CountryName for s in Countries" ng-model="BranchDetails.Address.CountryId" class="form-control">
-                <option value="">--Select Country--</option>
-            </select>
-        </div>
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak">Tel No.</label>
-
-            <input id="TelNo" class="form-control" type="text" ng-model="BranchDetails.Address.TelNo" ng-required="true" logicon-number />
-
-        </div>
-        <!--<div class="col-xs-12 col-md-7">
-          <input id="companyCode" class="form-control" type="text"  />
-        </div>-->
-    </div>
-    <div class="row">
-
-        <!--<div class="col-xs-12 col-md-2">
-             <label for="">Contact</label>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <input id="companyCode" class="form-control" type="text"  />
-        </div>-->
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak">Mobile No.</label>
-
-            <input id="MobileNo" class="form-control" type="text" ng-model="BranchDetails.Address.MobileNo" ng-required="true" logicon-number />
-
-        </div>
-
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak">Fax No.</label>
-
-            <input id="FaxNo" class="form-control" type="text" ng-model="BranchDetails.Address.FaxNo" ng-required="true" />
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 form-group">
-
-            <label class="required weak">Email</label>
-
-            <input id="Email" class="form-control" type="email" ng-model="BranchDetails.Address.Email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-required="true" />
-
-        </div>
-    </div>
-    <!--<div class="row">
-        <div class="col-xs-12 col-md-2">
-             <label for="">Remarks</label>
-        </div>
-        <div class="col-xs-12 col-md-10">
-            <textarea ></textarea>
-        </div>
-    </div>-->
-    <div class="row">
-        <div class="col-xs-12 form-group">
-
-            <label for="Website">Website</label>
-
-            <input id="Website" class="form-control" type="text" ng-model="BranchDetails.Address.WebSite" />
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 text-right">
-            <button class="btn btn-primary" type="submit" ng-click="submitted = true;" ng-disabled="BranchDetails.BranchCode=='HQ'"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
-            <button class="btn btn-default" type="button"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
-        </div>
-    </div>
-
-
 
 </form>
