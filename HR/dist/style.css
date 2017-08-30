@@ -539,3 +539,8 @@ line-height: 25px !important;
 .button.button-default:active {
     background-color: rgb(246,246,246);
 }
+.box-title .label{
+padding:2px .6em 2px;
+position:relative;
+top:-2px;
+}
