@@ -495,4 +495,47 @@ font-weight:400
        }
 .box-title {
 font-size:15px !important;
+line-height: 25px !important;
+}
+
+/*buttons*/
+
+.button {
+  padding: 4px 12px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: rgba(6,109,169,0.9);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 3px rgba(153, 153, 153,0.5);
+}
+
+.button:hover {background-color: rgb(6,109,169)}
+
+.button:active {
+  background-color: rgb(6,109,169);
+  box-shadow: 0 2px rgba(102, 102, 102, 0.6);
+  transform: translateY(4px);
+}
+
+.button.button-danger  {
+     background-color: rgba(218,67,47,0.9);
+}
+.button.button-danger:hover {background-color: rgb(218,67,47)}
+
+.button.button-danger:active {
+    background-color: rgb(218,67,47);
+    
+}
+.button-default.button {
+     background-color: rgba(246,246,246,0.9);
+     color:#333;
+}
+.button.button-default:hover {background-color: rgb(246,246,246)}
+
+.button.button-default:active {
+    background-color: rgb(246,246,246);
 }

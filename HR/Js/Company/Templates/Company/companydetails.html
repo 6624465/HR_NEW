@@ -1,235 +1,252 @@
 ﻿
 <form id="Cntrl.frmCompanyDetails" name="Cntrl.frmCompanyDetails" enctype="multipart/form-data" ng-class="{'submitted':submitted}" ng-submit="SaveCompany(CompanyDetails);" novalidate>
-   
-    <div class="row ">
-        <div class="col-xs-12 col-md-6 form-group">
 
-            <label class="required weak">Company Code</label>
-
-            <input id="companyCode" class="form-control" type="text" ng-disabled="isDisabledCompany" ng-model="CompanyDetails.CompanyCode" />
-            <div class="col-xs-12 col-md-4"></div>
-        </div>
-      
-        <div class="col-xs-12 col-md-6 text-right">
-            <div class="switch-container">
-                <label class="switch-label">Status</label>
-                 <label class="switch pull-right">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-
+    <div class="box box-widget">
+        <div class="box-header with-border">
+            
+                <h3 class="box-title"> Company Details </h3><div class="pull-right">
+                                                                <div ng-if="iscompany">
+                                                                    <button type="button" class="button" ng-if="isbranch" ng-click="AddBranch(CompanyDetails.CompanyCode, CompanyDetails.CompanyName,CompanyDetails.Id)">
+                                                                        <i class="zmdi zmdi-plus"></i> Add
+                                                                    </button>
+                                                                </div>
             </div>
+
+            
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-12 form-group">
+        <div class="box-body">
 
-            <label class="required weak"> Company Name</label>
+            <div class="row ">
+                <div class="col-xs-12 col-md-6 form-group">
 
-            <input id="companyCode" class="form-control" type="text" ng-model="CompanyDetails.CompanyName" ng-required="true" />
+                    <label class="required weak">Company Code</label>
 
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
+                    <input id="companyCode" class="form-control" type="text" ng-disabled="isDisabledCompany" ng-model="CompanyDetails.CompanyCode" />
+                    <div class="col-xs-12 col-md-4"></div>
+                </div>
 
-            <label class="required weak"> Registration No.</label>
+                <div class="col-xs-12 col-md-6 text-right">
+                    <div class="switch-container">
+                        <label class="switch-label">Status</label>
+                        <label class="switch pull-right">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
 
-            <input id="RegistrationNo" class="form-control" type="text" ng-model="CompanyDetails.RegNo" ng-required="CompanyDetails.Address.CountryCode == 'MY'" />
-
-        </div>
-        <!--<div class="col-xs-12 col-md-6 form-group">
-
-            <label for="CustomsMailMailNo">Customs Mail Mail No.</label>
-            <input id="CustomsMailMailNo" class="form-control" type="text" ng-model="CompanyDetails.EDIMailBoxNo" ng-disabled="true" />
-
-        </div>-->
-    </div>
-    <!--<div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label for="AgentCode">Agent Code</label>
-            <input id="AgentCode" class="form-control" type="text" ng-model="CompanyDetails.AgentCode" ng-disabled="true" />
-
-        </div>
-    </div>-->
-    <div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak"> GST No.</label>
-
-            <input id="GSTNo" class="form-control" type="text" ng-model="CompanyDetails.GSTNo" ng-required="CompanyDetails.Address.CountryCode == 'MY'" />
-
-        </div>
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label for="TAXID">TAX ID</label>
-
-            <input id="TAXID" class="form-control" type="text" ng-model="CompanyDetails.TaxId" />
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 form-group">
-
-            <label class="required weak">Address</label>
-
-            <input id="Address" class="form-control" type="text" ng-model="CompanyDetails.Address.Address1" ng-required="true" />
-
-        </div>
-    </div>
-    <div class="row">
-
-        <div class="col-xs-12 form-group">
-
-            <label class="required weak"> Address2</label>
-            <input id="Address2" class="form-control" type="text" ng-model="CompanyDetails.Address.Address2" ng-required="true" />
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak"> Post Code</label>
-
-            <input id="PostCode" class="form-control" type="text" ng-model="CompanyDetails.Address.ZipCode" ng-required="true" logicon-number />
-
-        </div>
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak"> City</label>
-
-            <input id="CitySuburb" class="form-control" type="text" ng-model="CompanyDetails.Address.CityName" ng-required="true" />
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 form-group">
-
-            <label class="required weak"> State</label>
-
-            <input id="CitySuburb" class="form-control" type="text" ng-model="CompanyDetails.Address.StateName" ng-required="true" />
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label for="Country">  Country</label>
-
-            <select name="users" ng-options="s.Id as s.CountryName for s in Countries" ng-model="CompanyDetails.Address.CountryId" class="form-control">
-                <option value="">--Select Country--</option>
-            </select>
-
-        </div>
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak">Tel No.</label>
-
-            <input id="TelNo" class="form-control" type="text" ng-model="CompanyDetails.Address.TelNo" ng-required="true" logicon-number ng-maxlength="15" />
-
-        </div>
-        <!--<div class="col-xs-12 col-md-7">
-            <input type="text"  />
-        </div>-->
-    </div>
-    <!--<div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label for="TelNo">Tel No.</label>
-
-            <input id="TelNo" class="form-control" type="text" ng-model="CompanyDetails.Address.TelNo" ng-required="true" logicon-number ng-maxlength="15" />
-
-        </div>
-        <!--<div class="col-xs-12 col-md-2">
-            <label>Contact</label>
-        </div>
-        <div class="col-xs-12 col-md-4">
-            <input type="text"  />
-        </div>
-    </div>-->
-    <div class="row">
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak">Fax No.</label>
-
-            <input id="TelNo" class="form-control" type="text" ng-model="CompanyDetails.Address.FaxNo" ng-required="true" logicon-number ng-maxlength="15" />
-
-        </div>
-        <div class="col-xs-12 col-md-6 form-group">
-
-            <label class="required weak">Mobile No.</label>
-
-            <input id="MobileNo" class="form-control" type="text" ng-model="CompanyDetails.Address.MobileNo" ng-required="true" logicon-number ng-maxlength="15" />
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 form-group">
-
-            <label class="required weak"> Email</label>
-            <input id="Email" class="form-control" type="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-model="CompanyDetails.Address.Email" ng-required="true" />
-
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-xs-12 form-group">
-
-            <label for="Website"> Website</label>
-
-            <input id="Website" class="form-control" type="text" ng-model="CompanyDetails.Address.WebSite" />
-
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-6">
-
-            <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">
-
-                <p class="help-block">Company Logo</p>
+                    </div>
+                </div>
             </div>
-            <!--<label class="pull-left">Company Logo</label>
-            <span class="fileinput fileinput-new pull-left m-l-10" data-provides="fileinput">
-                <span class="btn btn-primary btn-file m-r-10">
-                    <span class="fileinput-new">Upload Company Logo</span>
-                    <span class="fileinput-exists">Change</span>
-                    <input type="file"
+            <div class="row">
+                <div class="col-xs-12 col-md-12 form-group">
+
+                    <label class="required weak"> Company Name</label>
+
+                    <input id="companyCode" class="form-control" type="text" ng-model="CompanyDetails.CompanyName" ng-required="true" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak"> Registration No.</label>
+
+                    <input id="RegistrationNo" class="form-control" type="text" ng-model="CompanyDetails.RegNo" ng-required="CompanyDetails.Address.CountryCode == 'MY'" />
+
+                </div>
+                <!--<div class="col-xs-12 col-md-6 form-group">
+
+                    <label for="CustomsMailMailNo">Customs Mail Mail No.</label>
+                    <input id="CustomsMailMailNo" class="form-control" type="text" ng-model="CompanyDetails.EDIMailBoxNo" ng-disabled="true" />
+
+                </div>-->
+            </div>
+            <!--<div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label for="AgentCode">Agent Code</label>
+                    <input id="AgentCode" class="form-control" type="text" ng-model="CompanyDetails.AgentCode" ng-disabled="true" />
+
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak"> GST No.</label>
+
+                    <input id="GSTNo" class="form-control" type="text" ng-model="CompanyDetails.GSTNo" ng-required="CompanyDetails.Address.CountryCode == 'MY'" />
+
+                </div>
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label for="TAXID">TAX ID</label>
+
+                    <input id="TAXID" class="form-control" type="text" ng-model="CompanyDetails.TaxId" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+
+                    <label class="required weak">Address</label>
+
+                    <input id="Address" class="form-control" type="text" ng-model="CompanyDetails.Address.Address1" ng-required="true" />
+
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-xs-12 form-group">
+
+                    <label class="required weak"> Address2</label>
+                    <input id="Address2" class="form-control" type="text" ng-model="CompanyDetails.Address.Address2" ng-required="true" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak"> Post Code</label>
+
+                    <input id="PostCode" class="form-control" type="text" ng-model="CompanyDetails.Address.ZipCode" ng-required="true" logicon-number />
+
+                </div>
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak"> City</label>
+
+                    <input id="CitySuburb" class="form-control" type="text" ng-model="CompanyDetails.Address.CityName" ng-required="true" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+
+                    <label class="required weak"> State</label>
+
+                    <input id="CitySuburb" class="form-control" type="text" ng-model="CompanyDetails.Address.StateName" ng-required="true" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label for="Country">  Country</label>
+
+                    <select name="users" ng-options="s.Id as s.CountryName for s in Countries" ng-model="CompanyDetails.Address.CountryId" class="form-control">
+                        <option value="">--Select Country--</option>
+                    </select>
+
+                </div>
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak">Tel No.</label>
+
+                    <input id="TelNo" class="form-control" type="text" ng-model="CompanyDetails.Address.TelNo" ng-required="true" logicon-number ng-maxlength="15" />
+
+                </div>
+                <!--<div class="col-xs-12 col-md-7">
+                    <input type="text"  />
+                </div>-->
+            </div>
+            <!--<div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label for="TelNo">Tel No.</label>
+
+                    <input id="TelNo" class="form-control" type="text" ng-model="CompanyDetails.Address.TelNo" ng-required="true" logicon-number ng-maxlength="15" />
+
+                </div>
+                <!--<div class="col-xs-12 col-md-2">
+                    <label>Contact</label>
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <input type="text"  />
+                </div>
+            </div>-->
+            <div class="row">
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak">Fax No.</label>
+
+                    <input id="TelNo" class="form-control" type="text" ng-model="CompanyDetails.Address.FaxNo" ng-required="true" logicon-number ng-maxlength="15" />
+
+                </div>
+                <div class="col-xs-12 col-md-6 form-group">
+
+                    <label class="required weak">Mobile No.</label>
+
+                    <input id="MobileNo" class="form-control" type="text" ng-model="CompanyDetails.Address.MobileNo" ng-required="true" logicon-number ng-maxlength="15" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+
+                    <label class="required weak"> Email</label>
+                    <input id="Email" class="form-control" type="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-model="CompanyDetails.Address.Email" ng-required="true" />
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 form-group">
+
+                    <label for="Website"> Website</label>
+
+                    <input id="Website" class="form-control" type="text" ng-model="CompanyDetails.Address.WebSite" />
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+
+                    <div class="form-group">
+                        <label for="exampleInputFile">File input</label>
+                        <input type="file" id="exampleInputFile">
+
+                        <p class="help-block">Company Logo</p>
+                    </div>
+                    <!--<label class="pull-left">Company Logo</label>
+                    <span class="fileinput fileinput-new pull-left m-l-10" data-provides="fileinput">
+                        <span class="btn btn-primary btn-file m-r-10">
+                            <span class="fileinput-new">Upload Company Logo</span>
+                            <span class="fileinput-exists">Change</span>
+                            <input type="file"
+                                   id="companyLogo"
+                                   name="companyLogo"
+                                   ng-model="CompanyDetails.Logo"
+                                   onchange="angular.element(this).scope().fileChanged(this.files)">
+                        </span>
+                        <span class="fileinput-filename"></span>
+                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+                    </span>-->
+                    <!--<input type="file"
                            id="companyLogo"
                            name="companyLogo"
                            ng-model="CompanyDetails.Logo"
-                           onchange="angular.element(this).scope().fileChanged(this.files)">
-                </span>
-                <span class="fileinput-filename"></span>
-                <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
-            </span>-->
-            <!--<input type="file"
-                   id="companyLogo"
-                   name="companyLogo"
-                   ng-model="CompanyDetails.Logo"
-                   onchange="angular.element(this).scope().fileChanged(this.files)"
-                   ng-required="true" />-->
+                           onchange="angular.element(this).scope().fileChanged(this.files)"
+                           ng-required="true" />-->
 
+                </div>
+                <div class="col-xs-12 col-md-4">
+                    <button class="button button-danger" type="button" ng-click="DeleteLogo()" ng-if="CompanyDetails.Logo != null && CompanyDetails.Logo != ''">
+                        <i class="zmdi zmdi-delete"></i>&nbsp;Delete Logo
+                    </button>
+                </div>
+            </div>
+
+            <div class="row m-t-25">
+                <div class="col-xs-12 text-right">
+                    <!--has-permission data-securable="Save" data-linkid="Company"-->
+                    <button class="button" type="submit" ng-click="submitted = true;"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+                    <button class="button button-default" type="button"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
+                </div>
+            </div>
+
+
+</div>
         </div>
-        <div class="col-xs-12 col-md-4">
-            <button class="btn btn-danger" type="button" ng-click="DeleteLogo()" ng-if="CompanyDetails.Logo != null && CompanyDetails.Logo != ''">
-                <i class="zmdi zmdi-delete"></i>&nbsp;Delete Logo
-            </button>
-        </div>
-    </div>
-
-    <div class="row m-t-25">
-        <div class="col-xs-12 text-right">
-            <!--has-permission data-securable="Save" data-linkid="Company"-->
-            <button class="btn btn-primary" type="submit" ng-click="submitted = true;"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
-            <button class="btn btn-clear" type="button"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
-        </div>
-    </div>
-
-
-
+    
 </form>
 
 
