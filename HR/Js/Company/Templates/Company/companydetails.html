@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-12 form-group">
 
-            <label for="companyCode"> Company Name</label>
+            <label class="required weak"> Company Name</label>
 
             <input id="companyCode" class="form-control" type="text" ng-model="CompanyDetails.CompanyName" ng-required="true" />
 
@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="RegistrationNo"> Registration No.</label>
+            <label class="required weak"> Registration No.</label>
 
             <input id="RegistrationNo" class="form-control" type="text" ng-model="CompanyDetails.RegNo" ng-required="CompanyDetails.Address.CountryCode == 'MY'" />
 
@@ -53,7 +53,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="GSTNo"> GST No.</label>
+            <label class="required weak"> GST No.</label>
 
             <input id="GSTNo" class="form-control" type="text" ng-model="CompanyDetails.GSTNo" ng-required="CompanyDetails.Address.CountryCode == 'MY'" />
 
@@ -69,7 +69,7 @@
     <div class="row">
         <div class="col-xs-12 form-group">
 
-            <label for="Address">Address</label>
+            <label class="required weak">Address</label>
 
             <input id="Address" class="form-control" type="text" ng-model="CompanyDetails.Address.Address1" ng-required="true" />
 
@@ -79,7 +79,7 @@
 
         <div class="col-xs-12 form-group">
 
-            <label for="Address2"> Address2</label>
+            <label class="required weak"> Address2</label>
             <input id="Address2" class="form-control" type="text" ng-model="CompanyDetails.Address.Address2" ng-required="true" />
 
         </div>
@@ -87,14 +87,14 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="PostCode"> Post Code</label>
+            <label class="required weak"> Post Code</label>
 
             <input id="PostCode" class="form-control" type="text" ng-model="CompanyDetails.Address.ZipCode" ng-required="true" logicon-number />
 
         </div>
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="CitySuburb"> City</label>
+            <label class="required weak"> City</label>
 
             <input id="CitySuburb" class="form-control" type="text" ng-model="CompanyDetails.Address.CityName" ng-required="true" />
 
@@ -103,7 +103,7 @@
     <div class="row">
         <div class="col-xs-12 form-group">
 
-            <label for="CitySuburb"> State</label>
+            <label class="required weak"> State</label>
 
             <input id="CitySuburb" class="form-control" type="text" ng-model="CompanyDetails.Address.StateName" ng-required="true" />
 
@@ -121,7 +121,7 @@
         </div>
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="TelNo">Tel No.</label>
+            <label class="required weak">Tel No.</label>
 
             <input id="TelNo" class="form-control" type="text" ng-model="CompanyDetails.Address.TelNo" ng-required="true" logicon-number ng-maxlength="15" />
 
@@ -148,14 +148,14 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="FaxNo">Fax No.</label>
+            <label class="required weak">Fax No.</label>
 
             <input id="TelNo" class="form-control" type="text" ng-model="CompanyDetails.Address.FaxNo" ng-required="true" logicon-number ng-maxlength="15" />
 
         </div>
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="MobileNo">Mobile No.</label>
+            <label class="required weak">Mobile No.</label>
 
             <input id="MobileNo" class="form-control" type="text" ng-model="CompanyDetails.Address.MobileNo" ng-required="true" logicon-number ng-maxlength="15" />
 
@@ -164,7 +164,7 @@
     <div class="row">
         <div class="col-xs-12 form-group">
 
-            <label for="Email"> Email</label>
+            <label class="required weak"> Email</label>
             <input id="Email" class="form-control" type="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-model="CompanyDetails.Address.Email" ng-required="true" />
 
         </div>
