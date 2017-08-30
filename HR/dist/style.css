@@ -363,3 +363,11 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+.switch-container {
+height:25px;
+}
+.switch-label {
+line-height:26px;
+font-size:12px;
+padding-right: 10px;
+}
