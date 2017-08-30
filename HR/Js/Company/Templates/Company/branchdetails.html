@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="BranchCode">Branch Code</label>
+            <label class="required weak">Branch Code</label>
 
             <input id="BranchCode" class="form-control" type="text" ng-minlength="3" maxlength="3" ng-model="BranchDetails.BranchCode" ng-required="true" />
 
@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-xs-12 form-group">
 
-            <label for="BranchName">Branch Name</label>
+            <label class="required weak">Branch Name</label>
 
             <input id="BranchName" class="form-control" type="text" ng-model="BranchDetails.BranchName" ng-required="true" />
 
@@ -54,7 +54,7 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="GSTNo">GST No.</label>
+            <label class="required weak">GST No.</label>
 
             <input id="GSTNo" class="form-control" type="text" ng-model="BranchDetails.GSTNo" ng-required="BranchDetails.Address.CountryCode == 'MY'" />
 
@@ -70,7 +70,7 @@
     <div class="row">
         <div class="col-xs-12 form-group">
 
-            <label for="Address">Address</label>
+            <label class="required weak">Address</label>
 
             <input id="Address" class="form-control" type="text" ng-model="BranchDetails.Address.Address1" ng-required="true" />
 
@@ -80,7 +80,7 @@
 
         <div class="col-xs-12 form-group">
 
-            <label for="Address2">Address2</label>
+            <label class="required weak">Address2</label>
             <input id="Address2" class="form-control" type="text" ng-model="BranchDetails.Address.Address2" ng-required="true" />
 
         </div>
@@ -88,14 +88,14 @@
     <div class="row">
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="PostCode">Post Code</label>
+            <label class="required weak">Post Code</label>
 
             <input id="PostCode" class="form-control" type="text" ng-model="BranchDetails.Address.ZipCode" ng-required="true" logicon-number />
 
         </div>
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="City/Suburb">City/Suburb</label>
+            <label class="required weak">City/Suburb</label>
 
             <input id="City/Suburb" class="form-control" type="text" ng-model="BranchDetails.Address.CityName" ng-required="true" />
 
@@ -104,7 +104,7 @@
     <div class="row">
         <div class="col-xs-12 form-group">
 
-            <label for="State">State</label>
+            <label class="required weak">State</label>
 
             <input id="State" class="form-control" type="text" ng-model="BranchDetails.Address.StateName" ng-required="true" />
 
@@ -118,7 +118,7 @@
         </div>
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="TelNo">Tel No.</label>
+            <label class="required weak">Tel No.</label>
 
             <input id="TelNo" class="form-control" type="text" ng-model="BranchDetails.Address.TelNo" ng-required="true" logicon-number />
 
@@ -137,7 +137,7 @@
         </div>-->
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="MobileNo">Mobile No.</label>
+            <label class="required weak">Mobile No.</label>
 
             <input id="MobileNo" class="form-control" type="text" ng-model="BranchDetails.Address.MobileNo" ng-required="true" logicon-number />
 
@@ -145,7 +145,7 @@
 
         <div class="col-xs-12 col-md-6 form-group">
 
-            <label for="FaxNo">Fax No.</label>
+            <label class="required weak">Fax No.</label>
 
             <input id="FaxNo" class="form-control" type="text" ng-model="BranchDetails.Address.FaxNo" ng-required="true" />
 
@@ -155,7 +155,7 @@
     <div class="row">
         <div class="col-xs-12 form-group">
 
-            <label for="Email">Email</label>
+            <label class="required weak">Email</label>
 
             <input id="Email" class="form-control" type="email" ng-model="BranchDetails.Address.Email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-required="true" />
 
