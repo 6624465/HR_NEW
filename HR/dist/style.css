@@ -286,6 +286,7 @@ margin-bottom:5px;
 border-width:0px;
   padding: 5px;
 border-bottom-width:1px ;
+font-size:12px;
 }
 .box-body {
 padding:20px;
@@ -370,4 +371,14 @@ height:25px;
 line-height:26px;
 font-size:12px;
 padding-right: 10px;
+}
+.employee-remarks {
+background:rgba(238,238,238,0.3);
+padding:10px;
+margin-bottom:10px;
+border:rgb(238,238,238);
+font-weight:700;
+}
+label, table th {
+text-transform:capitalize;
 }
