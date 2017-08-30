@@ -59,6 +59,7 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.addEmployeeDesignation = function () {
         $scope.clearTextBoxes();
+        $scope.EmployeeDesignation.IsActive = true;
         $('#AddEmployeeDesignationDialog').modal('show');
     };
 

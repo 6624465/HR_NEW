@@ -39,12 +39,15 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-xs-12 col-md-8">
-                                            <div class="form-group fg-line">
-                                                <label>
+                                        <div class="col-xs-12 col-md-3">
+                                            <div class="switch-container">
+                                                <label class="switch-label">
                                                     IsActive
                                                 </label>
-                                                <input type="checkbox" ng-model="EmployeeDesignation.IsActive" />
+                                                <label class="switch pull-right">
+                                                    <input type="checkbox" ng-model="EmployeeDesignation.IsActive">
+                                                    <span class="slider round"></span>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -70,10 +73,10 @@
                             <tbody>
                                 <tr ng-repeat="employeeDesignation in EmployeeDesignations">
                                     <td>
-                                    <button type="button" ng-click="onEditEmployeeDesignation(employeeDesignation);" class="btn btn-default ng-scope waves-effect" aria-label="button">
-                                        <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                                    </button>
-                                        </td>
+                                        <button type="button" ng-click="onEditEmployeeDesignation(employeeDesignation);" class="btn btn-default ng-scope waves-effect" aria-label="button">
+                                            <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
                                     <td><a ng-click="onEditEmployeeDesignation(employeeDesignation)">{{employeeDesignation.LookUpCode}}</a></td>
                                     <td>{{employeeDesignation.LookUpDescription}}</td>
                                     <td><input type="checkbox" ng-model="employeeDesignation.IsActive" disabled="true" /></td>
