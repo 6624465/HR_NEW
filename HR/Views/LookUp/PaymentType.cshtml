@@ -78,7 +78,13 @@
                                     </td>
                                     <td><a ng-click="onEditPaymentType(paymentType)">{{paymentType.LookUpCode}}</a></td>
                                     <td>{{paymentType.LookUpDescription}}</td>
-                                    <td><input type="checkbox" ng-model="paymentType.IsActive" disabled /></td>
+                                    @*<td><input type="checkbox" ng-model="paymentType.IsActive" disabled /></td>*@
+                                    <td>
+                                        <label class="switch">
+                                            <input type="checkbox" ng-model="paymentType.IsActive" disabled>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

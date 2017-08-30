@@ -80,7 +80,13 @@
                                     </td>
                                     <td><a ng-click="onEditLeaveType(LeaveType)">{{LeaveType.LookUpCode}}</a></td>
                                     <td>{{LeaveType.LookUpDescription}}</td>
-                                    <td><input type="checkbox" ng-model="LeaveType.IsActive" disabled /></td>
+                                    @*<td><input type="checkbox" ng-model="LeaveType.IsActive" disabled /></td>*@
+                                    <td>
+                                        <label class="switch">
+                                            <input type="checkbox" ng-model="LeaveType.IsActive" disabled>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

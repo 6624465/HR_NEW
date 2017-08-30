@@ -78,7 +78,13 @@
                                     </td>
                                     <td><a ng-click="onEditEmployeeType(employeeType)">{{employeeType.LookUpCode}}</a></td>
                                     <td>{{employeeType.LookUpDescription}}</td>
-                                    <td><input type="checkbox" ng-model="employeeType.IsActive" disabled="true" /></td>
+                                    @*<td><input type="checkbox" ng-model="employeeType.IsActive" disabled="true" /></td>*@
+                                    <td>
+                                        <label class="switch">
+                                            <input type="checkbox" ng-model="employeeType.IsActive" disabled>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
