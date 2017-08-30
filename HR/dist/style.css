@@ -382,3 +382,6 @@ font-weight:700;
 label, table th {
 text-transform:capitalize;
 }
+.content-label {
+font-weight:400
+}
