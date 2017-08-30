@@ -11,7 +11,7 @@
 
 <div class="card-body card-padding" ng-controller="EmployeeTypeController">
     <div class="add-top">
-        <a href="" class="btn btn-primary btn-xs waves-effect pull-right  " ng-click="addEmployeeType(table)"> <i class="zmdi zmdi-account-add"> Add Employee Type</i></a>
+        <a href="" class="button pull-right  " ng-click="addEmployeeType(table)"> <i class="zmdi zmdi-account-add"> Add Employee Type</i></a>
         <div class="clearfix"></div>
     </div>
     <div class="modal fade in" id="AddEmployeeTypeDialog" role="dialog">
@@ -76,8 +76,8 @@
                     </div>
                 </div>
                 <div class="modal-footer" style="right: 270px;">
-                    <button class="btn btn-primary waves-effect" type="submit" ng-click="onClickSaveEmployeeType(EmployeeType)">Save</button>
-                    <button type="submit" class="btn btn-primary waves-effect" ng-click="onClickCancelEmployeeType()">Cancel</button>
+                    <button class="button" type="submit" ng-click="onClickSaveEmployeeType(EmployeeType)">Save</button>
+                    <button type="submit" class="button button-default"  ng-click="onClickCancelEmployeeType()">Cancel</button>
                 </div>
             </div>
         </div>
