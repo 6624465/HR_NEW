@@ -1,15 +1,18 @@
-﻿var app = angular.module('loginApp', ['angular-loading-bar',
-])
-  .config(['cfpLoadingBarProvider', function (cfpLoadingBarProvider) {
-      cfpLoadingBarProvider.includeBar = false;
-  }])
-app.controller('loginController', ['$scope', '$http', 'LoginService', 'cfpLoadingBar', function ($scope, $http, LoginService, cfpLoadingBar) {
+﻿var app = angular.module('loginApp', [])
+app.controller('loginController', ['$scope', '$http', 'LoginService', function ($scope, $http, LoginService) {
+    $scope.init = function () {
+        $scope.IsEnable = true;
+    }
     $scope.login = function () {
-        cfpLoadingBar.start();
+        if ($scope.UserName != null && $scope.Password != null){
+        $scope.showLoading = true;
+        $scope.IsEnable = false;
+    }
         var user = { "UserName": $scope.UserName, "Password": $scope.Password };
         LoginService.LogIn(user).then(function (response) {
             if (response && response.data && response.data.success == true) {
-                cfpLoadingBar.complete();
+                $scope.showLoading = false;
+                $scope.IsEnable = true;
                 sessionStorage.setItem('User', JSON.stringify(response.data.SessionObject));
                 location.href = "/Home/Index/";
             }
