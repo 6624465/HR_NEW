@@ -241,7 +241,6 @@ app.factory('UtilityFunc', ['$filter', '$q', function ($filter, $q) {
     }
 
     obj.DateFormat = function () {
-        debugger;
         return 'DD/MM/YYYY';
     };
     return obj;
