@@ -3,8 +3,8 @@
         debugger;
         var branchId = UtilityFunc.BranchId();///add branchid parameter later
         var deferred = $q.defer();
-        $http.get("/EmployeeLeave/GetEmployeeList?employeeName=" + employeeName).then(function (res) {
-            deferred.resolve(res);
+        $http.get("/EmployeeLeave/GetEmployeeList?employeeName=" + employeeName).then(function (response) {
+            deferred.resolve(response);
         }, function (err) {
             deferred.reject(err);
         });
@@ -19,5 +19,14 @@
             deferred.reject(err);
         })
         return deferred.promise;
+    }
+
+    this.GetEmployeeLeaveListBasedOnTeamLead = function (teamLeadId) {
+        var deferred = $q.defer();
+        $http.get("/AppliedLeaveList/GetAppliedLeaveList?teamLeadId=" + teamLeadId).then(function (response) {
+            deferred.resolve(response);
+        }, function (err) {
+            deferred.reject(err);
+        })
     }
 }]);

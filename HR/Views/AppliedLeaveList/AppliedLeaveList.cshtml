@@ -6,23 +6,20 @@
             </div>
             <div class="box-body">
                 @*<div class="row">
-                    <div class="col-xs-12 ">
-                        <h4>
-                            Leave Grant
-                        </h4>
-                    </div>
-                </div>*@
-                <div class="row">
-                    <div class="col-xs-12 col-md-4">                        
-
-                            <label class=""> Employee Name :</label>
-
-                           
+                        <div class="col-xs-12 ">
+                            <h4>
+                                Leave Grant
+                            </h4>
                         </div>
+                    </div>*@
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+                        <label class=""> Employee Name :</label>
+                    </div>
                     <div class="col-xs-12 col-md-8">
                         <label class="content-label">  James Anderson </label>
-</div>
                     </div>
+                </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-4">
 
@@ -32,7 +29,7 @@
                     </div>
                     <div class="col-xs-12 col-md-8">
                         <label class="content-label"> Compensatory Off </label>
-</div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-4">
@@ -43,7 +40,7 @@
                     </div>
                     <div class="col-xs-12 col-md-8">
                         <label class="content-label">    1</label>
-</div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-4">
@@ -54,7 +51,7 @@
                     </div>
                     <div class="col-xs-12 col-md-8">
                         <label class="content-label">  13/03/17 </label>
-</div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-4">
@@ -65,7 +62,7 @@
                     </div>
                     <div class="col-xs-12 col-md-8">
                         <label class="content-label">  13/03/17 </label>
-</div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-4">
@@ -76,7 +73,7 @@
                     </div>
                     <div class="col-xs-12 col-md-8">
                         <label class="content-label">  testing </label>
-</div>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-md-4">
@@ -88,7 +85,7 @@
                     <div class="col-xs-12 col-md-8">
                         <div class="employee-remarks"> 13/03/17 :  James Anderson</div>
                         <div class="form-group">
-                          
+
                             <textarea class="form-control" rows="3" placeholder="Enter Remarks ..."></textarea>
                         </div>
                     </div>
@@ -100,9 +97,9 @@
                         <button type="button" class="btn  btn-default btn-sm">Back</button>
                     </div>
                 </div>
-                </div>
             </div>
         </div>
+    </div>
     <div class="col-md-8">
         <div class="box box-widget">
             <div class="box-header with-border">
@@ -110,7 +107,7 @@
             </div>
             <div class="box-body">
                 <table class="table table-striped">
-                    <tbody>
+                    <thead>
                         <tr>
                             <th style="width: 10px">#</th>
                             <th>When</th>
@@ -118,7 +115,9 @@
                             <th>Owner</th>
                             <th>Status</th>
                         </tr>
-                        <tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="employeeLeave in EmployeeLeaveList">
                             <td>1.</td>
                             <td>11 moths ago</td>
                             <td>
@@ -127,10 +126,10 @@
                             <td> James Anderson</td>
                             <td>Applied</td>
                         </tr>
-                       
+
                     </tbody>
                 </table>
             </div>
-            </div>
         </div>
     </div>
+</div>
