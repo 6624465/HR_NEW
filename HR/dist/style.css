@@ -313,7 +313,7 @@ a {
     border-right: 0 none;
     border-top: 0 none;
 }
- .switch {
+ .switch-container .switch {
   position: relative;
   display: inline-block;
      width: 46px;
@@ -321,10 +321,10 @@ a {
 }
 
 /* Hide default HTML checkbox */
-.switch input {display:none;}
+.switch-container .switch input {display:none;}
 
 /* The slider */
-.slider {
+.switch-container .slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -336,7 +336,7 @@ a {
   transition: .4s;
 }
 
-.slider:before {
+.switch-container .slider:before {
   position: absolute;
   content: "";
   height: 15px;
@@ -348,32 +348,32 @@ a {
   transition: .4s;
 }
 
-input:checked + .slider {
+.switch-container input:checked + .slider {
   background-color: #2196F3;
 }
 
-input:focus + .slider {
+.switch-container input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .slider:before {
+.switch-container input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
 /* Rounded sliders */
-.slider.round {
+.switch-container .slider.round {
   border-radius: 11px;
 }
 
-.slider.round:before {
+.switch-container .slider.round:before {
   border-radius: 50%;
 }
 .switch-container {
 height:25px;
 }
-.switch-label {
+.switch-container .switch-label {
 line-height:26px;
 font-size:12px;
 padding-right: 10px;
@@ -543,4 +543,7 @@ line-height: 25px !important;
 padding:2px .6em 2px;
 position:relative;
 top:-2px;
+}
+.main-header .sidebar-toggle {
+padding:17px 15px;
 }
