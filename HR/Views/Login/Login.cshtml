@@ -14,8 +14,8 @@
     <title>EZY-HR Admin</title>
 
     <link href="@Url.Content("~/Css/app_1.min.css?v=1")" rel="stylesheet" />
-    <link href="@Url.Content("~/dist/style.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/material-design-iconic-font.css?v=1")" rel="stylesheet" />
+    <link href="@Url.Content("~/bower_components/font-awesome/css/font-awesome.css")" rel="stylesheet" />
 </head>
 <body>
     <form ng-class="{'submitted': submitted}" name="loginForm">
@@ -42,12 +42,16 @@
                             Keep me signed in
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-login btn-success btn-float" ng-click="login()"><i class="zmdi zmdi-arrow-forward"></i></button>
+                    <button type="submit" class="btn btn-login btn-success btn-float" ng-click="login()" ng-disabled="IsEnable"><i class="zmdi zmdi-arrow-forward"></i></button>
                 </div>
                 <div class="lcb-navigation">
                     <a href="" data-ma-action="login-switch" data-ma-block="#l-register"><i class="zmdi zmdi-plus"></i> <span>Register</span></a>
                     <a href="" data-ma-action="login-switch" data-ma-block="#l-forget-password"><i>?</i> <span>Forgot Password</span></a>
                 </div>
+            </div>
+            <div ng-if="showLoading" style="position: absolute;width: 100%;left: 0px;top: 15%;">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color:#fff;"></i>
+                <span class="sr-only">Loading...</span>
             </div>
             <!-- Register -->
             <div class="lc-block" id="l-register">
@@ -100,7 +104,6 @@
     
 </body>
 <script src="@Url.Content("~/scripts/angular.js")"></script>
-<script src="@Url.Content("~/scripts/loading-bar.js")"></script>
 <script src="@Url.Content("~/Js/Account/Controllers/LoginController.js")"></script>
 <script src="@Url.Content("~/Js/Account/Services/LoginService.js")"></script>
 

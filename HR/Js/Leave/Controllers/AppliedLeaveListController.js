@@ -5,6 +5,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, EmployeeLeave, growlServic
         $scope.EmployeeLeaveList = {}
     }
     $scope.SearchEmployeeLeaveList = function () {
+
         EmployeeLeave.GetEmployeeLeaveListBasedOnTeamLead().then(function (response) {
             if (response.data && response.data.sucess == true) {
                 $scope.EmployeeLeaveList = response.data.employeeLeaveList;
