@@ -8,10 +8,12 @@
             $scope.Companies = {},
             $scope.CompanyList = {},
             $scope.CompanyDetails = {
-                Address: {}
+                Address: {},
+                IsActive : true
             },
             $scope.BranchDetails = {
-                Address: {}
+                Address: {},
+                IsActive: true
             }
             $scope.isbranch = false;
         }
@@ -44,12 +46,14 @@
                 $scope.isbranch = true;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/companydetails.html';
                 $scope.CompanyDetails = $scope.Companies[sel.i];
+                $scope.CompanyDetails.IsActive = true;
             }
             else if (sel.type == "branch") {
                 $scope.isbranch = false;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html';
                 $scope.BranchDetails = $scope.Companies[sel.parentIndex].Branches[sel.i];
                 $scope.BranchDetails.Type = "Branch";
+                $scope.BranchDetails.IsActive = true;
             }
         };
         CompanyService.GetCountries().then(function (res) {

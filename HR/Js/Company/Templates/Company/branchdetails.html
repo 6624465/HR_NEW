@@ -35,8 +35,15 @@
 
                 </div>
 
-                <div class="col-xs-12 col-md-6 form-group">
-                    <!--<md-switch class="md-primary" aria-label="Active Account" ng-model="BranchDetails.IsActive">Active Account</md-switch>-->
+                <div class="col-xs-12 col-md-6 text-right">
+                    <div class="switch-container">
+                        <label class="switch-label">Status</label>
+                        <label class="switch pull-right">
+                            <input type="checkbox" ng-model="BranchDetails.IsActive">
+                            <span class="slider round"></span>
+                        </label>
+
+                    </div>
                 </div>
             </div>
             <div class="row">
