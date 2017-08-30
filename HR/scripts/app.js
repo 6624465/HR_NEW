@@ -186,6 +186,7 @@ app.config(
                            name: 'ngHR',
                            files: [
                                baseUrl + 'Js/Leave/Controllers/AppliedLeaveListController.js',
+                                baseUrl + 'Js/Leave/Services/EmployeeLeaveService.js',
                            ]
                        })
                    }

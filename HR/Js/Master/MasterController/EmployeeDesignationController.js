@@ -45,6 +45,7 @@ function ($scope, $http, LookUp, growl, growlService) {
     },
     $scope.GetLookUpData();
     $scope.onEditEmployeeDesignation = function (employeeDesignation) {
+        debugger;
         $scope.EmployeeDesignation.LookUpCode = employeeDesignation.LookUpCode;
         $scope.EmployeeDesignation.LookUpDescription = employeeDesignation.LookUpDescription;
         $scope.EmployeeDesignation.IsActive = employeeDesignation.IsActive;
@@ -59,6 +60,7 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.addEmployeeDesignation = function () {
         $scope.clearTextBoxes();
+        $scope.EmployeeDesignation.IsActive = true;
         $('#AddEmployeeDesignationDialog').modal('show');
     };
 

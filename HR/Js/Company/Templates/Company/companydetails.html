@@ -25,12 +25,11 @@
                     <input id="companyCode" class="form-control" type="text" ng-disabled="isDisabledCompany" ng-model="CompanyDetails.CompanyCode" />
                     <div class="col-xs-12 col-md-4"></div>
                 </div>
-
                 <div class="col-xs-12 col-md-6 text-right">
                     <div class="switch-container">
                         <label class="switch-label">Status</label>
                         <label class="switch pull-right">
-                            <input type="checkbox">
+                            <input type="checkbox" ng-model="CompanyDetails.IsActive">
                             <span class="slider round"></span>
                         </label>
 

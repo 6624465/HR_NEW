@@ -57,6 +57,7 @@ $scope.onEditEmployeeType = function (employeeType) {
 
     $scope.addEmployeeType = function () {
         $scope.clearTextBoxes();
+        $scope.EmployeeType.IsActive = true;
         $('#AddEmployeeTypeDialog').modal('show');
     };
 

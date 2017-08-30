@@ -59,6 +59,7 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.addPaymentType = function () {
         $scope.clearTextBoxes();
+        $scope.PaymentType.IsActive = true;
         $('#AddPaymentTypeDialog').modal('show');
     };
 

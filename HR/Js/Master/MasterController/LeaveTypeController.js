@@ -55,6 +55,7 @@ $scope.onEditLeaveType = function (leaveType) {
 
     $scope.addLeaveType = function () {
         $scope.clearTextBoxes();
+        $scope.LeaveType.IsActive = true;
         $('#AddLeaveTypeDialog').modal('show');
     };
 

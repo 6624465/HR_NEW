@@ -1,6 +1,15 @@
 ﻿<div class="row" ng-controller="AppliedLeaveListController as Cntrl">
     <div class="col-md-4">
-        <div class="box box-widget">
+        <div class="col-xs-12 col-md-4">
+            <div class="form-group">
+                <label for="Location">TeamLeadId</label>
+              <input type="text" ng-model="EmployeeLeaveList.TeamLeadId"  class="form-control input-mask"/>
+            </div>
+            <div class="form-group fg-line">
+                <button type="button" id="btn-SearchHolidays" class="btn btn-primary " ng-click="SearchEmployeeLeaveList(EmployeeLeaveList.TeamLeadId)" >Search</button>
+            </div>
+        </div>
+        <div class="box box-widget" ng-if="LeaveList">
             <div class="box-header with-border">
                 <h3 class="box-title">Employee leave</h3>
             </div>
@@ -117,14 +126,15 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         <tr ng-repeat="employeeLeave in EmployeeLeaveList">
-                            <td>employeeLeave.EmployeeId</td>
-                            <td>11 moths ago</td>
+                            <td>{{employeeLeave.EmployeeId}}</td>
+                            <td>{{employeeLeave.ApplyDate}}</td>
                             <td>
-                                No.Of Days
+                                {{employeeLeave.Days}}
                             </td>
-                            <td> James Anderson</td>
-                            <td>Applied</td>
+                            <td>{{employeeLeave.Employee.EmployeeName}}</td>
+                            <td>{{employeeLeave.Status}}</td>
                         </tr>
 
                     </tbody>

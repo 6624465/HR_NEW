@@ -55,6 +55,7 @@ $scope.onEditEmployeeDepartment = function (employeeDepartment) {
 
     $scope.addEmployeeDepartment = function () {
         $scope.clearTextBoxes();
+        $scope.EmployeeDepartment.IsActive = true;
         $('#AddEmployeeDepartmentDialog').modal('show');
     };
 

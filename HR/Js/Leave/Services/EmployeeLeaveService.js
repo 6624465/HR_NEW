@@ -27,6 +27,7 @@
             deferred.resolve(response);
         }, function (err) {
             deferred.reject(err);
-        })
+        });
+        return deferred.promise;
     }
 }]);
