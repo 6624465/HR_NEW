@@ -16,6 +16,7 @@ app.controller('MainCtrl', function ($scope) {
     $scope.iframeHeight = window.innerHeight - 100;
 });
 
+angular.element('.skin-blue').addClass("sidebar-collapse");
 app.config(
     function ($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider, $ocLazyLoadProvider, growlProvider) {
         $stateProvider

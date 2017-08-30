@@ -71,8 +71,10 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
                     $scope.events.push($scope.itemsToAdd);
                 })
             }
-            else
+            else {
                 growlService.growl("No Holidays Found.", 'danger');
+                $scope.IsVisible = false;
+            }
         }, function (err) {
             growlService.growl(err, 'danger');
         })
