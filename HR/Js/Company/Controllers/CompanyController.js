@@ -28,7 +28,7 @@
                             'id': val.CompanyCode,
                             'i': idx,
                             'type': 'company',
-                            'children': $scope.GetBranchArr(val.Branches, idx)
+                            'children': val.Branches.length > 0? $scope.GetBranchArr(val.Branches, idx):""
                         };
                         arr.push(obj);
                     })
@@ -61,6 +61,7 @@
         }, function (err) { })
 
         $scope.GetBranchArr = function (branchList, parentIndex) {
+            debugger
             var arr = new Array();
             if (branchList) {
                 angular.forEach(branchList, function (val, idx) {
