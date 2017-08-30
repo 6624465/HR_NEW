@@ -13,6 +13,13 @@ function ($scope, $http, growl, $filter, UtilityFunc, EmployeeLeave, growlServic
         EmployeeLeave.GetEmployeeLeaveListBasedOnTeamLead(TeamLeadId).then(function (response) {
             if (response.data && response.data.sucess == true) {
                 $scope.EmployeeLeaveList = response.data.employeeLeaveList;
+                angular.forEach($scope.EmployeeLeaveList, function (val, idx) {
+                    debugger
+                    //var todate = moment().format(UtilityFunc.DateFormat());
+                    //var appliedDate = moment(val.ApplyDate).format(UtilityFunc.DateFormat());
+                    $scope.EmployeeLeaveList[idx].ApplyDate = moment(val.ApplyDate).format(UtilityFunc.DateFormat());
+
+                })
                 //growlService.growl(response.data.message, 'success');
             }
         });
