@@ -177,8 +177,8 @@
                                             <a href="#" class=""><i class="zmdi zmdi-settings zmdi-hc-lg"></i> &nbsp; Setting</a>
 
                                         </li>
-                                        <li class="user-footer">                                           
-                                                <a class="" ng-click="onClickLogOut()"> <i class="zmdi zmdi-power zmdi-hc-lg"></i> &nbsp; LogOut</a>
+                                        <li class="user-footer user-other">
+                                                <a href="#" class="" ng-click="onClickLogOut()"> <i class="zmdi zmdi-power zmdi-hc-lg"></i> &nbsp; LogOut</a>
                                            
                                         </li>
                                     </ul>
@@ -378,9 +378,9 @@
     <!-- jQuery UI 1.11.4 -->
     <script src="@Url.Content("~/bower_components/jquery-ui/jquery-ui.min.js")"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
+    @*<script>
         $.widget.bridge('uibutton', $.ui.button);
-    </script>
+    </script>*@
     <!-- Bootstrap 3.3.7 -->
     <script src="@Url.Content("~/bower_components/bootstrap/dist/js/bootstrap.min.js")"></script>
     <!-- Morris.js charts -->
