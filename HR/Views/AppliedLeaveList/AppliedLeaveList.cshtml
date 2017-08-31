@@ -26,7 +26,7 @@
                         <label class=""> Employee Name :</label>
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <label class="content-label">  James Anderson </label>
+                        <label class="content-label">{{AppliedLeaveList.Employee.EmployeeName}}</label>
                     </div>
                 </div>
                 <div class="row">
@@ -37,7 +37,7 @@
 
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <label class="content-label"> Compensatory Off </label>
+                        <label class="content-label"> {{AppliedLeaveList.EmployeeName}}</label>
                     </div>
                 </div>
                 <div class="row">
@@ -48,7 +48,7 @@
 
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <label class="content-label">    1</label>
+                        <label class="content-label">   {{AppliedLeaveList.Days}}</label>
                     </div>
                 </div>
                 <div class="row">
@@ -59,7 +59,7 @@
 
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <label class="content-label">  13/03/17 </label>
+                        <label class="content-label">{{AppliedLeaveList.FromDate}}</label>
                     </div>
                 </div>
                 <div class="row">
@@ -70,7 +70,7 @@
 
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <label class="content-label">  13/03/17 </label>
+                        <label class="content-label"> {{AppliedLeaveList.ToDate}}</label>
                     </div>
                 </div>
                 <div class="row">
@@ -81,7 +81,7 @@
 
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <label class="content-label">  testing </label>
+                        <label class="content-label"> {{AppliedLeaveList.Reason}}</label>
                     </div>
                 </div>
                 <div class="row">
@@ -92,17 +92,17 @@
 
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <div class="employee-remarks"> 13/03/17 :  James Anderson</div>
+                        <div class="employee-remarks">{{AppliedLeaveList.Remarks}}</div>
                         <div class="form-group">
 
-                            <textarea class="form-control" rows="3" placeholder="Enter Remarks ..."></textarea>
+                            <textarea class="form-control" rows="3" placeholder="Enter Remarks ..." ng-model="AppliedLeaveList.TeamLeadRemarks"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 text-right">
-                        <button type="button" class="button  ">Accept Grant</button>
-                        <button type="button" class="button button-danger">Reject</button>
+                        <button type="button" class="button" ng-click="AcceptOrReject(AppliedLeaveList,'Accept')">Accept Grant</button>
+                        <button type="button" class="button button-danger" ng-click="AcceptOrReject(AppliedLeaveList, 'Reject')">Reject</button>
                         <button type="button" class="button-default button">Back</button>
                     </div>
                 </div>
@@ -119,15 +119,22 @@
                     <thead>
                         <tr>
                             <th style="width: 10px">#</th>
+                            <th>Employee Id</th>
+                            <th>Employee Name</th>
                             <th>Apply Date</th>
                             <th>No.Of Days</th>
-                            <th>Employee Name</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         <tr ng-repeat="employeeLeave in EmployeeLeaveList">
+                            <td>
+                                <button type="button" class="btn btn-default ng-scope waves-effect" ng-click="onEditEmployeeLeave(employeeLeave)" aria-label="button">
+                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                            <td>{{employeeLeave.SNo}}</td>
                             <td>{{employeeLeave.EmployeeId}}</td>
                             <td>{{employeeLeave.ApplyDate}}</td>
                             <td>

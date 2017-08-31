@@ -62,6 +62,7 @@ namespace HR.Areas.Leave.Controllers
                     {
                         _employeeLeaveList.CreatedBy = USER_OBJECT.UserName;
                         _employeeLeaveList.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                        _employeeLeaveList.ApplyDate = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                     }
 
                     _employeeLeaveList.EmployeeId = employeeLeaveList.EmployeeId;
@@ -70,8 +71,7 @@ namespace HR.Areas.Leave.Controllers
                     _employeeLeaveList.Days = employeeLeaveList.Days;
                     _employeeLeaveList.Reason = employeeLeaveList.Reason;
                     _employeeLeaveList.Remarks = employeeLeaveList.Remarks;
-                    _employeeLeaveList.ApplyDate = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
-                    _employeeLeaveList.Status = "Applied";
+                    _employeeLeaveList.Status = employeeLeaveList.Status;
 
                     Leaveservice.SaveEmployeeLeaveList(_employeeLeaveList);
 

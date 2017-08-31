@@ -31,9 +31,15 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
     } 
  /*Save Section*/
     $scope.onSaveEmployeeLeave = function (employeeLeaveForm) {
+        employeeLeaveForm.Status = "Applied";
         EmployeeLeave.SaveEmployeeLeave(employeeLeaveForm).then(function (response) {
             if (response.data && response.data.sucess == true) {
                 growlService.growl(response.data.message, 'success');
+                $scope.EmployeeLeaveForm = {
+                    BranchID: UtilityFunc.BranchId(),
+                    FromDate: moment(),
+                    ToDate: moment(),
+                }
             }
         })
     }
