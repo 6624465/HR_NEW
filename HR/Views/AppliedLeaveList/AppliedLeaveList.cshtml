@@ -127,18 +127,21 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-         <tbody>
-                       <tr ng-repeat="employeeLeave in EmployeeLeaveList">
+                    <tbody>
+                        <tr ng-repeat="employeeLeave in EmployeeLeaveList">
                            <td ng-if="test">
-                               <button type="button" class="btn btn-default ng-scope waves-effect" ng-click="onEditEmployeeLeave(employeeLeave)" aria-label="button">
-                                   <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                               </button>
-                           </td>
+                                <button type="button" class="btn btn-default ng-scope waves-effect" ng-click="onEditEmployeeLeave(employeeLeave)" aria-label="button">
+                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                </button>
+                            </td>
                             <td>{{employeeLeave.SNo}}</td>
                             <td>{{employeeLeave.EmployeeId}}</td>
+                            <td>{{employeeLeave.EmployeeName}}</td>
                             <td>{{employeeLeave.ApplyDate}}</td>
-                           <td>{{employeeLeave.Days}}</td>                          
-                            <td>{{employeeLeave.Employee.EmployeeName}}</td>
+                            <td>
+                                {{employeeLeave.Days}}
+                            </td>
+                            
                             <td>{{employeeLeave.Status}}</td>
                         </tr>
                     </tbody>

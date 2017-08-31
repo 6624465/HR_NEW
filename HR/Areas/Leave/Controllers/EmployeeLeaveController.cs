@@ -8,6 +8,7 @@ using HR.Service.Leave.ILeaveService;
 using HR.Service.Master.IMasterService;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -65,7 +66,6 @@ namespace HR.Areas.Leave.Controllers
                         _employeeLeaveList.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                         _employeeLeaveList.ApplyDate = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                     }
-
                     _employeeLeaveList.EmployeeId = employeeLeaveList.EmployeeId;
                     _employeeLeaveList.FromDate = employeeLeaveList.FromDate;
                     _employeeLeaveList.ToDate = employeeLeaveList.ToDate;
@@ -74,7 +74,7 @@ namespace HR.Areas.Leave.Controllers
                     _employeeLeaveList.Remarks = employeeLeaveList.Remarks;
                     _employeeLeaveList.LeaveTypeId = employeeLeaveList.LeaveTypeId;
                     _employeeLeaveList.Status = employeeLeaveList.Status;
-
+                    _employeeLeaveList.TeamLeadId = 6674;
                     Leaveservice.SaveEmployeeLeaveList(_employeeLeaveList);
 
                     result = Json(new { sucess = true, message = "Sent successfully" }, JsonRequestBehavior.AllowGet);
