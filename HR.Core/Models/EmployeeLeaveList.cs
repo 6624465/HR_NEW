@@ -13,7 +13,7 @@ namespace HR.Core.Models
         public int Id { get; set; }
         public int EmployeeId { get; set; }
         public virtual Employee Employee { get; set; }
-        public int LeaveTypeId { get; set; }
+        public int LookupId { get; set; }
         public virtual LookUp Lookup { get; set; }
 
         public int BranchId { get; set; }

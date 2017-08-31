@@ -72,7 +72,7 @@ namespace HR.Areas.Leave.Controllers
                     _employeeLeaveList.Days = employeeLeaveList.Days;
                     _employeeLeaveList.Reason = employeeLeaveList.Reason;
                     _employeeLeaveList.Remarks = employeeLeaveList.Remarks;
-                    _employeeLeaveList.LeaveTypeId = employeeLeaveList.LeaveTypeId;
+                    _employeeLeaveList.LookupId = employeeLeaveList.LookupId;
                     _employeeLeaveList.Status = employeeLeaveList.Status;
 
                     Leaveservice.SaveEmployeeLeaveList(_employeeLeaveList);

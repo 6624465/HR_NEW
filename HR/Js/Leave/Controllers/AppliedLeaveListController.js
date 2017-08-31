@@ -30,7 +30,6 @@ function ($scope, $http, growl, $filter, UtilityFunc, EmployeeLeave, growlServic
         $scope.AppliedLeaveList = employeeLeave;
     }
     $scope.AcceptOrReject = function (AppliedLeaveList, status) {
-        debugger
         AppliedLeaveList.Status = status;
         EmployeeLeave.SaveEmployeeLeave(AppliedLeaveList).then(function (response) {
             if (response.data && response.data.sucess == true) {
