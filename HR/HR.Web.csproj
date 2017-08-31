@@ -6745,12 +6745,6 @@
     <Content Include="fonts\roboto\Roboto-Medium-webfont.svg" />
     <Content Include="fonts\roboto\Roboto-Regular-webfont.svg" />
     <Content Include="Global.asax" />
-    <Content Include="img\apple-touch-icon.png" />
-    <Content Include="img\favicon-16x16.png" />
-    <Content Include="img\favicon-32x32.png" />
-    <Content Include="img\favicon.ico" />
-    <Content Include="img\ms-icon-150x150.png" />
-    <Content Include="img\safari-pinned-tab.svg" />
     <Content Include="img\search.png" />
     <Content Include="Js\Account\Controllers\LoginController.js" />
     <Content Include="Js\Account\Services\LoginService.js" />
@@ -6990,10 +6984,6 @@
     <Content Include="bower_components\bootstrap-datepicker\.gitignore" />
     <Content Include="bower_components\bootstrap-datepicker\.travis.yml" />
     <Content Include="bower_components\bootstrap-datepicker\bower.json" />
-    <Content Include="bower_components\bootstrap-datepicker\build\build.less" />
-    <Content Include="bower_components\bootstrap-datepicker\build\build3.less" />
-    <Content Include="bower_components\bootstrap-datepicker\build\build_standalone.less" />
-    <Content Include="bower_components\bootstrap-datepicker\build\build_standalone3.less" />
     <Content Include="bower_components\bootstrap-datepicker\CHANGELOG.md" />
     <Content Include="bower_components\bootstrap-datepicker\CODE_OF_CONDUCT.md" />
     <Content Include="bower_components\bootstrap-datepicker\composer.json" />
@@ -7566,7 +7556,6 @@
     <Content Include="bower_components\moment\CHANGELOG.md" />
     <Content Include="bower_components\moment\LICENSE" />
     <Content Include="bower_components\moment\README.md" />
-    <Content Include="img\manifest.json" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
