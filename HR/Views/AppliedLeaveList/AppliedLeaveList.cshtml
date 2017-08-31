@@ -26,7 +26,7 @@
                         <label class=""> Employee Name :</label>
                     </div>
                     <div class="col-xs-12 col-md-8">
-                        <label class="content-label">  James Anderson </label>
+                        <label class="content-label">{{AppliedLeaveList.EmployeeName}}</label>
                     </div>
                 </div>
                 <div class="row">
@@ -119,15 +119,17 @@
                     <thead>
                         <tr>
                             <th style="width: 10px">#</th>
+                            <th>Employee Id</th>
+                            <th>Employee Name</th>
                             <th>Apply Date</th>
                             <th>No.Of Days</th>
-                            <th>Employee Name</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
 
                         <tr ng-repeat="employeeLeave in EmployeeLeaveList">
+                            <td>{{employeeLeave.SNo}}</td>
                             <td>{{employeeLeave.EmployeeId}}</td>
                             <td>{{employeeLeave.ApplyDate}}</td>
                             <td>

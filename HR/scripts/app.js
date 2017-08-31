@@ -172,6 +172,7 @@ app.config(
                             files: [
                                 baseUrl + 'Js/Leave/Controllers/EmployeeLeave.js',
                                 baseUrl + 'Js/Leave/Services/EmployeeLeaveService.js',
+                                 baseUrl + 'Js/Master/MasterService/LookUp.js'
                             ]
                         })
                     }

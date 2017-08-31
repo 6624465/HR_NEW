@@ -1,5 +1,5 @@
-﻿angular.module('ngHR').controller('EmployeeLeaveFormController', ['$scope', '$http','UtilityFunc', 'growlService','limitToFilter','EmployeeLeave',
-function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave) {
+﻿angular.module('ngHR').controller('EmployeeLeaveFormController', ['$scope', '$http','UtilityFunc', 'growlService','limitToFilter','EmployeeLeave','LookUp',
+function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave,LookUp) {
    
     $scope.init = function () {
         $scope.dateFormat = UtilityFunc.DateFormat();
@@ -8,12 +8,22 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
             FromDate: moment(),
             ToDate: moment(),
         }
+        $scope.LeaveType = {}
         $scope.maxdate = moment();
         datepickerOptions: {
             minDate: moment();
         }
     };
 
+    LookUp.GetLookUpData("LeaveType").then(function (response) {
+        debugger;
+        if (response.data && response.data.success == true) {
+            debugger;
+            $scope.LeaveType = response.data.lookUpLists;
+            growlService.growl(response.data.message, 'success');
+        }
+    }, function () {
+    })
   
     $scope.EmployeeList = function (text) {
         return EmployeeLeave.GetEmployees(text).then(function (response) {

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using C = HR.Core.Constants;
 
 namespace HR.Areas.Leave.Controllers
 {
@@ -72,6 +73,7 @@ namespace HR.Areas.Leave.Controllers
                     _employeeLeaveList.Remarks = employeeLeaveList.Remarks;
                     _employeeLeaveList.ApplyDate = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                     _employeeLeaveList.Status = "Applied";
+                    _employeeLeaveList.LeaveTypeId = employeeLeaveList.LeaveTypeId;
 
                     Leaveservice.SaveEmployeeLeaveList(_employeeLeaveList);
 
@@ -89,6 +91,27 @@ namespace HR.Areas.Leave.Controllers
 
             return result;
         }
+
+        //public JsonResult GetLookUp()
+        //{
+        //    JsonResult result = null;
+        //    try
+        //    {
+        //       List<LookUp> lookUpList = LookUpCodeService.GetLookUp<LookUp>(l => l.LookUpCategory == "LeaveType").ToList();
+        //        if (lookUpList != null && lookUpList.Any())
+        //            result = Json(new { success = true, lookUpList = lookUpList }, JsonRequestBehavior.AllowGet);
+        //        else
+        //            result = Json(new { success = false, message = C.NO_DATA_FOUND }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+        //            return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.AllowGet);
+        //    }
+
+        //    return result;
+        //}
+
         public ActionResult EmployeeLeave()
         {
             return View();
