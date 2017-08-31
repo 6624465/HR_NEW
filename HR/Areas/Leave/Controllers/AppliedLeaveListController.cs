@@ -30,7 +30,7 @@ namespace HR.Areas.Leave.Controllers
             {
                 try
                 {
-                    List<EmployeeLeaveList> employeeLeaveList = Leaveservice.GetEmployeeLeaveList<EmployeeLeaveList>(e => e.TeamLeadId == teamLeadId).OrderBy(o=>o.EmployeeId).ToList();
+                    List<EmployeeLeaveList> employeeLeaveList = Leaveservice.GetEmployeeLeaveList<EmployeeLeaveList>(e => e.TeamLeadId == teamLeadId).OrderBy(o => o.EmployeeId).ToList();
                     List<EmployeeLeaveViewModel> employeeLeaveViewModelList = new List<EmployeeLeaveViewModel>();
                     foreach (EmployeeLeaveList employeeLeave in employeeLeaveList)
                     {
@@ -40,12 +40,13 @@ namespace HR.Areas.Leave.Controllers
                         employeeLeaveViewModel.EmployeeName = employeeLeave.Employee.EmployeeName;
                         employeeLeaveViewModel.EmployeeId = employeeLeave.EmployeeId;
                         employeeLeaveViewModel.LeaveType = leaveType.LookUpCode;
-                         employeeLeaveViewModel.LeaveTypeId = leaveType.LookUpID;
+                        employeeLeaveViewModel.LeaveTypeId = leaveType.LookUpID;
                         employeeLeaveViewModel.FromDate = employeeLeave.FromDate;
+                        employeeLeaveViewModel.Days = employeeLeave.Days;
                         employeeLeaveViewModel.ToDate = employeeLeave.ToDate;
                         employeeLeaveViewModel.ApplyDate = employeeLeave.ApplyDate;
                         employeeLeaveViewModel.Status = employeeLeave.Status;
-                         employeeLeaveViewModel.Reason = employeeLeave.Reason;
+                        employeeLeaveViewModel.Reason = employeeLeave.Reason;
                         employeeLeaveViewModel.Remarks = employeeLeave.Remarks;
                         employeeLeaveViewModel.BranchId = employeeLeave.BranchId;
                         employeeLeaveViewModel.TeamLeadId = employeeLeave.TeamLeadId;
@@ -63,7 +64,7 @@ namespace HR.Areas.Leave.Controllers
                         return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
                 }
             }
-            return result; 
+            return result;
         }
         public ActionResult AppliedLeaveList()
         {
