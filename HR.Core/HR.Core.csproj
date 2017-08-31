@@ -50,6 +50,7 @@
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\EmployeeLeaveList.cs" />
     <Compile Include="Models\HolidayList.cs" />
+    <Compile Include="Models\LeaveType.cs" />
     <Compile Include="Models\LookUp.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
