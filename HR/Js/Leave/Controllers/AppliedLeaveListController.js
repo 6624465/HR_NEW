@@ -6,7 +6,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, EmployeeLeave, growlServic
         $scope.LeaveList = false;
         $scope.AppliedLeaveList = {};
     }
-
+ 
     $scope.init();
 
     $scope.SearchEmployeeLeaveList = function (TeamLeadId) {
