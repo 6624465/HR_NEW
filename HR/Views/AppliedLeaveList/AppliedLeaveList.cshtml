@@ -2,7 +2,7 @@
     <div class="col-md-4">
         <div class="col-xs-12 col-md-4">
             <div class="form-group">
-                <label for="Location">TeamLeadId</label>
+                <label>TeamLeadId</label>
               <input type="text" ng-model="EmployeeLeaveList.TeamLeadId"  class="form-control input-mask"/>
             </div>
             <div class="form-group fg-line">
@@ -127,24 +127,20 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                    <tbody>
-
-                        <tr ng-repeat="employeeLeave in EmployeeLeaveList">
-                            <td>
-                                <button type="button" class="btn btn-default ng-scope waves-effect" ng-click="onEditEmployeeLeave(employeeLeave)" aria-label="button">
-                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                                </button>
-                            </td>
+         <tbody>
+                       <tr ng-repeat="employeeLeave in EmployeeLeaveList">
+                           <td ng-if="test">
+                               <button type="button" class="btn btn-default ng-scope waves-effect" ng-click="onEditEmployeeLeave(employeeLeave)" aria-label="button">
+                                   <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                               </button>
+                           </td>
                             <td>{{employeeLeave.SNo}}</td>
                             <td>{{employeeLeave.EmployeeId}}</td>
                             <td>{{employeeLeave.ApplyDate}}</td>
-                            <td>
-                                {{employeeLeave.Days}}
-                            </td>
+                           <td>{{employeeLeave.Days}}</td>                          
                             <td>{{employeeLeave.Employee.EmployeeName}}</td>
                             <td>{{employeeLeave.Status}}</td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
