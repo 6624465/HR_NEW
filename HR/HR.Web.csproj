@@ -7600,6 +7600,7 @@
     <Compile Include="Models\BranchViewModel.cs" />
     <Compile Include="Models\CompanyViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
+    <Compile Include="Models\EmployeeLeaveViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
