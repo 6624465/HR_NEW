@@ -1,5 +1,5 @@
-﻿angular.module('ngHR').controller('EmployeeLeaveFormController', ['$scope', '$http','UtilityFunc', 'growlService','limitToFilter','EmployeeLeave',
-function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave) {
+﻿angular.module('ngHR').controller('EmployeeLeaveFormController', ['$scope', '$http','UtilityFunc', 'growlService','limitToFilter','EmployeeLeave','LookUp',
+function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave,LookUp) {
    
     $scope.init = function () {
         $scope.dateFormat = UtilityFunc.DateFormat();
@@ -8,12 +8,19 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
             FromDate: moment(),
             ToDate: moment(),
         }
+        $scope.LeaveType = {}
         $scope.maxdate = moment();
         datepickerOptions: {
             minDate: moment();
         }
     };
 
+    LookUp.GetLookUpData("LeaveType").then(function (response) {
+        if (response.data && response.data.success == true) {
+            $scope.LeaveType = response.data.lookUpLists;
+        }
+    }, function () {
+    })
   
     $scope.EmployeeList = function (text) {
         return EmployeeLeave.GetEmployees(text).then(function (response) {
@@ -31,9 +38,15 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
     } 
  /*Save Section*/
     $scope.onSaveEmployeeLeave = function (employeeLeaveForm) {
+        employeeLeaveForm.Status = "Applied";
         EmployeeLeave.SaveEmployeeLeave(employeeLeaveForm).then(function (response) {
             if (response.data && response.data.sucess == true) {
                 growlService.growl(response.data.message, 'success');
+                $scope.EmployeeLeaveForm = {
+                    BranchID: UtilityFunc.BranchId(),
+                    FromDate: moment(),
+                    ToDate: moment(),
+                }
             }
         })
     }

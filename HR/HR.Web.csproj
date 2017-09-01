@@ -6991,10 +6991,6 @@
     <Content Include="bower_components\bootstrap-datepicker\.gitignore" />
     <Content Include="bower_components\bootstrap-datepicker\.travis.yml" />
     <Content Include="bower_components\bootstrap-datepicker\bower.json" />
-    <Content Include="bower_components\bootstrap-datepicker\build\build.less" />
-    <Content Include="bower_components\bootstrap-datepicker\build\build3.less" />
-    <Content Include="bower_components\bootstrap-datepicker\build\build_standalone.less" />
-    <Content Include="bower_components\bootstrap-datepicker\build\build_standalone3.less" />
     <Content Include="bower_components\bootstrap-datepicker\CHANGELOG.md" />
     <Content Include="bower_components\bootstrap-datepicker\CODE_OF_CONDUCT.md" />
     <Content Include="bower_components\bootstrap-datepicker\composer.json" />
@@ -7567,7 +7563,6 @@
     <Content Include="bower_components\moment\CHANGELOG.md" />
     <Content Include="bower_components\moment\LICENSE" />
     <Content Include="bower_components\moment\README.md" />
-    <Content Include="img\manifest.json" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7601,6 +7596,7 @@
     <Compile Include="Models\BranchViewModel.cs" />
     <Compile Include="Models\CompanyViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
+    <Compile Include="Models\EmployeeLeaveViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

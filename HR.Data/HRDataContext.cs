@@ -175,6 +175,8 @@ namespace HR.Data
 
 
             modelBuilder.Entity<EmployeeLeaveList>().ToTable("EmployeeLeaveLists", "Leave");
+            //modelBuilder.Entity<LookUp>().Map<LeaveType>(m => { m.Requires("DiscriminatorTypeId").HasValue(4); });
+
         }
     }
 }

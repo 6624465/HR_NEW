@@ -172,6 +172,7 @@ app.config(
                             files: [
                                 baseUrl + 'Js/Leave/Controllers/EmployeeLeave.js',
                                 baseUrl + 'Js/Leave/Services/EmployeeLeaveService.js',
+                                 baseUrl + 'Js/Master/MasterService/LookUp.js'
                             ]
                         })
                     }
@@ -220,10 +221,17 @@ app.config(
         growlProvider.globalTimeToLive({ success: 4000, error: 2000, warning: 3000, info: 4000 });
     });
 
+app.run(function ($rootScope) {
+    $rootScope.$on('$stateChangeStart', function (e) {
+        var sessionObject = JSON.parse(sessionStorage.getItem("User"));
+        if (sessionObject == null || (sessionObject.UserID == null || sessionObject.UserID == '')) {
+            window.location.pathname = '';
+        }
+    })
+})
 
 app.factory('UtilityFunc', ['$filter', '$q', function ($filter, $q) {
     var obj = {};
-
     var sessionObject = JSON.parse(sessionStorage.getItem("User"));
 
     obj.UserID = function () {

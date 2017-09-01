@@ -91,6 +91,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
    
 
     HolidayListService.GetBranchLocations().then(function (response) {
+        debugger
         if (response.data && response.data.success == true) {
             $scope.Locations = response.data.BranchLocations;
         }
