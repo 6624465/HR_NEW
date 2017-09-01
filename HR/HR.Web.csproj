@@ -6749,7 +6749,6 @@
     <Content Include="img\favicon-16x16.png" />
     <Content Include="img\favicon-32x32.png" />
     <Content Include="img\favicon.ico" />
-    <Content Include="img\ms-icon-150x150.png" />
     <Content Include="img\mstile-150x150.png" />
     <Content Include="img\safari-pinned-tab.svg" />
     <Content Include="img\search.png" />
@@ -6950,7 +6949,6 @@
     <Content Include="fonts\roboto\Roboto-Regular-webfont.eot" />
     <Content Include="fonts\roboto\Roboto-Regular-webfont.ttf" />
     <Content Include="fonts\roboto\Roboto-Regular-webfont.woff" />
-    <Content Include="Areas\Master\Views\EmployeeType\Index.cshtml" />
     <Content Include="Areas\Master\Views\web.config" />
     <Content Include="fonts\Material-Design-Iconic-Font.eot" />
     <Content Include="fonts\Material-Design-Iconic-Font.ttf" />
@@ -7543,7 +7541,6 @@
     <Content Include="bower_components\select2\src\scss\_single.scss" />
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
-    <Content Include="Areas\Master\Views\_ViewStart.cshtml" />
     <Content Include="scripts\calendar.js" />
     <Content Include="scripts\dateTimeInput.js" />
     <Content Include="scripts\datetimepicker.js" />
@@ -7556,13 +7553,25 @@
     <Content Include="template\time-picker.html" />
     <Content Include="template\typeahead\typeahead-match.html" />
     <Content Include="template\typeahead\typeahead-popup.html" />
-    <Content Include="Views\LookUp\EmployeeDepartment.cshtml" />
-    <Content Include="Views\LookUp\PaymentType.cshtml" />
     <Content Include="bower_components\moment\.bower.json" />
     <Content Include="bower_components\moment\bower.json" />
     <Content Include="bower_components\moment\CHANGELOG.md" />
     <Content Include="bower_components\moment\LICENSE" />
     <Content Include="bower_components\moment\README.md" />
+    <Content Include="img\manifest.json" />
+    <Content Include="Areas\Account\Views\Login\Login.cshtml" />
+    <Content Include="Areas\Account\Views\web.config" />
+    <Content Include="Areas\Company\Views\Company\CompanyList.cshtml" />
+    <Content Include="Areas\Company\Views\web.config" />
+    <Content Include="Areas\Leave\Views\web.config" />
+    <Content Include="Areas\Leave\Views\AppliedLeaveList\AppliedLeaveList.cshtml" />
+    <Content Include="Areas\Leave\Views\EmployeeLeave\EmployeeLeave.cshtml" />
+    <Content Include="Areas\Leave\Views\SetUp\HolidayList.cshtml" />
+    <Content Include="Areas\Master\Views\LookUp\EmployeeDepartment.cshtml" />
+    <Content Include="Areas\Master\Views\LookUp\EmployeeDesignation.cshtml" />
+    <Content Include="Areas\Master\Views\LookUp\Index.cshtml" />
+    <Content Include="Areas\Master\Views\LookUp\LeaveType.cshtml" />
+    <Content Include="Areas\Master\Views\LookUp\PaymentType.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7575,13 +7584,15 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Account\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Account\AccountClaimsAreaRegistration.cs" />
+    <Compile Include="Areas\Company\CompanyClaimsAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Leave\LeaveClaimsAreaRegistration.cs" />
     <Compile Include="Areas\Leave\Controllers\AppliedLeaveListController.cs" />
     <Compile Include="Areas\Leave\Controllers\EmployeeLeaveController.cs" />
     <Compile Include="Areas\Leave\Controllers\SetUpController.cs" />
@@ -7612,13 +7623,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\LookUp\Index.cshtml" />
-    <Content Include="Views\LookUp\EmployeeDesignation.cshtml" />
-    <Content Include="Views\Company\CompanyList.cshtml" />
-    <Content Include="Views\SetUp\HolidayList.cshtml" />
-    <Content Include="Views\EmployeeLeave\EmployeeLeave.cshtml" />
-    <Content Include="Views\LookUp\LeaveType.cshtml" />
-    <Content Include="Views\AppliedLeaveList\AppliedLeaveList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -7628,10 +7632,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Company\Views\Company\" />
-    <Folder Include="Areas\Master\Views\LookUp\" />
     <Folder Include="Js\Account\Views\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HR.Core\HR.Core.csproj">

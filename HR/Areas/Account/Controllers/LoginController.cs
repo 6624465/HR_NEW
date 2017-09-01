@@ -51,7 +51,6 @@ namespace HR.Areas.Account.Controllers
         }
         #endregion
 
-
         [HttpGet]
         public JsonResult LogOut()
         {
