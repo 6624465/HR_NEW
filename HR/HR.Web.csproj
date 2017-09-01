@@ -6750,6 +6750,7 @@
     <Content Include="img\favicon-32x32.png" />
     <Content Include="img\favicon.ico" />
     <Content Include="img\ms-icon-150x150.png" />
+    <Content Include="img\mstile-150x150.png" />
     <Content Include="img\safari-pinned-tab.svg" />
     <Content Include="img\search.png" />
     <Content Include="Js\Account\Controllers\LoginController.js" />
