@@ -2,6 +2,7 @@
 using HR.Data;
 using HR.Data.BaseRepositories;
 using HR.Service.Account.IAccountService;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace HR.Service.Account.AccountService
 {
-   public class LogInLogOutService: ILogInLogOutService
+    public class LogInLogOutService : ILogInLogOutService
     {
-        public IRepository<User> UsersRepository;
-        public LogInLogOutService(Repository<User> UsersRepository)
-        {
-            this.UsersRepository = UsersRepository;
-        }
+        #region Properties
+        [Inject]
+        public IRepository<User> UsersRepository { get; set; }
+
+        #endregion
 
         public IQueryable<T> GetUser<T>(Expression<Func<T, bool>> predicate = null) where T : User
         {

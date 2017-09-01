@@ -18,15 +18,7 @@ namespace HR.Areas.Leave.Controllers
 {
     public class SetUpController : BaseController
     {
-        #region Constructor
-        public SetUpController(ILogInLogOutService LogInLogOutService, ILookUpCodeService LookUpCodeService,
-            ICompanyService CompanyService,ILeave LeaveService) : base(LogInLogOutService, LookUpCodeService, CompanyService, LeaveService)
-        {
-        }
-        #endregion
-
         #region Public Accessors
-
         public ActionResult GetHolidayList(int countryId, int branchId)
         {
             JsonResult result = new JsonResult();
@@ -34,7 +26,7 @@ namespace HR.Areas.Leave.Controllers
             {
                 try
                 {
-                 List<HolidayList> holidayList =  CompanyService.GetHolidayList<HolidayList>(hl => hl.CountryId == countryId && hl.BranchID == branchId).ToList();
+                    List<HolidayList> holidayList = CompanyService.GetHolidayList<HolidayList>(hl => hl.CountryId == countryId && hl.BranchID == branchId).ToList();
                     if (holidayList != null && holidayList.Any())
                         result = Json(new { success = true, holidayList = holidayList }, JsonRequestBehavior.AllowGet);
                     else
@@ -49,7 +41,8 @@ namespace HR.Areas.Leave.Controllers
             return result;
         }
 
-        public ActionResult SaveHolidayListData(HolidayList holidayList) {
+        public ActionResult SaveHolidayListData(HolidayList holidayList)
+        {
             JsonResult result = new JsonResult();
             if (holidayList != null)
             {

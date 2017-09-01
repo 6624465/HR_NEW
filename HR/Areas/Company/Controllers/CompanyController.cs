@@ -16,11 +16,6 @@ namespace HR.Areas.Company.Controllers
 {
     public class CompanyController : BaseController
     {
-        public CompanyController(ILogInLogOutService LogInLogOutService, ILookUpCodeService LookUpCodeService,
-            ICompanyService CompanyService, ILeave LeaveService) : base(LogInLogOutService, LookUpCodeService, CompanyService, LeaveService)
-        {
-
-        }
         #region public methods
 
         #region GetCompanyDetails
@@ -29,7 +24,7 @@ namespace HR.Areas.Company.Controllers
             JsonResult result = null;
             try
             {
-              List<HR.Core.Models.Company> Companies= CompanyService.GetCompanyDetails<HR.Core.Models.Company>().ToList();
+                List<HR.Core.Models.Company> Companies = CompanyService.GetCompanyDetails<HR.Core.Models.Company>().ToList();
                 List<CompanyViewModel> companyViewModelList = new List<CompanyViewModel>();
                 foreach (var company in Companies)
                 {
@@ -57,7 +52,7 @@ namespace HR.Areas.Company.Controllers
                         companyViewModel.Branches.Add(branchViewModel);
                     }
                     companyViewModelList.Add(companyViewModel);
-                } 
+                }
                 if (Companies != null)
                     result = Json(new { success = true, CompaniesList = companyViewModelList }, JsonRequestBehavior.AllowGet);
             }
@@ -162,19 +157,19 @@ namespace HR.Areas.Company.Controllers
             try
             {
                 var countries = from country in CompanyService.GetCountries<Country>()
-                              select new CountryViewModel
-                              {
-                                  Id = country.Id,
-                                  CountryCode=country.CountryCode,
-                                  CountryName=country.CountryName
-                              };
+                                select new CountryViewModel
+                                {
+                                    Id = country.Id,
+                                    CountryCode = country.CountryCode,
+                                    CountryName = country.CountryName
+                                };
                 //List < Country > countries = CompanyService.GetCountries<Country>().OrderBy(c => c.CountryName).ToList();
                 result = Json(new { success = true, countries = countries }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
                 if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
-                    result =  Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.AllowGet);
+                    result = Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.AllowGet);
             }
             return result;
         }
@@ -196,8 +191,8 @@ namespace HR.Areas.Company.Controllers
             addressViewModel.CityName = address.CityName;
             addressViewModel.StateName = address.StateName;
             addressViewModel.IsActive = address.IsActive;
-            addressViewModel.CountryCode = country != null ? country.CountryCode :address.CountryCode;
-            addressViewModel.CountryId = country != null ?  country.Id : 0;
+            addressViewModel.CountryCode = country != null ? country.CountryCode : address.CountryCode;
+            addressViewModel.CountryId = country != null ? country.Id : 0;
             addressViewModel.CountryName = country != null ? country.CountryName : string.Empty;
             addressViewModel.Email = address.Email;
             addressViewModel.FaxNo = address.FaxNo;

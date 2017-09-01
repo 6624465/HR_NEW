@@ -17,11 +17,6 @@ namespace HR.Areas.Leave.Controllers
     public class AppliedLeaveListController : BaseController
     {
 
-        public AppliedLeaveListController(ILogInLogOutService LogInLogOutService, ILookUpCodeService LookUpCodeService,
-           ICompanyService CompanyService, ILeave LeaveService) :
-            base(LogInLogOutService, LookUpCodeService, CompanyService, LeaveService)
-        {
-        }
 
         public JsonResult GetAppliedLeaveList(int teamLeadId)
         {

@@ -9,17 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using HR.Core;
 using HR.Core.Models;
+using Ninject;
 
 namespace HR.Service.Master.MasterService
 {
     public class LookUpCodeService: ILookUpCodeService
     {
-        public IRepository<LookUp> LookUpCodeRepository;
-        public IRepository<Employee> EmployeeRepository;
-        public LookUpCodeService(Repository<LookUp> LookUpCodeRepository, Repository<Employee> EmployeeRepository) {
-            this.LookUpCodeRepository = LookUpCodeRepository;
-            this.EmployeeRepository = EmployeeRepository;
-        }
+        [Inject]
+        public IRepository<LookUp> LookUpCodeRepository { get; set; }
+        [Inject]
+        public IRepository<Employee> EmployeeRepository { get; set; }
+        //public LookUpCodeService(Repository<LookUp> LookUpCodeRepository, Repository<Employee> EmployeeRepository) {
+        //    this.LookUpCodeRepository = LookUpCodeRepository;
+        //    this.EmployeeRepository = EmployeeRepository;
+        //}
         public void Save(LookUp lookUp)
         {
             if (lookUp.LookUpID == 0)

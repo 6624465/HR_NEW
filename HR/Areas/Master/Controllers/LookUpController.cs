@@ -19,12 +19,6 @@ namespace HR.Areas.Master.Controllers
     {
         // GET: Master/LookUp
 
-        #region Constructor
-        public LookUpController(ILogInLogOutService LogInLogOutService, ILookUpCodeService LookUpCodeService, 
-            ICompanyService CompanyService,ILeave LeaveService) : base(LogInLogOutService, LookUpCodeService, CompanyService, LeaveService)
-        {
-        }
-        #endregion
 
         #region GetLookUp 
         //[HttpPost]

@@ -11,15 +11,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HR.Core.Models;
+using Ninject;
 
 namespace HR.Areas.Account.Controllers
 {
     public class LoginController : BaseController
     {
-        public LoginController(ILogInLogOutService LogInLogOutService, ILookUpCodeService LookUpCodeService, 
-            ICompanyService CompanyService, ILeave LeaveService) :base(LogInLogOutService, LookUpCodeService, CompanyService, LeaveService)
-        {
-        }
         #region Login
         public ActionResult LogOn(User user)
         {
@@ -37,7 +34,8 @@ namespace HR.Areas.Account.Controllers
                             UserName = _user.UserName,
                             Email = _user.Email,
                             RoleCode = _user.RoleCode,
-                            BranchId = _user.BranchId
+                            BranchId = _user.BranchId,
+                            BranchName = _user.Branch.BranchName
                         };
                         USER_OBJECT = sessionObject;
                         result = Json(new { success = true, SessionObject = USER_OBJECT }, JsonRequestBehavior.AllowGet);

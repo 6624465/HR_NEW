@@ -1,6 +1,7 @@
 ﻿using HR.Core.Models;
 using HR.Data.BaseRepositories;
 using HR.Service.Leave.ILeaveService;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,15 +14,10 @@ namespace HR.Service.Leave.LeaveService
     public class Leave : ILeave
     {
         #region Properties
-        public IRepository<EmployeeLeaveList> EmployeeLeaveListRepository;
+        [Inject]
+        public IRepository<EmployeeLeaveList> EmployeeLeaveListRepository { get; set; }
         #endregion
 
-        #region Constructor
-        public Leave(Repository<EmployeeLeaveList> EmployeeLeaveListRepository)
-        {
-            this.EmployeeLeaveListRepository = EmployeeLeaveListRepository;
-        }
-        #endregion
 
         #region EmployeeLeaveList
 

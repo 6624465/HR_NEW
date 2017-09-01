@@ -1,6 +1,7 @@
 ﻿using HR.Core.Models;
 using HR.Data.BaseRepositories;
 using HR.Service.CompanyDetails.ICompany;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,23 +14,16 @@ namespace HR.Service.CompanyDetails.CompanyServiceDetails
     public class CompanyService : ICompanyService
     {
         #region Properties
-        public IRepository<Company> CompanyRepository;
-        public IRepository<Country> CountryRepository;
-        public IRepository<Branch> BranchRepository;
-        public IRepository<HolidayList> HolidayListRepository;
+        [Inject]
+        public IRepository<Company> CompanyRepository { get; set; }
+        [Inject]
+        public IRepository<Country> CountryRepository { get; set; }
+        [Inject]
+        public IRepository<Branch> BranchRepository { get; set; }
+        [Inject]
+        public IRepository<HolidayList> HolidayListRepository { get; set; }
         #endregion
 
-        #region Constructor
-        public CompanyService(Repository<Company> CompanyRepository, Repository<Country> CountryRepository, 
-            Repository<Branch> BranchRepository, Repository<HolidayList> HolidayListRepository)
-        {
-            this.CompanyRepository = CompanyRepository;
-            this.CountryRepository = CountryRepository;
-            this.BranchRepository = BranchRepository;
-            this.HolidayListRepository = HolidayListRepository;
-        }
-
-        #endregion
 
         #region Company
 

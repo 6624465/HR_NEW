@@ -14,26 +14,23 @@ using HR.Core.Utilities;
 using HR.Service.Leave.ILeaveService;
 using HR.Service.Leave.LeaveService;
 using HR.Core.Models;
+using Ninject;
 
 namespace HR.Controllers
 {
     public class BaseController : Controller
     {
         #region Properties
-        public ILogInLogOutService LogInLogOutService;
-        public ILookUpCodeService LookUpCodeService;
-        public ICompanyService CompanyService;
-        public ILeave Leaveservice;
+        [Inject]
+        public ILogInLogOutService LogInLogOutService { get; set; }
+        [Inject]
+        public ILookUpCodeService LookUpCodeService { get; set; }
+        [Inject]
+        public ICompanyService CompanyService { get; set; }
+        [Inject]
+        public ILeave Leaveservice { get; set; }
         #endregion
 
-        public BaseController(ILogInLogOutService LogInLogOutService, ILookUpCodeService LookUpCodeService, 
-            ICompanyService CompanyService, ILeave Leaveservice)
-        {
-            this.LogInLogOutService = LogInLogOutService;
-            this.LookUpCodeService = LookUpCodeService;
-            this.CompanyService = CompanyService;
-            this.Leaveservice = Leaveservice;
-        }
         public SessionObject USER_OBJECT
         {
             get

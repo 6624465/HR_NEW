@@ -13,5 +13,6 @@ namespace HR.Data.Account
         public string Email { get; set; }
         public string RoleCode { get; set; }
         public int BranchId { get; set; }
+        public string BranchName { get; set; }
     }
 }

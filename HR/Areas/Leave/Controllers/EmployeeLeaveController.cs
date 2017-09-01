@@ -18,12 +18,6 @@ namespace HR.Areas.Leave.Controllers
 {
     public class EmployeeLeaveController : BaseController
     {
-        // GET: Leave/EmployeeLeave
-        public EmployeeLeaveController(ILogInLogOutService LogInLogOutService, ILookUpCodeService LookUpCodeService,
-            ICompanyService CompanyService, ILeave LeaveService) :
-            base(LogInLogOutService, LookUpCodeService, CompanyService, LeaveService)
-        {
-        }
         public ActionResult GetEmployeeList(string employeeName)
         {
             JsonResult jsonResult = new JsonResult();
