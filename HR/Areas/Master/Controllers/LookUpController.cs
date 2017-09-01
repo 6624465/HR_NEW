@@ -118,6 +118,13 @@ namespace HR.Areas.Master.Controllers
         {
             return View();
         }
+
+        public ActionResult EmployeeStatus()
+        {
+            return View();
+        }
+
+
         #endregion
     }
 }

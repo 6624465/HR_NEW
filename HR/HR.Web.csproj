@@ -6767,6 +6767,7 @@
     <Content Include="Js\Leave\Controllers\HolidayListController.js" />
     <Content Include="Js\Leave\Services\EmployeeLeaveService.js" />
     <Content Include="Js\Leave\Services\HolidayListService.js" />
+    <Content Include="Js\Master\MasterController\EmployeeStatusController.js" />
     <Content Include="Js\Master\MasterController\LeaveTypeController.js" />
     <Content Include="Js\Master\MasterController\PaymentTypeController.js" />
     <Content Include="Js\Master\MasterController\EmployeeDesignationController.js" />
@@ -7572,6 +7573,7 @@
     <Content Include="Areas\Master\Views\LookUp\Index.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\LeaveType.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\PaymentType.cshtml" />
+    <Content Include="Areas\Master\Views\LookUp\EmployeeStatus.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7623,6 +7625,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\LookUp\EmployeeStatus.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

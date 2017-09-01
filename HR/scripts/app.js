@@ -38,7 +38,7 @@ app.config(
 
             .state('Company', {
                 url: '/Company',
-                templateUrl: baseUrl + 'Company/CompanyList',
+                templateUrl: baseUrl + 'Company/Company/CompanyList',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -56,7 +56,7 @@ app.config(
 
             .state('EmployeeType', {
                 url: '/EmployeeType',
-                templateUrl: baseUrl + 'LookUp/Index',
+                templateUrl: baseUrl + 'Master/LookUp/Index',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -74,7 +74,7 @@ app.config(
 
             .state('EmployeeDesgination', {
                 url: '/EmployeeDesgination',
-                templateUrl: baseUrl + 'LookUp/EmployeeDesignation',
+                templateUrl: baseUrl + 'Master/LookUp/EmployeeDesignation',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -92,7 +92,7 @@ app.config(
 
             .state('EmployeeDepartment', {
                 url: '/EmployeeDepartment',
-                templateUrl: baseUrl + 'LookUp/EmployeeDepartment',
+                templateUrl: baseUrl + 'Master/LookUp/EmployeeDepartment',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -108,9 +108,27 @@ app.config(
                 }
             })
 
+            .state('EmployeeStatus', {
+                url: '/EmployeeStatus',
+                templateUrl: baseUrl + 'Master/LookUp/EmployeeStatus',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [
+                                    baseUrl + 'Js/Master/MasterController/EmployeeStatusController.js',
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js'
+                                ]
+                            }
+                        ]);
+                    }
+                }
+            })
+
             .state('PaymentType', {
                 url: '/PaymentType',
-                templateUrl: baseUrl + 'LookUp/PaymentType',
+                templateUrl: baseUrl + 'Master/LookUp/PaymentType',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -128,7 +146,7 @@ app.config(
 
             .state('HolidayList', {
                 url: '/HolidayList',
-                templateUrl: baseUrl + 'SetUp/HolidayList',
+                templateUrl: baseUrl + 'Leave/SetUp/HolidayList',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -146,7 +164,7 @@ app.config(
 
             .state('LeaveType', {
                 url: '/LeaveType',
-                templateUrl: baseUrl + 'LookUp/LeaveType',
+                templateUrl: baseUrl + 'Master/LookUp/LeaveType',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -164,7 +182,7 @@ app.config(
 
             .state('EmployeeLeave', {
                 url: '/EmployeeLeave',
-                templateUrl: baseUrl + 'EmployeeLeave/EmployeeLeave',
+                templateUrl: baseUrl + 'Leave/EmployeeLeave/EmployeeLeave',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
@@ -180,7 +198,7 @@ app.config(
             })
            .state('AppliedLeaveList', {
                url: '/AppliedLeaveList',
-               templateUrl: baseUrl + 'AppliedLeaveList/AppliedLeaveList',
+               templateUrl: baseUrl + 'Leave/AppliedLeaveList/AppliedLeaveList',
                resolve: {
                    loadPlugin: function ($ocLazyLoad) {
                        return $ocLazyLoad.load({

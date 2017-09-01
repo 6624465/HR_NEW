@@ -29,7 +29,7 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.onClickSaveEmployeeDepartment = function (employeeDepartment) {
         debugger;
-        if ($scope.EmployeeDepartment.LookUpCode != null && $scope.EmployeeDepartment.LookUpDescription != null) {
+        if (employeeDepartment.LookUpCode != null && employeeDepartment.LookUpDescription != null) {
             LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
                 debugger;
                 growlService.growl("Saved Successfully..", 'success');
