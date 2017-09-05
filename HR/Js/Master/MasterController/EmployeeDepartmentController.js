@@ -34,7 +34,8 @@ function ($scope, $http, LookUp, growl, growlService) {
     });
 
 
-$scope.onEditEmployeeDepartment = function (employeeDepartment) {
+    $scope.onEditEmployeeDepartment = function (employeeDepartment) {
+        debugger;
     $scope.EmployeeDepartment.LookUpCode = employeeDepartment.LookUpCode;
     $scope.EmployeeDepartment.LookUpDescription = employeeDepartment.LookUpDescription;
     $scope.EmployeeDepartment.IsActive = employeeDepartment.IsActive;
@@ -43,6 +44,7 @@ $scope.onEditEmployeeDepartment = function (employeeDepartment) {
 }
 
     $scope.onClickCancelEmployeeDepartment = function () {
+        debugger;
         $scope.clearTextBoxes();
     },
 
@@ -53,17 +55,19 @@ $scope.onEditEmployeeDepartment = function (employeeDepartment) {
     };
 
     $scope.clearTextBoxes = function () {
+        debugger;
         $scope.EmployeeDepartment.LookUpCode = null;
         $scope.EmployeeDepartment.LookUpDescription = null;
         $scope.EmployeeDepartment.IsActive = null;
         $scope.EmployeeDepartment.LookUpID = null;
         $('#AddEmployeeDepartmentDialog').modal('hide');
+        $scope.IsfrmEmployeeDepartment = false;
     }
 
 
     $scope.onClickSaveEmployeeDepartment = function (employeeDepartment) {
         debugger;
-        //if (employeeDepartment.LookUpCode != null && employeeDepartment.LookUpDescription != null) {
+        if (employeeDepartment.LookUpCode != null) {
         if ($scope.IsfrmEmployeeDepartment) {
             LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
                 debugger;
@@ -76,6 +80,7 @@ $scope.onEditEmployeeDepartment = function (employeeDepartment) {
         else {
             growlService.growl("Please Enter All  Fileds", 'danger');
         }
+    }
     }
     $scope.init();
 
