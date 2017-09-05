@@ -241,7 +241,7 @@ app.config(
 
 app.run(function ($rootScope) {
     $rootScope.$on('$stateChangeStart', function (e) {
-        var sessionObject = JSON.parse(sessionStorage.getItem("User"));
+        var sessionObject = JSON.parse(sessionStorage.getItem("authenticatedUser"));
         if (sessionObject == null || (sessionObject.UserID == null || sessionObject.UserID == '')) {
             window.location.pathname = '';
         }
@@ -250,7 +250,7 @@ app.run(function ($rootScope) {
 
 app.factory('UtilityFunc', ['$filter', '$q', function ($filter, $q) {
     var obj = {};
-    var sessionObject = JSON.parse(sessionStorage.getItem("User"));
+    var sessionObject = JSON.parse(sessionStorage.getItem("authenticatedUser"));
 
     obj.UserID = function () {
         return sessionObject ? sessionObject.UserID : '';

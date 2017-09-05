@@ -31,7 +31,6 @@
     <link href="@Url.Content("~/Css/material-design-iconic-font.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/datetimepicker.css")" rel="stylesheet" />
     @*<link href="~/Css/material-design-iconic-font.css" rel="stylesheet" />*@
-    @*<link href="@url.content("~/css/angularjs-datetime-picker.css")" rel="stylesheet" />*@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   
   
@@ -271,7 +270,7 @@
         var baseUrl = '@Url.Content("~/")';
         angular.module('ngHR').controller('layOutController', ['$scope', '$http', function ($scope, $http) {
             $scope.init = function () {
-                $scope.User = JSON.parse(sessionStorage.getItem("User"));
+                $scope.User = JSON.parse(sessionStorage.getItem("authenticatedUser"));
             }
             $scope.onClickLogOut = function () {
                 $http.get("/Login/LogOut").then(function (res) {

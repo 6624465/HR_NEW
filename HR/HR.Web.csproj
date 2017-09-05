@@ -144,8 +144,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="add-EmployeeDesignatio.html" />
+    <Content Include="bower_components\bootstrap-colorpicker\.bower.json" />
+    <Content Include="bower_components\bootstrap-colorpicker\bower.json" />
+    <Content Include="bower_components\bootstrap-colorpicker\CONTRIBUTING.md" />
     <Content Include="bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
+    <Content Include="bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css.map" />
     <Content Include="bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
+    <Content Include="bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css.map" />
     <Content Include="bower_components\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\alpha-horizontal.png" />
     <Content Include="bower_components\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\alpha.png" />
     <Content Include="bower_components\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\hue-horizontal.png" />
@@ -155,11 +160,32 @@
     <Content Include="bower_components\bootstrap-colorpicker\dist\js\bootstrap-colorpicker.min.js" />
     <Content Include="bower_components\bootstrap-colorpicker\docs\assets\main.css" />
     <Content Include="bower_components\bootstrap-colorpicker\docs\helpers\code\index.js" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\api.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\example.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\01_basic.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\02_component.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\03_component_options.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\04_events.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\05_transparent.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\06_horizontal.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\07_inline.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\08_palette.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\09_size.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\10_disabled.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\11_modal.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\social.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\layout.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\docs\pages\index.hbs" />
+    <Content Include="bower_components\bootstrap-colorpicker\LICENSE" />
+    <Content Include="bower_components\bootstrap-colorpicker\README.md" />
     <Content Include="bower_components\bootstrap-colorpicker\serve.js" />
     <Content Include="bower_components\bootstrap-colorpicker\src\js\colorpicker-color.js" />
     <Content Include="bower_components\bootstrap-colorpicker\src\js\colorpicker-component.js" />
     <Content Include="bower_components\bootstrap-colorpicker\src\js\colorpicker-defaults.js" />
     <Content Include="bower_components\bootstrap-colorpicker\src\js\colorpicker-plugin-wrapper.js" />
+    <Content Include="bower_components\bootstrap-colorpicker\src\less\colorpicker.less" />
+    <Content Include="bower_components\bootstrap-colorpicker\src\sass\_colorpicker.scss" />
     <Content Include="bower_components\bootstrap-datepicker\dist\css\bootstrap-datepicker.css" />
     <Content Include="bower_components\bootstrap-datepicker\dist\css\bootstrap-datepicker.min.css" />
     <Content Include="bower_components\bootstrap-datepicker\dist\css\bootstrap-datepicker.standalone.css" />
@@ -6649,19 +6675,13 @@
     <Content Include="bower_components\select2\tests\vendor\qunit-1.23.1.css" />
     <Content Include="bower_components\select2\tests\vendor\qunit-1.23.1.js" />
     <Content Include="bower_components\select2\vendor\jquery-2.1.0.js" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Site.css" />
     <Content Include="Css\angular-bootstrap-calendar.min.css" />
     <Content Include="Css\angular-growl.css" />
     <Content Include="Css\angular-material.css" />
-    <Content Include="Css\angularjs-datetime-picker.css" />
     <Content Include="Css\animate.min.css" />
     <Content Include="Css\app_1.min.css" />
     <Content Include="Css\app_2.min.css" />
-    <Content Include="Css\bootstrap-material-datetimepicker.css" />
     <Content Include="Css\datetimepicker.css" />
-    <Content Include="Css\material-datetimepicker.css" />
     <Content Include="Css\material-design-iconic-font.css" />
     <Content Include="Css\tree-control.css" />
     <Content Include="dist\css\AdminLTE.css" />
@@ -6922,17 +6942,14 @@
     <Content Include="scripts\angular-aria.js" />
     <Content Include="scripts\angular-bootstrap-calendar-tpls.min.js" />
     <Content Include="scripts\angular-growl.js" />
-    <Content Include="scripts\angular-material-datetimepicker.js" />
     <Content Include="scripts\angular-material.min.js" />
     <Content Include="scripts\angular-tree-control.js" />
     <Content Include="scripts\angular-ui-router.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\adminLTEApp.js" />
-    <Content Include="scripts\angularjs-datetime-picker.js" />
     <Content Include="scripts\app.js" />
     <Content Include="scripts\bootstrap-growl.js" />
     <Content Include="scripts\bootstrap-growl.min.js" />
-    <Content Include="scripts\bootstrap-material-datetimepicker.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="fonts\proximanovalight.eot" />
@@ -6957,32 +6974,6 @@
     <Content Include="fonts\Material-Design-Iconic-Font.woff2" />
     <Content Include="dist\css\adminlte.css.map" />
     <Content Include="dist\css\adminlte.min.css.map" />
-    <Content Include="bower_components\bootstrap-colorpicker\.bower.json" />
-    <Content Include="bower_components\bootstrap-colorpicker\bower.json" />
-    <Content Include="bower_components\bootstrap-colorpicker\CONTRIBUTING.md" />
-    <Content Include="bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css.map" />
-    <Content Include="bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css.map" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\api.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\example.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\01_basic.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\02_component.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\03_component_options.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\04_events.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\05_transparent.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\06_horizontal.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\07_inline.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\08_palette.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\09_size.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\10_disabled.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\examples\11_modal.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\includes\social.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\layout.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\docs\pages\index.hbs" />
-    <Content Include="bower_components\bootstrap-colorpicker\LICENSE" />
-    <Content Include="bower_components\bootstrap-colorpicker\README.md" />
-    <Content Include="bower_components\bootstrap-colorpicker\src\less\colorpicker.less" />
-    <Content Include="bower_components\bootstrap-colorpicker\src\sass\_colorpicker.scss" />
     <Content Include="bower_components\bootstrap-datepicker\.bower.json" />
     <Content Include="bower_components\bootstrap-datepicker\.editorconfig" />
     <Content Include="bower_components\bootstrap-datepicker\.github\ISSUE_TEMPLATE.md" />
@@ -7634,6 +7625,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\" />
     <Folder Include="Js\Account\Views\" />
   </ItemGroup>
   <ItemGroup>
