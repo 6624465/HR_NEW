@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="~/img/favicon-16x16.png">
     <link rel="manifest" href="~/img/manifest.json">
     <link rel="mask-icon" href="~/img/safari-pinned-tab.svg" color="#5bbad5">
-    
+
     <link rel="icon" href="~/img/favicon.ico" sizes="32x32" />
     <link rel="icon" href="~/img/favicon.ico" sizes="192x192" />
     <link rel="apple-touch-icon-precomposed" href="~/img/favicon.ico" />
@@ -30,10 +30,11 @@
     <link href="@Url.Content("~/Css/angular-bootstrap-calendar.min.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/material-design-iconic-font.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/datetimepicker.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/paper-bootstrap-wizard.css")" rel="stylesheet" />
     @*<link href="~/Css/material-design-iconic-font.css" rel="stylesheet" />*@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  
-  
+
+
     <!-- End of layout top -->
 </head>
 
@@ -50,37 +51,37 @@
                     <span class="sr-only">Toggle navigation</span>
                 </a>
                 <span style="padding-top: 15px; color: #fff;" class="pull-left">Loggedin {{User.BranchName }} Branch  <b style="font-size: 15px;"></b></span>
-              
-                        <div class="navbar-custom-menu">
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown user user-menu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="hidden-xs">
-                                           
-                                            <i class="zmdi zmdi-face zmdi-hc-lg"></i> &nbsp; {{User.UserID }}  &nbsp;  <i class="fa fa-caret-down" aria-hidden="true"></i>
 
-                                        </span>
-                                    </a>
-                                    <ul class="dropdown-menu ">
-                                       
-                                        <li class="user-footer user-other">
-                                            
-                                                <a href="#" class=""> <i class="fa fa-id-badge" aria-hidden="true"></i> &nbsp;Profile</a>
-                                            
-                                        </li>
-                                        <li class="user-footer user-other">
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs">
 
-                                            <a href="#" class=""><i class="zmdi zmdi-settings zmdi-hc-lg"></i> &nbsp; Setting</a>
+                                    <i class="zmdi zmdi-face zmdi-hc-lg"></i> &nbsp; {{User.UserID }}  &nbsp;  <i class="fa fa-caret-down" aria-hidden="true"></i>
 
-                                        </li>
-                                        <li class="user-footer user-other">
-                                                <a href="#" class="" ng-click="onClickLogOut()"> <i class="zmdi zmdi-power zmdi-hc-lg"></i> &nbsp; LogOut</a>
-                                           
-                                        </li>
-                                    </ul>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu ">
+
+                                <li class="user-footer user-other">
+
+                                    <a href="#" class=""> <i class="fa fa-id-badge" aria-hidden="true"></i> &nbsp;Profile</a>
+
+                                </li>
+                                <li class="user-footer user-other">
+
+                                    <a href="#" class=""><i class="zmdi zmdi-settings zmdi-hc-lg"></i> &nbsp; Setting</a>
+
+                                </li>
+                                <li class="user-footer user-other">
+                                    <a href="#" class="" ng-click="onClickLogOut()"> <i class="zmdi zmdi-power zmdi-hc-lg"></i> &nbsp; LogOut</a>
+
                                 </li>
                             </ul>
-                        </div>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         </header>
         <aside class="main-sidebar">
@@ -233,8 +234,8 @@
     <script src="@Url.Content("~/bower_components/jquery-ui/jquery-ui.min.js")"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     @*<script>
-        $.widget.bridge('uibutton', $.ui.button);
-    </script>*@
+            $.widget.bridge('uibutton', $.ui.button);
+        </script>*@
     <!-- Bootstrap 3.3.7 -->
     <script src="@Url.Content("~/bower_components/bootstrap/dist/js/bootstrap.min.js")"></script>
     <!-- Morris.js charts -->
@@ -280,8 +281,11 @@
     <script src="@Url.Content("~/scripts/services.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap-growl.min.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap-growl.js")"></script>
-
-
+    <script src="@Url.Content("~/scripts/wizard/bootstrap.min.js")"></script>
+    @*<script src="@Url.Content("~/scripts/wizard/jquery-2.2.4.min.js")"></script>*@
+    <script src="@Url.Content("~/scripts/wizard/jquery.bootstrap.wizard.js")"></script>
+    <script src="@Url.Content("~/scripts/wizard/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/scripts/wizard/paper-bootstrap-wizard.js")"></script>
     <!-- End Script files -->
     <script type="text/javascript">
         var baseUrl = '@Url.Content("~/")';
