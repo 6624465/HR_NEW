@@ -24,20 +24,13 @@ function ($scope, $http, LookUp, growl, growlService) {
     }
     $scope.GetLookUpData();
 
-    $scope.onClickSaveEmployeeDepartment = function (employeeDepartment) {
+    $scope.IsfrmEmployeeDepartment = false;
+    $scope.$watch('frmEmployeeDepartment.$valid', function (Valid) {
         debugger;
-        if (employeeDepartment.LookUpCode != null && employeeDepartment.LookUpDescription != null) {
-            LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
-                debugger;
-                growlService.growl("Saved Successfully..", 'success');
-                $('#AddEmployeeDepartmentDialog').modal('hide');
-                $scope.GetLookUpData();
-            })
-        }
-        else {
-            growlService.growl("Please Enter All  Fileds", 'danger');
-        }
-    },
+        $scope.IsfrmEmployeeDepartment = Valid;
+    });
+
+
 $scope.onEditEmployeeDepartment = function (employeeDepartment) {
     //$scope.EmployeeDepartment.LookUpCode = employeeDepartment.LookUpCode;
     //$scope.EmployeeDepartment.LookUpDescription = employeeDepartment.LookUpDescription;
@@ -47,6 +40,7 @@ $scope.onEditEmployeeDepartment = function (employeeDepartment) {
 }
 
     $scope.onClickCancelEmployeeDepartment = function () {
+        debugger;
         $scope.clearTextBoxes();
     },
 
@@ -59,9 +53,27 @@ $scope.onEditEmployeeDepartment = function (employeeDepartment) {
     $scope.clearTextBoxes = function () {
         $scope.EmployeeDepartment = {};
         $('#AddEmployeeDepartmentDialog').modal('hide');
+        $scope.IsfrmEmployeeDepartment = false;
     }
 
 
+    $scope.onClickSaveEmployeeDepartment = function (employeeDepartment) {
+        debugger;
+        if (employeeDepartment.LookUpCode != null) {
+        if ($scope.IsfrmEmployeeDepartment) {
+            LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
+                debugger;
+                growlService.growl("Saved Successfully..", 'success');
+                $('#AddEmployeeDepartmentDialog').modal('hide');
+                $scope.GetLookUpData();
+            })
+
+        }
+        else {
+            growlService.growl("Please Enter All  Fileds", 'danger');
+        }
+    }
+    }
     $scope.init();
 
 }])

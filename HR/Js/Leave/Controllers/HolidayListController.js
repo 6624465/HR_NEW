@@ -30,14 +30,24 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
     }
     /*Save */
 
+    $scope.IsfrmHolidayList = false;
+    $scope.$watch('frmHolidayList.$valid', function (isValid) {
+        $scope.IsfrmHolidayList = isValid;
+    })
+
     $scope.onClickSaveHoliDayList = function (holiDayList) {
-        holiDayList.Date = moment(holiDayList.Date).format('MM/DD/YYYY');
-        HolidayListService.SaveHolidayList(holiDayList).then(function (response) {
-            if (response.data && response.data.success == true) {
-                $('#AddHolidayListDialog').modal('hide');
-                growlService.growl(response.data.message, 'success');
-            }
-        })
+        if ($scope.IsfrmHolidayList) {
+            holiDayList.Date = moment(holiDayList.Date).format('MM/DD/YYYY');
+            HolidayListService.SaveHolidayList(holiDayList).then(function (response) {
+                if (response.data && response.data.success == true) {
+                    $('#AddHolidayListDialog').modal('hide');
+                    growlService.growl(response.data.message, 'success');
+                }
+            })
+        }
+        else {
+            growlService.growl("Please Enter All Fileds", 'danger');
+        }
     }
     /*SAVE*/
 

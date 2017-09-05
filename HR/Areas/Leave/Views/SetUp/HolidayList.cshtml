@@ -1,4 +1,5 @@
 ﻿<div class="row" ng-controller="HolidayListController">
+    <form id="frmHolidayList" name="frmHolidayList" ng-submit="onClickSaveHoliDayList(HolidayList)" ng-class="{'submitted':submitted}" novalidate>
     <div class="col-xs-12">
         <div class="box box-widget">
             <div class="box-header with-border">
@@ -96,7 +97,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
-                                                <label class="required">Date</label>
+                                                <label >Date</label>
                                                 <div class="dropdown">
                                                     <a class="dropdown-toggle" id="Date" role="button" data-toggle="dropdown">
                                                         <div class="input-group">
@@ -119,20 +120,20 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
-                                                <label class="required">
+                                                <label>
                                                     Occasion
                                                 </label>
-                                                <input class="form-control input-mask" type="text" ng-model="HolidayList.Description">
+                                                <input class="form-control input-mask" type="text" ng-model="HolidayList.Description" ng-required="true">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
-                                                <label class="required">
+                                                <label>
                                                     Location
                                                 </label>
-                                                <select name="users" ng-options="s.Id as s.CountryName for s in Locations" ng-model="HolidayList.CountryId" class="form-control">
+                                                <select name="users" ng-options="s.Id as s.CountryName for s in Locations" ng-model="HolidayList.CountryId" class="form-control" ng-required="true">
                                                     <option value="">--Select Location--</option>
                                                 </select>
                                             </div>
@@ -140,7 +141,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="right: 270px;">
-                                    <button class="button" type="submit" ng-click="onClickSaveHoliDayList(HolidayList)">Save</button>
+                                    <button class="button" type="submit" ng-click="submitted = true;">Save</button>
                                     <button type="submit" class="button button-default" ng-click="onClickCancelHoliDayList()">Cancel</button>
                                 </div>
                             </div>
@@ -150,6 +151,7 @@
             </div>
         </div>
     </div>
+        </form>
 </div>
 
 
