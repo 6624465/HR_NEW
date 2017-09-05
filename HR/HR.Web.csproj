@@ -6685,6 +6685,7 @@
     <Content Include="Css\app_2.min.css" />
     <Content Include="Css\datetimepicker.css" />
     <Content Include="Css\material-design-iconic-font.css" />
+    <Content Include="Css\paper-bootstrap-wizard.css" />
     <Content Include="Css\tree-control.css" />
     <Content Include="dist\css\AdminLTE.css" />
     <Content Include="dist\css\AdminLTE.min.css" />
@@ -7544,6 +7545,11 @@
     <Content Include="scripts\services.js" />
     <Content Include="scripts\ui-bootstrap-tpls.min.js" />
     <Content Include="scripts\ui-bootstrap.js" />
+    <Content Include="scripts\wizard\bootstrap.min.js" />
+    <Content Include="scripts\wizard\jquery-2.2.4.min.js" />
+    <Content Include="scripts\wizard\jquery.bootstrap.wizard.js" />
+    <Content Include="scripts\wizard\jquery.validate.min.js" />
+    <Content Include="scripts\wizard\paper-bootstrap-wizard.js" />
     <Content Include="template\date-picker.html" />
     <Content Include="template\tooltip\tooltip-html-popup.html" />
     <Content Include="template\time-picker.html" />
