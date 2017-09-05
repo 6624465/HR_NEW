@@ -6778,6 +6778,8 @@
     <Content Include="Js\Company\Services\CompanyService.js" />
     <Content Include="Js\Company\Templates\Company\branchdetails.html" />
     <Content Include="Js\Company\Templates\Company\companydetails.html" />
+    <Content Include="Js\Employee\Controllers\EmployeeProfileController.js" />
+    <Content Include="Js\Employee\Services\EmployeeProfileService.js" />
     <Content Include="Js\Home\Controllers\ActivitySummaryCntrl.js" />
     <Content Include="Js\Home\Controllers\HomeController.js" />
     <Content Include="Js\Home\Views\activitysummary.html" />
@@ -7565,6 +7567,8 @@
     <Content Include="Areas\Master\Views\LookUp\PaymentType.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\EmployeeStatus.cshtml" />
     <Content Include="Areas\Leave\Views\SetUp\HolidayList.cshtml" />
+    <Content Include="Areas\Employees\Views\web.config" />
+    <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeProfile.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7585,6 +7589,8 @@
     <Compile Include="Areas\Account\AccountClaimsAreaRegistration.cs" />
     <Compile Include="Areas\Company\CompanyClaimsAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Employees\Controllers\EmployeeProfileController.cs" />
+    <Compile Include="Areas\Employees\EmployeesAreaRegistration.cs" />
     <Compile Include="Areas\Leave\LeaveClaimsAreaRegistration.cs" />
     <Compile Include="Areas\Leave\Controllers\AppliedLeaveListController.cs" />
     <Compile Include="Areas\Leave\Controllers\EmployeeLeaveController.cs" />
