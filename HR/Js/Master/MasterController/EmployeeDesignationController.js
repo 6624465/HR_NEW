@@ -25,16 +25,25 @@ function ($scope, $http, LookUp, growl, growlService) {
         })
     }
 
-
+    $scope.IsfrmEmployeeDesignation = false;
+    $scope.$watch('frmEmployeeDesignation.$valid', function (Valid) {
+        debugger;
+        $scope.IsfrmEmployeeDesignation = Valid;
+    });
 
     $scope.onClickSaveEmployeeDesignation = function (employeeDesignation) {
-        if ($scope.EmployeeDesignation.LookUpCode != null && $scope.EmployeeDesignation.LookUpDescription != null) {
+        //if ($scope.EmployeeDesignation.LookUpCode != null && $scope.EmployeeDesignation.LookUpDescription != null) {
+        if($scope.IsfrmEmployeeDesignation){
             LookUp.SaveLookUpData(employeeDesignation).then(function (response) {
                 if (response.data && response.data.message == "Saved Successfully.") {
                     growlService.growl("Saved Successfully..", 'success');
                     $('#AddEmployeeDesignationDialog').modal('hide');
 
                     $scope.GetLookUpData();
+                }
+                else
+                {
+                    growlService.growl(response.data, 'danger');
                 }
             })
         }
