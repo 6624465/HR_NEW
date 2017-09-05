@@ -212,6 +212,21 @@ app.config(
                }
            })
 
+           .state('Employee', {
+               url: '/Employee',
+               templateUrl: baseUrl + 'EmployeeProfile/EmployeeProfile',
+               resolve: {
+                   loadPlugin: function ($ocLazyLoad) {
+                       return $ocLazyLoad.load([
+                           {
+                               name: 'ngHR',
+                               files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                           }
+                       ]);
+                   }
+               }
+           })
+
 
 
             .state('ActivitySummary', {
