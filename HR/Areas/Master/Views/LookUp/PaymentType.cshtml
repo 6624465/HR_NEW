@@ -1,4 +1,5 @@
-﻿<div ng-controller="PaymentTypeController">
+﻿<div ng-controller="PaymentTypeController" class="row">
+    <form id="frmPaymentType" name="frmPaymentType" ng-submit="onClickSavePaymentType(PaymentType)" novalidate ng-class="{'submitted':submitted}" >
     <div class="row">
         <div class="col-md-12">
             <div class="box">
@@ -24,7 +25,7 @@
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
                                                 <label>Payment Type Name</label>
-                                                <input class="form-control input-mask" type="text" ng-model="PaymentType.LookUpCode">
+                                                <input class="form-control input-mask" type="text" ng-model="PaymentType.LookUpCode" ng-required="true">
                                             </div>
                                         </div>
                                     </div>
@@ -34,7 +35,7 @@
                                                 <label>
                                                     Payment Type Description
                                                 </label>
-                                                <input class="form-control input-mask" type="text" ng-model="PaymentType.LookUpDescription">
+                                                <input class="form-control input-mask" type="text" ng-model="PaymentType.LookUpDescription" ng-required="true">
                                             </div>
                                         </div>
                                     </div>
@@ -53,7 +54,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="right: 270px;">
-                                    <button class="button" type="submit" ng-click="onClickSavePaymentType(PaymentType)">Save</button>
+                                    <button class="button" type="submit" ng-click="submitted = true;">Save</button>
                                     <button type="submit" class="button button-default" ng-click="onClickCancelPaymentType()">Cancel</button>
                                 </div>
                             </div>
@@ -95,4 +96,5 @@
             </div>
         </div>
     </div>
+        </form>
 </div>

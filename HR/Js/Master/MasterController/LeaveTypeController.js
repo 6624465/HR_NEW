@@ -27,9 +27,16 @@ function ($scope, $http, LookUp, growl, growlService) {
     }
     $scope.GetLookUpData();
 
+    $scope.IsfrmLeaveType = false;
+    $scope.$watch('frmLeaveType.$valid', function (Valid) {
+        debugger;
+        $scope.IsfrmLeaveType = Valid;
+    });
+
     $scope.onClickSaveLeaveType = function (leaveType) {
         debugger;
-        if ($scope.LeaveType.LookUpCode != null && $scope.LeaveType.LookUpDescription != null) {
+        //if ($scope.LeaveType.LookUpCode != null && $scope.LeaveType.LookUpDescription != null) {
+        if($scope.IsfrmLeaveType){
             LookUp.SaveLookUpData(leaveType).then(function (response) {
                 debugger;
                 growlService.growl("Saved Successfully..", 'success');

@@ -27,9 +27,17 @@
         $('#AddEmployeeStatusDialog').modal('show');
     }
 
+    $scope.IsfrmEmployeeStatus = false;
+    $scope.$watch('frmEmployeeStatus.$valid', function (Valid) {
+        debugger;
+        $scope.IsfrmEmployeeStatus = Valid;
+    });
+
     $scope.onClickSaveEmployeeStatus = function (employeeStatus) {
         employeeStatus.LookUpCategory = 'EmployeeStatus';
-        if (employeeStatus.LookUpCode != null && employeeStatus.LookUpDescription != null) {
+        //if (employeeStatus.LookUpCode != null && employeeStatus.LookUpDescription != null) {
+        if ($scope.IsfrmEmployeeStatus) {
+            debugger;
             LookUp.SaveLookUpData(employeeStatus).then(function (response) {
                 growlService.growl("Saved Successfully..", 'success');
                 $('#AddEmployeeStatusDialog').modal('hide');

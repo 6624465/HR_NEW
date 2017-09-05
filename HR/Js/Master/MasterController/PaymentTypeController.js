@@ -25,15 +25,26 @@ function ($scope, $http, LookUp, growl, growlService) {
         })
     }
 
-    $scope.onClickSavePaymentType = function (paymentType) {
+    $scope.IsfrmPaymentType = false;
+    $scope.$watch('frmPaymentType.$valid', function (Valid) {
         debugger;
-        if ($scope.PaymentType.LookUpCode != null && $scope.PaymentType.LookUpDescription != null) {
+        $scope.IsfrmPaymentType = Valid;
+    });
+
+    $scope.onClickSavePaymentType = function (paymentType) {
+        //debugger;
+        //if ($scope.PaymentType.LookUpCode != null && $scope.PaymentType.LookUpDescription != null) {
+        if($scope.IsfrmPaymentType){
             LookUp.SaveLookUpData(paymentType).then(function (response) {
                 debugger;
                 if (response.data && response.data.message == "Saved Successfully.") {
                     growlService.growl("Saved Successfully..", 'success');
                     $('#AddPaymentTypeDialog').modal('hide');
                     $scope.GetLookUpData();
+                }
+                else {
+
+                    growlService.growl(response.data.message, 'danger');
                 }
             })
         }

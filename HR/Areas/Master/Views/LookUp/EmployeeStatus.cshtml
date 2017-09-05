@@ -1,4 +1,5 @@
-﻿<div ng-controller="EmployeeStatusController">
+﻿<div ng-controller="EmployeeStatusController" class="row">
+    <form id="frmEmployeeStatus" name="frmEmployeeStatus" ng-submit="onClickSaveEmployeeStatus(EmployeeStatus)" novalidate ng-class="{'submitted':submitted}">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -23,7 +24,7 @@
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
                                                 <label>Employee Status Name</label>
-                                                <input class="form-control input-mask" type="text" ng-model="EmployeeStatus.LookUpCode">
+                                                <input class="form-control input-mask" type="text" ng-model="EmployeeStatus.LookUpCode" ng-required="true">
                                             </div>
                                         </div>
                                     </div>
@@ -33,7 +34,7 @@
                                                 <label>
                                                     Employee Status Description
                                                 </label>
-                                                <input class="form-control input-mask" type="text" ng-model="EmployeeStatus.LookUpDescription">
+                                                <input class="form-control input-mask" type="text" ng-model="EmployeeStatus.LookUpDescription" ng-required="true">
                                             </div>
                                         </div>
                                     </div>
@@ -52,7 +53,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="right: 270px;">
-                                    <button class="button" type="submit" ng-click="onClickSaveEmployeeStatus(EmployeeStatus)">Save</button>
+                                    <button class="button" type="submit" ng-click="submitted = true;">Save</button>
                                     <button type="submit" class="button button-default" ng-click="onClickCancelEmployeeStatus()">Cancel</button>
                                 </div>
                             </div>
@@ -94,4 +95,5 @@
             </div>
         </div>
     </div>
+        </form>
 </div>
