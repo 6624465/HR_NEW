@@ -36,10 +36,16 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         var diffDate = (Math.round(Math.abs((new Date($scope.EmployeeLeaveForm.FromDate).getTime() -new Date($scope.EmployeeLeaveForm.ToDate).getTime()) / (24 * 60 * 60 * 1000))));
             $scope.EmployeeLeaveForm.Days = diffDate +1;
     } 
- /*Save Section*/
+    /*Save Section*/
+    $scope.IsfrmEmployeeLeaveForm = false;
+    $scope.$watch('frmEmployeeLeaveForm.$valid', function (Valid) {
+        debugger;
+        $scope.IsfrmEmployeeLeaveForm = Valid;
+    });
     $scope.onSaveEmployeeLeave = function (employeeLeaveForm) {
         debugger;
-        if (employeeLeaveForm.FromDate != null && employeeLeaveForm.ToDate != "" && employeeLeaveForm.EmployeeName != null && employeeLeaveForm.EmployeeName != "") {
+        //if (employeeLeaveForm.FromDate != null && employeeLeaveForm.ToDate != "" && employeeLeaveForm.EmployeeName != null && employeeLeaveForm.EmployeeName != "") {
+        if($scope.IsfrmEmployeeLeaveForm){
             employeeLeaveForm.Status = "Applied";
             EmployeeLeave.SaveEmployeeLeave(employeeLeaveForm).then(function (response) {
                 if (response.data && response.data.sucess == true) {
@@ -57,11 +63,8 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         }
     }
     /*save Section*/
-    //debugger;
-    //$scope.Isfrmemployee = false;
-    //$scope.$watch('frmemployee.$Valid', function (Valid) {
-    //    $scope.Isfrmemployee = Valid;
-    //});
+    debugger;
+   
     /*Clear Section*/
     $scope.OnClearEmployeeLeave = function (employeeLeaveForm) {
         $scope.EmployeeLeaveForm = "";
