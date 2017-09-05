@@ -22,7 +22,10 @@
                     New Branch
 
                 </h3>
-                <div class="pull-right"> <h3 class="box-title"> Branch Details &nbsp;<span style="text-align: right;">Company Code [ <b class="label bg-green">{{BranchDetails.CompanyCode }}</b> ]</span></h3></div>
+                <div class="pull-right"> <h3 class="box-title"> Branch Details &nbsp;<span style="text-align: right;">Company Code [ <b class="label bg-green">{{BranchDetails.CompanyCode}}</b> ]</span></h3></div>
+                <div ng-if="isshow">
+                    {{BranchDetails.CompanyId}}
+                </div>
             </div>
         </div>
         <div class="box-body">

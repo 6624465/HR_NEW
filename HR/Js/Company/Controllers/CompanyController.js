@@ -49,13 +49,17 @@
                 $scope.CompanyDetails.IsActive = true;
             }
             else if (sel.type == "branch") {
+                debugger;
                 $scope.isbranch = false;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html';
                 $scope.BranchDetails = $scope.Companies[sel.parentIndex].Branches[sel.i];
+                var CompanyCode = $scope.BranchDetails.CompanyCode;
+                $scope.BranchDetails.CompanyCode = CompanyCode;
                 $scope.BranchDetails.Type = "Branch";
                 $scope.BranchDetails.IsActive = true;
             }
         };
+
         CompanyService.GetCountries().then(function (res) {
             $scope.Countries = res.data.countries;
             $scope.CompanyDetails.Address.CountryId =
@@ -68,6 +72,10 @@
             debugger
             var arr = new Array();
             if (branchList) {
+                var abs = branchList[0].CompanyCode;
+                $scope.BranchDetails.CompanyCode = abs;
+                var id = branchList[0].CompanyId;
+                $scope.BranchDetails.CompanyId = id;
                 angular.forEach(branchList, function (val, idx) {
                     var obj = {
                         'label': val.BranchName,
@@ -75,11 +83,13 @@
                         'i': idx,
                         'type': 'branch',
                         parentIndex: parentIndex
+                        
                     };
                     arr.push(obj);
                 })
             }
             return arr;
+            debugger;
         }
 
         
@@ -126,7 +136,8 @@
         });
 
         $scope.SaveBranch = function (branchDetails) {
-            if($scope.IsfrmBranchDetails){
+            if ($scope.IsfrmBranchDetails) {
+                debugger;
                 CompanyService.SaveBranch(branchDetails).then(function (res) {
                     if (res.data && res.data.success == true) {
                         growlService.growl('Saved Successfully', 'success');
@@ -145,6 +156,7 @@
         // region end
 
         $scope.AddBranch = function (CompanyCode, CompanyName, CompanyId) {
+            debugger;
             $scope.getCompanyList();
             $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html'
             $scope.isbranch = false;
