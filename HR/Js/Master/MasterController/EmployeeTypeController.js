@@ -33,8 +33,8 @@ function ($scope, $http, LookUp, growl, growlService) {
     });
 
     $scope.onClickSaveEmployeeType = function (employeeType) {
-        //debugger;
-        //if ($scope.EmployeeType.LookUpCode != null && $scope.EmployeeType.LookUpDescription != null) {
+        debugger;
+        if ($scope.EmployeeType.LookUpCode != null) {
         if ($scope.IsfrmEmployeeType) {
             debugger;
             LookUp.SaveLookUpData(employeeType).then(function (response) {
@@ -48,6 +48,7 @@ function ($scope, $http, LookUp, growl, growlService) {
 
             growlService.growl("Please Enter All Fileds", 'danger');
         }
+    }
     },
 $scope.onEditEmployeeType = function (employeeType) {
     $scope.EmployeeType.LookUpCode = employeeType.LookUpCode;

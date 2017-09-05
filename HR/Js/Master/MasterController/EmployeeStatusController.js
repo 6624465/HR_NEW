@@ -35,19 +35,19 @@
 
     $scope.onClickSaveEmployeeStatus = function (employeeStatus) {
         employeeStatus.LookUpCategory = 'EmployeeStatus';
-        //if (employeeStatus.LookUpCode != null && employeeStatus.LookUpDescription != null) {
-        if ($scope.IsfrmEmployeeStatus) {
-            debugger;
-            LookUp.SaveLookUpData(employeeStatus).then(function (response) {
-                growlService.growl("Saved Successfully..", 'success');
-                $('#AddEmployeeStatusDialog').modal('hide');
-                $scope.GetLookUpData();
-            })
+        if (employeeStatus.LookUpCode != null) {
+            if ($scope.IsfrmEmployeeStatus) {
+                debugger;
+                LookUp.SaveLookUpData(employeeStatus).then(function (response) {
+                    growlService.growl("Saved Successfully..", 'success');
+                    $('#AddEmployeeStatusDialog').modal('hide');
+                    $scope.GetLookUpData();
+                })
+            }
+            else {
+                growlService.growl("Please Enter All  Fileds", 'danger');
+            }
         }
-        else {
-            growlService.growl("Please Enter All  Fileds", 'danger');
-        }
-
     }
     $scope.onClickCancelEmployeeStatus = function () {
         $scope.clearTextBoxes();

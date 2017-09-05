@@ -32,7 +32,7 @@ function ($scope, $http, LookUp, growl, growlService) {
     });
 
     $scope.onClickSaveEmployeeDesignation = function (employeeDesignation) {
-        //if ($scope.EmployeeDesignation.LookUpCode != null && $scope.EmployeeDesignation.LookUpDescription != null) {
+        if ($scope.EmployeeDesignation.LookUpCode != null) {
         if($scope.IsfrmEmployeeDesignation){
             LookUp.SaveLookUpData(employeeDesignation).then(function (response) {
                 if (response.data && response.data.message == "Saved Successfully.") {
@@ -50,7 +50,7 @@ function ($scope, $http, LookUp, growl, growlService) {
         else {
             growlService.growl("Please Enter All Fileds", 'danger');
         }
-
+    }
     },
     $scope.GetLookUpData();
     $scope.onEditEmployeeDesignation = function (employeeDesignation) {

@@ -35,17 +35,18 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.onClickSaveLeaveType = function (leaveType) {
         debugger;
-        //if ($scope.LeaveType.LookUpCode != null && $scope.LeaveType.LookUpDescription != null) {
-        if($scope.IsfrmLeaveType){
-            LookUp.SaveLookUpData(leaveType).then(function (response) {
-                debugger;
-                growlService.growl("Saved Successfully..", 'success');
-                $('#AddLeaveTypeDialog').modal('hide');
-                $scope.GetLookUpData();
-            })
-        }
-        else {
-            growlService.growl("Please Enter All  Fileds", 'danger');
+        if ($scope.LeaveType.LookUpCode != null) {
+            if ($scope.IsfrmLeaveType) {
+                LookUp.SaveLookUpData(leaveType).then(function (response) {
+                    debugger;
+                    growlService.growl("Saved Successfully..", 'success');
+                    $('#AddLeaveTypeDialog').modal('hide');
+                    $scope.GetLookUpData();
+                })
+            }
+            else {
+                growlService.growl("Please Enter All  Fileds", 'danger');
+            }
         }
     },
 $scope.onEditLeaveType = function (leaveType) {
