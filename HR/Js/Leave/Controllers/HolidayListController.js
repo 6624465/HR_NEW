@@ -16,6 +16,9 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
     }
 
     $scope.addHolidayList = function () {
+        $scope.HolidayList = {
+            BranchId: UtilityFunc.BranchId(),
+        }
         $('#AddHolidayListDialog').modal('show');
     };
 
@@ -91,7 +94,6 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
    
 
     HolidayListService.GetBranchLocations().then(function (response) {
-        debugger
         if (response.data && response.data.success == true) {
             $scope.Locations = response.data.BranchLocations;
         }
