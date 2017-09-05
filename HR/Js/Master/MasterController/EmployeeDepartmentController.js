@@ -4,10 +4,7 @@ function ($scope, $http, LookUp, growl, growlService) {
     growl.success(" a success message and not unique", config);
     $scope.init = function () {
         $scope.EmployeeDepartment = {
-            LookUpID: null,
-            LookUpCode: null,
-            LookUpDescription: null,
-            IsActive: null,
+            IsActive: true,
             LookUpCategory: "EmployeeDepartment"
         },
         $scope.EmployeeDepartments = {}
@@ -34,12 +31,11 @@ function ($scope, $http, LookUp, growl, growlService) {
     });
 
 
-    $scope.onEditEmployeeDepartment = function (employeeDepartment) {
-        debugger;
-    $scope.EmployeeDepartment.LookUpCode = employeeDepartment.LookUpCode;
-    $scope.EmployeeDepartment.LookUpDescription = employeeDepartment.LookUpDescription;
-    $scope.EmployeeDepartment.IsActive = employeeDepartment.IsActive;
-    $scope.EmployeeDepartment.LookUpID = employeeDepartment.LookUpID;
+$scope.onEditEmployeeDepartment = function (employeeDepartment) {
+    //$scope.EmployeeDepartment.LookUpCode = employeeDepartment.LookUpCode;
+    //$scope.EmployeeDepartment.LookUpDescription = employeeDepartment.LookUpDescription;
+    //$scope.EmployeeDepartment.IsActive = employeeDepartment.IsActive;
+    //$scope.EmployeeDepartment.LookUpID = employeeDepartment.LookUpID;
     $('#AddEmployeeDepartmentDialog').modal('show');
 }
 
@@ -55,11 +51,7 @@ function ($scope, $http, LookUp, growl, growlService) {
     };
 
     $scope.clearTextBoxes = function () {
-        debugger;
-        $scope.EmployeeDepartment.LookUpCode = null;
-        $scope.EmployeeDepartment.LookUpDescription = null;
-        $scope.EmployeeDepartment.IsActive = null;
-        $scope.EmployeeDepartment.LookUpID = null;
+        $scope.EmployeeDepartment = {};
         $('#AddEmployeeDepartmentDialog').modal('hide');
         $scope.IsfrmEmployeeDepartment = false;
     }

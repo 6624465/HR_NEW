@@ -99,17 +99,14 @@
         //region for Save
         $scope.IsfrmCompanyDetails = false;
         $scope.$watch('frmCompanyDetails.$valid', function (Valid) {
-            debugger;
             $scope.IsfrmCompanyDetails = Valid;
         });
         $scope.SaveCompany = function (details) {
-            //if (details!=null&&details||details=="") {
             if ($scope.IsfrmCompanyDetails) {
-                debugger;
                 CompanyService.SaveCompany(details).then(function (res) {
                     if (res.data && res.data.success == true) {
                         growlService.growl(res.data.message, 'success');
-                       // $scope.CompanyDetails = {};
+                        $scope.CompanyDetails = {};
                     }
                     else
                     {
@@ -125,17 +122,15 @@
 
         $scope.IsfrmBranchDetails = false;
         $scope.$watch('frmBranchDetails.$valid', function (Valid) {
-            debugger;
             $scope.IsfrmBranchDetails = Valid;
         });
 
         $scope.SaveBranch = function (branchDetails) {
-            //if (branchDetails != null && branchDetails || branchDetails == "") {
             if($scope.IsfrmBranchDetails){
                 CompanyService.SaveBranch(branchDetails).then(function (res) {
                     if (res.data && res.data.success == true) {
                         growlService.growl('Saved Successfully', 'success');
-                        //$scope.CompanyDetails = {};
+                        $scope.CompanyDetails = {};
                     }
                     else
                     {
@@ -144,9 +139,7 @@
                 })
             }
             else
-            {
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
-            }
         }
 
         // region end
