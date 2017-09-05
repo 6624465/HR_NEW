@@ -144,6 +144,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="add-EmployeeDesignatio.html" />
+    <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeProfile.cshtml" />
+    <Content Include="Areas\Employees\Views\web.config" />
     <Content Include="bower_components\bootstrap-colorpicker\.bower.json" />
     <Content Include="bower_components\bootstrap-colorpicker\bower.json" />
     <Content Include="bower_components\bootstrap-colorpicker\CONTRIBUTING.md" />
@@ -7567,8 +7569,6 @@
     <Content Include="Areas\Master\Views\LookUp\PaymentType.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\EmployeeStatus.cshtml" />
     <Content Include="Areas\Leave\Views\SetUp\HolidayList.cshtml" />
-    <Content Include="Areas\Employees\Views\web.config" />
-    <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeProfile.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
