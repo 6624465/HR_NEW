@@ -38,19 +38,30 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
     } 
  /*Save Section*/
     $scope.onSaveEmployeeLeave = function (employeeLeaveForm) {
-        employeeLeaveForm.Status = "Applied";
-        EmployeeLeave.SaveEmployeeLeave(employeeLeaveForm).then(function (response) {
-            if (response.data && response.data.sucess == true) {
-                growlService.growl(response.data.message, 'success');
-                $scope.EmployeeLeaveForm = {
-                    BranchID: UtilityFunc.BranchId(),
-                    FromDate: moment(),
-                    ToDate: moment(),
+        debugger;
+        if (employeeLeaveForm.FromDate != null && employeeLeaveForm.ToDate != "" && employeeLeaveForm.EmployeeName != null && employeeLeaveForm.EmployeeName != "") {
+            employeeLeaveForm.Status = "Applied";
+            EmployeeLeave.SaveEmployeeLeave(employeeLeaveForm).then(function (response) {
+                if (response.data && response.data.sucess == true) {
+                    growlService.growl("Saved Successfully", 'success');
+                    $scope.EmployeeLeaveForm = {
+                        BranchID: UtilityFunc.BranchId(),
+                        FromDate: moment(),
+                        ToDate: moment(),
+                    }
                 }
-            }
-        })
+            })
+        }
+        else {
+            growlService.growl("Please Enter All Mandatory Fields",'danger')
+        }
     }
     /*save Section*/
+    //debugger;
+    //$scope.Isfrmemployee = false;
+    //$scope.$watch('frmemployee.$Valid', function (Valid) {
+    //    $scope.Isfrmemployee = Valid;
+    //});
     /*Clear Section*/
     $scope.OnClearEmployeeLeave = function (employeeLeaveForm) {
         $scope.EmployeeLeaveForm = "";
