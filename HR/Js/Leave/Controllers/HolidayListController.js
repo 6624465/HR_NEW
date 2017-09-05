@@ -36,17 +36,19 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
     })
 
     $scope.onClickSaveHoliDayList = function (holiDayList) {
-        if ($scope.IsfrmHolidayList) {
-            holiDayList.Date = moment(holiDayList.Date).format('MM/DD/YYYY');
-            HolidayListService.SaveHolidayList(holiDayList).then(function (response) {
-                if (response.data && response.data.success == true) {
-                    $('#AddHolidayListDialog').modal('hide');
-                    growlService.growl(response.data.message, 'success');
-                }
-            })
-        }
-        else {
-            growlService.growl("Please Enter All Fileds", 'danger');
+        if (holiDayList.Description != null) {
+            if ($scope.IsfrmHolidayList) {
+                holiDayList.Date = moment(holiDayList.Date).format('MM/DD/YYYY');
+                HolidayListService.SaveHolidayList(holiDayList).then(function (response) {
+                    if (response.data && response.data.success == true) {
+                        $('#AddHolidayListDialog').modal('hide');
+                        growlService.growl(response.data.message, 'success');
+                    }
+                })
+            }
+            else {
+                growlService.growl("Please Enter All Fileds", 'danger');
+            }
         }
     }
     /*SAVE*/
