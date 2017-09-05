@@ -34,22 +34,6 @@ function ($scope, $http, LookUp, growl, growlService) {
     });
 
 
-    $scope.onClickSaveEmployeeDepartment = function (employeeDepartment) {
-        debugger;
-        //if (employeeDepartment.LookUpCode != null && employeeDepartment.LookUpDescription != null) {
-        if(   $scope.IsfrmEmployeeDepartment){
-            LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
-                debugger;
-                growlService.growl("Saved Successfully..", 'success');
-                $('#AddEmployeeDepartmentDialog').modal('hide');
-                $scope.GetLookUpData();
-            })
-
-        }
-        else {
-            growlService.growl("Please Enter All  Fileds", 'danger');
-        }
-    },
 $scope.onEditEmployeeDepartment = function (employeeDepartment) {
     $scope.EmployeeDepartment.LookUpCode = employeeDepartment.LookUpCode;
     $scope.EmployeeDepartment.LookUpDescription = employeeDepartment.LookUpDescription;
@@ -77,6 +61,22 @@ $scope.onEditEmployeeDepartment = function (employeeDepartment) {
     }
 
 
+    $scope.onClickSaveEmployeeDepartment = function (employeeDepartment) {
+        debugger;
+        //if (employeeDepartment.LookUpCode != null && employeeDepartment.LookUpDescription != null) {
+        if ($scope.IsfrmEmployeeDepartment) {
+            LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
+                debugger;
+                growlService.growl("Saved Successfully..", 'success');
+                $('#AddEmployeeDepartmentDialog').modal('hide');
+                $scope.GetLookUpData();
+            })
+
+        }
+        else {
+            growlService.growl("Please Enter All  Fileds", 'danger');
+        }
+    }
     $scope.init();
 
 }])

@@ -35,7 +35,7 @@ function ($scope, $http, LookUp, growl, growlService) {
     $scope.onClickSaveEmployeeType = function (employeeType) {
         //debugger;
         //if ($scope.EmployeeType.LookUpCode != null && $scope.EmployeeType.LookUpDescription != null) {
-        if($scope.frmEmployeeType){
+        if ($scope.IsfrmEmployeeType) {
             debugger;
             LookUp.SaveLookUpData(employeeType).then(function (response) {
                 debugger;
