@@ -27,15 +27,24 @@ function ($scope, $http, LookUp, growl, growlService) {
     }
     $scope.GetLookUpData();
 
+    $scope.IsfrmEmployeeDepartment = false;
+    $scope.$watch('frmEmployeeDepartment.$valid', function (Valid) {
+        debugger;
+        $scope.IsfrmEmployeeDepartment = Valid;
+    });
+
+
     $scope.onClickSaveEmployeeDepartment = function (employeeDepartment) {
         debugger;
-        if (employeeDepartment.LookUpCode != null && employeeDepartment.LookUpDescription != null) {
+        //if (employeeDepartment.LookUpCode != null && employeeDepartment.LookUpDescription != null) {
+        if(   $scope.IsfrmEmployeeDepartment){
             LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
                 debugger;
                 growlService.growl("Saved Successfully..", 'success');
                 $('#AddEmployeeDepartmentDialog').modal('hide');
                 $scope.GetLookUpData();
             })
+
         }
         else {
             growlService.growl("Please Enter All  Fileds", 'danger');

@@ -26,9 +26,16 @@ function ($scope, $http, LookUp, growl, growlService) {
     }
     $scope.GetLookUpData();
 
-    $scope.onClickSaveEmployeeType = function (employeeType) {
+    $scope.IsfrmEmployeeType = false;
+    $scope.$watch('frmEmployeeType .$valid', function (Valid) {
         debugger;
-        if ($scope.EmployeeType.LookUpCode != null && $scope.EmployeeType.LookUpDescription != null) {
+        $scope.IsfrmEmployeeType = Valid;
+    });
+
+    $scope.onClickSaveEmployeeType = function (employeeType) {
+        //debugger;
+        //if ($scope.EmployeeType.LookUpCode != null && $scope.EmployeeType.LookUpDescription != null) {
+        if($scope.frmEmployeeType){
             debugger;
             LookUp.SaveLookUpData(employeeType).then(function (response) {
                 debugger;

@@ -1,4 +1,5 @@
 ﻿<div ng-controller="EmployeeDepartmentController">
+    <form id="frmEmployeeDepartment" name="frmEmployeeDepartment"  ng-submit="onClickSaveEmployeeDepartment(EmployeeDepartment)" ng-class="{'submitted':submitted}" novalidate>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -72,7 +73,7 @@
                             <tbody>
                                 <tr ng-repeat="employeeDepartment in EmployeeDepartments">
                                     <td>
-                                        <button type="button" ng-click="onEditEmployeeDepartment(employeeDepartment);" class="btn btn-default ng-scope waves-effect" aria-label="button">
+                                        <button type="button" ng-click="submitted = true;" class="btn btn-default ng-scope waves-effect" aria-label="button">
                                             <i class="zmdi zmdi-edit" aria-hidden="true"></i>
                                         </button>
                                     </td>
@@ -95,4 +96,5 @@
             </div>
         </div>
     </div>
-</div>
+        </form>
+        </div>
