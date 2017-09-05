@@ -105,7 +105,7 @@ namespace HR.Areas.Leave.Controllers
 
         public ActionResult HolidayList()
         {
-            return View();
+            return View("~/Areas/Leave/Views/SetUp/HolidayList.cshtml");
         }
     }
 }

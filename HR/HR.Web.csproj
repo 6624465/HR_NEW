@@ -7567,13 +7567,13 @@
     <Content Include="Areas\Leave\Views\web.config" />
     <Content Include="Areas\Leave\Views\AppliedLeaveList\AppliedLeaveList.cshtml" />
     <Content Include="Areas\Leave\Views\EmployeeLeave\EmployeeLeave.cshtml" />
-    <Content Include="Areas\Leave\Views\SetUp\HolidayList.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\EmployeeDepartment.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\EmployeeDesignation.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\Index.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\LeaveType.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\PaymentType.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\EmployeeStatus.cshtml" />
+    <Content Include="Areas\Leave\Views\SetUp\HolidayList.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />

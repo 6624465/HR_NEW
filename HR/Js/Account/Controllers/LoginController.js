@@ -11,10 +11,11 @@ app.controller('loginController', ['$scope', '$http', 'LoginService', function (
         var user = { "UserName": $scope.UserName, "Password": $scope.Password };
         LoginService.LogIn(user).then(function (response) {
             if (response && response.data && response.data.success == true) {
-                $scope.showLoading = false;
+                //$scope.showLoading = false;
                 $scope.IsEnable = false;
                 sessionStorage.setItem('User', JSON.stringify(response.data.SessionObject));
                 location.href = "/Home/Index/";
+                $scope.showLoading = false;
             }
         })
     }

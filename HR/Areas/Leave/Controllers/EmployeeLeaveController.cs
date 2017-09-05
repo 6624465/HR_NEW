@@ -108,7 +108,7 @@ namespace HR.Areas.Leave.Controllers
 
         public ActionResult EmployeeLeave()
         {
-            return View();
+            return View("~/Areas/Leave/Views/EmployeeLeave/EmployeeLeave.cshtml");
         }
     }
 }
