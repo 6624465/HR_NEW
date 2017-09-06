@@ -39,11 +39,9 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
     /*Save Section*/
     $scope.IsfrmEmployeeLeaveForm = false;
     $scope.$watch('frmEmployeeLeaveForm.$valid', function (Valid) {
-        debugger;
         $scope.IsfrmEmployeeLeaveForm = Valid;
     });
     $scope.onSaveEmployeeLeave = function (employeeLeaveForm) {
-        debugger;
         //if (employeeLeaveForm.FromDate != null && employeeLeaveForm.ToDate != "" && employeeLeaveForm.EmployeeName != null && employeeLeaveForm.EmployeeName != "") {
         if($scope.IsfrmEmployeeLeaveForm){
             employeeLeaveForm.Status = "Applied";
@@ -63,8 +61,6 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         }
     }
     /*save Section*/
-    debugger;
-   
     /*Clear Section*/
     $scope.OnClearEmployeeLeave = function (employeeLeaveForm) {
         $scope.EmployeeLeaveForm = "";

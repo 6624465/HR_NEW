@@ -29,16 +29,13 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.IsfrmLeaveType = false;
     $scope.$watch('frmLeaveType.$valid', function (Valid) {
-        debugger;
         $scope.IsfrmLeaveType = Valid;
     });
 
     $scope.onClickSaveLeaveType = function (leaveType) {
-        debugger;
         if ($scope.LeaveType.LookUpCode != null) {
             if ($scope.IsfrmLeaveType) {
                 LookUp.SaveLookUpData(leaveType).then(function (response) {
-                    debugger;
                     growlService.growl("Saved Successfully..", 'success');
                     $('#AddLeaveTypeDialog').modal('hide');
                     $scope.GetLookUpData();

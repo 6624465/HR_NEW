@@ -28,17 +28,13 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.IsfrmEmployeeType = false;
     $scope.$watch('frmEmployeeType .$valid', function (Valid) {
-        debugger;
         $scope.IsfrmEmployeeType = Valid;
     });
 
     $scope.onClickSaveEmployeeType = function (employeeType) {
-        debugger;
         if ($scope.EmployeeType.LookUpCode != null) {
         if ($scope.IsfrmEmployeeType) {
-            debugger;
             LookUp.SaveLookUpData(employeeType).then(function (response) {
-                debugger;
                 growlService.growl("Saved Successfully..", 'success');
                 $('#AddEmployeeTypeDialog').modal('hide');
                 $scope.GetLookUpData();

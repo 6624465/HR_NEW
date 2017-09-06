@@ -26,7 +26,6 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.IsfrmEmployeeDepartment = false;
     $scope.$watch('frmEmployeeDepartment.$valid', function (Valid) {
-        debugger;
         $scope.IsfrmEmployeeDepartment = Valid;
     });
 
@@ -40,7 +39,6 @@ $scope.onEditEmployeeDepartment = function (employeeDepartment) {
 }
 
     $scope.onClickCancelEmployeeDepartment = function () {
-        debugger;
         $scope.clearTextBoxes();
     },
 
@@ -58,11 +56,9 @@ $scope.onEditEmployeeDepartment = function (employeeDepartment) {
 
 
     $scope.onClickSaveEmployeeDepartment = function (employeeDepartment) {
-        debugger;
         if (employeeDepartment.LookUpCode != null) {
         if ($scope.IsfrmEmployeeDepartment) {
             LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
-                debugger;
                 growlService.growl("Saved Successfully..", 'success');
                 $('#AddEmployeeDepartmentDialog').modal('hide');
                 $scope.GetLookUpData();

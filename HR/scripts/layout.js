@@ -105,7 +105,6 @@ $(function () {
     });
 
     $(document).on('keypress', '.decimalCss', function (evt) {
-        //debugger;
         //alert(evt.keyCode);
         //alert(evt.charCode);
 
@@ -118,7 +117,6 @@ $(function () {
         //    return false;
         //}
 
-        //debugger;
         //var character = String.fromCharCode(evt.charCode)
         //var newValue = this.value + character;                
         //if (isNaN(newValue) || parseFloat(newValue) * 10000 % 1 > 0) {

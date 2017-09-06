@@ -27,7 +27,6 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.IsfrmEmployeeDesignation = false;
     $scope.$watch('frmEmployeeDesignation.$valid', function (Valid) {
-        debugger;
         $scope.IsfrmEmployeeDesignation = Valid;
     });
 
@@ -54,7 +53,6 @@ function ($scope, $http, LookUp, growl, growlService) {
     },
     $scope.GetLookUpData();
     $scope.onEditEmployeeDesignation = function (employeeDesignation) {
-        debugger;
         $scope.EmployeeDesignation.LookUpCode = employeeDesignation.LookUpCode;
         $scope.EmployeeDesignation.LookUpDescription = employeeDesignation.LookUpDescription;
         $scope.EmployeeDesignation.IsActive = employeeDesignation.IsActive;

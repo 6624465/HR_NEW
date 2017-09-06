@@ -27,16 +27,13 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.IsfrmPaymentType = false;
     $scope.$watch('frmPaymentType.$valid', function (Valid) {
-        debugger;
         $scope.IsfrmPaymentType = Valid;
     });
 
     $scope.onClickSavePaymentType = function (paymentType) {
-        //debugger;
         if ($scope.PaymentType.LookUpCode != null) {
             if ($scope.IsfrmPaymentType) {
                 LookUp.SaveLookUpData(paymentType).then(function (response) {
-                    debugger;
                     if (response.data && response.data.message == "Saved Successfully.") {
                         growlService.growl("Saved Successfully..", 'success');
                         $('#AddPaymentTypeDialog').modal('hide');
@@ -56,7 +53,6 @@ function ($scope, $http, LookUp, growl, growlService) {
     },
     $scope.GetLookUpData();
     $scope.onEditPaymentType = function (paymentType) {
-        debugger
         $scope.PaymentType.LookUpCode = paymentType.LookUpCode;
         $scope.PaymentType.LookUpDescription = paymentType.LookUpDescription;
         $scope.PaymentType.IsActive = paymentType.IsActive;

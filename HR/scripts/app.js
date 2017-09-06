@@ -227,6 +227,66 @@ app.config(
                }
            })
 
+             .state('Employee.EmployeeBasicInformation', {
+                 url: '/EmployeeBasicInformation',
+                 templateUrl: baseUrl + 'Js/Employee/Templates/BasicInformation.html',
+                 controller: 'EmployeeProfileController',
+                 resolve: {
+                     loadPlugin: function ($ocLazyLoad) {
+                         return $ocLazyLoad.load([
+                             {
+                                 name: 'ngHR',
+                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                             }
+                         ]);
+                     }
+                 }
+             })
+
+             .state('Employee.EmployeePosition', {
+                 url: '/EmployeePosition',
+                 templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePosition.html',
+                 resolve: {
+                     loadPlugin: function ($ocLazyLoad) {
+                         return $ocLazyLoad.load([
+                             {
+                                 name: 'ngHR',
+                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                             }
+                         ]);
+                     }
+                 }
+             })
+            .state('Employee.EmployeePaymentMode', {
+                url: '/EmployeePaymentMode',
+                templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePaymentMode.html',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                            }
+                        ]);
+                    }
+                }
+            })
+
+            .state('Employee.EmployeePFESI', {
+                url: '/EmployeePFESI',
+                templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePFESI.html',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                            }
+                        ]);
+                    }
+                }
+            })
+
 
 
             .state('ActivitySummary', {

@@ -1,0 +1,90 @@
+﻿<div class="tab-pane  m-t-20" id="PF-ESI">
+    <h5 class="f-500 c-black p-15 f-14">PF & ESI </h5>
+    <div class="card">
+        <div class="card-body card-padding">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group fg-line">
+                            <label>PAN Number</label>
+                            <input class="form-control input-mask" autocomplete="off" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" value="" id="chk1">
+                            <i class="input-helper"></i>
+                            Include PF
+                        </label>
+                    </div>
+                    <div id="sb1" style="display:none;">
+                        <div class="card">
+                            <div class="card-body card-padding">
+                                <div class="form-group fg-line">
+                                    <div class="fg-line">
+                                        <label>PF Number</label>
+                                        <input class="form-control input-mask" autocomplete="off" type="text">
+                                    </div>
+                                    <small>Format : (Region Code/Office Code/Est Code/Extn No/Member Acc No) Example HR/FBD/0003256/000/0000125.</small>
+
+                                </div>
+                                <div class="form-group fg-line">
+                                    <label>  UAN Number</label>
+                                    <input class="form-control input-mask" autocomplete="off" type="text">
+                                </div>
+                                <label>
+                                    PF Excess Contribution
+
+                                </label><br /><br />
+                                <label class="radio radio-inline m-r-20">
+                                    <input type="radio" name="PF-Excess" value="Employee-max">
+                                    <i class="input-helper"></i>
+                                    Employee & Employer contribution - 12% with in wage ceiling (Max Rs.1800)
+                                </label>
+                                <br /><br />
+                                <label class="radio radio-inline m-r-20">
+                                    <input type="radio" name="PF-Excess" value="Employee-excess">
+                                    <i class="input-helper"></i>
+                                    Employee contribution - 12% over and above wage ceiling (In excess to Rs.1800)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkbox m-b-15">
+                        <label>
+                            <input type="checkbox" value="" id="chk2">
+                            <i class="input-helper"></i>
+                            Include PF
+
+                        </label>
+                    </div>
+                    <div id="sb2" style="display:none;">
+                        <div class="card">
+                            <div class="card-body card-padding">
+                                <div class="form-group fg-line">
+                                    <label>  ESI Number</label>
+                                    <input class="form-control input-mask" autocomplete="off" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-3 col-xs-offset-3">
+    <a ui-sref="Employee.EmployeePosition" class="btn btn-block btn-info">
+        Previous Section <span class="glyphicon glyphicon-circle-arrow-left"></span>
+    </a>
+</div>
+<div class="col-xs-3 col-xs-offset-3">
+    <a ui-sref="Employee.EmployeePaymentMode" class="btn btn-block btn-info">
+        Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a>
+</div>
