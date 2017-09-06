@@ -4,7 +4,6 @@
         $scope.formData = {};
         $scope.detailsUrl = baseUrl + 'Js/Employee/Templates/BasicInformation.html';
         $scope.LookUpData = function () {
-            debugger
             LookUp.GetActiveLookUpData("EmployeeType").then(function (response) {
                 $scope.EmployeeTypeList = response.data.lookUpLists;
             })
