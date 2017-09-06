@@ -34,7 +34,7 @@ namespace HR.Areas.Leave.Controllers
             {
                 try
                 {
-                    List<Employee> employies = LookUpCodeService.GetEmployeeList<Employee>(e => e.EmployeeName.ToLower().Contains(employeeName.ToLower())).ToList();
+                    List<EmployeePersonalInfo> employies = LookUpCodeService.GetEmployeeList<EmployeePersonalInfo>(e => e.EmployeeName.ToLower().Contains(employeeName.ToLower())).ToList();
                     jsonResult = Json(new { sucess = true, employies = employies }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)

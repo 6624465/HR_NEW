@@ -19,6 +19,16 @@
         return deferred.promise;
     }
 
+    this.GetActiveLookUpData = function (lookUpCode) {
+        var deferred = $q.defer();
+        $http.get("/Master/LookUp/GetActiveLookUp?LookUpCategory=" + lookUpCode).then(function (res) {
+            deferred.resolve(res);
+        }, function (err) {
+            deferred.reject(err);
+        });
+        return deferred.promise;
+    }
+
 
 
 }])

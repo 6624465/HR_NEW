@@ -7600,7 +7600,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Account\Controllers\LoginController.cs" />
     <Compile Include="Areas\Account\AccountClaimsAreaRegistration.cs" />
-    <Compile Include="Areas\Company\CompanyClaimsAreaRegistration.cs" />
+    <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Employees\Controllers\EmployeeProfileController.cs" />
     <Compile Include="Areas\Employees\EmployeesAreaRegistration.cs" />

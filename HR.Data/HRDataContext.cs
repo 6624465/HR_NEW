@@ -21,7 +21,9 @@ namespace HR.Data
         public virtual DbSet<HolidayList> HolidayLists { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<EmployeeLeaveList> EmployeeLeaveLists { get; set; }
-        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<EmployeePersonalInfo> EmployeePersonalInfos { get; set; }
+        public virtual DbSet<EmployeeDocument> EmployeeDocuments { get; set; }
+        public virtual DbSet<EmployeeWorkDetail> EmployeeWorkDetails { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

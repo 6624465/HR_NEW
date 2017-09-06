@@ -15,7 +15,7 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         }
     };
 
-    LookUp.GetLookUpData("LeaveType").then(function (response) {
+    LookUp.GetActiveLookUpData("LeaveType").then(function (response) {
         if (response.data && response.data.success == true) {
             $scope.LeaveType = response.data.lookUpLists;
         }

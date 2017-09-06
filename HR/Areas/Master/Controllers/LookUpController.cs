@@ -55,6 +55,37 @@ namespace HR.Areas.Master.Controllers
 
         #endregion
 
+        public JsonResult GetActiveLookUp(string LookUpCategory)
+        {
+            JsonResult result = null;
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(LookUpCategory))
+                {
+                    var lookUp = from eType in LookUpCodeService.GetLookUp<LookUp>(et => et.LookUpCategory == LookUpCategory && et.IsActive == true)
+                                 select new 
+                                 {
+                                     LookUpID = eType.LookUpID,
+                                     LookUpCode = eType.LookUpCode,
+                                     LookUpDescription = eType.LookUpDescription,
+                                     IsActive = eType.IsActive
+                                 };
+                    if (lookUp.Any() && lookUp != null)
+                        result = Json(new { success = true, lookUpLists = lookUp, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
+                    else
+                        result = Json(new { success = false, message = C.NO_DATA_FOUND }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                    result = Json(new { success = false, message = C.NO_DATA_FOUND }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            return result;
+        }
+
 
         #region SaveLookUp
         public JsonResult SaveLookUp(LookUp lookUpViewModel)
