@@ -91,20 +91,19 @@
         
 
         //Region for Clear
-        $scope.Clear = function () {
-            if ($scope.CompanyDetails == null || $scope.CompanyDetails == "" || $scope.CompanyDetails!=null) {
+        $scope.ClearCompanyDetails = function () {
                 $scope.CompanyDetails = "";
-            }
-            else
-            {
-                $scope.BranchDetails = "";
-            }
+        };
+        $scope.ClearBranchDetails = function () {
+            $scope.BranchDetails = "";
         };
         //Region end
 
         //region for Save
+        debugger;
         $scope.IsfrmCompanyDetails = false;
-        $scope.$watch('frmCompanyDetails.$valid', function (Valid) {
+        $scope.$watch('Cntrl.frmCompanyDetails.$valid', function (Valid) {
+            debugger;
             $scope.IsfrmCompanyDetails = Valid;
         });
         $scope.SaveCompany = function (details) {
@@ -127,7 +126,7 @@
 
 
         $scope.IsfrmBranchDetails = false;
-        $scope.$watch('frmBranchDetails.$valid', function (Valid) {
+        $scope.$watch('Cntrl.frmBranchDetails.$valid', function (Valid) {
             $scope.IsfrmBranchDetails = Valid;
         });
 
@@ -151,7 +150,7 @@
         // region end
 
         $scope.AddBranch = function (CompanyCode, CompanyName, CompanyId) {
-            $scope.getCompanyList();
+          //  $scope.getCompanyList();
             $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html'
             $scope.isbranch = false;
             $scope.iscompany = false;

@@ -1,5 +1,6 @@
 ﻿angular.module('ngHR').controller('EmployeeProfileController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc','LookUp','HolidayListService',
-    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, LookUp, HolidayListService,growlService) {
+    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, LookUp, HolidayListService, growlService) {
+        
         $scope.formData = {};
         $scope.detailsUrl = baseUrl + 'Js/Employee/Templates/BasicInformation.html';
         debugger;
