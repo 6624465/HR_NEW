@@ -220,7 +220,9 @@ app.config(
                        return $ocLazyLoad.load([
                            {
                                name: 'ngHR',
-                               files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                               files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js',
+                                       baseUrl + 'Js/Master/MasterService/LookUp.js',
+                                       baseUrl + 'Js/Leave/Services/HolidayListService.js']
                            }
                        ]);
                    }
@@ -236,7 +238,8 @@ app.config(
                          return $ocLazyLoad.load([
                              {
                                  name: 'ngHR',
-                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js',
+                                        ]
                              }
                          ]);
                      }
