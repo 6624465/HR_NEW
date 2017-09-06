@@ -211,7 +211,7 @@ namespace HR.Areas.Company.Controllers
         #region ActionResult
         public ActionResult CompanyList()
         {
-            return View("~/Areas/Company/Views/Company/CompanyList.cshtml");
+            return View();
         }
 
         #endregion

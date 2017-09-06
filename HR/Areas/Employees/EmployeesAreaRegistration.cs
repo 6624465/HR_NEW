@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HR.Areas.Master
+namespace HR.Areas.Employees
 {
-    public class EmployeeAreaRegistration : AreaRegistration
+    public class EmployeesAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
