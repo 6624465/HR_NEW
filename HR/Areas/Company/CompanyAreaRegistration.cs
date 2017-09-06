@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace HR.Areas.Company
 {
-    public class CompanyClaimsAreaRegistration : AreaRegistration
+    public class CompanyAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
@@ -19,8 +19,8 @@ namespace HR.Areas.Company
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "CompanyClaims_default",
-                "CompanyClaims/{controller}/{action}/{id}",
+                "Company_default",
+                "Company/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

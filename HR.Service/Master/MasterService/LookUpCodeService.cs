@@ -18,7 +18,7 @@ namespace HR.Service.Master.MasterService
         [Inject]
         public IRepository<LookUp> LookUpCodeRepository { get; set; }
         [Inject]
-        public IRepository<Employee> EmployeeRepository { get; set; }
+        public IRepository<EmployeePersonalInfo> EmployeeRepository { get; set; }
         //public LookUpCodeService(Repository<LookUp> LookUpCodeRepository, Repository<Employee> EmployeeRepository) {
         //    this.LookUpCodeRepository = LookUpCodeRepository;
         //    this.EmployeeRepository = EmployeeRepository;
@@ -47,7 +47,7 @@ namespace HR.Service.Master.MasterService
         //{
         //    return EmployeeCodeRepository.GetById(id);
         //}
-        public IQueryable<T> GetEmployeeList<T>(Expression<Func<T, bool>> predicate = null) where T : Employee
+        public IQueryable<T> GetEmployeeList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeePersonalInfo
         {
             var query = EmployeeRepository.FindAll().OfType<T>();
             if (predicate != null)

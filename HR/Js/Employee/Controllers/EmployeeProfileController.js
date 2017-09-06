@@ -2,23 +2,18 @@
     'growlService', function ($scope, $http, growl, $filter, UtilityFunc, LookUp, HolidayListService,growlService) {
         $scope.formData = {};
         $scope.detailsUrl = baseUrl + 'Js/Employee/Templates/BasicInformation.html';
-        debugger;
         $scope.LookUpData = function () {
-            debugger;
-            LookUp.GetLookUpData("EmployeeType").then(function (response) {
-                debugger;
+            debugger
+            LookUp.GetActiveLookUpData("EmployeeType").then(function (response) {
                 $scope.EmployeeTypeList = response.data.lookUpLists;
             })
-            LookUp.GetLookUpData("EmployeeStatus").then(function (response) {
-                debugger;
+            LookUp.GetActiveLookUpData("EmployeeStatus").then(function (response) {
                 $scope.EmployeeStatusList = response.data.lookUpLists;
             })
-            LookUp.GetLookUpData("EmployeeDesignation").then(function (response) {
-                debugger;
+            LookUp.GetActiveLookUpData("EmployeeDesignation").then(function (response) {
                 $scope.EmployeeDesignation = response.data.lookUpLists;
             })
-            LookUp.GetLookUpData("EmployeeDepartment").then(function (response) {
-                debugger;
+            LookUp.GetActiveLookUpData("EmployeeDepartment").then(function (response) {
                 $scope.EmployeeDepartment = response.data.lookUpLists;
             })
         }

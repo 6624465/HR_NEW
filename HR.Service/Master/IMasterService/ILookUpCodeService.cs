@@ -17,7 +17,7 @@ namespace HR.Service.Master.IMasterService
         IQueryable<T> GetLookUp<T>(Expression<Func<T, bool>> predicate = null) where T : LookUp;
         LookUp GetLookUpType(int LookUpID);
 
-        IQueryable<T> GetEmployeeList<T>(Expression<Func<T, bool>> predicate = null) where T : Employee;
+        IQueryable<T> GetEmployeeList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeePersonalInfo;
         #endregion
     }
 }
