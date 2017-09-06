@@ -46,7 +46,6 @@
                 $scope.isbranch = true;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/companydetails.html';
                 $scope.CompanyDetails = $scope.Companies[sel.i];
-                $scope.CompanyDetails.IsActive = true;
             }
             else if (sel.type == "branch") {
                 $scope.isbranch = false;
@@ -55,7 +54,6 @@
                 var CompanyCode = $scope.BranchDetails.CompanyCode;
                 $scope.BranchDetails.CompanyCode = CompanyCode;
                 $scope.BranchDetails.Type = "Branch";
-                $scope.BranchDetails.IsActive = true;
             }
         };
 
