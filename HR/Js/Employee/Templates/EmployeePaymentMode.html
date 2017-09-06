@@ -1,14 +1,14 @@
 ﻿<div class="tab-pane  m-t-20" id="payment-mode">
-    <h5 class="f-500 c-black p-15 f-14">PF & ESI </h5>
+    <!--<h5 class="f-500 c-black p-15 f-14">PF & ESI </h5>-->
     <div class="card">
         <div class="card-body card-padding">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <div class="form-group fg-line">
+                    <div class="form-group ">
                         <label>
                             Payment Type
                         </label>
-                        <select class="selectpicker" data-live-search="true">
+                        <select class="selectpicker form-control" data-live-search="true">
                             <option>Cash</option>
                             <option>Bank Transfer</option>
                             <option>Cheque</option>
@@ -22,16 +22,23 @@
         </div>
     </div>
 </div>
-<div class="col-xs-3 col-xs-offset-3">
-    <a ui-sref="Employee.EmployeePFESI" class="btn btn-block btn-info">
-        Previous Section <span class="glyphicon glyphicon-circle-arrow-left"></span>
-    </a>
+<div class="row">
+    <div class="col-xs-12 text-center">
+        <a ui-sref="Employee.EmployeePFESI" class="btn  btn-info">
+            Previous Section <span class="glyphicon glyphicon-circle-arrow-left"></span>
+        </a>
+   
+        <a ui-sref="Employee.EmployeePaymentMode" class="btn  btn-info">
+            Finish 
+        </a>
+    </div>
 </div>
-<div class="pull-right">
+<!--
+    <div class="pull-right">
     <input type='button' class='btns bgm-lightblue btn-sm waves-effect btn-next btn-wd' name='next' value='Next' />
     <input type='button' class='btns bgm-green btn-sm waves-effect btn-finish  btn-wd' name='finish' value='Finish' onclick="window.location.href='@Url.Action(" EmployeeDirectory","Main",new { area="Employee" },null)'" />
 </div>
-<!--<div class="col-xs-3 col-xs-offset-3">
+    <div class="col-xs-3 col-xs-offset-3">
     <a ui-sref="Employee.EmployeePFESI" class="btn btn-block btn-info">
         Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
     </a>
