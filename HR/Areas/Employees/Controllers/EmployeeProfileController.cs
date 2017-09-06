@@ -11,7 +11,7 @@ namespace HR.Areas.Employees.Controllers
         // GET: Employee/EmployeeProfile
         public ActionResult EmployeeProfile()
         {
-            return View("~/Areas/Employees/Views/EmployeeProfile/EmployeeProfile.cshtml");
+            return View();
         }
     }
 }

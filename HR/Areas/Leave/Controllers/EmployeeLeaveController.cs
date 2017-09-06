@@ -6,6 +6,7 @@ using HR.Service.Account.IAccountService;
 using HR.Service.CompanyDetails.ICompany;
 using HR.Service.Leave.ILeaveService;
 using HR.Service.Master.IMasterService;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,8 +17,16 @@ using C = HR.Core.Constants;
 
 namespace HR.Areas.Leave.Controllers
 {
-    public class EmployeeLeaveController : BaseController
+    public class EmployeeLeaveController : Controller
     {
+        [Inject]
+        public ILogInLogOutService LogInLogOutService { get; set; }
+        [Inject]
+        public ILookUpCodeService LookUpCodeService { get; set; }
+        [Inject]
+        public ICompanyService CompanyService { get; set; }
+        [Inject]
+        public ILeave Leaveservice { get; set; }
         public ActionResult GetEmployeeList(string employeeName)
         {
             JsonResult jsonResult = new JsonResult();
@@ -50,13 +59,13 @@ namespace HR.Areas.Leave.Controllers
                     if (employeeLeaveList.Id > 0)
                     {
                         _employeeLeaveList = Leaveservice.GetEmployeeLeaveListById(employeeLeaveList.Id);
-                        _employeeLeaveList.ModifiedBy = USER_OBJECT.UserName;
+                        //_employeeLeaveList.ModifiedBy = USER_OBJECT.UserName;
                         _employeeLeaveList.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
 
                     }
                     else
                     {
-                        _employeeLeaveList.CreatedBy = USER_OBJECT.UserName;
+                        //_employeeLeaveList.CreatedBy = USER_OBJECT.UserName;
                         _employeeLeaveList.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                         _employeeLeaveList.ApplyDate = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                     }
@@ -85,30 +94,9 @@ namespace HR.Areas.Leave.Controllers
 
             return result;
         }
-
-        //public JsonResult GetLookUp()
-        //{
-        //    JsonResult result = null;
-        //    try
-        //    {
-        //       List<LookUp> lookUpList = LookUpCodeService.GetLookUp<LookUp>(l => l.LookUpCategory == "LeaveType").ToList();
-        //        if (lookUpList != null && lookUpList.Any())
-        //            result = Json(new { success = true, lookUpList = lookUpList }, JsonRequestBehavior.AllowGet);
-        //        else
-        //            result = Json(new { success = false, message = C.NO_DATA_FOUND }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
-        //            return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.AllowGet);
-        //    }
-
-        //    return result;
-        //}
-
         public ActionResult EmployeeLeave()
         {
-            return View("~/Areas/Leave/Views/EmployeeLeave/EmployeeLeave.cshtml");
+            return View();
         }
     }
 }

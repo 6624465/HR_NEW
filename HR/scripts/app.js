@@ -38,7 +38,7 @@ app.config(
 
             .state('Company', {
                 url: '/Company',
-                templateUrl: baseUrl + 'Company/CompanyList',
+                templateUrl: baseUrl + 'Company/Company/CompanyList',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -146,7 +146,7 @@ app.config(
 
             .state('HolidayList', {
                 url: '/HolidayList',
-                templateUrl: baseUrl + 'SetUp/HolidayList',
+                templateUrl: baseUrl + 'Leave/SetUp/HolidayList',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -182,7 +182,7 @@ app.config(
 
             .state('EmployeeLeave', {
                 url: '/EmployeeLeave',
-                templateUrl: baseUrl + 'EmployeeLeave/EmployeeLeave',
+                templateUrl: baseUrl + 'Leave/EmployeeLeave/EmployeeLeave',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
@@ -198,7 +198,7 @@ app.config(
             })
            .state('AppliedLeaveList', {
                url: '/AppliedLeaveList',
-               templateUrl: baseUrl + 'AppliedLeaveList/AppliedLeaveList',
+               templateUrl: baseUrl + 'Leave/AppliedLeaveList/AppliedLeaveList',
                resolve: {
                    loadPlugin: function ($ocLazyLoad) {
                        return $ocLazyLoad.load({
@@ -214,7 +214,7 @@ app.config(
 
            .state('Employee', {
                url: '/Employee',
-               templateUrl: baseUrl + 'EmployeeProfile/EmployeeProfile',
+               templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeProfile',
                resolve: {
                    loadPlugin: function ($ocLazyLoad) {
                        return $ocLazyLoad.load([

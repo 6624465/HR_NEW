@@ -63,7 +63,7 @@ namespace HR.Areas.Leave.Controllers
         }
         public ActionResult AppliedLeaveList()
         {
-            return View("~/Areas/Leave/Views/AppliedLeaveList/AppliedLeaveList.cshtml");
+            return View();
         }
     }
 }

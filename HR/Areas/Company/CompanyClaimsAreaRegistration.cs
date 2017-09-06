@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HR.Areas.Login
+namespace HR.Areas.Company
 {
     public class CompanyClaimsAreaRegistration : AreaRegistration
     {

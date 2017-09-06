@@ -7604,7 +7604,7 @@
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Employees\Controllers\EmployeeProfileController.cs" />
     <Compile Include="Areas\Employees\EmployeesAreaRegistration.cs" />
-    <Compile Include="Areas\Leave\LeaveClaimsAreaRegistration.cs" />
+    <Compile Include="Areas\Leave\LeaveAreaRegistration.cs" />
     <Compile Include="Areas\Leave\Controllers\AppliedLeaveListController.cs" />
     <Compile Include="Areas\Leave\Controllers\EmployeeLeaveController.cs" />
     <Compile Include="Areas\Leave\Controllers\SetUpController.cs" />
