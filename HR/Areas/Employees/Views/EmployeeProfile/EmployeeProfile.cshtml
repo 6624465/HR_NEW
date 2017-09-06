@@ -1,4 +1,39 @@
-﻿<div class="box box-widget">
+﻿<style>
+    .page-header a {
+        display: inline-block;
+        font-size: 12px;
+        min-width: 200px;
+        text-align: center;
+    }
+
+    .page-header span {
+        display: block;
+    }
+
+  
+        .page-header a span {
+            display: block;
+            background-color:rgb(238,238,238);
+            width: 30px;
+            margin: 0px auto;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            color: #808080;
+            border:rgb(210,214,222);
+        }
+   .page-header a {
+    color:#808080;
+    }
+          .page-header .finish {
+        color: green;
+    }
+    .page-header a.finish span {
+         background-color: green;
+    }
+
+</style>
+<div class="box box-widget">
     <div class="box-header with-border">
         <h3 class="box-title">
             Employee Profile
@@ -10,7 +45,7 @@
                 <div id="form-container">
                     <div class="page-header text-center">
                         <div id="status-buttons" class="text-center">
-                            <a ui-sref-active="active" ui-sref=".EmployeeBasicInformation"><span>1</span> Basic Information</a>
+                            <a ui-sref-active="active " ui-sref=".EmployeeBasicInformation"><span>1</span> Basic Information</a>
                             <a ui-sref-active="active" ui-sref=".EmployeePosition"><span>2</span> Employee Position</a>
                             <a ui-sref-active="active" ui-sref=".EmployeePFESI"><span>3</span> PF &amp; ESI</a>
                             <a ui-sref-active="active" ui-sref=".EmployeePaymentMode"><span>4</span> Payment Mode</a>
