@@ -309,9 +309,6 @@ app.config(
 
         $urlRouterProvider.otherwise('/');
         growlProvider.onlyUniqueMessages(false);
-        //growlProvider.globalTimeToLive(4000);
-        //growlProvider.globalDisableIcons(false);
-        //growlProvider.globalDisableCountDown(true);
         cfpLoadingBarProvider.includeSpinner = false;//includeBar
         cfpLoadingBarProvider.includeBar = true;
         growlProvider.globalTimeToLive({ success: 4000, error: 2000, warning: 3000, info: 4000 });
