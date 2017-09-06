@@ -1,5 +1,5 @@
 ﻿<div class="tab-pane  m-t-20" id="employee-position">
-    <h5 class="f-500 c-black p-15 f-14"> Employee Position </h5>
+    <!--<h5 class="f-500 c-black p-15 f-14"> Employee Position </h5>-->
     <div class="card">
         <div class="card-body card-padding">
             <div class="row">
@@ -36,11 +36,11 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 col-md-6">
-                    <div class="form-group fg-line">
+                    <div class="form-group ">
                         <label>
                             Grade
                         </label>
-                        <select class="selectpicker" data-live-search="true">
+                        <select class="form-control" data-live-search="true">
                             <option>G1</option>
                             <option>G2</option>
                             <option>G3</option>
@@ -64,7 +64,7 @@
                         <label>
                             Attendance Scheme
                         </label>
-                        <select class="selectpicker" data-live-search="true">
+                        <select class="selectpicker form-control" data-live-search="true">
                             <option>General scheme</option>
                         </select>
                     </div>
@@ -73,15 +73,16 @@
         </div>
     </div>
 </div>
-<div class="col-xs-3 col-xs-offset-3">
-    <a ui-sref="Employee.EmployeeBasicInformation" class="btn btn-block btn-info">
-        Previous Section <span class="glyphicon glyphicon-circle-arrow-left"></span>
-    </a>
-</div>
-<div class="col-xs-3 col-xs-offset-3">
-    <a ui-sref="Employee.EmployeePFESI" class="btn btn-block btn-info">
-        Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
-    </a>
+<div class="row">
+    <div class="col-xs-12 text-center">
+        <a ui-sref="Employee.EmployeeBasicInformation" class="btn  btn-info">
+            Previous Section <span class="glyphicon glyphicon-circle-arrow-left"></span>
+        </a>
+   
+        <a ui-sref="Employee.EmployeePFESI" class="btn  btn-info">
+            Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </a>
+    </div>
 </div>
 <!--<div class="form-group row">
  <button type="submit" class="btn btn-danger">Submit</button>

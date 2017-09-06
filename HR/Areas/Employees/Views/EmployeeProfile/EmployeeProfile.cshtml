@@ -1,19 +1,28 @@
-﻿<div class="row" ng-controller="EmployeeProfileController">
-    <div class="col-sm-8 col-sm-offset-2">
-        <div id="form-container">
-            <div class="page-header text-center">
-                <div id="status-buttons" class="text-center">
-                    <a ui-sref-active="active" ui-sref=".EmployeeBasicInformation"><span>1</span> Basic Information</a>
-                    <a ui-sref-active="active" ui-sref=".EmployeePosition"><span>2</span> Employee Position</a>
-                    <a ui-sref-active="active" ui-sref=".EmployeePFESI"><span>3</span> PF &amp; ESI</a>
-                    <a ui-sref-active="active" ui-sref=".EmployeePaymentMode"><span>4</span> Payment Mode</a>
+﻿<div class="box box-widget">
+    <div class="box-header with-border">
+        <h3 class="box-title">
+            Employee Profile
+        </h3>
+    </div>
+    <div class="box-body">
+        <div class="row" ng-controller="EmployeeProfileController">
+            <div class="col-sm-10 col-sm-offset-1">
+                <div id="form-container">
+                    <div class="page-header text-center">
+                        <div id="status-buttons" class="text-center">
+                            <a ui-sref-active="active" ui-sref=".EmployeeBasicInformation"><span>1</span> Basic Information</a>
+                            <a ui-sref-active="active" ui-sref=".EmployeePosition"><span>2</span> Employee Position</a>
+                            <a ui-sref-active="active" ui-sref=".EmployeePFESI"><span>3</span> PF &amp; ESI</a>
+                            <a ui-sref-active="active" ui-sref=".EmployeePaymentMode"><span>4</span> Payment Mode</a>
+                        </div>
+                    </div>
+                    <form id="signup-form" ng-submit="processForm()">
+                        <div id="form-views" ui-view>
+                            <div ng-include="detailsUrl"></div>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <form id="signup-form" ng-submit="processForm()">
-                <div id="form-views" ui-view>
-                    <div ng-include="detailsUrl"></div>
-                </div>
-            </form>
         </div>
     </div>
 </div>
