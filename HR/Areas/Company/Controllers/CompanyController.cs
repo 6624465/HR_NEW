@@ -130,7 +130,9 @@ namespace HR.Areas.Company.Controllers
                         branch.ModifiedOn = null;
                     }
 
-                    branch.CompanyCode = !string.IsNullOrWhiteSpace(branchViewModel.CompanyCode) ? branchViewModel.CompanyCode : string.Empty;
+                     branch.CompanyCode = !string.IsNullOrWhiteSpace(branchViewModel.CompanyCode) ? branchViewModel.CompanyCode : string.Empty;
+                    /*this branchcode add by chaitanya*/
+                    branch.BranchCode = !string.IsNullOrWhiteSpace(branchViewModel.BranchCode) ? branchViewModel.BranchCode : string.Empty;
                     branch.BranchName = !string.IsNullOrWhiteSpace(branchViewModel.BranchName) ? branchViewModel.BranchName : string.Empty;
                     branch.BranchID = branchViewModel.BranchID;
                     branch.CompanyId = branchViewModel.CompanyId;

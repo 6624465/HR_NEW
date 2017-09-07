@@ -4,23 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HR.Areas.Login
+namespace HR.Areas.Company
 {
-    public class LeaveClaimsAreaRegistration : AreaRegistration
+    public class CompanyAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "Leave";
+                return "Company";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "LeaveClaims_default",
-                "LeaveClaims/{controller}/{action}/{id}",
+                "Company_default",
+                "Company/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

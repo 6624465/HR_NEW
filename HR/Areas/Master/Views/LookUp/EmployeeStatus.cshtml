@@ -1,30 +1,30 @@
-﻿<div ng-controller="EmployeeDesignationController">
+﻿<div ng-controller="EmployeeStatusController" class="row">
+    <form id="frmEmployeeStatus" name="frmEmployeeStatus" ng-submit="onClickSaveEmployeeStatus(EmployeeStatus)" novalidate ng-class="{'submitted':submitted}">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-xs-12">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Employee Designation</h3>
+                    <h3 class="box-title">Employee Status</h3>
                     <div class="pull-right">
-                        <button type="button" class="button" ng-click="addEmployeeDesignation(table)">
+                        <button type="button" class="button" ng-click="addEmployeeStatus(table)">
                             <i class="zmdi zmdi-plus"></i>&nbsp; ADD
                         </button>
                     </div>
                 </div>
                 <div>
-                    <div class="modal fade in" id="AddEmployeeDesignationDialog" role="dialog">
+                    <div class="modal fade in" id="AddEmployeeStatusDialog" role="dialog">
                         <div class="modal-dialog">
-
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Add Employee Designation</h4>
+                                    <h4 class="modal-title">Add Employee Status</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
-                                                <label>Employee Designation Name</label>
-                                                <input class="form-control input-mask" type="text" ng-model="EmployeeDesignation.LookUpCode" ng-required="true">
+                                                <label>Employee Status Name</label>
+                                                <input class="form-control input-mask" type="text" ng-model="EmployeeStatus.LookUpCode" ng-required="true">
                                             </div>
                                         </div>
                                     </div>
@@ -32,9 +32,9 @@
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
                                                 <label>
-                                                    Employee Designation Description
+                                                    Employee Status Description
                                                 </label>
-                                                <input class="form-control input-mask" type="text" ng-model="EmployeeDesignation.LookUpDescription" ng-required="true">
+                                                <input class="form-control input-mask" type="text" ng-model="EmployeeStatus.LookUpDescription" ng-required="true">
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                                     IsActive
                                                 </label>
                                                 <label class="switch pull-right">
-                                                    <input type="checkbox" ng-model="EmployeeDesignation.IsActive">
+                                                    <input type="checkbox" ng-model="EmployeeStatus.IsActive">
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>
@@ -53,37 +53,36 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="right: 270px;">
-                                    <button class="button" type="submit" ng-click="onClickSaveEmployeeDesignation(EmployeeDesignation)">Save</button>
-                                    <button type="submit" class="button-default" ng-click="onClickCancelEmployeeDesignation()">Cancel</button>
+                                    <button class="button" type="submit" ng-click="submitted = true;">Save</button>
+                                    <button type="submit" class="button button-default" ng-click="onClickCancelEmployeeStatus()">Cancel</button>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="table-responsive">
                         <table class="table table-condensed">
                             <thead>
                                 <tr>
                                     <th>#Action</th>
-                                    <th>Employee Designation Name</th>
-                                    <th>Employee Designation Description</th>
+                                    <th>Employee Status Name</th>
+                                    <th>Employee Status Description</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="employeeDesignation in EmployeeDesignations">
+                                <tr ng-repeat="employeeStatus in EmployeeStatuses">
                                     <td>
-                                    <button type="button" ng-click="onEditEmployeeDesignation(employeeDesignation);" class="button button-default ng-scope waves-effect" aria-label="button">
-                                        <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                                    </button>
-                                        </td>
-                                    <td><a ng-click="onEditEmployeeDesignation(employeeDesignation)">{{employeeDesignation.LookUpCode}}</a></td>
-                                    <td>{{employeeDesignation.LookUpDescription}}</td>
-                                    @*<td><input type="checkbox" ng-model="employeeDesignation.IsActive" disabled="true" /></td>*@
+                                        <button type="button" ng-click="onEditEmployeeStatus(employeeStatus);" class="btn btn-default ng-scope waves-effect" aria-label="button">
+                                            <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td><a ng-click="onEditEmployeeStatus(employeeStatus)">{{employeeStatus.LookUpCode}}</a></td>
+                                    <td>{{employeeStatus.LookUpDescription}}</td>
+                                    @*<td><input type="checkbox" ng-model="employeeDepartment.IsActive" disabled /></td>*@
                                     <td>
                                         <div class="switch-container">
                                             <label class="switch">
-                                                <input type="checkbox" ng-model="employeeDesignation.IsActive" disabled>
+                                                <input type="checkbox" ng-model="employeeStatus.IsActive" disabled>
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -96,4 +95,5 @@
             </div>
         </div>
     </div>
+        </form>
 </div>

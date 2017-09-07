@@ -1,6 +1,5 @@
 ﻿app.service('EmployeeLeave', ['$http', '$q', 'UtilityFunc', function ($http, $q, UtilityFunc) {
     this.GetEmployees = function (employeeName) {
-        debugger;
         var branchId = UtilityFunc.BranchId();///add branchid parameter later
         var deferred = $q.defer();
         $http.get("/EmployeeLeave/GetEmployeeList?employeeName=" + employeeName).then(function (response) {

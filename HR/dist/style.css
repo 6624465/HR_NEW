@@ -553,3 +553,6 @@ line-height:normal;
 margin:5px 0px 10px;
 padding:0px;
 }
+.submitted .ng-invalid {
+            border-bottom: 1px solid red;
+        }

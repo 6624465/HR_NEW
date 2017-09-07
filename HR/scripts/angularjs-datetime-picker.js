@@ -134,7 +134,6 @@
       '</div>'].join("\n");
 
     var datetimePickerPopup = function ($locale, dateFilter) {
-        debugger
         var days, months, daysOfWeek, firstDayOfWeek;
 
         var initVars = function () {

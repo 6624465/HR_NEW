@@ -26,12 +26,15 @@ function ($scope, $http, LookUp, growl, growlService) {
     }
     $scope.GetLookUpData();
 
+    $scope.IsfrmEmployeeType = false;
+    $scope.$watch('frmEmployeeType .$valid', function (Valid) {
+        $scope.IsfrmEmployeeType = Valid;
+    });
+
     $scope.onClickSaveEmployeeType = function (employeeType) {
-        debugger;
-        if ($scope.EmployeeType.LookUpCode != null && $scope.EmployeeType.LookUpDescription != null) {
-            debugger;
+        if ($scope.EmployeeType.LookUpCode != null) {
+        if ($scope.IsfrmEmployeeType) {
             LookUp.SaveLookUpData(employeeType).then(function (response) {
-                debugger;
                 growlService.growl("Saved Successfully..", 'success');
                 $('#AddEmployeeTypeDialog').modal('hide');
                 $scope.GetLookUpData();
@@ -41,6 +44,7 @@ function ($scope, $http, LookUp, growl, growlService) {
 
             growlService.growl("Please Enter All Fileds", 'danger');
         }
+    }
     },
 $scope.onEditEmployeeType = function (employeeType) {
     $scope.EmployeeType.LookUpCode = employeeType.LookUpCode;

@@ -46,16 +46,17 @@
                 $scope.isbranch = true;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/companydetails.html';
                 $scope.CompanyDetails = $scope.Companies[sel.i];
-                $scope.CompanyDetails.IsActive = true;
             }
             else if (sel.type == "branch") {
                 $scope.isbranch = false;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html';
                 $scope.BranchDetails = $scope.Companies[sel.parentIndex].Branches[sel.i];
+                var CompanyCode = $scope.BranchDetails.CompanyCode;
+                $scope.BranchDetails.CompanyCode = CompanyCode;
                 $scope.BranchDetails.Type = "Branch";
-                $scope.BranchDetails.IsActive = true;
             }
         };
+
         CompanyService.GetCountries().then(function (res) {
             $scope.Countries = res.data.countries;
             $scope.CompanyDetails.Address.CountryId =
@@ -65,9 +66,12 @@
         }, function (err) { })
 
         $scope.GetBranchArr = function (branchList, parentIndex) {
-            debugger
             var arr = new Array();
             if (branchList) {
+                var abs = branchList[0].CompanyCode;
+                $scope.BranchDetails.CompanyCode = abs;
+                var id = branchList[0].CompanyId;
+                $scope.BranchDetails.CompanyId = id;
                 angular.forEach(branchList, function (val, idx) {
                     var obj = {
                         'label': val.BranchName,
@@ -75,62 +79,78 @@
                         'i': idx,
                         'type': 'branch',
                         parentIndex: parentIndex
+                        
                     };
                     arr.push(obj);
                 })
             }
             return arr;
+            debugger;
         }
 
         
 
         //Region for Clear
-        $scope.Clear = function () {
-            if ($scope.CompanyDetails == null || $scope.CompanyDetails == "" || $scope.CompanyDetails!=null) {
+        $scope.ClearCompanyDetails = function () {
                 $scope.CompanyDetails = "";
-            }
-            else
-            {
-                $scope.BranchDetails = "";
-            }
+        };
+        $scope.ClearBranchDetails = function () {
+            $scope.BranchDetails = "";
         };
         //Region end
 
         //region for Save
-
+        debugger;
+        $scope.IsfrmCompanyDetails = false;
+        $scope.$watch('Cntrl.frmCompanyDetails.$valid', function (Valid) {
+            debugger;
+            $scope.IsfrmCompanyDetails = Valid;
+        });
         $scope.SaveCompany = function (details) {
-            if (details!=null&&details||details=="") {
+            if ($scope.IsfrmCompanyDetails) {
                 CompanyService.SaveCompany(details).then(function (res) {
                     if (res.data && res.data.success == true) {
                         growlService.growl(res.data.message, 'success');
-                       // $scope.CompanyDetails = {};
+                        $scope.CompanyDetails = {};
                     }
                     else
                     {
-                        growlService.growl('Please Enter All Mandtory Fields', 'danger');
+                        growlService.growl(res.data.message, 'danger');
                     }
                 })
+            }
+            else {
+                growlService.growl('Please Enter All Mandtory Fields', 'danger');
             }
         }
+
+
+        $scope.IsfrmBranchDetails = false;
+        $scope.$watch('Cntrl.frmBranchDetails.$valid', function (Valid) {
+            $scope.IsfrmBranchDetails = Valid;
+        });
+
         $scope.SaveBranch = function (branchDetails) {
-            if (branchDetails != null && branchDetails || branchDetails == "") {
+            if ($scope.IsfrmBranchDetails) {
                 CompanyService.SaveBranch(branchDetails).then(function (res) {
                     if (res.data && res.data.success == true) {
-                        growlService.growl(res.data.message, 'success');
-                        //$scope.CompanyDetails = {};
+                        growlService.growl('Saved Successfully', 'success');
+                        $scope.CompanyDetails = {};
                     }
                     else
                     {
-                        growlService.growl('Please Enter All Mandtory Fields', 'danger');
+                        growlService.growl(res.data.message, 'danger');
                     }
                 })
             }
+            else
+                growlService.growl('Please Enter All Mandtory Fields', 'danger');
         }
 
         // region end
 
         $scope.AddBranch = function (CompanyCode, CompanyName, CompanyId) {
-            $scope.getCompanyList();
+          //  $scope.getCompanyList();
             $scope.detailsUrl = '/Js/Company/Templates/Company/branchdetails.html'
             $scope.isbranch = false;
             $scope.iscompany = false;

@@ -16,6 +16,9 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
     }
 
     $scope.addHolidayList = function () {
+        $scope.HolidayList = {
+            BranchId: UtilityFunc.BranchId(),
+        }
         $('#AddHolidayListDialog').modal('show');
     };
 
@@ -27,14 +30,26 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
     }
     /*Save */
 
+    $scope.IsfrmHolidayList = false;
+    $scope.$watch('frmHolidayList.$valid', function (isValid) {
+        $scope.IsfrmHolidayList = isValid;
+    })
+
     $scope.onClickSaveHoliDayList = function (holiDayList) {
-        holiDayList.Date = moment(holiDayList.Date).format('MM/DD/YYYY');
-        HolidayListService.SaveHolidayList(holiDayList).then(function (response) {
-            if (response.data && response.data.success == true) {
-                $('#AddHolidayListDialog').modal('hide');
-                growlService.growl(response.data.message, 'success');
+        if (holiDayList.Description != null) {
+            if ($scope.IsfrmHolidayList) {
+                holiDayList.Date = moment(holiDayList.Date).format('MM/DD/YYYY');
+                HolidayListService.SaveHolidayList(holiDayList).then(function (response) {
+                    if (response.data && response.data.success == true) {
+                        $('#AddHolidayListDialog').modal('hide');
+                        growlService.growl(response.data.message, 'success');
+                    }
+                })
             }
-        })
+            else {
+                growlService.growl("Please Enter All Fileds", 'danger');
+            }
+        }
     }
     /*SAVE*/
 
@@ -91,7 +106,6 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
    
 
     HolidayListService.GetBranchLocations().then(function (response) {
-        debugger
         if (response.data && response.data.success == true) {
             $scope.Locations = response.data.BranchLocations;
         }

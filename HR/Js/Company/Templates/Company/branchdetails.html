@@ -1,5 +1,4 @@
 ﻿<form id="Cntrl.frmBranchDetails" name="Cntrl.frmBranchDetails" enctype="multipart/form-data" ng-class="{'submitted':submitted}" ng-submit="SaveBranch(BranchDetails);" novalidate>
-
     <!--<h4>
         Branch Details &nbsp;<span style="text-align: right;">Company Code [<b>{{BranchDetails.CompanyCode }}</b>]</span>
     </h4>-->
@@ -16,12 +15,15 @@
                 </div>
             </div>-->
 
-            <div >
+            <div>
                 <h3 class="box-title">
                     New Branch
 
                 </h3>
-                <div class="pull-right"> <h3 class="box-title"> Branch Details &nbsp;<span style="text-align: right;">Company Code [ <b class="label bg-green">{{BranchDetails.CompanyCode }}</b> ]</span></h3></div>
+                <div class="pull-right"> <h3 class="box-title"> Branch Details &nbsp;<span style="text-align: right;">Company Code [ <b class="label bg-green">{{BranchDetails.CompanyCode}}</b> ]</span></h3></div>
+                <div ng-if="isshow">
+                    {{BranchDetails.CompanyId}}
+                </div>
             </div>
         </div>
         <div class="box-body">
@@ -29,7 +31,7 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6 form-group">
 
-                    <label class="required weak">Branch Code</label>
+                    <label>Branch Code</label>
 
                     <input id="BranchCode" class="form-control" type="text" ng-minlength="3" maxlength="3" ng-model="BranchDetails.BranchCode" ng-required="true" />
 
@@ -49,7 +51,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
 
-                    <label class="required weak">Branch Name</label>
+                    <label>Branch Name</label>
 
                     <input id="BranchName" class="form-control" type="text" ng-model="BranchDetails.BranchName" ng-required="true" />
 
@@ -60,7 +62,7 @@
 
                     <label for="RegistrationNo">Registration No.</label>
 
-                    <input id="RegistrationNo" class="form-control" type="text" ng-model="BranchDetails.RegNo" />
+                    <input id="RegistrationNo" class="form-control" type="text" ng-model="BranchDetails.RegNo" ng-required="true" />
 
                 </div>
 
@@ -82,7 +84,7 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6 form-group">
 
-                    <label class="required weak">GST No.</label>
+                    <label>GST No.</label>
 
                     <input id="GSTNo" class="form-control" type="text" ng-model="BranchDetails.GSTNo" ng-required="BranchDetails.Address.CountryCode == 'MY'" />
 
@@ -98,7 +100,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
 
-                    <label class="required weak">Address</label>
+                    <label>Address</label>
 
                     <input id="Address" class="form-control" type="text" ng-model="BranchDetails.Address.Address1" ng-required="true" />
 
@@ -108,7 +110,7 @@
 
                 <div class="col-xs-12 form-group">
 
-                    <label class="required weak">Address2</label>
+                    <label>Address2</label>
                     <input id="Address2" class="form-control" type="text" ng-model="BranchDetails.Address.Address2" ng-required="true" />
 
                 </div>
@@ -116,14 +118,14 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6 form-group">
 
-                    <label class="required weak">Post Code</label>
+                    <label>Post Code</label>
 
                     <input id="PostCode" class="form-control" type="text" ng-model="BranchDetails.Address.ZipCode" ng-required="true" logicon-number />
 
                 </div>
                 <div class="col-xs-12 col-md-6 form-group">
 
-                    <label class="required weak">City/Suburb</label>
+                    <label>City/Suburb</label>
 
                     <input id="City/Suburb" class="form-control" type="text" ng-model="BranchDetails.Address.CityName" ng-required="true" />
 
@@ -132,7 +134,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
 
-                    <label class="required weak">State</label>
+                    <label>State</label>
 
                     <input id="State" class="form-control" type="text" ng-model="BranchDetails.Address.StateName" ng-required="true" />
 
@@ -146,7 +148,7 @@
                 </div>
                 <div class="col-xs-12 col-md-6 form-group">
 
-                    <label class="required weak">Tel No.</label>
+                    <label>Tel No.</label>
 
                     <input id="TelNo" class="form-control" type="text" ng-model="BranchDetails.Address.TelNo" ng-required="true" logicon-number />
 
@@ -165,7 +167,7 @@
                 </div>-->
                 <div class="col-xs-12 col-md-6 form-group">
 
-                    <label class="required weak">Mobile No.</label>
+                    <label>Mobile No.</label>
 
                     <input id="MobileNo" class="form-control" type="text" ng-model="BranchDetails.Address.MobileNo" ng-required="true" logicon-number />
 
@@ -173,7 +175,7 @@
 
                 <div class="col-xs-12 col-md-6 form-group">
 
-                    <label class="required weak">Fax No.</label>
+                    <label>Fax No.</label>
 
                     <input id="FaxNo" class="form-control" type="text" ng-model="BranchDetails.Address.FaxNo" ng-required="true" />
 
@@ -183,7 +185,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
 
-                    <label class="required weak">Email</label>
+                    <label>Email</label>
 
                     <input id="Email" class="form-control" type="email" ng-model="BranchDetails.Address.Email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" ng-required="true" />
 
@@ -210,11 +212,11 @@
             <div class="row">
                 <div class="col-xs-12 text-right">
                     <button class="button " type="submit" ng-click="submitted = true;" ng-disabled="BranchDetails.BranchCode=='HQ'"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
-                    <button class="button button-default" type="button"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
+                    <button class="button button-default" type="button" ng-click="ClearBranchDetails();"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
                 </div>
             </div>
 
-</div>
         </div>
+    </div>
 
 </form>

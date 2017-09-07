@@ -4,10 +4,7 @@ function ($scope, $http, LookUp, growl, growlService) {
     growl.success(" a success message and not unique", config);
     $scope.init = function () {
         $scope.EmployeeDepartment = {
-            LookUpID: null,
-            LookUpCode: null,
-            LookUpDescription: null,
-            IsActive: null,
+            IsActive: true,
             LookUpCategory: "EmployeeDepartment"
         },
         $scope.EmployeeDepartments = {}
@@ -27,25 +24,17 @@ function ($scope, $http, LookUp, growl, growlService) {
     }
     $scope.GetLookUpData();
 
-    $scope.onClickSaveEmployeeDepartment = function (employeeDepartment) {
-        debugger;
-        if ($scope.EmployeeDepartment.LookUpCode != null && $scope.EmployeeDepartment.LookUpDescription != null) {
-            LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
-                debugger;
-                growlService.growl("Saved Successfully..", 'success');
-                $('#AddEmployeeDepartmentDialog').modal('hide');
-                $scope.GetLookUpData();
-            })
-        }
-        else {
-            growlService.growl("Please Enter All  Fileds", 'danger');
-        }
-    },
+    $scope.IsfrmEmployeeDepartment = false;
+    $scope.$watch('frmEmployeeDepartment.$valid', function (Valid) {
+        $scope.IsfrmEmployeeDepartment = Valid;
+    });
+
+
 $scope.onEditEmployeeDepartment = function (employeeDepartment) {
-    $scope.EmployeeDepartment.LookUpCode = employeeDepartment.LookUpCode;
-    $scope.EmployeeDepartment.LookUpDescription = employeeDepartment.LookUpDescription;
-    $scope.EmployeeDepartment.IsActive = employeeDepartment.IsActive;
-    $scope.EmployeeDepartment.LookUpID = employeeDepartment.LookUpID;
+    //$scope.EmployeeDepartment.LookUpCode = employeeDepartment.LookUpCode;
+    //$scope.EmployeeDepartment.LookUpDescription = employeeDepartment.LookUpDescription;
+    //$scope.EmployeeDepartment.IsActive = employeeDepartment.IsActive;
+    //$scope.EmployeeDepartment.LookUpID = employeeDepartment.LookUpID;
     $('#AddEmployeeDepartmentDialog').modal('show');
 }
 
@@ -60,14 +49,27 @@ $scope.onEditEmployeeDepartment = function (employeeDepartment) {
     };
 
     $scope.clearTextBoxes = function () {
-        $scope.EmployeeDepartment.LookUpCode = null;
-        $scope.EmployeeDepartment.LookUpDescription = null;
-        $scope.EmployeeDepartment.IsActive = null;
-        $scope.EmployeeDepartment.LookUpID = null;
+        $scope.EmployeeDepartment = {};
         $('#AddEmployeeDepartmentDialog').modal('hide');
+        $scope.IsfrmEmployeeDepartment = false;
     }
 
 
+    $scope.onClickSaveEmployeeDepartment = function (employeeDepartment) {
+        if (employeeDepartment.LookUpCode != null) {
+        if ($scope.IsfrmEmployeeDepartment) {
+            LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
+                growlService.growl("Saved Successfully..", 'success');
+                $('#AddEmployeeDepartmentDialog').modal('hide');
+                $scope.GetLookUpData();
+            })
+
+        }
+        else {
+            growlService.growl("Please Enter All  Fileds", 'danger');
+        }
+    }
+    }
     $scope.init();
 
 }])

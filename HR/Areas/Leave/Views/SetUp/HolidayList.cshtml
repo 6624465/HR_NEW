@@ -1,4 +1,5 @@
 ﻿<div class="row" ng-controller="HolidayListController">
+    <form id="frmHolidayList" name="frmHolidayList" ng-submit="onClickSaveHoliDayList(HolidayList)" ng-class="{'submitted':submitted}" novalidate>
     <div class="col-xs-12">
         <div class="box box-widget">
             <div class="box-header with-border">
@@ -24,66 +25,66 @@
                     </div>
                     </div>
                 
-                    <div ng-show="IsVisible">
-                        <div class="row">
+                <div ng-show="IsVisible">
+                    <div class="row">
 
-                            <div class="col-xs-3 col-xs-offset-1 text-left">
-                                <div class="btn-group">
+                        <div class="col-xs-3 col-xs-offset-1 text-left">
+                            <div class="btn-group">
 
-                                    <button class="btn btn-default"
-                                            mwl-date-modifier
-                                            date="viewDate"
-                                            decrement="calendarView"
-                                            ng-click="cellIsOpen = false">
-                                        <i class="fa fa-angle-left" aria-hidden="true"></i>
-                                    </button>
-                                    <button class="btn btn-default"
-                                            mwl-date-modifier
-                                            date="viewDate"
-                                            set-to-today
-                                            ng-click="cellIsOpen = false">
-                                        Today
-                                    </button>
-                                    <button class="btn btn-default"
-                                            mwl-date-modifier
-                                            date="viewDate"
-                                            increment="calendarView"
-                                            ng-click="cellIsOpen = false">
-                                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="col-xs-4 text-center">
-                                <h2 class="calender-title">{{ calendarTitle }}</h2>
-                            </div>
-                            <div class="col-xs-3 text-right">
-
-                                <div class="btn-group">
-                                    <label class="btn btn-default" ng-model="calendarView" uib-btn-radio="'year'" ng-click="cellIsOpen = false">Year</label>
-                                    <label class="btn btn-default" ng-model="calendarView" uib-btn-radio="'month'" ng-click="cellIsOpen = false">Month</label>
-                                    <label class="btn btn-default" ng-model="calendarView" uib-btn-radio="'week'" ng-click="cellIsOpen = false">Week</label>
-                                    <label class="btn btn-default" ng-model="calendarView" uib-btn-radio="'day'" ng-click="cellIsOpen = false">Day</label>
-                                </div>
-                            </div>
-                            </div>
-                       
-                                <div class="row" style="margin-top:20px;">
-                                    <div class="col-xs-10 col-xs-offset-1">
-                                        <mwl-calendar events="events"
-                                                      view="calendarView"
-                                                      view-title="calendarTitle"
-                                                      view-date="viewDate"
-                                                      on-event-click="eventClicked(calendarEvent)"
-                                                      cell-is-open="cellIsOpen"
-                                                      day-view-start="06:00"
-                                                      day-view-end="22:59"
-                                                      day-view-split="30"
-                                                      cell-auto-open-disabled="true">
-                                        </mwl-calendar>
-                                    
+                                <button class="btn btn-default"
+                                        mwl-date-modifier
+                                        date="viewDate"
+                                        decrement="calendarView"
+                                        ng-click="cellIsOpen = false">
+                                    <i class="fa fa-angle-left" aria-hidden="true"></i>
+                                </button>
+                                <button class="btn btn-default"
+                                        mwl-date-modifier
+                                        date="viewDate"
+                                        set-to-today
+                                        ng-click="cellIsOpen = false">
+                                    Today
+                                </button>
+                                <button class="btn btn-default"
+                                        mwl-date-modifier
+                                        date="viewDate"
+                                        increment="calendarView"
+                                        ng-click="cellIsOpen = false">
+                                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                </button>
                             </div>
                         </div>
+                        <div class="col-xs-4 text-center">
+                            <h2 class="calender-title">{{ calendarTitle }}</h2>
+                        </div>
+                        <div class="col-xs-3 text-right">
 
+                            <div class="btn-group">
+                                <label class="btn btn-default" ng-model="calendarView" uib-btn-radio="'year'" ng-click="cellIsOpen = false">Year</label>
+                                <label class="btn btn-default" ng-model="calendarView" uib-btn-radio="'month'" ng-click="cellIsOpen = false">Month</label>
+                                <label class="btn btn-default" ng-model="calendarView" uib-btn-radio="'week'" ng-click="cellIsOpen = false">Week</label>
+                                <label class="btn btn-default" ng-model="calendarView" uib-btn-radio="'day'" ng-click="cellIsOpen = false">Day</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <mwl-calendar events="events"
+                                          view="calendarView"
+                                          view-title="calendarTitle"
+                                          view-date="viewDate"
+                                          on-event-click="eventClicked(calendarEvent)"
+                                          cell-is-open="cellIsOpen"
+                                          day-view-start="06:00"
+                                          day-view-end="22:59"
+                                          day-view-split="30"
+                                          cell-auto-open-disabled="true">
+                            </mwl-calendar>
+
+                        </div>
+                    </div>
+                </div>
                     <div class="modal fade in" id="AddHolidayListDialog" role="dialog">
                         <div class="modal-dialog">
 
@@ -96,7 +97,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
-                                                <label class="required">Date</label>
+                                                <label >Date</label>
                                                 <div class="dropdown">
                                                     <a class="dropdown-toggle" id="Date" role="button" data-toggle="dropdown">
                                                         <div class="input-group">
@@ -119,38 +120,38 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
-                                                <label class="required">
+                                                <label>
                                                     Occasion
                                                 </label>
-                                                <input class="form-control input-mask" type="text" ng-model="HolidayList.Description">
+                                                <input class="form-control input-mask" type="text" ng-model="HolidayList.Description" ng-required="true">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-xs-12 col-md-8">
                                             <div class="form-group fg-line">
-                                                <label class="required">
+                                                <label>
                                                     Location
                                                 </label>
-                                                <select name="users" ng-options="s.Id as s.CountryName for s in Locations" ng-model="HolidayList.CountryId" class="form-control">
+                                                <select name="users" ng-options="s.Id as s.CountryName for s in Locations" ng-model="HolidayList.CountryId" class="form-control" ng-required="true">
                                                     <option value="">--Select Location--</option>
                                                 </select>
-                                                @*<input type="checkbox" ng-model="EmployeeDesignation.IsActive" />*@
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="right: 270px;">
-                                    <button class="button" type="submit" ng-click="onClickSaveHoliDayList(HolidayList)">Save</button>
+                                    <button class="button" type="submit" ng-click="submitted = true;">Save</button>
                                     <button type="submit" class="button button-default" ng-click="onClickCancelHoliDayList()">Cancel</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                
             </div>
         </div>
     </div>
+        </form>
 </div>
 
 

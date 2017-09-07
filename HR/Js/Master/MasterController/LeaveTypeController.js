@@ -27,18 +27,23 @@ function ($scope, $http, LookUp, growl, growlService) {
     }
     $scope.GetLookUpData();
 
+    $scope.IsfrmLeaveType = false;
+    $scope.$watch('frmLeaveType.$valid', function (Valid) {
+        $scope.IsfrmLeaveType = Valid;
+    });
+
     $scope.onClickSaveLeaveType = function (leaveType) {
-        debugger;
-        if ($scope.LeaveType.LookUpCode != null && $scope.LeaveType.LookUpDescription != null) {
-            LookUp.SaveLookUpData(leaveType).then(function (response) {
-                debugger;
-                growlService.growl("Saved Successfully..", 'success');
-                $('#AddLeaveTypeDialog').modal('hide');
-                $scope.GetLookUpData();
-            })
-        }
-        else {
-            growlService.growl("Please Enter All  Fileds", 'danger');
+        if ($scope.LeaveType.LookUpCode != null) {
+            if ($scope.IsfrmLeaveType) {
+                LookUp.SaveLookUpData(leaveType).then(function (response) {
+                    growlService.growl("Saved Successfully..", 'success');
+                    $('#AddLeaveTypeDialog').modal('hide');
+                    $scope.GetLookUpData();
+                })
+            }
+            else {
+                growlService.growl("Please Enter All  Fileds", 'danger');
+            }
         }
     },
 $scope.onEditLeaveType = function (leaveType) {

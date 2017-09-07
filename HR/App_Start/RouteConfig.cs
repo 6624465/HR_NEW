@@ -20,13 +20,6 @@ namespace HR
                new[] { "HR.Areas.Account.Controllers" }
            ).DataTokens.Add("area", "Account");
 
-            //routes.MapRoute(
-            //    "Default", // Route name
-            //    "{controller}/{action}/{id}", // URL with parameters
-            //    new { area = "Login", controller = "Login", action = "Login", id = UrlParameter.Optional }, // Parameter defaults
-            //    null,
-            //    new[] { "HR.Areas.Account.Controllers" }
-            //).DataTokens.Add("area", "Login");
         }
     }
 }

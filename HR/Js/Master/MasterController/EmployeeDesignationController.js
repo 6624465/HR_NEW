@@ -25,10 +25,14 @@ function ($scope, $http, LookUp, growl, growlService) {
         })
     }
 
-
+    $scope.IsfrmEmployeeDesignation = false;
+    $scope.$watch('frmEmployeeDesignation.$valid', function (Valid) {
+        $scope.IsfrmEmployeeDesignation = Valid;
+    });
 
     $scope.onClickSaveEmployeeDesignation = function (employeeDesignation) {
-        if ($scope.EmployeeDesignation.LookUpCode != null && $scope.EmployeeDesignation.LookUpDescription != null) {
+        if ($scope.EmployeeDesignation.LookUpCode != null) {
+        if($scope.IsfrmEmployeeDesignation){
             LookUp.SaveLookUpData(employeeDesignation).then(function (response) {
                 if (response.data && response.data.message == "Saved Successfully.") {
                     growlService.growl("Saved Successfully..", 'success');
@@ -36,16 +40,19 @@ function ($scope, $http, LookUp, growl, growlService) {
 
                     $scope.GetLookUpData();
                 }
+                else
+                {
+                    growlService.growl(response.data, 'danger');
+                }
             })
         }
         else {
             growlService.growl("Please Enter All Fileds", 'danger');
         }
-
+    }
     },
     $scope.GetLookUpData();
     $scope.onEditEmployeeDesignation = function (employeeDesignation) {
-        debugger;
         $scope.EmployeeDesignation.LookUpCode = employeeDesignation.LookUpCode;
         $scope.EmployeeDesignation.LookUpDescription = employeeDesignation.LookUpDescription;
         $scope.EmployeeDesignation.IsActive = employeeDesignation.IsActive;
