@@ -10,7 +10,8 @@ namespace HR.Core.Models
     {
         public int Id { get; set; }
         public int EmployeeId { get; set; }
-        public virtual EmployeePersonalInfo EmployeePersonalInfo { get; set; }
+        public int BranchId { get; set; }
+        public virtual EmployeePersonalInfo Employee { get; set; }
         public virtual Branch Branch { get; set; }
         public int DocumentType { get; set; }
         public string FileName { get; set; }

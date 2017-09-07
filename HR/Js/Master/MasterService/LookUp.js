@@ -29,6 +29,16 @@
         return deferred.promise;
     }
 
+    this.GetCountries = function () {
+        var deferred = $q.defer();
+        $http.get('/Company/Company/GetCountries').then(function (response) {
+            deferred.resolve(response);
+        }, function (err) {
+            deferred.reject(err);
+        })
+        return deferred.promise;
+    }
+
 
 
 }])

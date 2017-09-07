@@ -1,12 +1,11 @@
 ﻿<div class="tab-pane  m-t-20" id="basic-information">
-    <!--<h5 class="f-500 c-black p-15 f-14"> Basic Information</h5>-->
     <div class="card">
         <div class="card-body card-padding">
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
                         <label>Employee Number Series</label>
-                        <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeTypeList" ng-model="LookUpID" class="form-control">
+                        <select name="EmployeeTypeList" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeTypeList" ng-model="LookUpID" class="form-control">
                             <option value="">--Select EmployeeType--</option>
                         </select>
                     </div>
@@ -28,12 +27,21 @@
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
                         <label>Confirmation Date</label>
-                        <div class="input-group form-group">
-                            <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
-                            <div class="dtp-container">
-                                <input type='text' class="form-control date-picker"
-                                       placeholder="Click here...">
-                            </div>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="ConfirmationDate" role="button" data-toggle="ConfirmationDate">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-sm datepicker"
+                                           ng-model="Employee.EmployeeWorkDetail.ConfirmationDate"
+                                           name="ConfirmationDate"
+                                           ng-required="true"
+                                           date-time-input="{{dateFormat}}">
+                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="Employee.EmployeeWorkDetail.ConfirmationDate"
+                                                data-datetimepicker-config="{ dropdownSelector: '#ConfirmationDate', startView:'day', minView:'day' }" />
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -44,13 +52,13 @@
                         <label>
                             Name
                         </label>
-                        <input class="form-control " autocomplete="off" type="text">
+                        <input class="form-control" type="text" ng-model="Employee.Name">
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
                         <label>Email</label>
-                        <input class="form-control " autocomplete="off" type="Email">
+                        <input class="form-control " autocomplete="off" type="Email" ng-required="true"ng-model="Employee.Email">
                     </div>
                 </div>
             </div>
@@ -60,12 +68,21 @@
                         <label>
                             Date Of Birth
                         </label>
-                        <div class="input-group form-group">
-                            <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
-                            <div class="dtp-container">
-                                <input type='text' class="form-control date-picker"
-                                       placeholder="Click here...">
-                            </div>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="DOB" role="button" data-toggle="dropdown">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-sm datepicker"
+                                           ng-model="Employee.DOB"
+                                           name="DOB"
+                                           ng-required="true"
+                                           date-time-input="{{dateFormat}}">
+                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="Employee.DOB"
+                                                data-datetimepicker-config="{ dropdownSelector: '#ConfirmationDate', startView:'day', minView:'day' }" />
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -74,7 +91,7 @@
                         <label>
                             Mobile Number
                         </label>
-                        <input class="form-control " autocomplete="off" type="text">
+                        <input class="form-control " autocomplete="off" type="text" ng-model="Employee.Mobile">
                     </div>
                 </div>
             </div>
@@ -86,26 +103,26 @@
                     <br />
                     <div class="form-group">
                         <label>
-                            <input type="radio" class="minimal" checked>
+                            <input type="radio" class="minimal" checked ng-model="Employee.Gender">
                             Female
                         </label>
                         <label>
-                            <input type="radio" class="minimal">
+                            <input type="radio" class="minimal" ng-model="Employee.Gender">
                             Male
                         </label>
                         <label>
-                            <input type="radio" class="minimal" >
+                            <input type="radio" class="minimal" ng-model="Employee.Gender">
                             Others
                         </label>
                     </div>
-                   
+
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
                         <label>
                             Emergency Contact Name
                         </label>
-                        <input class="form-control " autocomplete="off" type="text">
+                        <input class="form-control " autocomplete="off" type="text" ng-model="Employee.EmergencyContactName">
                     </div>
                 </div>
             </div>
@@ -132,7 +149,7 @@
                         <label>
                             Emergency Contact Number
                         </label>
-                        <input class="form-control " autocomplete="off" type="text">
+                        <input class="form-control " autocomplete="off" type="text" ng-model="Employee.EmergencyContactNumber">
                     </div>
                 </div>
             </div>
@@ -142,7 +159,7 @@
                         <label>
                             Status
                         </label>
-                        <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeStatusList" ng-model="LookUpID" class="form-control">
+                        <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeStatusList" ng-model="Employee.Status" class="form-control">
                             <option value="">--Select EmployeeStatus--</option>
                         </select>
                     </div>
@@ -152,7 +169,7 @@
                         <label>
                             Father's name
                         </label>
-                        <input class="form-control " autocomplete="off" type="text">
+                        <input class="form-control " autocomplete="off" type="text" ng-model="Employee.FatherName">
                     </div>
                 </div>
             </div>
@@ -162,12 +179,21 @@
                         <label>
                             Date Of Joining
                         </label>
-                        <div class="input-group form-group">
-                            <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
-                            <div class="dtp-container">
-                                <input type='text' class="form-control date-picker"
-                                       placeholder="Click here...">
-                            </div>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="DateOfJoining" role="button" data-toggle="dropdown">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-sm datepicker"
+                                           ng-model="EmployeeWorkDetail.JoiningDate"
+                                           name="DateOfJoining"
+                                           ng-required="true"
+                                           date-time-input="{{dateFormat}}">
+                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="EmployeeWorkDetail.JoiningDate"
+                                                data-datetimepicker-config="{ dropdownSelector: '#ConfirmationDate', startView:'day', minView:'day' }" />
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -176,17 +202,17 @@
                         <label>
                             Spouse Name
                         </label>
-                        <input class="form-control " autocomplete="off" type="text">
+                        <input class="form-control " autocomplete="off" type="text" ng-model="Employee.SpouseName">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<div class="form-group row">
-    <div class="col-xs-12 text-center " >
-        <a ui-sref="Employee.EmployeePosition" class="btn  btn-info">
-            Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
-        </a>
+    <div class="form-group row">
+        <div class="col-xs-12 text-center ">
+            <a ui-sref="Employee.EmployeePosition" class="btn  btn-info">
+                Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            </a>
+        </div>
     </div>
 </div>

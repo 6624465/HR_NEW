@@ -1,5 +1,5 @@
-﻿angular.module('ngHR').controller('CompanyListController', ['$scope', '$http', 'CompanyService', '$timeout', 'growl', '$filter', 'growlService','$state',
-    function ($scope, $http, CompanyService, $timeout, growl, $filter, growlService, $state) {
+﻿angular.module('ngHR').controller('CompanyListController', ['$scope', '$http', 'CompanyService', '$timeout', 'growl', '$filter', 'growlService','$state','LookUp',
+    function ($scope, $http, CompanyService, $timeout, growl, $filter, growlService, $state, LookUp) {
 
         $scope.isSelected = true;
         $scope.showLoading = false;
@@ -57,7 +57,7 @@
             }
         };
 
-        CompanyService.GetCountries().then(function (res) {
+        LookUp.GetCountries().then(function (res) {
             $scope.Countries = res.data.countries;
             $scope.CompanyDetails.Address.CountryId =
                 $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
