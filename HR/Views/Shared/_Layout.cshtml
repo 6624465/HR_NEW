@@ -12,7 +12,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="~/img/favicon-16x16.png">
     <link rel="manifest" href="~/img/manifest.json">
     <link rel="mask-icon" href="~/img/safari-pinned-tab.svg" color="#5bbad5">
-    
+
     <link rel="icon" href="~/img/favicon.ico" sizes="32x32" />
     <link rel="icon" href="~/img/favicon.ico" sizes="192x192" />
     <link rel="apple-touch-icon-precomposed" href="~/img/favicon.ico" />
@@ -33,7 +33,7 @@
     @*<link href="~/Css/material-design-iconic-font.css" rel="stylesheet" />*@
     @*<link href="@url.content("~/css/angularjs-datetime-picker.css")" rel="stylesheet" />*@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  
+
     <!-- End of layout top -->
 </head>
 
@@ -50,37 +50,37 @@
                     <span class="sr-only">Toggle navigation</span>
                 </a>
                 <span style="padding-top: 15px; color: #fff;" class="pull-left">Loggedin {{User.BranchName }} Branch  <b style="font-size: 15px;"></b></span>
-              
-                        <div class="navbar-custom-menu">
-                            <ul class="nav navbar-nav">
-                                <li class="dropdown user user-menu">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <span class="hidden-xs">
-                                           
-                                            <i class="zmdi zmdi-face zmdi-hc-lg"></i> &nbsp; {{User.UserID }}  &nbsp;  <i class="fa fa-caret-down" aria-hidden="true"></i>
 
-                                        </span>
-                                    </a>
-                                    <ul class="dropdown-menu ">
-                                       
-                                        <li class="user-footer user-other">
-                                            
-                                                <a href="#" class=""> <i class="fa fa-id-badge" aria-hidden="true"></i> &nbsp;Profile</a>
-                                            
-                                        </li>
-                                        <li class="user-footer user-other">
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <span class="hidden-xs">
 
-                                            <a href="#" class=""><i class="zmdi zmdi-settings zmdi-hc-lg"></i> &nbsp; Setting</a>
+                                    <i class="zmdi zmdi-face zmdi-hc-lg"></i> &nbsp; {{User.UserID }}  &nbsp;  <i class="fa fa-caret-down" aria-hidden="true"></i>
 
-                                        </li>
-                                        <li class="user-footer user-other">
-                                                <a href="#" class="" ng-click="onClickLogOut()"> <i class="zmdi zmdi-power zmdi-hc-lg"></i> &nbsp; LogOut</a>
-                                           
-                                        </li>
-                                    </ul>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu ">
+
+                                <li class="user-footer user-other">
+
+                                    <a href="#" class=""> <i class="fa fa-id-badge" aria-hidden="true"></i> &nbsp;Profile</a>
+
+                                </li>
+                                <li class="user-footer user-other">
+
+                                    <a href="#" class=""><i class="zmdi zmdi-settings zmdi-hc-lg"></i> &nbsp; Setting</a>
+
+                                </li>
+                                <li class="user-footer user-other">
+                                    <a href="#" class="" ng-click="onClickLogOut()"> <i class="zmdi zmdi-power zmdi-hc-lg"></i> &nbsp; LogOut</a>
+
                                 </li>
                             </ul>
-                        </div>
+                        </li>
+                    </ul>
+                </div>
             </nav>
         </header>
         <aside class="main-sidebar">
@@ -104,17 +104,17 @@
                         </ul>
                     </li>
                     @*<li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i><span>DashBoard</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li>
-                                <a data-ui-sref="ActivitySummary">
-                                    <i class="fa fa-calculator"></i>Activity Summary
-                                </a>
-                            </li>
-                        </ul>
-                    </li>*@
+                            <a href="#">
+                                <i class="fa fa-dashboard"></i><span>DashBoard</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a data-ui-sref="ActivitySummary">
+                                        <i class="fa fa-calculator"></i>Activity Summary
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>*@
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-asterisk" aria-hidden="true"></i><span>Master Data</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
@@ -128,53 +128,53 @@
                         </ul>
                     </li>
                     @*<li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-fighter-jet" aria-hidden="true"></i><span>Quotation</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Quotation/StandardRateProfile?quotationNo=STANDARD&amp;isLink=True"><i class="fa fa-link"></i>&nbsp;Standard Quotation</a></li>
-                            <li><a href="/Quotation/CustomerQuotationList"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Customer Tariff</a></li>
-                            <li><a href="/Quotation/SupplierQuotationList">&nbsp;<i class="fa fa-male" aria-hidden="true"></i>&nbsp;Supplier Tariff</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-exchange" aria-hidden="true"></i><span>Transaction</span><span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Operation/PurchaseOrderList"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Purchase Order</a></li>
-                            <li><a href="/Operation/GoodsReceiveList"><i class="fa fa-truck" aria-hidden="true"></i>&nbsp;Goods Receive</a></li>
-                            <li><a href="/Operation/Orders">&nbsp;<i class="fa fa-sticky-note" aria-hidden="true"></i>&nbsp;Sales Entry</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span>Billing</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Billing/InvoiceList"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Invoice</a></li>
-                            <li><a href="/Billing/InvoiceApproval"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Invoice Approval</a></li>
-                            <li><a href="/Billing/UnbilledInvoices"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Unbilled Invoices</a></li>
-                        </ul>
-                    </li>*@
+                            <a href="#">
+                                <i class="fa fa-fighter-jet" aria-hidden="true"></i><span>Quotation</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Quotation/StandardRateProfile?quotationNo=STANDARD&amp;isLink=True"><i class="fa fa-link"></i>&nbsp;Standard Quotation</a></li>
+                                <li><a href="/Quotation/CustomerQuotationList"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;Customer Tariff</a></li>
+                                <li><a href="/Quotation/SupplierQuotationList">&nbsp;<i class="fa fa-male" aria-hidden="true"></i>&nbsp;Supplier Tariff</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-exchange" aria-hidden="true"></i><span>Transaction</span><span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Operation/PurchaseOrderList"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Purchase Order</a></li>
+                                <li><a href="/Operation/GoodsReceiveList"><i class="fa fa-truck" aria-hidden="true"></i>&nbsp;Goods Receive</a></li>
+                                <li><a href="/Operation/Orders">&nbsp;<i class="fa fa-sticky-note" aria-hidden="true"></i>&nbsp;Sales Entry</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span>Billing</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Billing/InvoiceList"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Invoice</a></li>
+                                <li><a href="/Billing/InvoiceApproval"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Invoice Approval</a></li>
+                                <li><a href="/Billing/UnbilledInvoices"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Unbilled Invoices</a></li>
+                            </ul>
+                        </li>*@
                     @*<li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-search" aria-hidden="true"></i><span>Inquiry</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Operation/StockInquiry"><i class="fa fa-stack-exchange" aria-hidden="true"></i>&nbsp;Stock Inquiry</a></li>
-                            <li><a href="/Billing/InvoiceInquiry">&nbsp;<i class="fa fa-info" aria-hidden="true"></i>&nbsp;Invoice Inquiry</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-pie-chart" aria-hidden="true"></i><span>Reports</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a href="/Reports/DailySalesReport"><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;Daily Sales</a></li>
-                            <li><a href="/Reports/ProfitAndLossReport"><i class="fa fa-balance-scale" aria-hidden="true"></i>&nbsp;Profit &amp; Loss</a></li>
-                        </ul>
-                    </li>*@
+                            <a href="#">
+                                <i class="fa fa-search" aria-hidden="true"></i><span>Inquiry</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Operation/StockInquiry"><i class="fa fa-stack-exchange" aria-hidden="true"></i>&nbsp;Stock Inquiry</a></li>
+                                <li><a href="/Billing/InvoiceInquiry">&nbsp;<i class="fa fa-info" aria-hidden="true"></i>&nbsp;Invoice Inquiry</a></li>
+                            </ul>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-pie-chart" aria-hidden="true"></i><span>Reports</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="/Reports/DailySalesReport"><i class="fa fa-bar-chart" aria-hidden="true"></i>&nbsp;Daily Sales</a></li>
+                                <li><a href="/Reports/ProfitAndLossReport"><i class="fa fa-balance-scale" aria-hidden="true"></i>&nbsp;Profit &amp; Loss</a></li>
+                            </ul>
+                        </li>*@
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-sliders" aria-hidden="true"></i><span>Leave</span><span class="pull-right-container">
@@ -275,8 +275,8 @@
     <script src="@Url.Content("~/bower_components/jquery-ui/jquery-ui.min.js")"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     @*<script>
-        $.widget.bridge('uibutton', $.ui.button);
-    </script>*@
+            $.widget.bridge('uibutton', $.ui.button);
+        </script>*@
     <!-- Bootstrap 3.3.7 -->
     <script src="@Url.Content("~/bower_components/bootstrap/dist/js/bootstrap.min.js")"></script>
     <!-- Morris.js charts -->
@@ -326,21 +326,30 @@
 
     <!-- End Script files -->
     <script type="text/javascript">
+
         var baseUrl = '@Url.Content("~/")';
-        angular.module('ngHR').controller('layOutController', ['$scope', '$http', function ($scope, $http) {
+        angular.module('ngHR').controller('layOutController', ['$scope', '$http', 'growlService', function ($scope, $http, growlService) {
+            debugger;
             $scope.init = function () {
+                debugger;
                 $scope.User = JSON.parse(sessionStorage.getItem("User"));
+                var Ismessagedisplayed = sessionStorage.getItem('Ismessagedisplayed') == 'true' ? true : false;
+                if (!Ismessagedisplayed && Ismessagedisplayed != undefined) {
+                    sessionStorage.setItem('Ismessagedisplayed', 'true');
+                    growlService.growl("Welcome to hr", 'success');
+                }
             }
             $scope.onClickLogOut = function () {
                 $http.get("/Login/LogOut").then(function (res) {
+                    angular.forEach(sessionStorage, function (value, key) {
+                        sessionStorage.removeItem(key);
+                    });
                     if (res.data && res.data.success == true) {
                         window.location.pathname = '';
                     }
-
                 })
             }
             $scope.init();
-
         }]);
 
     </script>

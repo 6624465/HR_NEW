@@ -7548,6 +7548,7 @@
     <Content Include="scripts\services.js" />
     <Content Include="scripts\ui-bootstrap-tpls.min.js" />
     <Content Include="scripts\ui-bootstrap.js" />
+    <Content Include="scripts\validator.js" />
     <Content Include="template\date-picker.html" />
     <Content Include="template\tooltip\tooltip-html-popup.html" />
     <Content Include="template\time-picker.html" />
