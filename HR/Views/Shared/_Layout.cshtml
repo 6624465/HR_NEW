@@ -301,6 +301,9 @@
             $scope.onClickLogOut = function () {
                 $http.get("/Login/LogOut").then(function (res) {
                     if (res.data && res.data.success == true) {
+                        angular.forEach(sessionStorage, function (value, key) {
+                            sessionStorage.removeItem(key);
+                        });
                         window.location.pathname = '';
                     }
 
