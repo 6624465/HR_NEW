@@ -8,13 +8,8 @@
                         <label>
                             Payment Type
                         </label>
-                        <select class="selectpicker form-control" data-live-search="true">
-                            <option>Cash</option>
-                            <option>Bank Transfer</option>
-                            <option>Cheque</option>
-                            <option>
-                                Demand Draft
-                            </option>
+                        <select name="PaymentType" ng-options="s.LookUpID as s.LookUpCode for s  in PaymentType" ng-model="Employee.PaymentTypeId" class="form-control">
+                            <option value="">--Select PaymentType--</option>
                         </select>
                     </div>
                 </div>
@@ -28,9 +23,9 @@
             Previous Section <span class="glyphicon glyphicon-circle-arrow-left"></span>
         </a>
    
-        <a ui-sref="Employee.EmployeePaymentMode" class="btn  btn-info">
+        <button class="btn  btn-info" type="submit" >
             Finish 
-        </a>
+        </button>
     </div>
 </div>
 <!--

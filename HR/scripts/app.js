@@ -46,7 +46,8 @@ app.config(
                                 name: 'ngHR',
                                 files: [
                                     baseUrl + 'Js/Company/Controllers/CompanyController.js',
-                                    baseUrl + 'Js/Company/Services/CompanyService.js'
+                                    baseUrl + 'Js/Company/Services/CompanyService.js',
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
                                 ]
                             }
                         ]);
@@ -232,7 +233,6 @@ app.config(
              .state('Employee.EmployeeBasicInformation', {
                  url: '/EmployeeBasicInformation',
                  templateUrl: baseUrl + 'Js/Employee/Templates/BasicInformation.html',
-                 controller: 'EmployeeProfileController',
                  resolve: {
                      loadPlugin: function ($ocLazyLoad) {
                          return $ocLazyLoad.load([
@@ -249,6 +249,20 @@ app.config(
              .state('Employee.EmployeePosition', {
                  url: '/EmployeePosition',
                  templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePosition.html',
+                 resolve: {
+                     loadPlugin: function ($ocLazyLoad) {
+                         return $ocLazyLoad.load([
+                             {
+                                 name: 'ngHR',
+                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                             }
+                         ]);
+                     }
+                 }
+             })
+             .state('Employee.EmployeeAddress', {
+                 url: '/EmployeePaymentMode',
+                 templateUrl: baseUrl + 'Js/Employee/Templates/EmployeeAddressDetails.html',
                  resolve: {
                      loadPlugin: function ($ocLazyLoad) {
                          return $ocLazyLoad.load([
