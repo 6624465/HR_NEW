@@ -500,7 +500,7 @@ line-height: 25px !important;
 
 /*buttons*/
 
-.button {
+/*.button {
   padding: 4px 12px;
   font-size: 12px;
   text-align: center;
@@ -538,7 +538,7 @@ line-height: 25px !important;
 
 .button.button-default:active {
     background-color: rgb(246,246,246);
-}
+}*/
 .box-title .label{
 padding:2px .6em 2px;
 position:relative;
