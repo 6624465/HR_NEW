@@ -292,6 +292,11 @@
         angular.module('ngHR').controller('layOutController', ['$scope', '$http','growlService', function ($scope, $http, growlService) {
             $scope.init = function () {
                 $scope.User = JSON.parse(sessionStorage.getItem("authenticatedUser"));
+                var IsMessageDisplayed = sessionStorage.getItem('Ismessagedisplayed') == 'true' ? true : false;
+                if (!IsMessageDisplayed && IsMessageDisplayed != undefined) {
+                    sessionStorage.setItem('IsMessageDisplayed', 'true');
+                    growlService.growl("Welcome to hr", 'success');
+                }
             }
             $scope.onClickLogOut = function () {
                 $http.get("/Login/LogOut").then(function (res) {
