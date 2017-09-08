@@ -17,16 +17,8 @@ using C = HR.Core.Constants;
 
 namespace HR.Areas.Leave.Controllers
 {
-    public class EmployeeLeaveController : Controller
+    public class EmployeeLeaveController : BaseController
     {
-        [Inject]
-        public ILogInLogOutService LogInLogOutService { get; set; }
-        [Inject]
-        public ILookUpCodeService LookUpCodeService { get; set; }
-        [Inject]
-        public ICompanyService CompanyService { get; set; }
-        [Inject]
-        public ILeave Leaveservice { get; set; }
         public ActionResult GetEmployeeList(string employeeName)
         {
             JsonResult jsonResult = new JsonResult();

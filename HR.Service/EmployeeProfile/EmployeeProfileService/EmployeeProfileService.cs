@@ -14,24 +14,24 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
     {
         #region Properties
         [Inject]
-        public IRepository<EmployeePersonalInfo> EmployeePersonalInfoRepository { get; set; }
+        public IRepository<EmployeeHeader> EmployeeHeaderRepository { get; set; }
         #endregion
 
-        public IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeePersonalInfo
+        public IQueryable<T> GetEmployeeHeader<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeHeader
         {
-            var query = EmployeePersonalInfoRepository.FindAll().OfType<T>();
+            var query = EmployeeHeaderRepository.FindAll().OfType<T>();
             if (predicate != null)
                 query = query.Where(predicate);
             return query;
            
         }
 
-        public void SaveEmployeeProfile(EmployeePersonalInfo EmployeePersonalInfo)
+        public void SaveEmployeeHeader(EmployeeHeader employeeHeader)
         {
-            if (EmployeePersonalInfo.Id == 0)
-                EmployeePersonalInfoRepository.Insert(EmployeePersonalInfo);
+            if (employeeHeader.Id == 0)
+                EmployeeHeaderRepository.Insert(employeeHeader);
             else
-                EmployeePersonalInfoRepository.Update(EmployeePersonalInfo);
+                EmployeeHeaderRepository.Update(employeeHeader);
         }
         public EmployeePersonalInfo GetEmployeeProfileDetailsById(int id)
         {
