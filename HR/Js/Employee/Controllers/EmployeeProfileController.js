@@ -38,8 +38,19 @@
 
             })
         };
+
+        $scope.IsfrmEmployeeProfile = false;
+        $scope.$watch('EmployeeProfile.$valid', function (Valid) {
+            $scope.IsfrmEmployeeProfile = Valid;
+        });
         $scope.processForm = function (Employee) {
             debugger
+            if ($scope.IsfrmEmployeeProfile) {
+            }
+            else
+            {
+                growlService.growl('Please Enter All Mandtory Fields', 'danger');
+            }
         }
         LookUp.GetCountries().then(function (res) {
             $scope.Countries = res.data.countries;

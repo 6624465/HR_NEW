@@ -85,7 +85,6 @@
                 })
             }
             return arr;
-            debugger;
         }
 
         
@@ -100,10 +99,8 @@
         //Region end
 
         //region for Save
-        debugger;
         $scope.IsfrmCompanyDetails = false;
         $scope.$watch('Cntrl.frmCompanyDetails.$valid', function (Valid) {
-            debugger;
             $scope.IsfrmCompanyDetails = Valid;
         });
         $scope.SaveCompany = function (details) {
