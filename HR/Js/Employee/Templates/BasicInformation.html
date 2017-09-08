@@ -31,15 +31,15 @@
                             <a class="dropdown-toggle" id="ConfirmationDate" role="button" data-toggle="dropdown">
                                 <div class="input-group">
                                     <input type="text" class="form-control input-sm datepicker"
-                                           ng-model="Employee.EmployeeWorkDetail.ConfirmationDate"
-                                           name="Employee.EmployeeWorkDetail.ConfirmationDate"
+                                           ng-model="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
+                                           name="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
                                            ng-required="true"
                                            date-time-input="{{dateFormat}}">
                                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                             </div>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <datetimepicker ng-model="Employee.EmployeeWorkDetail.ConfirmationDate"
+                                <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
                                                 data-datetimepicker-config="{ dropdownSelector: '#ConfirmationDate', startView:'day', minView:'day' }" />
                             </ul>
                         </div>
@@ -52,7 +52,7 @@
                         <label>
                             First Name
                         </label>
-                        <input class="form-control" type="text" ng-model="Employee.FirstName" ng-required="true">
+                        <input class="form-control" type="text" ng-model="EmployeeHeader.FirstName" ng-required="true">
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
@@ -60,7 +60,7 @@
                         <label>
                             Middle Name
                         </label>
-                        <input class="form-control" type="text" ng-model="Employee.MiddleName" ng-required="true">
+                        <input class="form-control" type="text" ng-model="EmployeeHeader.MiddleName" ng-required="true">
                     </div>
                 </div>
                 <!--<div class="col-xs-12 col-md-6">
@@ -76,7 +76,7 @@
                         <label>
                             Last Name
                         </label>
-                        <input class="form-control" type="text" ng-model="Employee.LastName" ng-required="true">
+                        <input class="form-control" type="text" ng-model="EmployeeHeader.LastName" ng-required="true">
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
@@ -84,7 +84,7 @@
                         <label>
                             Nationality
                         </label>
-                        <input class="form-control" type="text" ng-model="Employee.Nationality" ng-required="true">
+                        <input class="form-control" type="text" ng-model="EmployeeHeader.Nationality" ng-required="true">
                     </div>
                 </div>
                 <!--<div class="col-xs-12 col-md-6">
@@ -104,15 +104,15 @@
                             <a class="dropdown-toggle" id="DOB" role="button" data-toggle="dropdown">
                                 <div class="input-group">
                                     <input type="text" class="form-control input-sm datepicker"
-                                           ng-model="Employee.DOB"
-                                           name="DOB"
+                                           ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
+                                           name="EmployeeHeader.EmployeePersonalInfo.DOB"
                                            ng-required="true"
                                            date-time-input="{{dateFormat}}">
                                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                             </div>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <datetimepicker ng-model="Employee.DOB"
+                                <datetimepicker ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
                                                 data-datetimepicker-config="{ dropdownSelector: '#DOB', startView:'day', minView:'day' }" />
                             </ul>
                         </div>
@@ -123,7 +123,7 @@
                         <label>
                             Mobile Number
                         </label>
-                        <input class="form-control " autocomplete="off" type="text" ng-model="Employee.Mobile">
+                        <input class="form-control " autocomplete="off" type="text" ng-model="EmployeeHeader.Address.Mobile">
                     </div>
                 </div>
             </div>
@@ -147,15 +147,15 @@
                             Others
                         </label>-->
                         <input type="radio" id="genderChoice1"
-                               name="gender" value="male" ng-model="Employee.Gender">
+                               name="gender" value="male" ng-model="EmployeeHeader.EmployeePersonalInfo.Gender">
                         <label for="genderChoice1">Male</label>
 
                         <input type="radio" id="genderChoice2"
-                               name="gender" value="female" ng-model="Employee.Gender">
+                               name="gender" value="female" ng-model="EmployeeHeader.EmployeePersonalInfo.Gender">
                         <label for="genderChoice2">Female</label>
 
                         <input type="radio" id="genderChoice3"
-                               name="gender" value="other" ng-model="Employee.Gender">
+                               name="gender" value="other" ng-model="EmployeeHeader.EmployeePersonalInfo.Gender">
                         <label for="genderChoice3">Other</label>
                     </div>
                    
@@ -192,7 +192,7 @@
                         <label>
                             Emergency Contact Number
                         </label>
-                        <input class="form-control " autocomplete="off" type="text" ng-model="Employee.EmergencyContactNumber">
+                        <input class="form-control " autocomplete="off" type="text" ng-model="EmployeeHeader.Address.EmergencyContactNumber">
                     </div>
                 </div>
             </div>
@@ -206,15 +206,15 @@
                             <a class="dropdown-toggle" id="JoiningDate" role="button" data-toggle="dropdown">
                                 <div class="input-group">
                                     <input type="text" class="form-control input-sm datepicker"
-                                           ng-model="Employee.EmployeeWorkDetail.JoiningDate"
-                                           name="Employee.EmployeeWorkDetail.JoiningDate"
+                                           ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
+                                           name="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
                                            ng-required="true"
                                            date-time-input="{{dateFormat}}">
                                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                 </div>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <datetimepicker ng-model="Employee.EmployeeWorkDetail.JoiningDate"
+                                <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
                                                 data-datetimepicker-config="{ dropdownSelector: '#JoiningDate', startView:'day', minView:'day' }" />
                             </ul>
                         </div>
@@ -225,7 +225,7 @@
                         <label>
                             Father's name
                         </label>
-                        <input class="form-control " autocomplete="off" type="text" ng-model="Employee.FatherName">
+                        <input class="form-control " autocomplete="off" type="text" ng-model="EmployeeHeader.EmployeePersonalInfo.FatherName">
                     </div>
                 </div>
             </div>
@@ -246,7 +246,7 @@
                         <label>
                             Spouse Name
                         </label>
-                        <input class="form-control " autocomplete="off" type="text" ng-model="Employee.SpouseName">
+                        <input class="form-control " autocomplete="off" type="text" ng-model="EmployeeHeader.EmployeePersonalInfo.SpouseName">
                 </div>
             </div>
         </div>
@@ -254,7 +254,7 @@
 </div>
 <div class="form-group row">
         <div class="col-xs-12 text-center ">
-        <a ui-sref="Employee.EmployeeAddress" class="btn  btn-info">
+        <a ui-sref="EmployeeHeader.EmployeeAddress" class="btn  btn-info">
             Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
         </a>
     </div>

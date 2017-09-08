@@ -230,7 +230,7 @@ app.config(
                }
            })
 
-             .state('Employee.EmployeeBasicInformation', {
+             .state('EmployeeHeader.EmployeeBasicInformation', {
                  url: '/EmployeeBasicInformation',
                  templateUrl: baseUrl + 'Js/Employee/Templates/BasicInformation.html',
                  resolve: {
@@ -246,7 +246,7 @@ app.config(
                  }
              })
 
-             .state('Employee.EmployeePosition', {
+             .state('EmployeeHeader.EmployeePosition', {
                  url: '/EmployeePosition',
                  templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePosition.html',
                  resolve: {
@@ -260,7 +260,7 @@ app.config(
                      }
                  }
              })
-             .state('Employee.EmployeeAddress', {
+             .state('EmployeeHeader.EmployeeAddress', {
                  url: '/EmployeeAddress',
                  templateUrl: baseUrl + 'Js/Employee/Templates/EmployeeAddressDetails.html',
                  resolve: {
