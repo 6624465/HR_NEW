@@ -143,7 +143,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="add-EmployeeDesignatio.html" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeProfile.cshtml" />
     <Content Include="Areas\Employees\Views\web.config" />
     <Content Include="bower_components\bootstrap-colorpicker\.bower.json" />
