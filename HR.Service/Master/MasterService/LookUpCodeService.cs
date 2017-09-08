@@ -47,7 +47,7 @@ namespace HR.Service.Master.MasterService
         //{
         //    return EmployeeCodeRepository.GetById(id);
         //}
-        public IQueryable<T> GetEmployeeList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeePersonalInfo
+        public IQueryable<T> GetEmployeeList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeHeader
         {
             var query = EmployeeRepository.FindAll().OfType<T>();
             if (predicate != null)

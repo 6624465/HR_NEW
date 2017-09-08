@@ -32,7 +32,7 @@ namespace HR.Areas.Leave.Controllers
                         LookUp leaveType = LookUpCodeService.GetLookUpType(employeeLeave.LeaveTypeId);
                         EmployeeLeaveViewModel employeeLeaveViewModel = new EmployeeLeaveViewModel();
                         employeeLeaveViewModel.Id = employeeLeave.Id;
-                        employeeLeaveViewModel.EmployeeName = employeeLeave.Employee.EmployeeName;
+                        employeeLeaveViewModel.EmployeeName = employeeLeave.Employee.FirstName;
                         employeeLeaveViewModel.EmployeeId = employeeLeave.EmployeeId;
                         employeeLeaveViewModel.LeaveType = leaveType.LookUpCode;
                         employeeLeaveViewModel.LeaveTypeId = leaveType.LookUpID;

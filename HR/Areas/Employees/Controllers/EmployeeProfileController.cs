@@ -30,7 +30,6 @@ namespace HR.Areas.Employees.Controllers
                         _employeePersonalInfo.CreatedBy = USER_OBJECT.UserName;
                         _employeePersonalInfo.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                     }
-                    _employeePersonalInfo.EmployeeName = employeePersonalInfo.EmployeeName;
                     _employeePersonalInfo.DOB = employeePersonalInfo.DOB;
                     _employeePersonalInfo.Gender = employeePersonalInfo.Gender;
                     _employeePersonalInfo.BirthCountry = employeePersonalInfo.BirthCountry;
@@ -40,7 +39,8 @@ namespace HR.Areas.Employees.Controllers
                     _employeePersonalInfo.SpouseName = employeePersonalInfo.SpouseName;
                     _employeePersonalInfo.MarriageDate = employeePersonalInfo.MarriageDate;
                     _employeePersonalInfo.ResidentialStatus = employeePersonalInfo.ResidentialStatus;
-                    //EmployeeProfileService.SaveEmployeeProfile(employeePersonalInfo);
+
+                    EmployeeProfileService.SaveEmployeeProfile(employeePersonalInfo);
                     result = Json(new { sucess = true, message = "Sent successfully" }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)

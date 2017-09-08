@@ -48,6 +48,7 @@
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\EmployeeDocument.cs" />
+    <Compile Include="Models\EmployeeHeader.cs" />
     <Compile Include="Models\EmployeeLeaveList.cs" />
     <Compile Include="Models\EmployeePersonalInfo.cs" />
     <Compile Include="Models\EmployeeWorkDetail.cs" />

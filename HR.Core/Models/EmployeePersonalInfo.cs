@@ -11,8 +11,8 @@ namespace HR.Core.Models
     public class EmployeePersonalInfo
     {
         public int Id { get; set; }
-        //public int EmployeeId { get; set; }
-        public string EmployeeName { get; set; }
+        public int EmployeeId { get; set; }
+        //public string EmployeeName { get; set; }
         public int BranchId { get; set; }
         public virtual Branch Branch { get; set; }
         public DateTime DOB { get; set; }
@@ -24,21 +24,9 @@ namespace HR.Core.Models
         public string SpouseName { get; set; }
         public DateTime? MarriageDate { get; set; }
         public int ResidentialStatus { get; set; }
-        public virtual Address Address { get; set; }
-        [Required]
-        public virtual EmployeeDocument EmployeeDocument { get; set; }
-        [Required]
-        public virtual EmployeeWorkDetail EmployeeWorkDetail { get; set; }
-        [Required]
-        [StringLength(25)]
         public string CreatedBy { get; set; }
-
         public DateTime CreatedOn { get; set; }
-
-        [StringLength(25)]
         public string ModifiedBy { get; set; }
-
         public DateTime? ModifiedOn { get; set; }
-
     }
 }
