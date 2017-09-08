@@ -15,6 +15,7 @@ using HR.Service.Leave.ILeaveService;
 using HR.Service.Leave.LeaveService;
 using HR.Core.Models;
 using Ninject;
+using HR.Service.EmployeeProfile.IEmployeeProfile;
 
 namespace HR.Controllers
 {
@@ -29,6 +30,8 @@ namespace HR.Controllers
         public ICompanyService CompanyService { get; set; }
         [Inject]
         public ILeave Leaveservice { get; set; }
+        [Inject]
+        public IEmployeeProfileService EmployeeProfileService { get; set; }
         #endregion
 
         public SessionObject USER_OBJECT
