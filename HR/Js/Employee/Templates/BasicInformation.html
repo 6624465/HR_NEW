@@ -102,7 +102,7 @@
                     </label>
                     <br />
                     <div class="form-group">
-                        <label>
+                        <!--<label>
                             <input type="radio" class="minimal" checked ng-model="Employee.Gender">
                             Female
                         </label>
@@ -113,7 +113,18 @@
                         <label>
                             <input type="radio" class="minimal" ng-model="Employee.Gender">
                             Others
-                        </label>
+                        </label>-->
+                        <input type="radio" id="genderChoice1"
+                               name="gender" value="male" ng-model="Employee.Gender">
+                        <label for="genderChoice1">Male</label>
+
+                        <input type="radio" id="genderChoice2"
+                               name="gender" value="female" ng-model="Employee.Gender">
+                        <label for="genderChoice2">Female</label>
+
+                        <input type="radio" id="genderChoice3"
+                               name="gender" value="other" ng-model="Employee.Gender">
+                        <label for="genderChoice3">Other</label>
                     </div>
                    
                 </div>
