@@ -67,7 +67,7 @@
                     <div class="form-group ">
                         <label>
                             Date Of Birth
-                        </label> 
+                        </label>
                         <div class="dropdown">
                             <a class="dropdown-toggle" id="DOB" role="button" data-toggle="dropdown">
                                 <div class="input-group">
@@ -102,18 +102,29 @@
                     </label>
                     <br />
                     <div class="form-group">
-                        <label>
-                            <input type="radio" value="Female" id="EmployeeFemaleGender"  checked ng-model="Employee.Gender">
+                        <!--<label>
+                            <input type="radio" class="minimal" checked ng-model="Employee.Gender">
                             Female
                         </label>
                         <label>
-                            <input type="radio" value="Male" id="EmployeeMaleGender" ng-model="Employee.Gender">
+                            <input type="radio" class="minimal" ng-model="Employee.Gender">
                             Male
                         </label>
                         <label>
-                            <input type="radio" value="Others" id="EmployeeOthersGender" ng-model="Employee.Gender">
+                            <input type="radio" class="minimal" ng-model="Employee.Gender">
                             Others
-                        </label>
+                        </label>-->
+                        <input type="radio" id="genderChoice1"
+                               name="gender" value="male" ng-model="Employee.Gender">
+                        <label for="genderChoice1">Male</label>
+
+                        <input type="radio" id="genderChoice2"
+                               name="gender" value="female" ng-model="Employee.Gender">
+                        <label for="genderChoice2">Female</label>
+
+                        <input type="radio" id="genderChoice3"
+                               name="gender" value="other" ng-model="Employee.Gender">
+                        <label for="genderChoice3">Other</label>
                     </div>
                    
                 </div>

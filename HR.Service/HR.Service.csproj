@@ -48,6 +48,8 @@
     <Compile Include="Account\IAccountService\ILogInLogOutService.cs" />
     <Compile Include="CompanyDetails\CompanyServiceDetails\CompanyService.cs" />
     <Compile Include="CompanyDetails\ICompany\ICompanyService.cs" />
+    <Compile Include="EmployeeProfile\EmployeeServiceProfile\EmployeeServiceProfile.cs" />
+    <Compile Include="EmployeeProfile\IEmployeeProfile\IEmployeeProfileService.cs" />
     <Compile Include="Leave\ILeaveService\ILeave.cs" />
     <Compile Include="Leave\LeaveService\Leave.cs" />
     <Compile Include="Master\IMasterService\ILookUpCodeService.cs" />
@@ -64,6 +66,7 @@
       <Name>HR.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
