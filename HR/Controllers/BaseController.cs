@@ -30,8 +30,8 @@ namespace HR.Controllers
         public ICompanyService CompanyService { get; set; }
         [Inject]
         public ILeave Leaveservice { get; set; }
-        [Inject]
-        public IEmployeeProfileService EmployeeProfileService { get; set; }
+        //[Inject]
+        //public IEmployeeProfileService EmployeeProfileService { get; set; }
         #endregion
 
         public SessionObject USER_OBJECT
