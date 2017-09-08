@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="Account\AccountService\LogInLogOutService.cs" />
     <Compile Include="Account\IAccountService\ILogInLogOutService.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="CompanyDetails\CompanyServiceDetails\CompanyService.cs" />
     <Compile Include="CompanyDetails\ICompany\ICompanyService.cs" />
     <Compile Include="Leave\ILeaveService\ILeave.cs" />
