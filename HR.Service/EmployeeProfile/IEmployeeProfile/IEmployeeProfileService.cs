@@ -12,8 +12,8 @@ namespace HR.Service.EmployeeProfile.IEmployeeProfile
     {
         #region EmployeeProfile
 
-        IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T :EmployeePersonalInfo;
-        void SaveEmployeeProfile(EmployeePersonalInfo EmployeePersonalInfo);
+        IQueryable<T> GetEmployeeHeader<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeHeader;
+        void SaveEmployeeHeader(EmployeeHeader EmployeePersonalInfo);
         #endregion
     }
 }
