@@ -33,5 +33,9 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
             else
                 EmployeePersonalInfoRepository.Update(EmployeePersonalInfo);
         }
+        public EmployeePersonalInfo GetEmployeeProfileDetailsById(int id)
+        {
+            return EmployeePersonalInfoRepository.GetById(id);
+        }
     }
 }

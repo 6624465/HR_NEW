@@ -14,6 +14,7 @@ namespace HR.Service.EmployeeProfile.IEmployeeProfile
 
         IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T :EmployeePersonalInfo;
         void SaveEmployeeProfile(EmployeePersonalInfo EmployeePersonalInfo);
+        EmployeePersonalInfo GetEmployeeProfileDetailsById(int Id);
         #endregion
     }
 }

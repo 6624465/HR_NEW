@@ -22,6 +22,7 @@ namespace HR.Areas.Employees.Controllers
                     EmployeePersonalInfo _employeePersonalInfo = new EmployeePersonalInfo();
                     if (employeePersonalInfo.Id > 0)
                     {
+                        _employeePersonalInfo = EmployeeProfileService.GetEmployeeProfileDetailsById(employeePersonalInfo.Id);
                         _employeePersonalInfo.ModifiedBy = USER_OBJECT.UserName;
                         _employeePersonalInfo.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                     }

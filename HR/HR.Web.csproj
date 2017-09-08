@@ -6784,6 +6784,7 @@
     <Content Include="Js\Employee\Services\EmployeeProfileService.js" />
     <Content Include="Js\Employee\Templates\BasicInformation.html" />
     <Content Include="Js\Employee\Templates\EmployeeAddressDetails.html" />
+    <Content Include="Js\Employee\Templates\EmployeeDirecter.html" />
     <Content Include="Js\Employee\Templates\EmployeePaymentMode.html" />
     <Content Include="Js\Employee\Templates\EmployeePFESI.html" />
     <Content Include="Js\Employee\Templates\EmployeePosition.html" />
