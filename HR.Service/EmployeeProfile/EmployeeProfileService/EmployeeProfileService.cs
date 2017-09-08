@@ -8,9 +8,9 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-namespace HR.Service.EmployeeProfile.EmployeeServiceProfile
+namespace HR.Service.EmployeeProfile.EmployeeProfileService
 {
-    public class EmployeeServiceProfile : IEmployeeProfileService
+    public class EmployeeProfileService : IEmployeeProfileService
     {
         #region Properties
         [Inject]
@@ -28,7 +28,6 @@ namespace HR.Service.EmployeeProfile.EmployeeServiceProfile
 
         public void SaveEmployeeProfile(EmployeePersonalInfo EmployeePersonalInfo)
         {
-           
             if (EmployeePersonalInfo.Id == 0)
                 EmployeePersonalInfoRepository.Insert(EmployeePersonalInfo);
             else
