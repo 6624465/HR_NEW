@@ -261,7 +261,7 @@ app.config(
                  }
              })
              .state('Employee.EmployeeAddress', {
-                 url: '/EmployeePaymentMode',
+                 url: '/EmployeeAddress',
                  templateUrl: baseUrl + 'Js/Employee/Templates/EmployeeAddressDetails.html',
                  resolve: {
                      loadPlugin: function ($ocLazyLoad) {

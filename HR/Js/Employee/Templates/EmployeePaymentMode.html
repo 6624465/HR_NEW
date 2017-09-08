@@ -8,7 +8,8 @@
                         <label>
                             Payment Type
                         </label>
-                        <select name="PaymentType" ng-options="s.LookUpID as s.LookUpCode for s  in PaymentType" ng-model="Employee.PaymentTypeId" class="form-control">
+                        <select name="PaymentType" ng-options="s.LookUpID as s.LookUpCode for s  in PaymentType" 
+                                ng-model="Employee.PaymentTypeId" class="form-control" ng-required="true">
                             <option value="">--Select PaymentType--</option>
                         </select>
                     </div>

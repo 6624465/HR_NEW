@@ -281,22 +281,17 @@
     <script src="@Url.Content("~/scripts/services.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap-growl.min.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap-growl.js")"></script>
-    @*<script src="@Url.Content("~/scripts/wizard/bootstrap.min.js")"></script>
-    @*<script src="@Url.Content("~/scripts/wizard/jquery-2.2.4.min.js")"></script>
-    <script src="@Url.Content("~/scripts/wizard/jquery.bootstrap.wizard.js")"></script>
-    <script src="@Url.Content("~/scripts/wizard/jquery.validate.min.js")"></script>
-    <script src="@Url.Content("~/scripts/wizard/paper-bootstrap-wizard.js")"></script>*@
+    
     <!-- End Script files -->
     <script type="text/javascript">
         var baseUrl = '@Url.Content("~/")';
         angular.module('ngHR').controller('layOutController', ['$scope', '$http', 'growlService', function ($scope, $http, growlService) {
             $scope.init = function () {
                 $scope.User = JSON.parse(sessionStorage.getItem("authenticatedUser"));
-                debugger;
                 var Ismessagedisplayed = sessionStorage.getItem('Ismessagedisplayed') == 'true' ? true : false;
                 if (!Ismessagedisplayed && Ismessagedisplayed != undefined) {
                     sessionStorage.setItem('Ismessagedisplayed', 'true');
-                    growlService.growl("Welcome to hr", 'success');
+                    growlService.growl("Welcome To Hr", 'success');
                 }
             }
             $scope.onClickLogOut = function () {
