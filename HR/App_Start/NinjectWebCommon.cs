@@ -19,6 +19,8 @@ namespace HR.App_Start
     using Service.CompanyDetails.CompanyServiceDetails;
     using Service.Leave.ILeaveService;
     using Service.Leave.LeaveService;
+    using Service.EmployeeProfile.EmployeeProfileService;
+    using Service.EmployeeProfile.IEmployeeProfile;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -74,6 +76,7 @@ namespace HR.App_Start
             kernel.Bind<ILookUpCodeService>().To<LookUpCodeService>();
             kernel.Bind<ICompanyService>().To<CompanyService>();
             kernel.Bind<ILeave>().To<Leave>();
+            kernel.Bind<IEmployeeProfileService>().To<EmployeeProfileService>();
         }
     }
 }
