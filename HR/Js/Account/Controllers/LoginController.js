@@ -22,6 +22,10 @@ app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', '
                 sessionStorage.setItem('authenticatedUser', JSON.stringify(response.data.SessionObject));
                 location.href = "Home/index/";
             }
+            else {
+                $scope.showLoading = false;
+                $scope.IsEnable = false;
+            }
         })
     }
 }]);

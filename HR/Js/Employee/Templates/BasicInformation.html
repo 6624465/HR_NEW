@@ -28,11 +28,11 @@
                     <div class="form-group ">
                         <label>Confirmation Date</label>
                         <div class="dropdown">
-                            <a class="dropdown-toggle" id="ConfirmationDate" role="button" data-toggle="ConfirmationDate">
+                            <a class="dropdown-toggle" id="ConfirmationDate" role="button" data-toggle="dropdown">
                                 <div class="input-group">
                                     <input type="text" class="form-control input-sm datepicker"
                                            ng-model="Employee.EmployeeWorkDetail.ConfirmationDate"
-                                           name="ConfirmationDate"
+                                           name="Employee.EmployeeWorkDetail.ConfirmationDate"
                                            ng-required="true"
                                            date-time-input="{{dateFormat}}">
                                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -81,7 +81,7 @@
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                 <datetimepicker ng-model="Employee.DOB"
-                                                data-datetimepicker-config="{ dropdownSelector: '#ConfirmationDate', startView:'day', minView:'day' }" />
+                                                data-datetimepicker-config="{ dropdownSelector: '#DOB', startView:'day', minView:'day' }" />
                             </ul>
                         </div>
                     </div>
@@ -168,11 +168,24 @@
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
                         <label>
-                            Status
+                            Date Of Joining
                         </label>
-                        <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeStatusList" ng-model="Employee.Status" class="form-control">
-                            <option value="">--Select EmployeeStatus--</option>
-                        </select>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="JoiningDate" role="button" data-toggle="dropdown">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-sm datepicker"
+                                           ng-model="Employee.EmployeeWorkDetail.JoiningDate"
+                                           name="Employee.EmployeeWorkDetail.JoiningDate"
+                                           ng-required="true"
+                                           date-time-input="{{dateFormat}}">
+                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="Employee.EmployeeWorkDetail.JoiningDate"
+                                                data-datetimepicker-config="{ dropdownSelector: '#JoiningDate', startView:'day', minView:'day' }" />
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
@@ -188,25 +201,13 @@
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
                         <label>
-                            Date Of Joining
+                            Status
                         </label>
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" id="DateOfJoining" role="button" data-toggle="dropdown">
-                                <div class="input-group">
-                                    <input type="text" class="form-control input-sm datepicker"
-                                           ng-model="EmployeeWorkDetail.JoiningDate"
-                                           name="DateOfJoining"
-                                           ng-required="true"
-                                           date-time-input="{{dateFormat}}">
-                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                            </div>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <datetimepicker ng-model="EmployeeWorkDetail.JoiningDate"
-                                                data-datetimepicker-config="{ dropdownSelector: '#ConfirmationDate', startView:'day', minView:'day' }" />
-                            </ul>
-                        </div>
+                        <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeStatusList" ng-model="Employee.Status" class="form-control">
+                            <option value="">--Select EmployeeStatus--</option>
+                        </select>
                     </div>
+
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group ">

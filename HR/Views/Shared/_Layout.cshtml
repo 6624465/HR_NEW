@@ -289,7 +289,7 @@
     <!-- End Script files -->
     <script type="text/javascript">
         var baseUrl = '@Url.Content("~/")';
-        angular.module('ngHR').controller('layOutController', ['$scope', '$http','growlService', function ($scope, $http, growlService) {
+        angular.module('ngHR').controller('layOutController', ['$scope', '$http', 'growlService', function ($scope, $http, growlService) {
             $scope.init = function () {
                 $scope.User = JSON.parse(sessionStorage.getItem("authenticatedUser"));
                 debugger;
