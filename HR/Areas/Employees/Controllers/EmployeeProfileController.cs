@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HR.Core.Utilities;
 
 namespace HR.Areas.Employees.Controllers
 {
@@ -19,6 +20,16 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     EmployeePersonalInfo _employeePersonalInfo = new EmployeePersonalInfo();
+                    if (employeePersonalInfo.Id > 0)
+                    {
+                        _employeePersonalInfo.ModifiedBy = USER_OBJECT.UserName;
+                        _employeePersonalInfo.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                    }
+                    else
+                    {
+                        _employeePersonalInfo.CreatedBy = USER_OBJECT.UserName;
+                        _employeePersonalInfo.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                    }
                     _employeePersonalInfo.EmployeeName = employeePersonalInfo.EmployeeName;
                     _employeePersonalInfo.DOB = employeePersonalInfo.DOB;
                     _employeePersonalInfo.Gender = employeePersonalInfo.Gender;
