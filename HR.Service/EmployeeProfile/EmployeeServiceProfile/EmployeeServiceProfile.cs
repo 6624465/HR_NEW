@@ -28,7 +28,7 @@ namespace HR.Service.EmployeeProfile.EmployeeServiceProfile
 
         public void SaveEmployeeProfile(EmployeePersonalInfo EmployeePersonalInfo)
         {
-            throw new NotImplementedException();
+           
             if (EmployeePersonalInfo.Id == 0)
                 EmployeePersonalInfoRepository.Insert(EmployeePersonalInfo);
             else
