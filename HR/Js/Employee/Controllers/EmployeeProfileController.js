@@ -3,16 +3,16 @@
 
         $scope.init = function () {
             $scope.EmployeeHeader = {
-                BranchId: UtilityFunc.BranchId,
+                BranchId: UtilityFunc.BranchId(),
                 Address: {},
                 EmployeePersonalInfo: {
-                    BranchId: UtilityFunc.BranchId,
+                    BranchId: UtilityFunc.BranchId(),
                 },
                 EmployeeWorkDetail: {
-                        BranchId: UtilityFunc.BranchId
+                        BranchId: UtilityFunc.BranchId()
                 },
                 EmployeeDocument: {
-                        BranchId: UtilityFunc.BranchId
+                        BranchId: UtilityFunc.BranchId()
             }
         };
         $scope.dateFormat = UtilityFunc.DateFormat();
