@@ -65,6 +65,13 @@
             })
             }
             else {
+                var mandtoryFields = angular.element('.valid');
+                angular.forEach(mandtoryFields, function (val) {
+                    if (val.value == "")
+                        val.style.borderBottom = "1px solid red";
+                    else
+                        val.style.borderBottom = '';
+                })
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
         }
     }

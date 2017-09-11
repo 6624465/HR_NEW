@@ -20,9 +20,9 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     List<EmployeeHeader> employees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
-                   jsonResult = Json(new { sucess = true, employies = employees }, JsonRequestBehavior.AllowGet);
+                    jsonResult = Json(new { sucess = true, employies = employees }, JsonRequestBehavior.AllowGet);
                 //return Json(employees, JsonRequestBehavior.AllowGet);
-            }
+                }
                 catch (Exception ex)
                 {
 
@@ -111,7 +111,10 @@ namespace HR.Areas.Employees.Controllers
             _employeePersonalInfo.BirthCountry = employeePersonalInfo.BirthCountry;
             _employeePersonalInfo.MaritalStatus = employeePersonalInfo.MaritalStatus;
             _employeePersonalInfo.SpouseName = employeePersonalInfo.SpouseName;
+            if (employeePersonalInfo.MarriageDate.HasValue)
             _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate.Value);
+            else
+            _employeePersonalInfo.MarriageDate = null;
             _employeePersonalInfo.ResidentialStatus = employeePersonalInfo.ResidentialStatus;
 
             return _employeePersonalInfo;
