@@ -19,8 +19,8 @@ namespace HR.Areas.Employees.Controllers
             JsonResult jsonResult = new JsonResult();
                 try
                 {
-                    List<EmployeeHeader> employies = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
-                    jsonResult = Json(new { sucess = true, employies = employies }, JsonRequestBehavior.AllowGet);
+                    List<EmployeeHeader> employees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
+                    jsonResult = Json(new { sucess = true, employies = employees }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {
@@ -174,6 +174,11 @@ namespace HR.Areas.Employees.Controllers
         {
             return View();
         }
+        public ActionResult EmployeeDirectory()
+        {
+            return View();
+        }
+
         #endregion
     }
 }
