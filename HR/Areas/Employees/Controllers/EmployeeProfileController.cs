@@ -11,7 +11,12 @@ namespace HR.Areas.Employees.Controllers
 {
     public class EmployeeProfileController : BaseController
     {
+        #region Public Accessors
 
+        #region Get
+        #endregion
+
+        #region Save
         public JsonResult SaveEmlployee(EmployeeHeader employeeHeader)
         {
             JsonResult result = new JsonResult();
@@ -20,7 +25,7 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     EmployeeHeader _employeeHeader = new EmployeeHeader();
-                   
+
                     _employeeHeader = PrepareEmployeeHeader(employeeHeader);
 
                     EmployeeProfileService.SaveEmployeeHeader(_employeeHeader);
@@ -34,7 +39,11 @@ namespace HR.Areas.Employees.Controllers
             }
             return result;
         }
+        #endregion
 
+        #endregion
+
+        #region Private Accessors
         private EmployeeHeader PrepareEmployeeHeader(EmployeeHeader employeeHeader)
         {
             EmployeeHeader _employeeHeader = new EmployeeHeader();
@@ -141,6 +150,8 @@ namespace HR.Areas.Employees.Controllers
             _employeeWorkDetail.Department = employeeWorkDetail.Department;
             return _employeeWorkDetail;
         }
+
+        #endregion
 
         #region ActionResult
         public ActionResult EmployeeProfile()
