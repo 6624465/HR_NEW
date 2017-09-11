@@ -12,6 +12,7 @@ namespace HR.Data
         public HRDataContext()
             : base("name=HRDataContext")
         {
+           
         }
         #endregion
 

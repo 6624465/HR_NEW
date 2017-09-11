@@ -76,8 +76,16 @@
     })
         /*EmployeeDetailsList*/
         $scope.GetEmployeeDetails = function () {
+            debugger;
             EmployeeProfileService.GetEmployeeDetails().then(function (response) {
-                $scope.employeeDetailsList = response.data.employies;
+                debugger;
+                $scope.employeeDetailsList = response.data.employies[0];
+                var s = $scope.employeeDetailsList.FirstName;
+                $scope.FirstName = s;
+                var Date = $scope.employeeDetailsList.EmployeeWorkDetail.JoiningDate;
+                $scope.Date = moment(Date).format('MM/DD/YYYY');
+                var email = $scope.employeeDetailsList.Address.Email;
+                $scope.Email = email;
             });
         }
         /*EmployeeDetailsList*/
