@@ -26,7 +26,7 @@ namespace HR.Data
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<EmployeeLeaveList> EmployeeLeaveLists { get; set; }
         public virtual DbSet<EmployeeHeader> EmployeeHeaders { get; set; }
-        public virtual DbSet<EmployeePersonalInfo> EmployeePersonalInfos { get; set; }
+        public virtual DbSet<EmployeePersonalInfo> EmployeePersonalInfoes { get; set; }
         public virtual DbSet<EmployeeDocument> EmployeeDocuments { get; set; }
         public virtual DbSet<EmployeeWorkDetail> EmployeeWorkDetails { get; set; }
 

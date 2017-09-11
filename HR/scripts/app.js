@@ -213,8 +213,8 @@ app.config(
                }
            })
 
-           .state('Employee', {
-               url: '/Employee',
+           .state('EmployeeHeader', {
+               url: '/EmployeeHeader',
                templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeProfile',
                resolve: {
                    loadPlugin: function ($ocLazyLoad) {
@@ -223,7 +223,9 @@ app.config(
                                name: 'ngHR',
                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js',
                                        baseUrl + 'Js/Master/MasterService/LookUp.js',
-                                       baseUrl + 'Js/Leave/Services/HolidayListService.js']
+                                       baseUrl + 'Js/Leave/Services/HolidayListService.js',
+                                       baseUrl + 'Js/Employee/Services/EmployeeProfileService.js']
+
                            }
                        ]);
                    }
@@ -239,7 +241,7 @@ app.config(
                              {
                                  name: 'ngHR',
                                  files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js',
-                                        ]
+                                 ]
                              }
                          ]);
                      }
@@ -274,35 +276,35 @@ app.config(
                      }
                  }
              })
-            .state('Employee.EmployeePaymentMode', {
-                url: '/EmployeePaymentMode',
-                templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePaymentMode.html',
-                resolve: {
-                    loadPlugin: function ($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                            {
-                                name: 'ngHR',
-                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
-                            }
-                        ]);
-                    }
-                }
-            })
+            //.state('Employee.EmployeePaymentMode', {
+            //    url: '/EmployeePaymentMode',
+            //    templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePaymentMode.html',
+            //    resolve: {
+            //        loadPlugin: function ($ocLazyLoad) {
+            //            return $ocLazyLoad.load([
+            //                {
+            //                    name: 'ngHR',
+            //                    files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+            //                }
+            //            ]);
+            //        }
+            //    }
+            //})
 
-            .state('Employee.EmployeePFESI', {
-                url: '/EmployeePFESI',
-                templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePFESI.html',
-                resolve: {
-                    loadPlugin: function ($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                            {
-                                name: 'ngHR',
-                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
-                            }
-                        ]);
-                    }
-                }
-            })
+            //.state('Employee.EmployeePFESI', {
+            //    url: '/EmployeePFESI',
+            //    templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePFESI.html',
+            //    resolve: {
+            //        loadPlugin: function ($ocLazyLoad) {
+            //            return $ocLazyLoad.load([
+            //                {
+            //                    name: 'ngHR',
+            //                    files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+            //                }
+            //            ]);
+            //        }
+            //    }
+            //})
 
 
 

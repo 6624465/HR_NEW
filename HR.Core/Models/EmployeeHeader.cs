@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +9,9 @@ namespace HR.Core.Models
 {
    public class EmployeeHeader
     {
+        //public int Id { get; set; }
+        [Key]
         public int Id { get; set; }
-        public int EmployeeId { get; set; }
         public int BranchId { get; set; }
         public virtual Branch Branch { get; set; }
         public string FirstName { get; set; }
@@ -22,9 +24,14 @@ namespace HR.Core.Models
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
+        public int AddressId { get; set; }
         public virtual Address Address { get; set; }
+        public int EmployeePersonalInfoId { get; set; }
+        
         public virtual EmployeePersonalInfo EmployeePersonalInfo { get; set; }
+        public int EmployeeWorkDetailId { get; set; }
         public virtual EmployeeWorkDetail EmployeeWorkDetail { get; set; }
-        public virtual EmployeeDocument EmployeeDocument { get; set; }
+        //[Required]
+        //public virtual EmployeeDocument EmployeeDocument { get; set; }
     }
 }

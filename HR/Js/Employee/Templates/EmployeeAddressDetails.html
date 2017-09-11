@@ -19,13 +19,13 @@
                         <label>
                             City
                         </label>
-                        <input id="City" class="form-control" type="text" ng-model="EmployeeHeader.Address.City" ng-required="true" />
+                        <input id="City" class="form-control" type="text" ng-model="EmployeeHeader.Address.CityName" ng-required="true" />
                     </div>
                     <div class="form-group fg-line">
                         <label>
                             State
                         </label>
-                        <input id="State" class="form-control" type="text" ng-model="EmployeeHeader.Address.State" ng-required="true" />
+                        <input id="State" class="form-control" type="text" ng-model="EmployeeHeader.Address.StateName" ng-required="true" />
                     </div>
                     <div class="form-group fg-line">
                         <label>
@@ -37,7 +37,7 @@
 
                         <label for="Country"> Country</label>
 
-                        <select name="Country" ng-options="s.Id as s.CountryName for s in Countries" ng-model="EmployeeHeader.Address.CountryId" class="form-control">
+                        <select name="Country" ng-options="s.Id as s.CountryName for s in Countries" ng-model="EmployeeHeader.Address.CountryCode" class="form-control">
                             <option value="">--Select Country--</option>
                         </select>
 

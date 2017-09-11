@@ -20,19 +20,10 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     EmployeeHeader _employeeHeader = new EmployeeHeader();
-                    if (employeeHeader.Id > 0)
-                    {
-                        _employeeHeader.ModifiedBy = USER_OBJECT.UserName;
-                        _employeeHeader.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
-                    }
-                    else
-                    {
-                        _employeeHeader.CreatedBy = USER_OBJECT.UserName;
-                        _employeeHeader.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
-                    }
+                   
                     _employeeHeader = PrepareEmployeeHeader(employeeHeader);
 
-                    EmployeeProfileService.SaveEmployeeHeader(employeeHeader);
+                    EmployeeProfileService.SaveEmployeeHeader(_employeeHeader);
                     result = Json(new { sucess = true, message = "Sent successfully" }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
@@ -47,22 +38,33 @@ namespace HR.Areas.Employees.Controllers
         private EmployeeHeader PrepareEmployeeHeader(EmployeeHeader employeeHeader)
         {
             EmployeeHeader _employeeHeader = new EmployeeHeader();
+            if (employeeHeader.Id > 0)
+            {
+                _employeeHeader.ModifiedBy = USER_OBJECT.UserName;
+                _employeeHeader.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+            }
+            else
+            {
+                _employeeHeader.CreatedBy = USER_OBJECT.UserName;
+                _employeeHeader.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+            }
             EmployeePersonalInfo employeePersonalInfo = employeeHeader.EmployeePersonalInfo;
-            _employeeHeader.BranchId = employeeHeader.BranchId;
-            _employeeHeader.EmployeeId = employeeHeader.EmployeeId > 0 ? employeeHeader.EmployeeId : 0;
-            _employeeHeader.FirstName = string.IsNullOrWhiteSpace(employeeHeader.FirstName) ? employeeHeader.FirstName : string.Empty;
-            _employeeHeader.MiddleName = string.IsNullOrWhiteSpace(employeeHeader.MiddleName) ? employeeHeader.MiddleName : string.Empty;
-            _employeeHeader.LastName = string.IsNullOrWhiteSpace(employeeHeader.LastName) ? employeeHeader.LastName : string.Empty;
-            _employeeHeader.Nationality = string.IsNullOrWhiteSpace(employeeHeader.Nationality) ? employeeHeader.Nationality : string.Empty;
-            _employeeHeader.IDNumber = string.IsNullOrWhiteSpace(employeeHeader.IDNumber) ? employeeHeader.IDNumber : string.Empty;
+
+            _employeeHeader.BranchId = 1001;//employeeHeader.BranchId;
+            //_employeeHeader.EmployeeId = employeeHeader.EmployeeId > 0 ? employeeHeader.EmployeeId : 0;
+            _employeeHeader.FirstName = !string.IsNullOrWhiteSpace(employeeHeader.FirstName) ? employeeHeader.FirstName : string.Empty;
+            _employeeHeader.MiddleName = !string.IsNullOrWhiteSpace(employeeHeader.MiddleName) ? employeeHeader.MiddleName : string.Empty;
+            _employeeHeader.LastName = !string.IsNullOrWhiteSpace(employeeHeader.LastName) ? employeeHeader.LastName : string.Empty;
+            _employeeHeader.Nationality = !string.IsNullOrWhiteSpace(employeeHeader.Nationality) ? employeeHeader.Nationality : string.Empty;
+            _employeeHeader.IDNumber = !string.IsNullOrWhiteSpace(employeeHeader.IDNumber) ? employeeHeader.IDNumber : string.Empty;
             _employeeHeader.IDType = employeeHeader.IDType;
-            _employeeHeader.EmployeePersonalInfo = PrepareEmployeePersonalInfo(employeePersonalInfo);
+            _employeeHeader.EmployeePersonalInfo = PrepareEmployeePersonalInfo(employeePersonalInfo, _employeeHeader);
             _employeeHeader.Address = PrepareEmployeeAddress(employeeHeader.Address);
-            _employeeHeader.EmployeeWorkDetail = PrepareEmployeeWorkDetail(employeeHeader.EmployeeWorkDetail);
+            _employeeHeader.EmployeeWorkDetail = PrepareEmployeeWorkDetail(employeeHeader.EmployeeWorkDetail, _employeeHeader);
             return _employeeHeader;
         }
 
-        private EmployeePersonalInfo PrepareEmployeePersonalInfo(EmployeePersonalInfo employeePersonalInfo)
+        private EmployeePersonalInfo PrepareEmployeePersonalInfo(EmployeePersonalInfo employeePersonalInfo, EmployeeHeader employeeHeader)
         {
             EmployeePersonalInfo _employeePersonalInfo = new EmployeePersonalInfo();
             if (employeePersonalInfo.Id > 0)
@@ -75,8 +77,9 @@ namespace HR.Areas.Employees.Controllers
                 _employeePersonalInfo.CreatedBy = USER_OBJECT.UserName;
                 _employeePersonalInfo.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
-            _employeePersonalInfo.BranchId = employeePersonalInfo.BranchId;
-            _employeePersonalInfo.DOB = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.DOB),
+            _employeePersonalInfo.BranchId = 1001;//employeePersonalInfo.BranchId;
+            _employeePersonalInfo.EmployeeId = employeeHeader.Id;
+            _employeePersonalInfo.DOB = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.DOB);
             _employeePersonalInfo.Gender = employeePersonalInfo.Gender;
             _employeePersonalInfo.FatherName = employeePersonalInfo.FatherName;
             _employeePersonalInfo.BirthCountry = employeePersonalInfo.BirthCountry;
@@ -101,15 +104,21 @@ namespace HR.Areas.Employees.Controllers
                 _address.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
             _address.Address1 = address.Address1;
-            _address.AddressType = address.AddressType;
+            _address.Address2 = !string.IsNullOrWhiteSpace(address.Address2) ? address.Address2 : string.Empty;
+            _address.AddressLinkID = !string.IsNullOrWhiteSpace(address.AddressLinkID) ? address.AddressLinkID : string.Empty;
+            _address.SeqNo = 0;
             _address.CityName = address.CityName;
             _address.StateName = address.StateName;
             _address.ZipCode = address.ZipCode;
             _address.MobileNo = address.MobileNo;
-            _address.CountryCode = address.CountryCode;
+            _address.CountryCode = "IN";//address.CountryCode;
+            _address.AddressType = "Employee";
+            _address.Contact = address.MobileNo;
+            _address.Email = "meena.konakondla@gmail.com";
+            _address.IsActive = true;
             return _address;
         }
-        private EmployeeWorkDetail PrepareEmployeeWorkDetail(EmployeeWorkDetail employeeWorkDetail)
+        private EmployeeWorkDetail PrepareEmployeeWorkDetail(EmployeeWorkDetail employeeWorkDetail, EmployeeHeader employeeHeader)
         {
             EmployeeWorkDetail _employeeWorkDetail = new EmployeeWorkDetail();
             if (employeeWorkDetail.Id > 0)
@@ -122,9 +131,10 @@ namespace HR.Areas.Employees.Controllers
                 _employeeWorkDetail.CreatedBy = USER_OBJECT.UserName;
                 _employeeWorkDetail.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
-            _employeeWorkDetail.BranchId = employeeWorkDetail.BranchId;
-            _employeeWorkDetail.JoiningDate = employeeWorkDetail.JoiningDate;
-            _employeeWorkDetail.ConfirmationDate = employeeWorkDetail.ConfirmationDate;
+            _employeeWorkDetail.BranchId = 1001;//employeeWorkDetail.BranchId;
+            _employeeWorkDetail.EmployeeId = employeeHeader.Id;
+            _employeeWorkDetail.JoiningDate = employeeWorkDetail.JoiningDate.HasValue ? DateTimeConverter.SingaporeDateTimeConversion(employeeWorkDetail.JoiningDate.Value) : DateTime.Now;
+            _employeeWorkDetail.ConfirmationDate = employeeWorkDetail.ConfirmationDate.HasValue ? DateTimeConverter.SingaporeDateTimeConversion(employeeWorkDetail.ConfirmationDate.Value) : DateTime.Now;
             _employeeWorkDetail.ProbationPeriod = employeeWorkDetail.ProbationPeriod;
             _employeeWorkDetail.NoticePeriod = employeeWorkDetail.NoticePeriod;
             _employeeWorkDetail.Designation = employeeWorkDetail.Designation;

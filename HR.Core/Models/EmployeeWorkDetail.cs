@@ -15,7 +15,7 @@ namespace HR.Core.Models
         public int BranchId { get; set; }
         public int Designation { get; set; }
         public int Department { get; set; }
-        public virtual EmployeePersonalInfo Employee { get; set; }
+        //public virtual EmployeeHeader Employee { get; set; }
         public virtual Branch Branch  { get; set; }
         public DateTime? JoiningDate { get; set; }
         public DateTime? ConfirmationDate { get; set; }

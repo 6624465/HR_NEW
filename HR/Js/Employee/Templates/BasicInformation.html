@@ -123,7 +123,7 @@
                         <label>
                             Mobile Number
                         </label>
-                        <input class="form-control " autocomplete="off" type="text" ng-model="EmployeeHeader.Address.Mobile">
+                        <input class="form-control " autocomplete="off" type="text" ng-model="EmployeeHeader.Address.MobileNo">
                     </div>
                 </div>
             </div>
@@ -233,11 +233,27 @@
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
                         <label>
-                            Status
+                            MarriageDate
                         </label>
-                        <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeStatusList" ng-model="Employee.Status" class="form-control">
+                        <!--<select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeStatusList" ng-model="Employee.Status" class="form-control">
                             <option value="">--Select EmployeeStatus--</option>
-                        </select>
+                        </select>-->
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="MarriageDate" role="button" data-toggle="dropdown">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-sm datepicker"
+                                           ng-model="EmployeeHeader.EmployeePersonalInfo.MarriageDate"
+                                           name="EmployeeHeader.EmployeePersonalInfo.MarriageDate"
+                                           ng-required="true"
+                                           date-time-input="{{dateFormat}}">
+                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="EmployeeHeader.EmployeePersonalInfo.MarriageDate"
+                                                data-datetimepicker-config="{ dropdownSelector: '#MarriageDate', startView:'day', minView:'day' }" />
+                            </ul>
+                        </div>
                     </div>
 
                 </div>

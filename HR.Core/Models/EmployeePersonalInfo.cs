@@ -12,6 +12,7 @@ namespace HR.Core.Models
     {
         public int Id { get; set; }
         public int EmployeeId { get; set; }
+        //public virtual EmployeeHeader EmployeeHeader { get; set; }
         //public string EmployeeName { get; set; }
         public int BranchId { get; set; }
         public virtual Branch Branch { get; set; }
