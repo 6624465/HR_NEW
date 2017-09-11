@@ -82,21 +82,9 @@
         }, function (err) {
     })
         /*EmployeeDetailsList*/
-        $scope.GetEmployeeDetails = function () {
-            debugger;
-            EmployeeProfileService.GetEmployeeDetails().then(function (response) {
-                debugger;
-                $scope.employeeDetailsList = response.data.employies[0];
-                var s = $scope.employeeDetailsList.FirstName;
-                $scope.FirstName = s;
-                var Date = $scope.employeeDetailsList.EmployeeWorkDetail.JoiningDate;
-                $scope.Date = moment(Date).format('MM/DD/YYYY');
-                var email = $scope.employeeDetailsList.Address.Email;
-                $scope.Email = email;
-            });
-        }
+       
         /*EmployeeDetailsList*/
-        $scope.GetEmployeeDetails();
+     
         $scope.LookUpData();
         $scope.BranchLocations();
         $scope.init();

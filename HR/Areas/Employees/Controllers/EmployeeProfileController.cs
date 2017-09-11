@@ -20,7 +20,7 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     List<EmployeeHeader> employees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
-                    jsonResult = Json(new { sucess = true, employies = employees }, JsonRequestBehavior.AllowGet);
+                    jsonResult = Json(new { sucess = true, employees = employees }, JsonRequestBehavior.AllowGet);
                 //return Json(employees, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
