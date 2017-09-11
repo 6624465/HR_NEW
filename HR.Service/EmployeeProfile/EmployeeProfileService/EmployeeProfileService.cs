@@ -14,28 +14,28 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
     {
         #region Properties
         [Inject]
-        public IRepository<EmployeePersonalInfo> EmployeePersonalInfoRepository { get; set; }
+        public IRepository<EmployeeHeader> EmployeeRepository { get; set; }
         #endregion
 
-        public IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeePersonalInfo
+        public IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeHeader
         {
-            var query = EmployeePersonalInfoRepository.FindAll().OfType<T>();
+            var query = EmployeeRepository.FindAll().OfType<T>();
             if (predicate != null)
                 query = query.Where(predicate);
             return query;
 
         }
 
-        public void SaveEmployeeProfile(EmployeePersonalInfo EmployeePersonalInfo)
+        public void SaveEmployeeProfile(EmployeeHeader employeeHeader)
         {
-            if (EmployeePersonalInfo.Id == 0)
-                EmployeePersonalInfoRepository.Insert(EmployeePersonalInfo);
+            if (employeeHeader.Id == 0)
+                EmployeeRepository.Insert(employeeHeader);
             else
-                EmployeePersonalInfoRepository.Update(EmployeePersonalInfo);
+                EmployeeRepository.Update(employeeHeader);
         }
-        public EmployeePersonalInfo GetEmployeeProfileDetailsById(int id)
+        public EmployeeHeader GetEmployeeProfileDetailsById(int id)
         {
-            return EmployeePersonalInfoRepository.GetById(id);
+            return EmployeeRepository.GetById(id);
         }
     }
 }

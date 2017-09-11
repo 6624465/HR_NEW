@@ -12,9 +12,9 @@ namespace HR.Service.EmployeeProfile.IEmployeeProfile
     {
         #region EmployeeProfile
 
-        IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T :EmployeePersonalInfo;
-        void SaveEmployeeProfile(EmployeePersonalInfo EmployeePersonalInfo);
-        EmployeePersonalInfo GetEmployeeProfileDetailsById(int Id);
+        IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeHeader;
+        void SaveEmployeeProfile(EmployeeHeader EmployeePersonalInfo);
+        EmployeeHeader GetEmployeeProfileDetailsById(int Id);
         #endregion
     }
 }
