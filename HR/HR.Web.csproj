@@ -143,6 +143,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Employees\Views\EmployeeProfile\Employee Directory.html" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeProfile.cshtml" />
     <Content Include="Areas\Employees\Views\web.config" />
     <Content Include="bower_components\bootstrap-colorpicker\.bower.json" />
