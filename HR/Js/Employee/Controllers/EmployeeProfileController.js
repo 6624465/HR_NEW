@@ -73,6 +73,16 @@
         }, function (err) {
     })
 
+        $scope.GetEmployeeDetails=function()
+        {
+            debugger;
+            EmployeeProfileService.GetEmployeeDetails().then(function (response) {
+                debugger;
+                $scope.employeeDetails = response.data.employies;
+            });
+        }
+        debugger;
+        $scope.GetEmployeeDetails();
         $scope.LookUpData();
         $scope.BranchLocations();
         $scope.init();

@@ -1,0 +1,29 @@
+﻿<div class="row" ng-controller="EmployeeProfileController">
+    <div class="table-responsive">
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                   <th>
+                       Employee No
+                   </th>
+                    <th>Employee Name</th>
+                    <th>Join Date</th>
+                    <th>Status</th>
+                    <th>Phone No</th>
+                    <th>Email</th>
+                    <th>Extension Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="employeelist in employeedetails">
+                    <td>{{employeelist.Employeeno}}</td>
+                    <td>{{employeelist.FirstName}}</td>
+                    <td>{{employeelist.JoiningDate}}</td>
+                    <td>{{employeelist.Employeeno}}</td>
+                    <td>{{employeelist.Email}}</td>
+                    <td>{{employeelist.Employeeno}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
