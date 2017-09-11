@@ -14,6 +14,25 @@ namespace HR.Areas.Employees.Controllers
         #region Public Accessors
 
         #region Get
+        public JsonResult GetEmployeeDetails(string employeeName)
+        {
+            JsonResult jsonResult = new JsonResult();
+            if (!string.IsNullOrWhiteSpace(employeeName))
+            {
+                try
+                {
+                    List<EmployeeHeader> employies = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.FirstName.ToLower().Contains(employeeName.ToLower())).ToList();
+                    jsonResult = Json(new { sucess = true, employies = employies }, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+
+                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                        return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+                }
+            }
+            return jsonResult;
+        }
         #endregion
 
         #region Save
