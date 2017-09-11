@@ -9,32 +9,32 @@
                     BranchId: UtilityFunc.BranchId(),
                 },
                 EmployeeWorkDetail: {
-                        BranchId: UtilityFunc.BranchId()
+                    BranchId: UtilityFunc.BranchId()
                 },
                 EmployeeDocument: {
-                        BranchId: UtilityFunc.BranchId()
-            }
-        };
-        $scope.dateFormat = UtilityFunc.DateFormat();
-    }
+                    BranchId: UtilityFunc.BranchId()
+                }
+            };
+            $scope.dateFormat = UtilityFunc.DateFormat();
+        }
         $scope.detailsUrl = baseUrl + 'Js/Employee/Templates/BasicInformation.html';
         $scope.LookUpData = function () {
             LookUp.GetActiveLookUpData("EmployeeType").then(function (response) {
                 $scope.EmployeeTypeList = response.data.lookUpLists;
-        })
+            })
             LookUp.GetActiveLookUpData("EmployeeStatus").then(function (response) {
                 $scope.EmployeeStatusList = response.data.lookUpLists;
-        })
+            })
             LookUp.GetActiveLookUpData("EmployeeDesignation").then(function (response) {
                 $scope.EmployeeDesignation = response.data.lookUpLists;
-        })
+            })
             LookUp.GetActiveLookUpData("EmployeeDepartment").then(function (response) {
                 $scope.EmployeeDepartment = response.data.lookUpLists;
-        })
+            })
             LookUp.GetActiveLookUpData("PaymentType").then(function (response) {
                 $scope.PaymentType = response.data.lookUpLists;
-        })
-    }
+            })
+        }
 
         $scope.BranchLocations = function () {
             HolidayListService.GetBranchLocations().then(function (response) {
@@ -46,45 +46,42 @@
             }, function (err) {
                 growlService.growl(err, 'danger');
 
-        })
-    };
+            })
+        };
 
         $scope.IsfrmEmployeeProfile = false;
         $scope.$watch('EmployeeProfile.$valid', function (Valid) {
             $scope.IsfrmEmployeeProfile = Valid;
-    });
+        });
         $scope.processForm = function (EmployeeHeader) {
             debugger
             if ($scope.IsfrmEmployeeProfile) {
                 EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
                     if (response.data && response.data.success == true) {
                         growlService.growl(response.data.message, 'success');
-                }
-            })
+                    }
+                })
             }
             else {
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
+            }
         }
-    }
         LookUp.GetCountries().then(function (res) {
             $scope.Countries = res.data.countries;
             $scope.EmployeeHeader.Address.CountryId =
-                $filter('filter') ($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
+                $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
         }, function (err) {
-    })
-
-        $scope.GetEmployeeDetails=function()
-        {
-            debugger;
+        })
+        /*EmployeeDetailsList*/
+        $scope.GetEmployeeDetails = function () {
             EmployeeProfileService.GetEmployeeDetails().then(function (response) {
-                debugger;
-                $scope.employeeDetails = response.data.employies;
+                $scope.employeeDetailsList = response.data.employies;
             });
         }
-        debugger;
+        /*EmployeeDetailsList*/
         $scope.GetEmployeeDetails();
         $scope.LookUpData();
         $scope.BranchLocations();
         $scope.init();
-}])
+    }])
 
