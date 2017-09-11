@@ -19,8 +19,8 @@ namespace HR.Areas.Employees.Controllers
             JsonResult jsonResult = new JsonResult();
                 try
                 {
-                    List<EmployeeHeader> employies = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
-                    jsonResult = Json(new { sucess = true, employies = employies }, JsonRequestBehavior.AllowGet);
+                    List<EmployeeHeader> employees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
+                    jsonResult = Json(new { sucess = true, employies = employees }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {
@@ -75,7 +75,7 @@ namespace HR.Areas.Employees.Controllers
             }
             EmployeePersonalInfo employeePersonalInfo = employeeHeader.EmployeePersonalInfo;
 
-            _employeeHeader.BranchId = 1001;//employeeHeader.BranchId;
+            _employeeHeader.BranchId = employeeHeader.BranchId;
             //_employeeHeader.EmployeeId = employeeHeader.EmployeeId > 0 ? employeeHeader.EmployeeId : 0;
             _employeeHeader.FirstName = !string.IsNullOrWhiteSpace(employeeHeader.FirstName) ? employeeHeader.FirstName : string.Empty;
             _employeeHeader.MiddleName = !string.IsNullOrWhiteSpace(employeeHeader.MiddleName) ? employeeHeader.MiddleName : string.Empty;
@@ -102,7 +102,7 @@ namespace HR.Areas.Employees.Controllers
                 _employeePersonalInfo.CreatedBy = USER_OBJECT.UserName;
                 _employeePersonalInfo.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
-            _employeePersonalInfo.BranchId = 1001;//employeePersonalInfo.BranchId;
+            _employeePersonalInfo.BranchId = employeePersonalInfo.BranchId;
             _employeePersonalInfo.EmployeeId = employeeHeader.Id;
             _employeePersonalInfo.DOB = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.DOB);
             _employeePersonalInfo.Gender = employeePersonalInfo.Gender;
@@ -156,7 +156,7 @@ namespace HR.Areas.Employees.Controllers
                 _employeeWorkDetail.CreatedBy = USER_OBJECT.UserName;
                 _employeeWorkDetail.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
-            _employeeWorkDetail.BranchId = 1001;//employeeWorkDetail.BranchId;
+            _employeeWorkDetail.BranchId = employeeWorkDetail.BranchId;
             _employeeWorkDetail.EmployeeId = employeeHeader.Id;
             _employeeWorkDetail.JoiningDate = employeeWorkDetail.JoiningDate.HasValue ? DateTimeConverter.SingaporeDateTimeConversion(employeeWorkDetail.JoiningDate.Value) : DateTime.Now;
             _employeeWorkDetail.ConfirmationDate = employeeWorkDetail.ConfirmationDate.HasValue ? DateTimeConverter.SingaporeDateTimeConversion(employeeWorkDetail.ConfirmationDate.Value) : DateTime.Now;
@@ -174,6 +174,11 @@ namespace HR.Areas.Employees.Controllers
         {
             return View();
         }
+        public ActionResult EmployeeDirectory()
+        {
+            return View();
+        }
+
         #endregion
     }
 }
