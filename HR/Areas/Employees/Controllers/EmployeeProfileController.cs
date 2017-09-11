@@ -17,17 +17,18 @@ namespace HR.Areas.Employees.Controllers
         public JsonResult GetEmployeeDetails()
         {
             JsonResult jsonResult = new JsonResult();
-            try
-            {
-                List<EmployeeHeader> employees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
-                jsonResult = Json(new { sucess = true, employies = employees }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception ex)
-            {
+                try
+                {
+                    List<EmployeeHeader> employees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
+                    jsonResult = Json(new { sucess = true, employies = employees }, JsonRequestBehavior.AllowGet);
+                //return Json(employees, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
 
-                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
-                    return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
-            }
+                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                        return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+                }
             return jsonResult;
         }
         #endregion
@@ -111,7 +112,7 @@ namespace HR.Areas.Employees.Controllers
             _employeePersonalInfo.MaritalStatus = employeePersonalInfo.MaritalStatus;
             _employeePersonalInfo.SpouseName = employeePersonalInfo.SpouseName;
             if (employeePersonalInfo.MarriageDate.HasValue)
-                _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate.Value);
+            _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate.Value);
             else
             _employeePersonalInfo.MarriageDate = null;
             _employeePersonalInfo.ResidentialStatus = employeePersonalInfo.ResidentialStatus;

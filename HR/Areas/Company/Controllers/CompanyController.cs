@@ -25,6 +25,7 @@ namespace HR.Areas.Company.Controllers
             try
             {
                 List<HR.Core.Models.Company> Companies = CompanyService.GetCompanyDetails<HR.Core.Models.Company>().ToList();
+
                 List<CompanyViewModel> companyViewModelList = new List<CompanyViewModel>();
                 foreach (var company in Companies)
                 {

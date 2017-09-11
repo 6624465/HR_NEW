@@ -15,16 +15,16 @@ namespace HR.Core.Models
         //public virtual EmployeeHeader EmployeeHeader { get; set; }
         //public string EmployeeName { get; set; }
         public int BranchId { get; set; }
-        public virtual Branch Branch { get; set; }
+        //public virtual Branch Branch { get; set; }
         public DateTime DOB { get; set; }
-        public int Gender { get; set; }
+        public Int16 Gender { get; set; }
         public int BirthCountry { get; set; }
         public int CitizenshipCountry { get; set; }
         public string FatherName { get; set; }
-        public int MaritalStatus { get; set; }
+        public Int16 MaritalStatus { get; set; }
         public string SpouseName { get; set; }
         public DateTime? MarriageDate { get; set; }
-        public int ResidentialStatus { get; set; }
+        public Int16 ResidentialStatus { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }

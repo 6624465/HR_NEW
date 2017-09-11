@@ -16,11 +16,11 @@ namespace HR.Core.Models
         public int Designation { get; set; }
         public int Department { get; set; }
         //public virtual EmployeeHeader Employee { get; set; }
-        public virtual Branch Branch  { get; set; }
+        //public virtual Branch Branch  { get; set; }
         public DateTime? JoiningDate { get; set; }
         public DateTime? ConfirmationDate { get; set; }
-        public int ProbationPeriod { get; set; }
-        public int NoticePeriod { get; set; }
+        public System.Int16 ProbationPeriod { get; set; }
+        public System.Int16 NoticePeriod { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
