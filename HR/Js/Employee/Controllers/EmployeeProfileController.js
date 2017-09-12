@@ -1,10 +1,10 @@
 ﻿angular.module('ngHR').controller('EmployeeProfileController', ['$scope', '$http', 'growl', '$filter',
-    'UtilityFunc', 'Employee', 'LookUp', 'HolidayListService', 'growlService', 'EmployeeProfileService','$timeout',
-    'growlService', function ($scope, $http, growl, $filter, UtilityFunc,Employee, LookUp, HolidayListService, growlService, EmployeeProfileService,$timeout) {
+    'UtilityFunc', 'Employee', 'LookUp', 'HolidayListService', 'growlService', 'EmployeeProfileService', '$timeout', '$stateParams',
+    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, Employee, LookUp, HolidayListService,
+        growlService, EmployeeProfileService, $timeout, $stateParams) {
 
         $scope.init = function () {
-            debugger
-            $scope.employeeDetails = {};
+
             $scope.AddressNextButton = false;
             $scope.BasicNextButton = false;
             $scope.PositionNextButton = false;
@@ -46,6 +46,13 @@
             LookUp.GetActiveLookUpData("PaymentType").then(function (response) {
                 $scope.PaymentType = response.data.lookUpLists;
             })
+
+            LookUp.GetCountries().then(function (res) {
+                $scope.Countries = res.data.countries;
+                $scope.EmployeeHeader.Address.CountryId =
+                    $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
+            }, function (err) {
+            })
         }
 
         $scope.BranchLocations = function () {
@@ -76,11 +83,13 @@
                 $scope.ValidateForm();
             if ($scope.IsfrmEmployeeProfile) {
                 if ($scope.IsValid) {
-                    if (EmployeeHeader.Address.length > 0) {
-                        $scope.AddressNextButton = true;
+                    if (EmployeeHeader.Address.Address1 == null) {
+                        growlService.growl("Please Enter Employee Address Details", 'danger')
+                        return false;
                     }
-                    if (EmployeeHeader.EmployeeWorkDetail.Designation != null || EmployeeHeader.EmployeeWorkDetail.Department != null) {
-                        $scope.PositionNextButton = true;
+                    if (EmployeeHeader.EmployeeWorkDetail.Designation == null || EmployeeHeader.EmployeeWorkDetail.Department == null) {
+                        growlService.growl("Please enter employee position details", 'danger')
+                        return false;
                     }
                     if (EmployeeHeader.FirstName != null) {
                         $scope.BasicNextButton = true
@@ -122,42 +131,15 @@
                 $scope.IsValid = true;
         }
 
-        LookUp.GetCountries().then(function (res) {
-            $scope.Countries = res.data.countries;
-            $scope.EmployeeHeader.Address.CountryId =
-                $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
-        }, function (err) {
-        })
-
-        $scope.AddNewEmployeeDetails = function () {
-            location.href = "/Home/index/#/EmployeeHeader";
-        }
-
-        $scope.onEditEmployeeDesignation = function (employeeDetails) {
-            location.href = "/Home/index/#/EmployeeHeader";
-            
-            EmployeeProfileService.GetEmployeeById(employeeDetails.EmployeeId).then(function (response) {
+        $scope.employeeId = $stateParams.id;
+        if ($scope.employeeId != null && $scope.employeeId != "") {
+            EmployeeProfileService.GetEmployeeById($scope.employeeId).then(function (response) {
                 if (response && response.data) {
-                    //$scope.EmployeeHeader = response.data;
-                    //Employee.set(response.data);
-                    
-                    //$timeout(function () {
-                        $scope.EmployeeHeaders = response.data;
-                    //},1500);
+                    $scope.EmployeeHeader = response.data;
                 }
             })
-
-            
-        }
-
-        $scope.GetEmployeeDetails = function () {
-            EmployeeProfileService.GetEmployeeDetails().then(function (response) {
-                if (response && response.data)
-                    $scope.EmployeeDetailsList = response.data.employees;
-            });
         }
         /*EmployeeDetailsList*/
-        $scope.GetEmployeeDetails();
         $scope.LookUpData();
         $scope.BranchLocations();
         $scope.init();

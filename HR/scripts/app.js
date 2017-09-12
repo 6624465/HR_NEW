@@ -214,7 +214,7 @@ app.config(
            })
 
            .state('EmployeeHeader', {
-               url: '/EmployeeHeader',
+               url: '/EmployeeHeader/:id',
                templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeProfile',
                resolve: {
                    loadPlugin: function ($ocLazyLoad) {

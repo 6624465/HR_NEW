@@ -1,8 +1,8 @@
-﻿<div class="row" ng-controller="EmployeeProfileController" ng-init="GetEmployeeDetails()">
+﻿<div class="row" ng-controller="EmployeeDirectoryController" ng-init="GetEmployeeDetails()">
     <div class="table-responsive">
         <div class="pull-right">
             <div>
-                <button type="button" class="btn" ng-click="AddNewEmployeeDetails()">
+                <button type="button" class="btn" ui-sref="EmployeeHeader({id:'new'})">
                     <i class="zmdi zmdi-plus"></i> Add
                 </button>
 
@@ -11,7 +11,7 @@
         <table class="table table-condensed">
             <thead>
                 <tr>
-                        <th>#Action</th>
+                    <th>#Action</th>
                     <th>
                         Employee No
                     </th>
@@ -25,13 +25,13 @@
             <tbody>
                 <tr ng-repeat="employeeDetails in EmployeeDetailsList">
                     <td>
-                        <button type="button" ng-click="onEditEmployeeDesignation(employeeDetails)" class="btn btn-default ng-scope waves-effect" aria-label="button">
+                        <button type="button" ui-sref="EmployeeHeader({id:employeeDetails.EmployeeId})" class="btn btn-default ng-scope waves-effect" aria-label="button">
                             <i class="zmdi zmdi-edit" aria-hidden="true"></i>
                         </button>
                     </td>
                     <td>{{employeeDetails.EmployeeId}}</td>
                     <td>{{employeeDetails.EmployeeName}}</td>
-                    <td>{{employeeDetails.JoiningDate}}</td>
+                    <td>{{formatDate(employeeDetails.JoiningDate)}}</td>
                     <td>{{employeeDetails.MobileNo}}</td>
                     <td>{{employeeDetails.Email}}</td>
                 </tr>
