@@ -1,7 +1,9 @@
-﻿angular.module('ngHR').controller('EmployeeProfileController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'LookUp', 'HolidayListService', 'growlService', 'EmployeeProfileService',
-    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, LookUp, HolidayListService, growlService, EmployeeProfileService) {
+﻿angular.module('ngHR').controller('EmployeeProfileController', ['$scope', '$http', 'growl', '$filter',
+    'UtilityFunc', 'Employee', 'LookUp', 'HolidayListService', 'growlService', 'EmployeeProfileService','$timeout',
+    'growlService', function ($scope, $http, growl, $filter, UtilityFunc,Employee, LookUp, HolidayListService, growlService, EmployeeProfileService,$timeout) {
 
         $scope.init = function () {
+            debugger
             $scope.employeeDetails = {};
             $scope.AddressNextButton = false;
             $scope.BasicNextButton = false;
@@ -13,7 +15,9 @@
                     BranchId: UtilityFunc.BranchId(),
                 },
                 EmployeeWorkDetail: {
-                    BranchId: UtilityFunc.BranchId()
+                    BranchId: UtilityFunc.BranchId(),
+                    Designation: null,
+                    Department: null
                 },
                 EmployeeDocument: {
                     BranchId: UtilityFunc.BranchId()
@@ -21,8 +25,11 @@
 
             };
             $scope.dateFormat = UtilityFunc.DateFormat();
+            $scope.IsfrmEmployeeProfile = false;
         }
+
         $scope.detailsUrl = baseUrl + 'Js/Employee/Templates/BasicInformation.html';
+
         $scope.LookUpData = function () {
             LookUp.GetActiveLookUpData("EmployeeType").then(function (response) {
                 $scope.EmployeeTypeList = response.data.lookUpLists;
@@ -54,19 +61,25 @@
             })
         };
 
-        $scope.IsfrmEmployeeProfile = false;
         $scope.$watch('EmployeeProfile.$valid', function (Valid) {
             $scope.IsfrmEmployeeProfile = Valid;
         });
+
+        $scope.onChangeText = function (value) {
+            if (value == '' || value == null) {
+                $scope.IsValid = false
+            }
+        }
+
         $scope.processForm = function (EmployeeHeader) {
             debugger
+            $scope.ValidateForm();
             if ($scope.IsfrmEmployeeProfile) {
-                $scope.ValidateForm();
                 if ($scope.IsValid) {
                     if (EmployeeHeader.Address.length > 0) {
                         $scope.AddressNextButton = true;
                     }
-                    if (EmployeeHeader.EmployeeWorkDetail.Designation > 0) {
+                    if (EmployeeHeader.EmployeeWorkDetail.Designation != null || EmployeeHeader.EmployeeWorkDetail.Department != null) {
                         $scope.PositionNextButton = true;
                     }
                     if (EmployeeHeader.FirstName != null) {
@@ -79,53 +92,73 @@
                     })
                 }
             }
-            else {
-                var mandtoryFields = angular.element('.valid');
-                angular.forEach(mandtoryFields, function (val) {
-                    if (val.value == "")
-                        val.style.borderBottom = "1px solid red";
-                    else
-                        val.style.borderBottom = '';
-                })
-                growlService.growl('Please Enter All Mandtory Fields', 'danger');
-            }
+            //else {
+            //    var mandtoryFields = angular.element('.valid');
+            //    angular.forEach(mandtoryFields, function (val) {
+            //        if (val.value == "")
+            //            val.style.borderBottom = "1px solid red";
+            //        else
+            //            val.style.borderBottom = '';
+            //    })
+            //    growlService.growl('Please Enter All Mandtory Fields', 'danger');
+            //}
         }
 
         $scope.ValidateForm = function () {
             $scope.IsValid = false;
+            var errorCount = 0;
             var mandtoryFields = angular.element('.valid');
             angular.forEach(mandtoryFields, function (val) {
-                if (val.value == "")
+                if (val.value == "") {
                     val.style.borderBottom = "1px solid red";
-                else {
-                    val.style.borderBottom = '';
-                    $scope.IsValid = true;
+                    errorCount++;
                 }
+                else 
+                    val.style.borderBottom = '';
             })
-            growlService.growl('Please Enter All Mandtory Fields', 'danger');
+            if (errorCount >= 1)
+                growlService.growl('Please Enter All Mandtory Fields', 'danger');
+            else
+                $scope.IsValid = true;
         }
+
         LookUp.GetCountries().then(function (res) {
             $scope.Countries = res.data.countries;
             $scope.EmployeeHeader.Address.CountryId =
                 $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
         }, function (err) {
         })
-        /*EmployeeDetailsList*/
+
+        $scope.AddNewEmployeeDetails = function () {
+            location.href = "/Home/index/#/EmployeeHeader";
+        }
+
+        $scope.onEditEmployeeDesignation = function (employeeDetails) {
+            location.href = "/Home/index/#/EmployeeHeader";
+            
+            EmployeeProfileService.GetEmployeeById(employeeDetails.EmployeeId).then(function (response) {
+                if (response && response.data) {
+                    //$scope.EmployeeHeader = response.data;
+                    //Employee.set(response.data);
+                    
+                    //$timeout(function () {
+                        $scope.EmployeeHeaders = response.data;
+                    //},1500);
+                }
+            })
+
+            
+        }
+
         $scope.GetEmployeeDetails = function () {
-            debugger;
             EmployeeProfileService.GetEmployeeDetails().then(function (response) {
-                debugger;
-                $scope.employeeDetailsList = response.data.employies[0];
-                var s = $scope.employeeDetailsList.FirstName;
-                $scope.FirstName = s;
-                var Date = $scope.employeeDetailsList.EmployeeWorkDetail.JoiningDate;
-                $scope.Date = moment(Date).format('MM/DD/YYYY');
-                var email = $scope.employeeDetailsList.Address.Email;
-                $scope.Email = email;
+                if (response && response.data)
+                    $scope.EmployeeDetailsList = response.data.employees;
             });
         }
         /*EmployeeDetailsList*/
-        $scope.GetEmployeeDetails();
+       
+        /*EmployeeDetailsList*/
         $scope.LookUpData();
         $scope.BranchLocations();
         $scope.init();

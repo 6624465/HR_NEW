@@ -17,21 +17,48 @@ namespace HR.Areas.Employees.Controllers
         public JsonResult GetEmployeeDetails()
         {
             JsonResult jsonResult = new JsonResult();
-                try
-                {
-                    List<EmployeeHeader> employees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
-                    jsonResult = Json(new { sucess = true, employies = employees }, JsonRequestBehavior.AllowGet);
-                //return Json(employees, JsonRequestBehavior.AllowGet);
-                }
-                catch (Exception ex)
-                {
+            try
+            {
+                var employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
+                                 select new
+                                 {
+                                     EmployeeName = employee.FirstName + employee.MiddleName + employee.LastName,
+                                     JoiningDate = employee.EmployeeWorkDetail.JoiningDate,
+                                     MobileNo = employee.Address.MobileNo,
+                                     Email = employee.Address.Email,
+                                     EmployeeId = employee.Id
+                                 }).ToList();
 
-                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
-                        return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
-                }
+                jsonResult = Json(new { sucess = true, employees = employees }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+
+                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                    return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+            }
             return jsonResult;
         }
         #endregion
+
+        public JsonResult GetEmployeeById(int employeeId) {
+            JsonResult result = null;
+            if (employeeId > 0)
+            {
+                try
+                {
+                  EmployeeHeader employeeHeader =  EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
+                    result = Json(employeeHeader, JsonRequestBehavior.AllowGet);
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                        return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+                }
+            }
+
+            return result;
+        }
 
         #region Save
         public JsonResult SaveEmlployee(EmployeeHeader employeeHeader)
@@ -112,9 +139,9 @@ namespace HR.Areas.Employees.Controllers
             _employeePersonalInfo.MaritalStatus = employeePersonalInfo.MaritalStatus;
             _employeePersonalInfo.SpouseName = employeePersonalInfo.SpouseName;
             if (employeePersonalInfo.MarriageDate.HasValue)
-            _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate.Value);
+                _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate.Value);
             else
-            _employeePersonalInfo.MarriageDate = null;
+                _employeePersonalInfo.MarriageDate = null;
             _employeePersonalInfo.ResidentialStatus = employeePersonalInfo.ResidentialStatus;
 
             return _employeePersonalInfo;

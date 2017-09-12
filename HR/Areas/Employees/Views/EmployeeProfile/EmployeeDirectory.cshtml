@@ -1,28 +1,39 @@
-﻿<div class="row" ng-controller="EmployeeProfileController">
+﻿<div class="row" ng-controller="EmployeeProfileController" ng-init="GetEmployeeDetails()">
     <div class="table-responsive">
+        <div class="pull-right">
+            <div>
+                <button type="button" class="btn" ng-click="AddNewEmployeeDetails()">
+                    <i class="zmdi zmdi-plus"></i> Add
+                </button>
+
+            </div>
+        </div>
         <table class="table table-condensed">
             <thead>
                 <tr>
+                    <th>#Action</th>
                     <th>
                         Employee No
                     </th>
                     <th>Employee Name</th>
                     <th>Join Date</th>
-                    <th>Status</th>
                     <th>Phone No</th>
                     <th>Email</th>
-                    <th>Extension Number</th>
+
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                        <td>{{employeeDetailsList.EmployeePersonalInfoId}}</td>
-                        <td>{{employeeDetailsList.FirstName}}</td>
-                        <td>{{Date}}</td>
-                        <td>{{Status}}</td>
-                        <td>{{num}}</td>
-                        <td>{{Email}}</td>
-                        <td>{{extnum}}</td>
+                <tr ng-repeat="employeeDetails in EmployeeDetailsList">
+                    <td>
+                        <button type="button" ng-click="onEditEmployeeDesignation(employeeDetails)" class="btn btn-default ng-scope waves-effect" aria-label="button">
+                            <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                    <td>{{employeeDetails.EmployeeId}}</td>
+                    <td>{{employeeDetails.EmployeeName}}</td>
+                    <td>{{employeeDetails.JoiningDate}}</td>
+                    <td>{{employeeDetails.MobileNo}}</td>
+                    <td>{{employeeDetails.Email}}</td>
                 </tr>
             </tbody>
         </table>

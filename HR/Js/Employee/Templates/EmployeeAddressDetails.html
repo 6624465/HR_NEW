@@ -7,37 +7,48 @@
                         <label>
                             Address
                         </label>
-                        <input id="Address" class="form-control" type="text" ng-model="EmployeeHeader.Address.Address1" ng-required="true" />
+                        <input id="Address" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.Address1" 
+                               ng-required="true" ng-change="onChageText(EmployeeHeader.Address.Address1)" />
                     </div>
                     <div class="form-group fg-line">
                         <label>
                             Address2
                         </label>
-                        <input id="Address2" class="form-control" type="text" ng-model="EmployeeHeader.Address.Address2" ng-required="true" />
+                        <input id="Address2" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.Address2"
+                                ng-required="true" ng-change="onChageText(EmployeeHeader.Address.Address2)" />
                     </div>
                     <div class="form-group fg-line">
                         <label>
                             City
                         </label>
-                        <input id="City" class="form-control" type="text" ng-model="EmployeeHeader.Address.CityName" ng-required="true" />
+                        <input id="City" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.CityName" 
+                               ng-required="true" ng-change="onChageText(EmployeeHeader.Address.CityName)" />
                     </div>
                     <div class="form-group fg-line">
                         <label>
                             State
                         </label>
-                        <input id="State" class="form-control" type="text" ng-model="EmployeeHeader.Address.StateName" ng-required="true" />
+                        <input id="State" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.StateName"
+                                ng-required="true"
+                               ng-change="onChageText(EmployeeHeader.Address.StateName)" />
                     </div>
                     <div class="form-group fg-line">
                         <label>
                             Postal Code
                         </label>
-                        <input id="PostalCode" class="form-control" type="text" ng-model="EmployeeHeader.Address.ZipCode" ng-required="true" />
+                        <input id="PostalCode" class="form-control valid" type="text"
+                                ng-model="EmployeeHeader.Address.ZipCode" 
+                               ng-required="true" ng-change="onChageText(EmployeeHeader.Address.ZipCode)" />
                     </div>
                     <div class="form-group fg-line">
 
                         <label for="Country"> Country</label>
 
-                        <select name="Country" ng-options="s.Id as s.CountryName for s in Countries" ng-model="EmployeeHeader.Address.CountryCode" class="form-control">
+                        <select name="Country" 
+                                ng-options="s.Id as s.CountryName for s in Countries" 
+                                ng-model="EmployeeHeader.Address.CountryCode" 
+                                class="form-control valid"
+                                ng-change="onChageText(EmployeeHeader.Address.CountryCode)">
                             <option value="">--Select Country--</option>
                         </select>
 
@@ -49,11 +60,12 @@
 </div>
 <div class="row">
     <div class="col-xs-12 text-center">
-        <a ui-sref="EmployeeHeader.EmployeeBasicInformation" class="btn  btn-info">
+        <button class="btn">Valid</button>
+        <a ui-sref="EmployeeHeader.EmployeeBasicInformation" class="btn  btn-info" ng-if="IsValid == true">
             Previous Section <span class="glyphicon glyphicon-circle-arrow-left"></span>
         </a>
 
-        <a ui-sref="EmployeeHeader.EmployeePosition" class="btn  btn-info">
+        <a ui-sref="EmployeeHeader.EmployeePosition" class="btn  btn-info" ng-if="IsValid == true">
             Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
         </a>
     </div>

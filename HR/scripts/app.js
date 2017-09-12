@@ -379,6 +379,23 @@ app.factory('UtilityFunc', ['$filter', '$q', function ($filter, $q) {
     obj.DateFormat = function () {
         return 'DD/MM/YYYY';
     };
+
     return obj;
 }])
+
+app.factory('Employee', function () {
+    var employee = {};
+    function set(data) {
+        employee = data;
+    }
+
+    function get() {
+        return employee;
+    }
+
+    return {
+        set: set,
+        get: get
+    }
+})
 
