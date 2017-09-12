@@ -6780,6 +6780,7 @@
     <Content Include="Js\Company\Services\CompanyService.js" />
     <Content Include="Js\Company\Templates\Company\branchdetails.html" />
     <Content Include="Js\Company\Templates\Company\companydetails.html" />
+    <Content Include="Js\Employee\Controllers\EmployeeDirectoryController.js" />
     <Content Include="Js\Employee\Controllers\EmployeeProfileController.js" />
     <Content Include="Js\Employee\Services\EmployeeProfileService.js" />
     <Content Include="Js\Employee\Templates\BasicInformation.html" />

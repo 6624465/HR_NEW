@@ -73,7 +73,7 @@
 
         $scope.processForm = function (EmployeeHeader) {
             debugger
-            $scope.ValidateForm();
+                $scope.ValidateForm();
             if ($scope.IsfrmEmployeeProfile) {
                 if ($scope.IsValid) {
                     if (EmployeeHeader.Address.length > 0) {
@@ -102,7 +102,7 @@
             //    })
             //    growlService.growl('Please Enter All Mandtory Fields', 'danger');
             //}
-        }
+            }
 
         $scope.ValidateForm = function () {
             $scope.IsValid = false;
@@ -117,7 +117,7 @@
                     val.style.borderBottom = '';
             })
             if (errorCount >= 1)
-                growlService.growl('Please Enter All Mandtory Fields', 'danger');
+            growlService.growl('Please Enter All Mandtory Fields', 'danger');
             else
                 $scope.IsValid = true;
         }
@@ -157,8 +157,7 @@
             });
         }
         /*EmployeeDetailsList*/
-       
-        /*EmployeeDetailsList*/
+        $scope.GetEmployeeDetails();
         $scope.LookUpData();
         $scope.BranchLocations();
         $scope.init();
