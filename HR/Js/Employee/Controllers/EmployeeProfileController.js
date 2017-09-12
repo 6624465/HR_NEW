@@ -133,9 +133,14 @@
 
         $scope.employeeId = $stateParams.id;
         if ($scope.employeeId != null && $scope.employeeId != "") {
+            debugger;
             EmployeeProfileService.GetEmployeeById($scope.employeeId).then(function (response) {
+                debugger;
                 if (response && response.data) {
                     $scope.EmployeeHeader = response.data;
+                    $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate).format('MM/DD/YYYY');
+                    $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate = moment(response.data.EmployeeWorkDetail.ConfirmationDate).format('MM/DD/YYYY');
+                    $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = moment(response.data.EmployeeWorkDetail.MarriageDate).format('MM/DD/YYYY');
                 }
             })
         }
