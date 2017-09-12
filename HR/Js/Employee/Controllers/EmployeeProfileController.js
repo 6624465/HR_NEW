@@ -80,7 +80,7 @@
 
         $scope.processForm = function (EmployeeHeader) {
             debugger
-                $scope.ValidateForm();
+            $scope.ValidateForm();
             if ($scope.IsfrmEmployeeProfile) {
                 if ($scope.IsValid) {
                     if (EmployeeHeader.Address.Address1 == null) {
@@ -101,17 +101,7 @@
                     })
                 }
             }
-            //else {
-            //    var mandtoryFields = angular.element('.valid');
-            //    angular.forEach(mandtoryFields, function (val) {
-            //        if (val.value == "")
-            //            val.style.borderBottom = "1px solid red";
-            //        else
-            //            val.style.borderBottom = '';
-            //    })
-            //    growlService.growl('Please Enter All Mandtory Fields', 'danger');
-            //}
-            }
+        }
 
         $scope.ValidateForm = function () {
             $scope.IsValid = false;
@@ -122,11 +112,16 @@
                     val.style.borderBottom = "1px solid red";
                     errorCount++;
                 }
-                else 
+                else
                     val.style.borderBottom = '';
             })
+            //if (mandtoryFields.length >= 6) {
+            //    if(mandtoryFields[0].parentElement.innerText == "First Name ")
+            //        $scope.IsValid
+
+            //}
             if (errorCount >= 1)
-            growlService.growl('Please Enter All Mandtory Fields', 'danger');
+                growlService.growl('Please Enter All Mandtory Fields', 'danger');
             else
                 $scope.IsValid = true;
         }
@@ -139,7 +134,7 @@
                 }
             })
         }
-        /*EmployeeDetailsList*/
+
         $scope.LookUpData();
         $scope.BranchLocations();
         $scope.init();
