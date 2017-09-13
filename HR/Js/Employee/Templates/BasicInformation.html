@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
-                        <label>Employee Number Series</label>
+                        <label>Employee Id Type</label>
                         <select name="EmployeeTypeList" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeTypeList" ng-model="EmployeeHeader.IDType" class="form-control">
                             <option value="">--Select EmployeeType--</option>
                         </select>
@@ -15,17 +15,6 @@
                         <label>Employee Number</label>
                         <input class="form-control " type="text" autocomplete="off" ng-model="EmployeeHeader.IDNumber">
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <!--<div class="form-group ">
-                        <label>Employee No</label>
-                        <input class="form-control " value="100" autocomplete="off" type="text" disabled>
-                    </div>-->
-                </div>
-                <div class="col-xs-12 col-md-6">
-                   
                 </div>
             </div>
             <div class="row">
@@ -132,6 +121,21 @@
                    
                 </div>
                 <div class="col-xs-12 col-md-6">
+                   
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group ">
+                        <label>Email</label>
+                        <input class="form-control valid" autocomplete="off" 
+                               type="Email" 
+                               ng-required="true" 
+                               ng-model="EmployeeHeader.Address.Email"
+                               ng-change="onChageText(EmployeeHeader.Address.Email)" >
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
                         <label>Confirmation Date</label>
                         <div class="dropdown">
@@ -151,26 +155,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!--<div class="form-group ">
-                        <label>
-                            Emergency Contact Name
-                        </label>
-                        <input class="form-control " autocomplete="off" type="text" ng-model="Employee.EmergencyContactName">
-                    </div>-->
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <div class="form-group ">
-                        <label>Email</label>
-                        <input class="form-control valid" autocomplete="off" 
-                               type="Email" 
-                               ng-required="true" 
-                               ng-model="EmployeeHeader.Address.Email"
-                               ng-change="onChageText(EmployeeHeader.Address.Email)" >
-                    </div>
-                </div>
-                <div class="col-xs-12 col-md-6">
                     <!--<div class="form-group ">
                         <label>
                             Emergency Contact Number

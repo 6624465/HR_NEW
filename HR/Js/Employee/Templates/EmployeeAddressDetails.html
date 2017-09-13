@@ -61,11 +61,11 @@
 <div class="row">
     <div class="col-xs-12 text-center">
         <button class="btn">Valid</button>
-        <a ui-sref="EmployeeHeader.EmployeeBasicInformation" class="btn  btn-info" ng-if="IsValid == true">
+        <a ui-sref="EmployeeHeader.EmployeeBasicInformation" class="btn  btn-info" ng-if="IsBasicPageComplete == true">
             Previous Section <span class="glyphicon glyphicon-circle-arrow-left"></span>
         </a>
 
-        <a ui-sref="EmployeeHeader.EmployeePosition" class="btn  btn-info" ng-if="IsValid == true">
+        <a ui-sref="EmployeeHeader.EmployeePosition" class="btn  btn-info" ng-if="IsAddressPageComplete == true">
             Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
         </a>
     </div>

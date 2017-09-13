@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using HR.Core.Utilities;
+using C = HR.Core.Constants;
 
 namespace HR.Areas.Employees.Controllers
 {
@@ -74,7 +75,7 @@ namespace HR.Areas.Employees.Controllers
                     _employeeHeader = PrepareEmployeeHeader(employeeHeader);
 
                     EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
-                    result = Json(new { sucess = true, message = "Sent successfully" }, JsonRequestBehavior.AllowGet);
+                    result = Json(new { sucess = true, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {
@@ -177,7 +178,7 @@ namespace HR.Areas.Employees.Controllers
             _address.CountryCode = address.CountryCode;
             _address.AddressType = "Employee";
             _address.Contact = address.MobileNo;
-            _address.Email = "meena.konakondla@gmail.com";
+            _address.Email = address.Email;
             _address.IsActive = true;
             return _address;
         }
