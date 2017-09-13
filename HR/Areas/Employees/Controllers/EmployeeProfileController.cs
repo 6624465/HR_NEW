@@ -145,11 +145,10 @@ namespace HR.Areas.Employees.Controllers
             _employeePersonalInfo.BirthCountry = employeePersonalInfo.BirthCountry;
             _employeePersonalInfo.MaritalStatus = employeePersonalInfo.MaritalStatus;
             _employeePersonalInfo.SpouseName = employeePersonalInfo.SpouseName;
-            _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate);
-            //if (employeePersonalInfo.MarriageDate.HasValue)
-            //    _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate.Value);
-            //else
-            //    _employeePersonalInfo.MarriageDate = null;
+            if (employeePersonalInfo.MarriageDate.HasValue)
+                _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate.Value);
+            else
+                _employeePersonalInfo.MarriageDate = null;
             _employeePersonalInfo.ResidentialStatus = employeePersonalInfo.ResidentialStatus;
 
             return _employeePersonalInfo;
