@@ -23,7 +23,7 @@ namespace HR.Core.Models
         public string FatherName { get; set; }
         public Int16 MaritalStatus { get; set; }
         public string SpouseName { get; set; }
-        public DateTime? MarriageDate { get; set; }
+        public DateTime MarriageDate { get; set; }
         public Int16 ResidentialStatus { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
