@@ -79,7 +79,6 @@
         }
 
         $scope.processForm = function (EmployeeHeader) {
-            debugger
             $scope.ValidateForm();
             if ($scope.IsfrmEmployeeProfile) {
                 if ($scope.IsValid) {
@@ -101,11 +100,11 @@
                         }
                         else {
                             growlService.growl("Error Occured While Saving The Employee", 'danger');
-                        }
+                }
                     }), function (err) {
                         growlService.growl(err, 'danger');
-                    }
-                }
+            }
+        }
             }
         }
 
@@ -121,7 +120,7 @@
                 else
                     val.style.borderBottom = '';
             })
-            
+
             if (errorCount >= 1)
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             else {
@@ -135,7 +134,7 @@
                     //    $scope.IsPositionPageComplete = true;
 
                 $scope.IsValid = true;
-            }
+        }
         }
 
         $scope.employeeId = $stateParams.id;
@@ -143,6 +142,28 @@
             EmployeeProfileService.GetEmployeeById($scope.employeeId).then(function (response) {
                 if (response && response.data) {
                     $scope.EmployeeHeader = response.data;
+                 //   $scope.EmployeeHeader.EmployeePersonalInfo.DOB = moment(response.data.EmployeePersonalInfo.DOB).format('MM/DD/YYYY');
+                    $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate).format('MM/DD/YYYY');
+                    //if (!angular.isUndefined($scope.k9.declarationHeaderK9) && $scope.k9.declarationHeaderK9 != null) {
+                    //    if ($scope.k9.declarationHeaderK9.OpenDate == null) {
+                    //        $scope.k9.declarationHeaderK9.OpenDate = undefined;
+                    //    }
+                    //    else
+                    //        $scope.k9.declarationHeaderK9.OpenDate = moment($scope.k9.declarationHeaderK9.OpenDate);
+                    //}
+                    //$scope.k9.declarationHeaderK9.OpenDate = moment();
+                    //$scope.k9.declarationHeaderK9.ImportDate = moment();
+                    debugger;
+                    if($scope.EmployeeHeader.EmployeePersonalInfo.DOB &&$scope.EmployeeHeader.EmployeePersonalInfo.DOB!=null)
+                    {
+                        $scope.EmployeeHeader.EmployeePersonalInfo.DOB = moment(response.data.EmployeePersonalInfo.DOB);
+                    }
+                    if ($scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate && $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate != null) {
+                        $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = moment(response.data.EmployeePersonalInfo.MarriageDate);
+                    }
+                    if ($scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate && $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate != null) {
+                        $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate = moment(response.data.EmployeeWorkDetail.ConfirmationDate);
+                    }
                 }
             })
         }
