@@ -101,12 +101,16 @@
                         }
                         else {
                             growlService.growl("Error Occured While Saving The Employee", 'danger');
-                }
+                        }
                     }), function (err) {
                         growlService.growl(err, 'danger');
+                    }
+                }
             }
         }
-            }
+        $scope.onClickValid = function () {
+            debugger
+            $scope.ValidateForm();
         }
 
         $scope.ValidateForm = function () {
@@ -125,17 +129,17 @@
             if (errorCount >= 1)
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             else {
-                    if (mandtoryFields[0].parentElement.innerText == "First Name ")
-                        $scope.IsBasicPageComplete = true;
+                if (mandtoryFields[0].parentElement.innerText == "First Name ")
+                    $scope.IsBasicPageComplete = true;
 
-                    if (mandtoryFields[0].parentElement.innerText == "Address ")
-                        $scope.IsAddressPageComplete = true;
+                if (mandtoryFields[0].parentElement.innerText == "Address ")
+                    $scope.IsAddressPageComplete = true;
 
-                    //if (mandtoryFields[0].parentElement.innerText == "Designation ")
-                    //    $scope.IsPositionPageComplete = true;
+                //if (mandtoryFields[0].parentElement.innerText == "Designation ")
+                //    $scope.IsPositionPageComplete = true;
 
                 $scope.IsValid = true;
-        }
+            }
         }
        
 
@@ -145,33 +149,28 @@
                 if (response && response.data) {
                     $scope.EmployeeHeader = response.data;
                     debugger;
-                    if ($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate && $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate != null)
-                    {
+                    if ($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate && $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate != null) {
                         $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate);
                     }
                     else {
                         $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = undefined;
                     }
-                    if($scope.EmployeeHeader.EmployeePersonalInfo.DOB &&$scope.EmployeeHeader.EmployeePersonalInfo.DOB!=null)
-                    {
+                    if ($scope.EmployeeHeader.EmployeePersonalInfo.DOB && $scope.EmployeeHeader.EmployeePersonalInfo.DOB != null) {
                         $scope.EmployeeHeader.EmployeePersonalInfo.DOB = moment(response.data.EmployeePersonalInfo.DOB);
                     }
-                    else
-                    {
+                    else {
                         $scope.EmployeeHeader.EmployeePersonalInfo.DOB = undefined;
                     }
                     if ($scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate && $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate != null) {
                         $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = moment(response.data.EmployeePersonalInfo.MarriageDate);
                     }
-                    else
-                    {
+                    else {
                         $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = undefined;
                     }
                     if ($scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate && $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate != null) {
                         $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate = moment(response.data.EmployeeWorkDetail.ConfirmationDate);
                     }
-                    else
-                    {
+                    else {
                         $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate = undefined;
                     }
                 }
