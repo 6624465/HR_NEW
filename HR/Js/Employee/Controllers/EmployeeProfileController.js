@@ -81,6 +81,7 @@
         $scope.SaveEmlployee = function (EmployeeHeader) {
             $scope.ValidateForm();
             if ($scope.IsfrmEmployeeProfile) {
+               
                 if ($scope.IsValid) {
                     if (EmployeeHeader.Address.Address1 == null) {
                         growlService.growl("Please Enter Employee Address Details", 'danger')
@@ -105,11 +106,14 @@
                         growlService.growl(err, 'danger');
                     }
                 }
+              
             }
+            
         }
 
         $scope.onClickValid = function () {
             $scope.ValidateForm();
+            
         }
 
         $scope.ValidateForm = function () {
@@ -139,6 +143,17 @@
                 }
 
                 $scope.IsValid = true;
+            }
+        }
+        $scope.EmailValid=function()
+        {
+            debugger;
+            if (!angular.isUndefined($scope.EmployeeHeader.Address.Email))
+            {
+            }
+            else
+            {
+                growlService.growl("Invalid Email", 'danger');
             }
         }
 
