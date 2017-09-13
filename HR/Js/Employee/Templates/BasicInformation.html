@@ -96,16 +96,25 @@
                             Date Of Birth
                         </label>
                         <div class="dropdown">
-                            <a class="dropdown-toggle" id="DOB" role="button" data-toggle="dropdown">
+                            <!--<a class="dropdown-toggle" id="DOB" role="button" data-toggle="dropdown">
                                 <div class="input-group">
                                     <input type="text" class="form-control input-sm datepicker valid"
                                            ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
                                            name="EmployeeHeader.EmployeePersonalInfo.DOB"
-                                           ng-change="onChageText(EmployeeHeader.EmployeePersonalInfo.DOB)"
                                            ng-required="true"
                                            date-time-input="{{dateFormat}}">
                                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                             </div>
+                            </a>-->
+                            <a class="dropdown-toggle" id="JoiningDate" role="button" data-toggle="dropdown">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-sm datepicker valid"
+                                           ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
+                                           name="EmployeeHeader.EmployeePersonalInfo.DOB"
+                                           ng-required="true"
+                                           date-time-input="{{dateFormat}}">
+                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                </div>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                 <datetimepicker ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
@@ -191,7 +200,6 @@
                                            ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
                                            name="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
                                            ng-required="true"
-                                           ng-change="onChageText(EmployeeHeader.EmployeeWorkDetail.JoiningDate)"
                                            date-time-input="{{dateFormat}}">
                                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                 </div>
@@ -214,7 +222,7 @@
                                     <input type="text" class="form-control input-sm datepicker"
                                            ng-model="EmployeeHeader.EmployeePersonalInfo.MarriageDate"
                                            name="EmployeeHeader.EmployeePersonalInfo.MarriageDate"
-                                           date-time-input="{{dateFormat}}">
+                                          >
                                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                 </div>
                             </a>
