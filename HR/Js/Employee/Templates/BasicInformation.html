@@ -69,10 +69,11 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle" id="JoiningDate" role="button" data-toggle="dropdown">
                                 <div class="input-group">
-                                    <input type="text" class="form-control input-sm datepicker"
+                                    <input type="text" class="form-control input-sm datepicker valid"
                                            ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
                                            name="EmployeeHeader.EmployeePersonalInfo.DOB"
                                            ng-required="true"
+                                           ng-change="onChageText(EmployeeHeader.EmployeePersonalInfo.DOB)"
                                            date-time-input="{{dateFormat}}">
                                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                 </div>
@@ -140,10 +141,11 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle" id="ConfirmationDate" role="button" data-toggle="dropdown">
                                 <div class="input-group">
-                                    <input type="text" class="form-control input-sm datepicker"
+                                    <input type="text" class="form-control input-sm datepicker valid"
                                            ng-model="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
                                            name="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
                                            ng-required="true"
+                                           ng-change="onChageText(EmployeeHeader.EmployeeWorkDetail.ConfirmationDate)"
                                            date-time-input="{{dateFormat}}">
                                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                 </div>
@@ -171,10 +173,11 @@
                         <div class="dropdown">
                             <a class="dropdown-toggle" id="JoiningDate" role="button" data-toggle="dropdown">
                                 <div class="input-group">
-                                    <input type="text" class="form-control input-sm datepicker"
+                                    <input type="text" class="form-control input-sm datepicker valid"
                                            ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
                                            name="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
                                            ng-required="true"
+                                           ng-change="onChageText(EmployeeHeader.EmployeeWorkDetail.JoiningDate)"
                                            date-time-input="{{dateFormat}}">
                                     <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                 </div>
