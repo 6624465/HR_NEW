@@ -1,41 +1,49 @@
-﻿<div class="row" ng-controller="EmployeeDirectoryController" ng-init="GetEmployeeDetails()">
-    <div class="table-responsive">
-        <div class="pull-right">
-            <div>
-                <button type="button" class="btn" ui-sref="EmployeeHeader({id:'new'})">
-                    <i class="zmdi zmdi-plus"></i> Add
-                </button>
+﻿<div ng-controller="EmployeeDirectoryController" ng-init="GetEmployeeDetails()">
+    <form id="frmEmployeeDirectory" name="frmEmployeeDirectory">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Employee Directory</h3>
+                        <div class="pull-right">
+                            <button type="button" class="btn" ui-sref="EmployeeHeader({id:'new'})">
+                                <i class="zmdi zmdi-plus"></i>&nbsp; Add Employee
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>#Action</th>
+                                    <th>
+                                        Employee No
+                                    </th>
+                                    <th>Employee Name</th>
+                                    <th>Join Date</th>
+                                    <th>Phone No</th>
+                                    <th>Email</th>
 
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="employeeDetails in EmployeeDetailsList">
+                                    <td>
+                                        <button type="button" ui-sref="EmployeeHeader({id:employeeDetails.EmployeeId})" class="btn btn-default ng-scope waves-effect" aria-label="button">
+                                            <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                        </button>
+                                    </td>
+                                    <td>{{employeeDetails.EmployeeId}}</td>
+                                    <td>{{employeeDetails.EmployeeName}}</td>
+                                    <td>{{formatDate(employeeDetails.JoiningDate)}}</td>
+                                    <td>{{employeeDetails.MobileNo}}</td>
+                                    <td>{{employeeDetails.Email}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <table class="table table-condensed">
-            <thead>
-                <tr>
-                    <th>#Action</th>
-                    <th>
-                        Employee No
-                    </th>
-                    <th>Employee Name</th>
-                    <th>Join Date</th>
-                    <th>Phone No</th>
-                    <th>Email</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="employeeDetails in EmployeeDetailsList">
-                    <td>
-                        <button type="button" ui-sref="EmployeeHeader({id:employeeDetails.EmployeeId})" class="btn btn-default ng-scope waves-effect" aria-label="button">
-                            <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                        </button>
-                    </td>
-                    <td>{{employeeDetails.EmployeeId}}</td>
-                    <td>{{employeeDetails.EmployeeName}}</td>
-                    <td>{{formatDate(employeeDetails.JoiningDate)}}</td>
-                    <td>{{employeeDetails.MobileNo}}</td>
-                    <td>{{employeeDetails.Email}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    </form>
 </div>
