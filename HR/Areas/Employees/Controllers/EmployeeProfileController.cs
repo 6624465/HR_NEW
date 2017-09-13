@@ -75,6 +75,7 @@ namespace HR.Areas.Employees.Controllers
                     _employeeHeader = PrepareEmployeeHeader(employeeHeader);
 
                     EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
+
                     result = Json(new { sucess = true, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)

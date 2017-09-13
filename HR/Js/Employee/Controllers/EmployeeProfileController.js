@@ -1,7 +1,7 @@
 ﻿angular.module('ngHR').controller('EmployeeProfileController', ['$scope', '$http', 'growl', '$filter',
     'UtilityFunc', 'Employee', 'LookUp', 'HolidayListService', 'growlService', 'EmployeeProfileService', '$timeout', '$stateParams',
-    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, Employee, LookUp, HolidayListService,
-        growlService, EmployeeProfileService, $timeout, $stateParams) {
+    '$state', function ($scope, $http, growl, $filter, UtilityFunc, Employee, LookUp, HolidayListService,
+        growlService, EmployeeProfileService, $timeout, $stateParams, $state) {
 
         $scope.init = function () {
 
@@ -78,7 +78,7 @@
             }
         }
 
-        $scope.processForm = function (EmployeeHeader) {
+        $scope.SaveEmlployee = function (EmployeeHeader) {
             $scope.ValidateForm();
             if ($scope.IsfrmEmployeeProfile) {
                 if ($scope.IsValid) {
@@ -94,10 +94,9 @@
                         $scope.BasicNextButton = true
                     }
                     EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
-                        debugger;
                         if (response.data && response.data.sucess == true) {
                             growlService.growl(response.data.message, 'success');
-
+                            $state.go('EmployeeDirectory');
                         }
                         else {
                             growlService.growl("Error Occured While Saving The Employee", 'danger');
@@ -108,8 +107,8 @@
                 }
             }
         }
+
         $scope.onClickValid = function () {
-            debugger
             $scope.ValidateForm();
         }
 
@@ -129,26 +128,25 @@
             if (errorCount >= 1)
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             else {
-                if (mandtoryFields[0].parentElement.innerText == "First Name ")
-                    $scope.IsBasicPageComplete = true;
+                if (mandtoryFields[0].parentElement.innerText == "First Name ") {
+                    //$scope.IsBasicPageComplete = true;
+                    $state.go('EmployeeHeader.EmployeeAddress');
+                }
 
-                if (mandtoryFields[0].parentElement.innerText == "Address ")
+                if (mandtoryFields[0].parentElement.innerText == "Address ") {
                     $scope.IsAddressPageComplete = true;
-
-                //if (mandtoryFields[0].parentElement.innerText == "Designation ")
-                //    $scope.IsPositionPageComplete = true;
+                    $state.go('EmployeeHeader.EmployeePosition');
+                }
 
                 $scope.IsValid = true;
             }
         }
-       
 
         $scope.employeeId = $stateParams.id;
         if ($scope.employeeId != null && $scope.employeeId != "") {
             EmployeeProfileService.GetEmployeeById($scope.employeeId).then(function (response) {
                 if (response && response.data) {
                     $scope.EmployeeHeader = response.data;
-                    debugger;
                     if ($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate && $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate != null) {
                         $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate);
                     }
