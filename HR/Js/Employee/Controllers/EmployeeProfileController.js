@@ -8,13 +8,11 @@
             $scope.AddressNextButton = false;
             $scope.BasicNextButton = false;
             $scope.PositionNextButton = false;
-           // $scope.EmployeeHeader.EmployeePersonalInfo.DOB = moment();
             $scope.EmployeeHeader = {
                 BranchId: UtilityFunc.BranchId(),
                 Address: {},
                 EmployeePersonalInfo: {
                     BranchId: UtilityFunc.BranchId(),
-        
                 },
                 EmployeeWorkDetail: {
                     BranchId: UtilityFunc.BranchId(),
@@ -102,16 +100,6 @@
                     })
                 }
             }
-            //else {
-            //    var mandtoryFields = angular.element('.valid');
-            //    angular.forEach(mandtoryFields, function (val) {
-            //        if (val.value == "")
-            //            val.style.borderBottom = "1px solid red";
-            //        else
-            //            val.style.borderBottom = '';
-            //    })
-            //    growlService.growl('Please Enter All Mandtory Fields', 'danger');
-            //}
             }
 
         $scope.ValidateForm = function () {
@@ -126,6 +114,11 @@
                 else 
                     val.style.borderBottom = '';
             })
+            //if (mandtoryFields.length >= 6) {
+            //    if(mandtoryFields[0].parentElement.innerText == "First Name ")
+            //        $scope.IsValid
+
+            //}
             if (errorCount >= 1)
             growlService.growl('Please Enter All Mandtory Fields', 'danger');
             else
@@ -162,7 +155,7 @@
                 }
             })
         }
-        /*EmployeeDetailsList*/
+
         $scope.LookUpData();
         $scope.BranchLocations();
         $scope.init();

@@ -17,8 +17,8 @@ namespace HR.Areas.Employees.Controllers
         public JsonResult GetEmployeeDetails()
         {
             JsonResult jsonResult = new JsonResult();
-                try
-                {
+            try
+            {
                 var employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
                                  select new
                                  {
@@ -30,24 +30,25 @@ namespace HR.Areas.Employees.Controllers
                                  }).ToList();
 
                 jsonResult = Json(new { sucess = true, employees = employees }, JsonRequestBehavior.AllowGet);
-                }
-                catch (Exception ex)
-                {
+            }
+            catch (Exception ex)
+            {
 
-                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
-                        return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
-                }
+                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                    return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+            }
             return jsonResult;
         }
         #endregion
 
-        public JsonResult GetEmployeeById(int employeeId) {
+        public JsonResult GetEmployeeById(int employeeId)
+        {
             JsonResult result = null;
             if (employeeId > 0)
             {
                 try
                 {
-                  EmployeeHeader employeeHeader =  EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
+                    EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
                     result = Json(employeeHeader, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
@@ -90,14 +91,16 @@ namespace HR.Areas.Employees.Controllers
         #region Private Accessors
         private EmployeeHeader PrepareEmployeeHeader(EmployeeHeader employeeHeader)
         {
-            EmployeeHeader _employeeHeader = new EmployeeHeader();
+            EmployeeHeader _employeeHeader = null;
             if (employeeHeader.Id > 0)
             {
+                _employeeHeader = employeeHeader;
                 _employeeHeader.ModifiedBy = USER_OBJECT.UserName;
                 _employeeHeader.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
             else
             {
+                _employeeHeader = new EmployeeHeader();
                 _employeeHeader.CreatedBy = USER_OBJECT.UserName;
                 _employeeHeader.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -119,14 +122,16 @@ namespace HR.Areas.Employees.Controllers
 
         private EmployeePersonalInfo PrepareEmployeePersonalInfo(EmployeePersonalInfo employeePersonalInfo, EmployeeHeader employeeHeader)
         {
-            EmployeePersonalInfo _employeePersonalInfo = new EmployeePersonalInfo();
+            EmployeePersonalInfo _employeePersonalInfo = null;
             if (employeePersonalInfo.Id > 0)
             {
+                _employeePersonalInfo = employeePersonalInfo;
                 _employeePersonalInfo.ModifiedBy = USER_OBJECT.UserName;
                 _employeePersonalInfo.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
             else
             {
+                _employeePersonalInfo = new EmployeePersonalInfo();
                 _employeePersonalInfo.CreatedBy = USER_OBJECT.UserName;
                 _employeePersonalInfo.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -139,23 +144,25 @@ namespace HR.Areas.Employees.Controllers
             _employeePersonalInfo.MaritalStatus = employeePersonalInfo.MaritalStatus;
             _employeePersonalInfo.SpouseName = employeePersonalInfo.SpouseName;
             if (employeePersonalInfo.MarriageDate.HasValue)
-            _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate.Value);
+                _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate.Value);
             else
-            _employeePersonalInfo.MarriageDate = null;
+                _employeePersonalInfo.MarriageDate = null;
             _employeePersonalInfo.ResidentialStatus = employeePersonalInfo.ResidentialStatus;
 
             return _employeePersonalInfo;
         }
         private Address PrepareEmployeeAddress(Address address)
         {
-            Address _address = new Address();
+            Address _address = null;
             if (address.AddressId > 0)
             {
+                _address = address;
                 _address.ModifiedBy = USER_OBJECT.UserName;
                 _address.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
             else
             {
+                _address = new Address();
                 _address.CreatedBy = USER_OBJECT.UserName;
                 _address.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -167,7 +174,7 @@ namespace HR.Areas.Employees.Controllers
             _address.StateName = address.StateName;
             _address.ZipCode = address.ZipCode;
             _address.MobileNo = address.MobileNo;
-            _address.CountryCode = "IN";//address.CountryCode;
+            _address.CountryCode = address.CountryCode;
             _address.AddressType = "Employee";
             _address.Contact = address.MobileNo;
             _address.Email = "meena.konakondla@gmail.com";
@@ -176,14 +183,16 @@ namespace HR.Areas.Employees.Controllers
         }
         private EmployeeWorkDetail PrepareEmployeeWorkDetail(EmployeeWorkDetail employeeWorkDetail, EmployeeHeader employeeHeader)
         {
-            EmployeeWorkDetail _employeeWorkDetail = new EmployeeWorkDetail();
+            EmployeeWorkDetail _employeeWorkDetail = null;
             if (employeeWorkDetail.Id > 0)
             {
+                _employeeWorkDetail = employeeWorkDetail;
                 _employeeWorkDetail.ModifiedBy = USER_OBJECT.UserName;
                 _employeeWorkDetail.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
             else
             {
+                _employeeWorkDetail = new EmployeeWorkDetail();
                 _employeeWorkDetail.CreatedBy = USER_OBJECT.UserName;
                 _employeeWorkDetail.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
