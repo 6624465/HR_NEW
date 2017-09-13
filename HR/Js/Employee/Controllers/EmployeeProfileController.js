@@ -95,7 +95,7 @@
                             $scope.BasicNextButton = true
                         }
                         EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
-                            debugger;
+                          
                             if (response.data && response.data.sucess == true) {
                                 growlService.growl(response.data.message, 'success');
 
@@ -148,7 +148,7 @@
         }
         $scope.EmailValid=function()
         {
-            debugger;
+            
             if (!angular.isUndefined($scope.EmployeeHeader.Address.Email))
             {
             }
@@ -163,7 +163,7 @@
             EmployeeProfileService.GetEmployeeById($scope.employeeId).then(function (response) {
                 if (response && response.data) {
                     $scope.EmployeeHeader = response.data;
-                    debugger;
+               
                     if ($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate && $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate != null) {
                         $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate);
                     }
