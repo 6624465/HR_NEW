@@ -79,7 +79,7 @@
         }
 
         $scope.processForm = function (EmployeeHeader) {
-                $scope.ValidateForm();
+            $scope.ValidateForm();
             if ($scope.IsfrmEmployeeProfile) {
                 if ($scope.IsValid) {
                     if (EmployeeHeader.Address.Address1 == null) {
@@ -94,13 +94,19 @@
                         $scope.BasicNextButton = true
                     }
                     EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
-                        if (response.data && response.data.success == true) {
+                        if (response.data && response.data.sucess == true) {
                             growlService.growl(response.data.message, 'success');
+
                         }
-                    })
+                        else {
+                            growlService.growl("Error Occured While Saving The Employee", 'danger');
                 }
+                    }), function (err) {
+                        growlService.growl(err, 'danger');
             }
+        }
             }
+        }
 
         $scope.ValidateForm = function () {
             $scope.IsValid = false;
@@ -111,18 +117,24 @@
                     val.style.borderBottom = "1px solid red";
                     errorCount++;
                 }
-                else 
+                else
                     val.style.borderBottom = '';
             })
-            //if (mandtoryFields.length >= 6) {
-            //    if(mandtoryFields[0].parentElement.innerText == "First Name ")
-            //        $scope.IsValid
 
-            //}
             if (errorCount >= 1)
-            growlService.growl('Please Enter All Mandtory Fields', 'danger');
-            else
+                growlService.growl('Please Enter All Mandtory Fields', 'danger');
+            else {
+                    if (mandtoryFields[0].parentElement.innerText == "First Name ")
+                        $scope.IsBasicPageComplete = true;
+
+                    if (mandtoryFields[0].parentElement.innerText == "Address ")
+                        $scope.IsAddressPageComplete = true;
+
+                    //if (mandtoryFields[0].parentElement.innerText == "Designation ")
+                    //    $scope.IsPositionPageComplete = true;
+
                 $scope.IsValid = true;
+        }
         }
 
         $scope.employeeId = $stateParams.id;
