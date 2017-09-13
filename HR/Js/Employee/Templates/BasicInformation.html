@@ -132,7 +132,7 @@
                                type="Email" 
                                ng-required="true" 
                                ng-model="EmployeeHeader.Address.Email"
-                               ng-change="onChageText(EmployeeHeader.Address.Email)" >
+                               ng-blur="onChageText(EmployeeHeader.Address.Email);EmailValid();" >
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6">
