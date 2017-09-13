@@ -89,8 +89,8 @@
                         <label>
                             Mobile Number
                         </label>
-                        <input class="form-control valid" type="text"  min="0" max="10" ng-model="EmployeeHeader.Address.MobileNo" 
-                               ng-required="true" ng-change="onChageText(EmployeeHeader.Address.MobileNo)" ng-pattern="/^[0-9]{10,10}$/" />
+                        <input class="form-control valid" type="text"  ng-model="EmployeeHeader.Address.MobileNo" 
+                               ng-required="true" ng-change="onChageText(EmployeeHeader.Address.MobileNo)" ng-pattern="/^[0-9]{10,10}$/"  maxlength="10"/>
                     </div>
                 </div>
             </div>

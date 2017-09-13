@@ -143,22 +143,35 @@
             EmployeeProfileService.GetEmployeeById($scope.employeeId).then(function (response) {
                 if (response && response.data) {
                     $scope.EmployeeHeader = response.data;
-                    //$scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate).format('MM/DD/YYYY');
-                    //$scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = moment(response.data.EmployeePersonalInfo.MarriageDate).format('MM/DD/YYYY')
                     debugger;
                     if ($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate && $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate != null)
                     {
                         $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate);
                     }
+                    else {
+                        $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = undefined;
+                    }
                     if($scope.EmployeeHeader.EmployeePersonalInfo.DOB &&$scope.EmployeeHeader.EmployeePersonalInfo.DOB!=null)
                     {
                         $scope.EmployeeHeader.EmployeePersonalInfo.DOB = moment(response.data.EmployeePersonalInfo.DOB);
                     }
-                    if ($scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate && $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate != null || $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate==null) {
+                    else
+                    {
+                        $scope.EmployeeHeader.EmployeePersonalInfo.DOB = undefined;
+                    }
+                    if ($scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate && $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate != null) {
                         $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = moment(response.data.EmployeePersonalInfo.MarriageDate);
+                    }
+                    else
+                    {
+                        $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = undefined;
                     }
                     if ($scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate && $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate != null) {
                         $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate = moment(response.data.EmployeeWorkDetail.ConfirmationDate);
+                    }
+                    else
+                    {
+                        $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate = undefined;
                     }
                 }
             })
