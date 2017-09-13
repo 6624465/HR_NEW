@@ -137,6 +137,7 @@
                 $scope.IsValid = true;
         }
         }
+       
 
         $scope.employeeId = $stateParams.id;
         if ($scope.employeeId != null && $scope.employeeId != "") {
