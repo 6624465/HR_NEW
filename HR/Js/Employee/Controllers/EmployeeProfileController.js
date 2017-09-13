@@ -94,17 +94,18 @@
                         $scope.BasicNextButton = true
                     }
                     EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
+                        debugger;
                         if (response.data && response.data.sucess == true) {
                             growlService.growl(response.data.message, 'success');
 
                         }
                         else {
                             growlService.growl("Error Occured While Saving The Employee", 'danger');
-                        }
+                }
                     }), function (err) {
                         growlService.growl(err, 'danger');
-                    }
-                }
+            }
+        }
             }
         }
 
@@ -124,17 +125,17 @@
             if (errorCount >= 1)
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             else {
-                if (mandtoryFields[0].parentElement.innerText == "First Name ")
-                    $scope.IsBasicPageComplete = true;
+                    if (mandtoryFields[0].parentElement.innerText == "First Name ")
+                        $scope.IsBasicPageComplete = true;
 
-                if (mandtoryFields[0].parentElement.innerText == "Address ")
-                    $scope.IsAddressPageComplete = true;
+                    if (mandtoryFields[0].parentElement.innerText == "Address ")
+                        $scope.IsAddressPageComplete = true;
 
-                //if (mandtoryFields[0].parentElement.innerText == "Designation ")
-                //    $scope.IsPositionPageComplete = true;
+                    //if (mandtoryFields[0].parentElement.innerText == "Designation ")
+                    //    $scope.IsPositionPageComplete = true;
 
                 $scope.IsValid = true;
-            }
+        }
         }
 
         $scope.employeeId = $stateParams.id;
@@ -142,13 +143,18 @@
             EmployeeProfileService.GetEmployeeById($scope.employeeId).then(function (response) {
                 if (response && response.data) {
                     $scope.EmployeeHeader = response.data;
-                    $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate);
-
+                    //$scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate).format('MM/DD/YYYY');
+                    //$scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = moment(response.data.EmployeePersonalInfo.MarriageDate).format('MM/DD/YYYY')
                     debugger;
-                    if ($scope.EmployeeHeader.EmployeePersonalInfo.DOB && $scope.EmployeeHeader.EmployeePersonalInfo.DOB != null) {
+                    if ($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate && $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate != null)
+                    {
+                        $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate);
+                    }
+                    if($scope.EmployeeHeader.EmployeePersonalInfo.DOB &&$scope.EmployeeHeader.EmployeePersonalInfo.DOB!=null)
+                    {
                         $scope.EmployeeHeader.EmployeePersonalInfo.DOB = moment(response.data.EmployeePersonalInfo.DOB);
                     }
-                    if ($scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate && $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate != null) {
+                    if ($scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate && $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate != null || $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate==null) {
                         $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = moment(response.data.EmployeePersonalInfo.MarriageDate);
                     }
                     if ($scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate && $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate != null) {
