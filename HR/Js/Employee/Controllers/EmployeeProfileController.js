@@ -129,17 +129,37 @@
                     val.style.borderBottom = '';
             })
 
-            if (errorCount >= 1)
+            if (errorCount >= 1) {
+                if (mandtoryFields[0].parentElement.innerText == "First Name ") {
+                    var basic = angular.element('.basic');
+                    basic[0].style.backgroundColor = "#f76b66";
+                }
+                if (mandtoryFields[0].parentElement.innerText == "Address ") {
+                    var address = angular.element('.address');
+                    address[0].style.backgroundColor = "#f76b66";
+                }
+                if (mandtoryFields[0].parentElement.innerText == "Designation ") {
+                    var basic = angular.element('.position');
+                    position[0].style.backgroundColor = "#f76b66";
+                }
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
+            }
             else {
                 if (mandtoryFields[0].parentElement.innerText == "First Name ") {
-                    //$scope.IsBasicPageComplete = true;
                     $state.go('EmployeeHeader.EmployeeAddress');
+                    var basic = angular.element('.basic');
+                    basic[0].style.backgroundColor = "lightgreen";
                 }
 
                 if (mandtoryFields[0].parentElement.innerText == "Address ") {
                     $scope.IsAddressPageComplete = true;
                     $state.go('EmployeeHeader.EmployeePosition');
+                    var address = angular.element('.address');
+                    address[0].style.backgroundColor = "lightgreen";
+                }
+                if (mandtoryFields[0].parentElement.innerText == 'Designation ') {
+                    var position = angular.element('.position');
+                    position[0].style.backgroundColor = "lightgreen";
                 }
 
                 $scope.IsValid = true;
