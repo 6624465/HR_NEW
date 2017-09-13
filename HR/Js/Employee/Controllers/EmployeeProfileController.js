@@ -100,11 +100,11 @@
                         }
                         else {
                             growlService.growl("Error Occured While Saving The Employee", 'danger');
-                }
+                        }
                     }), function (err) {
                         growlService.growl(err, 'danger');
-            }
-        }
+                    }
+                }
             }
         }
 
@@ -124,17 +124,17 @@
             if (errorCount >= 1)
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             else {
-                    if (mandtoryFields[0].parentElement.innerText == "First Name ")
-                        $scope.IsBasicPageComplete = true;
+                if (mandtoryFields[0].parentElement.innerText == "First Name ")
+                    $scope.IsBasicPageComplete = true;
 
-                    if (mandtoryFields[0].parentElement.innerText == "Address ")
-                        $scope.IsAddressPageComplete = true;
+                if (mandtoryFields[0].parentElement.innerText == "Address ")
+                    $scope.IsAddressPageComplete = true;
 
-                    //if (mandtoryFields[0].parentElement.innerText == "Designation ")
-                    //    $scope.IsPositionPageComplete = true;
+                //if (mandtoryFields[0].parentElement.innerText == "Designation ")
+                //    $scope.IsPositionPageComplete = true;
 
                 $scope.IsValid = true;
-        }
+            }
         }
 
         $scope.employeeId = $stateParams.id;
@@ -142,20 +142,10 @@
             EmployeeProfileService.GetEmployeeById($scope.employeeId).then(function (response) {
                 if (response && response.data) {
                     $scope.EmployeeHeader = response.data;
-                 //   $scope.EmployeeHeader.EmployeePersonalInfo.DOB = moment(response.data.EmployeePersonalInfo.DOB).format('MM/DD/YYYY');
-                    $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate).format('MM/DD/YYYY');
-                    //if (!angular.isUndefined($scope.k9.declarationHeaderK9) && $scope.k9.declarationHeaderK9 != null) {
-                    //    if ($scope.k9.declarationHeaderK9.OpenDate == null) {
-                    //        $scope.k9.declarationHeaderK9.OpenDate = undefined;
-                    //    }
-                    //    else
-                    //        $scope.k9.declarationHeaderK9.OpenDate = moment($scope.k9.declarationHeaderK9.OpenDate);
-                    //}
-                    //$scope.k9.declarationHeaderK9.OpenDate = moment();
-                    //$scope.k9.declarationHeaderK9.ImportDate = moment();
+                    $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate);
+
                     debugger;
-                    if($scope.EmployeeHeader.EmployeePersonalInfo.DOB &&$scope.EmployeeHeader.EmployeePersonalInfo.DOB!=null)
-                    {
+                    if ($scope.EmployeeHeader.EmployeePersonalInfo.DOB && $scope.EmployeeHeader.EmployeePersonalInfo.DOB != null) {
                         $scope.EmployeeHeader.EmployeePersonalInfo.DOB = moment(response.data.EmployeePersonalInfo.DOB);
                     }
                     if ($scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate && $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate != null) {

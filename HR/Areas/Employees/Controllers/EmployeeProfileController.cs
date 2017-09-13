@@ -95,7 +95,8 @@ namespace HR.Areas.Employees.Controllers
             EmployeeHeader _employeeHeader = null;
             if (employeeHeader.Id > 0)
             {
-                _employeeHeader = employeeHeader;
+
+                _employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeHeader.Id);
                 _employeeHeader.ModifiedBy = USER_OBJECT.UserName;
                 _employeeHeader.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -116,7 +117,7 @@ namespace HR.Areas.Employees.Controllers
             _employeeHeader.IDNumber = !string.IsNullOrWhiteSpace(employeeHeader.IDNumber) ? employeeHeader.IDNumber : string.Empty;
             _employeeHeader.IDType = employeeHeader.IDType;
             _employeeHeader.EmployeePersonalInfo = PrepareEmployeePersonalInfo(employeePersonalInfo, _employeeHeader);
-            _employeeHeader.Address = PrepareEmployeeAddress(employeeHeader.Address);
+            _employeeHeader.Address = PrepareEmployeeAddress(employeeHeader.Address, _employeeHeader);
             _employeeHeader.EmployeeWorkDetail = PrepareEmployeeWorkDetail(employeeHeader.EmployeeWorkDetail, _employeeHeader);
             return _employeeHeader;
         }
@@ -126,7 +127,7 @@ namespace HR.Areas.Employees.Controllers
             EmployeePersonalInfo _employeePersonalInfo = null;
             if (employeePersonalInfo.Id > 0)
             {
-                _employeePersonalInfo = employeePersonalInfo;
+                _employeePersonalInfo = employeeHeader.EmployeePersonalInfo;
                 _employeePersonalInfo.ModifiedBy = USER_OBJECT.UserName;
                 _employeePersonalInfo.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -152,12 +153,12 @@ namespace HR.Areas.Employees.Controllers
 
             return _employeePersonalInfo;
         }
-        private Address PrepareEmployeeAddress(Address address)
+        private Address PrepareEmployeeAddress(Address address, EmployeeHeader employeeHeader)
         {
             Address _address = null;
             if (address.AddressId > 0)
             {
-                _address = address;
+                _address = employeeHeader.Address;
                 _address.ModifiedBy = USER_OBJECT.UserName;
                 _address.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -187,7 +188,7 @@ namespace HR.Areas.Employees.Controllers
             EmployeeWorkDetail _employeeWorkDetail = null;
             if (employeeWorkDetail.Id > 0)
             {
-                _employeeWorkDetail = employeeWorkDetail;
+                _employeeWorkDetail = employeeHeader.EmployeeWorkDetail;
                 _employeeWorkDetail.ModifiedBy = USER_OBJECT.UserName;
                 _employeeWorkDetail.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }

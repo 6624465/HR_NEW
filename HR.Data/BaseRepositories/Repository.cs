@@ -59,6 +59,9 @@ namespace HR.Data.BaseRepositories
                 {
                     throw new ArgumentNullException("entity");
                 }
+               // Entities.Attach(entity) = EntityState.Modified;
+                this.Entities.Attach(entity);
+                //hrDbContext.Entry(entity).State = EntityState.Modified;
                 this.hrDbContext.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
