@@ -1,5 +1,5 @@
-﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams',
-    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams) {
+﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams','LookUp','HolidayListService',
+    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams,LookUp,HolidayListService) {
       
 
         $scope.init = function () {
@@ -10,6 +10,7 @@
                 FilterViewModel: []
             };
         }
+        $scope.dateFormat = UtilityFunc.DateFormat();
         $scope.formatDate = function (date) {
             if (date != null)
                 return moment(date).format(UtilityFunc.DateFormat());
@@ -76,6 +77,28 @@
         EmployeeProfileService.GetEmployeeDetails().then(function (response) {
             $scope.EmployeeDetailsList = response.data.employees;
         });
+
+        $scope.GetLookUpData = function () {
+            LookUp.GetLookUpData("EmployeeDesignation").then(function (response) {
+                if (response.data && response.data.message == "Saved Successfully.") {
+                    $scope.EmployeeDesignations = response.data.lookUpLists;
+                    var config = {};
+                    growl.success(" a success message and not unique", config);
+                }
+            })
+        }
+        $scope.GetLookUpData();
+        HolidayListService.GetBranchLocations().then(function (response) {
+            if (response.data && response.data.success == true) {
+                $scope.Locations = response.data.BranchLocations;
+            }
+            else
+                growlService.growl("Error Occured.", 'danger');
+        }, function (err) {
+            growlService.growl(err, 'danger');
+
+        })
+
 
         $scope.init();
     }]);

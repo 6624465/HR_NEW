@@ -12,6 +12,9 @@ namespace HR.Models
         public DateTime JoiningDate { get; set; }
         public string MobileNo { get; set; }
         public string Email { get; set; }
+        public DateTime DOB { get; set; }
+        public string CountryCode { get; set; }
+        public int Designation { get; set; }
     }
 }
 

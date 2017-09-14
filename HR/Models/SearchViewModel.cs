@@ -13,7 +13,11 @@ namespace HR.Models
         public Int64 recordsCount { get; set; }
         public int EmployeeId { get; set; }
         public Int16 offset { get; set; }
-
+        public string  FirstName{ get; set; }
+        public DateTime? DateOfJoining { get; set; }
+        public DateTime DOB { get; set; }
+        public string CountryCode { get; set; }
+        public int Designation { get; set; }
         public List<FilterViewModel> FilterViewModel { get; set; }
     }
 
