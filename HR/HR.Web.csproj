@@ -7551,6 +7551,8 @@
     <Content Include="scripts\dateTimeInput.js" />
     <Content Include="scripts\datetimepicker.js" />
     <Content Include="scripts\loading-bar.js" />
+    <Content Include="Css\ng-table.min.css" />
+    <Content Include="scripts\ng-table.min.js" />
     <Content Include="scripts\services.js" />
     <Content Include="scripts\ui-bootstrap-tpls.min.js" />
     <Content Include="scripts\ui-bootstrap.js" />
@@ -7623,6 +7625,8 @@
     <Compile Include="Models\CompanyViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
     <Compile Include="Models\EmployeeLeaveViewModel.cs" />
+    <Compile Include="Models\EmployeeViewModel.cs" />
+    <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

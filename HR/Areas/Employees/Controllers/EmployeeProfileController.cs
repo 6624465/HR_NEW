@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using HR.Core.Utilities;
 using C = HR.Core.Constants;
+using HR.Models;
 
 namespace HR.Areas.Employees.Controllers
 {
@@ -15,22 +16,27 @@ namespace HR.Areas.Employees.Controllers
         #region Public Accessors
 
         #region Get
-        public JsonResult GetEmployeeDetails()
+        public JsonResult GetEmployeeDetails(SearchViewModel searchViewModel)
         {
             JsonResult jsonResult = new JsonResult();
             try
             {
-                var employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
-                                 select new
-                                 {
-                                     EmployeeName = employee.FirstName + employee.MiddleName + employee.LastName,
-                                     JoiningDate = employee.EmployeeWorkDetail.JoiningDate,
-                                     MobileNo = employee.Address.MobileNo,
-                                     Email = employee.Address.Email,
-                                     EmployeeId = employee.Id
-                                 }).ToList();
+                IEnumerable<EmployeeViewModel> employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
+                                                            select new EmployeeViewModel
+                                                            {
+                                                                EmployeeName = employee.FirstName + employee.MiddleName + employee.LastName,
+                                                                JoiningDate = employee.EmployeeWorkDetail.JoiningDate.Value,
+                                                                MobileNo = employee.Address.MobileNo,
+                                                                Email = employee.Address.Email,
+                                                                EmployeeId = employee.Id
+                                                            }).ToList().Skip(searchViewModel.offset).Take(searchViewModel.limit);
 
-                jsonResult = Json(new { sucess = true, employees = employees }, JsonRequestBehavior.AllowGet);
+                if (!string.IsNullOrWhiteSpace(searchViewModel.sortColumn))
+                {
+                    employees =  Sorting(searchViewModel, employees);
+                }
+
+                jsonResult = Json(new { sucess = true, employees = employees, total_count = employees.Count() }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -208,6 +214,49 @@ namespace HR.Areas.Employees.Controllers
             _employeeWorkDetail.Designation = employeeWorkDetail.Designation;
             _employeeWorkDetail.Department = employeeWorkDetail.Department;
             return _employeeWorkDetail;
+        }
+
+        private IEnumerable<EmployeeViewModel> Sorting(SearchViewModel searchViewModel, IEnumerable<EmployeeViewModel> employeeHeader)
+        {
+            switch (searchViewModel.sortColumn)
+            {
+                case "EmployeeId":
+                    employeeHeader.Where(e => e.EmployeeId == searchViewModel.EmployeeId);
+                    if (searchViewModel.sortColumn == "asc")
+                        employeeHeader = employeeHeader.OrderBy(e => e.EmployeeId);
+                    else
+                        employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeId);
+                    break;
+                case "EmployeeName":
+                    if (searchViewModel.sortColumn == "asc")
+                        employeeHeader = employeeHeader.OrderBy(e => e.EmployeeName);
+                    else
+                        employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeName);
+                    break;
+                case "JoiningDate":
+                    if (searchViewModel.sortColumn == "asc")
+                        employeeHeader = employeeHeader.OrderBy(e => e.JoiningDate);
+                    else
+                        employeeHeader = employeeHeader.OrderByDescending(e => e.JoiningDate);
+                    break;
+                case "Email":
+                    if (searchViewModel.sortColumn == "asc")
+                        employeeHeader = employeeHeader.OrderBy(e => e.Email);
+                    else
+                        employeeHeader = employeeHeader.OrderByDescending(e => e.Email);
+                    break;
+                case "MobileNo":
+                    if (searchViewModel.sortColumn == "asc")
+                        employeeHeader = employeeHeader.OrderBy(e => e.MobileNo);
+                    else
+                        employeeHeader = employeeHeader.OrderByDescending(e => e.MobileNo);
+                    break;
+
+                default:
+                    break;
+
+            }
+            return employeeHeader;
         }
 
         #endregion
