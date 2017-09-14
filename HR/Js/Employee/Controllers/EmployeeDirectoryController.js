@@ -1,6 +1,6 @@
 ﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams',
     'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams) {
-      
+
 
         $scope.init = function () {
             $scope.EmployeeDirectory = {};
@@ -27,55 +27,61 @@
                 $scope.search.page = page;
                 $scope.search.per_page = size;
                 $scope.search.limit = params.count();
-                    
+
                 if (params.sorting()) {
                     var orderBy = params.orderBy()[0];
 
-                    $scope.search.sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
-                    $scope.search.sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
+                    var sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
+                    var sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
+                    $scope.BindFilterViewModel(sortColumn, '', sortType);
+
+                    $scope.getEmployeeDetails();
                 }
-                EmployeeProfileService.GetEmployeeDetails({ params: $scope.search, headers: { 'Content-Type': 'application/json' } })
-                     .then(function (res) {
-                         params.total(res.data.total_count);
-                         $defer.resolve(res.data.employees);
-                     }, function (reason) {
-                         $defer.reject();
-                     }
-                );
+               
             },
         });
 
         $scope.FilterViewModel = function () {
-            debugger
             var properties = Object.keys($scope.EmployeeDirectory);
             angular.forEach(properties, function (val, idx) {
-                debugger
                 if (val == "FirstName")
-                    $scope.BindFilterViewModel(val);
+                    $scope.BindFilterViewModel(val, action);
                 if (val == "JoiningDate")
-                    $scope.BindFilterViewModel(val);
+                    $scope.BindFilterViewModel(val, action);
                 if (val == "DOB")
-                    $scope.BindFilterViewModel(val);
+                    $scope.BindFilterViewModel(val, action);
                 if (val == "IDNumber")
-                    $scope.BindFilterViewModel(val);
+                    $scope.BindFilterViewModel(val, action);
                 if (val == "CountryCode")
-                    $scope.BindFilterViewModel(val);
+                    $scope.BindFilterViewModel(val, action);
                 if (val == "Designation")
-                    $scope.BindFilterViewModel(val);
+                    $scope.BindFilterViewModel(val, action);
             })
 
+            $scope.getEmployeeDetails();
+
         }
-        
-        $scope.BindFilterViewModel = function (val) {
+
+        $scope.BindFilterViewModel = function (val, action) {
             $scope.filterViewModel.Field = val;
-            $filter('filter')($scope.EmployeeDirectory, val)[0];
-            $scope.filterViewModel.Value = $scope.EmployeeDirectory.FirstName;
+            $scope.filterViewModel.Value = (action == "asc" || action == "desc") ? $scope.EmployeeDirectory[val] : '';
+            $scope.filterViewModel.Action = action;
             $scope.search.FilterViewModel.push($scope.filterViewModel);
         }
 
         EmployeeProfileService.GetEmployeeDetails().then(function (response) {
             $scope.EmployeeDetailsList = response.data.employees;
         });
+
+        $scope.getEmployeeDetails = function () {
+            EmployeeProfileService.GetEmployeeDetails({ params: $scope.search, headers: { 'Content-Type': 'application/json' } })
+                    .then(function (res) {
+                        params.total(res.data.total_count);
+                        $defer.resolve(res.data.employees);
+                    }, function (reason) {
+                        $defer.reject();
+                    });
+        }
 
         $scope.init();
     }]);

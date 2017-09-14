@@ -31,9 +31,9 @@ namespace HR.Areas.Employees.Controllers
                                                                 EmployeeId = employee.Id
                                                             }).ToList().Skip(searchViewModel.offset).Take(searchViewModel.limit);
 
-                if (!string.IsNullOrWhiteSpace(searchViewModel.sortColumn))
+                foreach (FilterViewModel item in searchViewModel.FilterViewModel)
                 {
-                    employees =  Sorting(searchViewModel, employees);
+                    employees = Sorting(item, employees);
                 }
 
                 jsonResult = Json(new { sucess = true, employees = employees, total_count = employees.Count() }, JsonRequestBehavior.AllowGet);
@@ -216,37 +216,39 @@ namespace HR.Areas.Employees.Controllers
             return _employeeWorkDetail;
         }
 
-        private IEnumerable<EmployeeViewModel> Sorting(SearchViewModel searchViewModel, IEnumerable<EmployeeViewModel> employeeHeader)
+        private IEnumerable<EmployeeViewModel> Sorting(FilterViewModel filterViewModel, IEnumerable<EmployeeViewModel> employeeHeader)
         {
-            switch (searchViewModel.sortColumn)
+
+            switch (filterViewModel.Field)
             {
                 case "EmployeeId":
-                    employeeHeader.Where(e => e.EmployeeId == searchViewModel.EmployeeId);
-                    if (searchViewModel.sortColumn == "asc")
+                    if (filterViewModel.Type == "Where")
+                        employeeHeader.Where(e => e.EmployeeId == Convert.ToInt32(filterViewModel.Value));
+                  else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.EmployeeId);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeId);
                     break;
                 case "EmployeeName":
-                    if (searchViewModel.sortColumn == "asc")
+                    if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.EmployeeName);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeName);
                     break;
                 case "JoiningDate":
-                    if (searchViewModel.sortColumn == "asc")
+                    if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.JoiningDate);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.JoiningDate);
                     break;
                 case "Email":
-                    if (searchViewModel.sortColumn == "asc")
+                    if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.Email);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.Email);
                     break;
                 case "MobileNo":
-                    if (searchViewModel.sortColumn == "asc")
+                    if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.MobileNo);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.MobileNo);
