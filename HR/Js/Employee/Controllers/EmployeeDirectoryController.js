@@ -1,6 +1,6 @@
-﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams',
-    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams) {
-
+﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams','LookUp','HolidayListService',
+    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams,LookUp,HolidayListService) {
+      
 
         $scope.init = function () {
             $scope.EmployeeDirectory = {};
@@ -10,6 +10,7 @@
                 FilterViewModel: []
             };
         }
+        $scope.dateFormat = UtilityFunc.DateFormat();
         $scope.formatDate = function (date) {
             if (date != null)
                 return moment(date).format(UtilityFunc.DateFormat());
@@ -27,7 +28,7 @@
                 $scope.search.page = page;
                 $scope.search.per_page = size;
                 $scope.search.limit = params.count();
-
+                    
                 if (params.sorting()) {
                     var orderBy = params.orderBy()[0];
 
@@ -61,7 +62,7 @@
             $scope.getEmployeeDetails();
 
         }
-
+        
         $scope.BindFilterViewModel = function (val, action) {
             $scope.filterViewModel.Field = val;
             $scope.filterViewModel.Value = (action == "asc" || action == "desc") ? $scope.EmployeeDirectory[val] : '';
@@ -82,6 +83,28 @@
                         $defer.reject();
                     });
         }
+
+        $scope.GetLookUpData = function () {
+            LookUp.GetLookUpData("EmployeeDesignation").then(function (response) {
+                if (response.data && response.data.message == "Saved Successfully.") {
+                    $scope.EmployeeDesignations = response.data.lookUpLists;
+                    var config = {};
+                    growl.success(" a success message and not unique", config);
+                }
+            })
+        }
+        $scope.GetLookUpData();
+        HolidayListService.GetBranchLocations().then(function (response) {
+            if (response.data && response.data.success == true) {
+                $scope.Locations = response.data.BranchLocations;
+            }
+            else
+                growlService.growl("Error Occured.", 'danger');
+        }, function (err) {
+            growlService.growl(err, 'danger');
+
+        })
+
 
         $scope.init();
     }]);

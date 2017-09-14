@@ -287,6 +287,8 @@ app.config(
                                 name: 'ngHR',
                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeDirectoryController.js',
                                        baseUrl + 'Js/Employee/Services/EmployeeProfileService.js',
+                                       baseUrl + 'Js/Master/MasterService/LookUp.js',
+                                       baseUrl + 'Js/Leave/Services/HolidayListService.js'
                                 ]
                             }
                         ]);

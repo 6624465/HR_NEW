@@ -21,8 +21,8 @@ namespace HR.Areas.Employees.Controllers
             JsonResult jsonResult = new JsonResult();
             try
             {
-                IEnumerable<EmployeeViewModel> employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
-                                                            select new EmployeeViewModel
+                var employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
+                                                            select new 
                                                             {
                                                                 EmployeeName = employee.FirstName + employee.MiddleName + employee.LastName,
                                                                 JoiningDate = employee.EmployeeWorkDetail.JoiningDate.Value,
@@ -230,30 +230,36 @@ namespace HR.Areas.Employees.Controllers
                         employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeId);
                     break;
                 case "EmployeeName":
-                    if (filterViewModel.Type == "asc")
+                    employeeHeader.Where(e => e.EmployeeName == searchViewModel.FirstName);
+                    if (searchViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.EmployeeName);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeName);
                     break;
                 case "JoiningDate":
-                    if (filterViewModel.Type == "asc")
+                    employeeHeader.Where(e => e.JoiningDate == searchViewModel.DateOfJoining);
+                    if (searchViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.JoiningDate);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.JoiningDate);
                     break;
                 case "Email":
-                    if (filterViewModel.Type == "asc")
+                    employeeHeader.Where(e => e.DOB == searchViewModel.DOB);
+                    if (searchViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.Email);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.Email);
                     break;
                 case "MobileNo":
-                    if (filterViewModel.Type == "asc")
+                    employeeHeader = employeeHeader.Where(e => e.Designation == searchViewModel.Designation);
+                    employeeHeader.Where(e => e.CountryCode == searchViewModel.CountryCode);
+                    if (searchViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.MobileNo);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.MobileNo);
                     break;
 
+                    
                 default:
                     break;
 

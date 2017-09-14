@@ -25,9 +25,10 @@
                                 <div class="dropdown">
                                     <a class="dropdown-toggle" id="JoiningDate" role="button" data-toggle="dropdown">
                                         <div class="input-group">
-                                            <input type="text" class="form-control input-sm datepicker"
+                                            <input type="text" class="form-control input-sm datepicker valid"
                                                    ng-model="EmployeeDirectory.JoiningDate"
                                                    name="EmployeeDirectory.JoiningDate"
+                                                   ng-change="onChageText(EmployeeDirectory.JoiningDate)"
                                                    ng-required="true"
                                                    date-time-input="{{dateFormat}}">
                                             <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
@@ -38,6 +39,23 @@
                                                         data-datetimepicker-config="{ dropdownSelector: '#JoiningDate', startView:'day', minView:'day' }" />
                                     </ul>
                                 </div>
+                                @*<div class="dropdown">
+                                    <a class="dropdown-toggle" id="DOB" role="button" data-toggle="dropdown">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-sm datepicker valid"
+                                                   ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
+                                                   name="EmployeeHeader.EmployeePersonalInfo.DOB"
+                                                   ng-required="true"
+                                                   ng-change="onChageText(EmployeeHeader.EmployeePersonalInfo.DOB)"
+                                                   date-time-input="{{dateFormat}}">
+                                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <datetimepicker ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
+                                                        data-datetimepicker-config="{ dropdownSelector: '#DOB', startView:'day', minView:'day' }" />
+                                    </ul>
+                                </div>*@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-2">
@@ -83,7 +101,7 @@
                                 <label for="Country"> Country</label>
 
                                 <select name="Country"
-                                        ng-options="s.CountryCode as s.CountryName for s in Countries"
+                                        ng-options="s.CountryCode as s.CountryName for s in Locations"
                                         ng-model="EmployeeDirectory.CountryCode"
                                         class="form-control">
                                     <option value="">--Select Country--</option>
@@ -96,7 +114,7 @@
                                 <label>
                                     Designation
                                 </label>
-                                <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeDesignation"
+                                <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeDesignations"
                                         ng-model="EmployeeDirectory.Designation" class="form-control">
                                     <option value="">--Select Designation--</option>
                                 </select>
