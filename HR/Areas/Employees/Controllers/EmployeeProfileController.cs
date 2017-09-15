@@ -24,7 +24,7 @@ namespace HR.Areas.Employees.Controllers
                 IEnumerable<EmployeeViewModel> employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
                                                             select new EmployeeViewModel
                                                             {
-                                                                EmployeeName = employee.FirstName + employee.MiddleName + employee.LastName,
+                                                                EmployeeName = employee.FirstName,
                                                                 JoiningDate = employee.EmployeeWorkDetail.JoiningDate.Value,
                                                                 MobileNo = employee.Address.MobileNo,
                                                                 Email = employee.Address.Email,
@@ -226,15 +226,15 @@ namespace HR.Areas.Employees.Controllers
             {
                 case "EmployeeId":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader.Where(e => e.EmployeeId == Convert.ToInt32(filterViewModel.Value));
+                        employeeHeader = employeeHeader.Where(e => e.EmployeeId == Convert.ToInt32(filterViewModel.Value));
                     else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.EmployeeId);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeId);
                     break;
-                case "EmployeeName":
+                case "FirstName":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader.Where(e => e.EmployeeName == filterViewModel.Value);
+                        employeeHeader= employeeHeader.Where(e => e.EmployeeName.ToLower() == filterViewModel.Value.ToLower());
                     else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.EmployeeName);
                     else
@@ -242,7 +242,7 @@ namespace HR.Areas.Employees.Controllers
                     break;
                 case "JoiningDate":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader.Where(e => e.JoiningDate == Convert.ToDateTime(filterViewModel.Value));
+                        employeeHeader = employeeHeader.Where(e => e.JoiningDate == Convert.ToDateTime(filterViewModel.Value));
                     else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.JoiningDate);
                     else
@@ -250,7 +250,7 @@ namespace HR.Areas.Employees.Controllers
                     break;
                 case "Email":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader.Where(e => e.Email == filterViewModel.Value);
+                        employeeHeader= employeeHeader.Where(e => e.Email.ToLower() == filterViewModel.Value.ToLower());
                     else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.Email);
                     else
@@ -258,7 +258,7 @@ namespace HR.Areas.Employees.Controllers
                     break;
                 case "MobileNo":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader = employeeHeader.Where(e => e.MobileNo == filterViewModel.Value);
+                        employeeHeader = employeeHeader = employeeHeader.Where(e => e.MobileNo.ToLower() == filterViewModel.Value.ToLower());
                    else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.MobileNo);
                     else

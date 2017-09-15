@@ -15,8 +15,7 @@
                                 <label>
                                     Employee Name
                                 </label>
-                                <input class="form-control" type="text" ng-model="EmployeeDirectory.FirstName"
-                                       ng-required="true">
+                                <input class="form-control" type="text" ng-model="EmployeeDirectory.FirstName">
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-2">
@@ -30,8 +29,6 @@
                                             <input type="text" class="form-control input-sm datepicker valid"
                                                    ng-model="EmployeeDirectory.JoiningDate"
                                                    name="EmployeeDirectory.JoiningDate"
-                                                   ng-change="onChageText(EmployeeDirectory.JoiningDate)"
-                                                   ng-required="true"
                                                    date-time-input="{{dateFormat}}">
                                             <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                         </div>
@@ -91,8 +88,8 @@
                         </div>
 
                         <div class="col-xs-12 col-md-2 pull-right">
-                            <button type="button" id="btn-Search" class="btn btn-primary " ng-click="FilterViewModel()">Search</button>
-                            <button type="button" id="btn-clear" class="btn btn-primary " ng-click="Clear();">Clear</button>
+                            <button type="submit" ng-click="submitted = true;" id="btn-Search" class="btn btn-primary">Search</button>
+                            <button type="button" id="btn-clear" class="btn btn-primary" ng-click="Clear();">Clear</button>
                         </div>
                     </div>
                     <div class="row">
