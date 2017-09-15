@@ -30,11 +30,14 @@ namespace HR.Areas.Employees.Controllers
                                                                 Email = employee.Address.Email,
                                                                 EmployeeId = employee.Id
                                                             }).ToList().Skip(searchViewModel.offset).Take(searchViewModel.limit);
-
-                foreach (FilterViewModel item in searchViewModel.FilterViewModel)
+                if (searchViewModel.FilterViewModel != null)
                 {
-                    employees = Sorting(item, employees);
+                    foreach (FilterViewModel item in searchViewModel.FilterViewModel)
+                    {
+                        employees = Sorting(item, employees);
+                    }
                 }
+               
 
                 jsonResult = Json(new { sucess = true, employees = employees, total_count = employees.Count() }, JsonRequestBehavior.AllowGet);
             }

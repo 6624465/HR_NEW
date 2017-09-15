@@ -1,11 +1,10 @@
-﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams','LookUp','HolidayListService',
-    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams,LookUp,HolidayListService) {
-      
+﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams', 'LookUp', 'HolidayListService',
+    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams, LookUp, HolidayListService) {
+
 
         $scope.init = function () {
             $scope.EmployeeDirectory = {};
-            $scope.filterViewModel = {
-            }
+            $scope.filterViewModel = {}
             $scope.search = {
                 FilterViewModel: []
             };
@@ -17,30 +16,42 @@
             else
                 return null;
         }
-
-        $scope.tableParams = new NgTableParams({
-            page: 1,
-            count: 10,
-        }, {
-            getData: function ($defer, params) {
-                var page = params.page();
-                var size = params.count();
-                $scope.search.page = page;
-                $scope.search.per_page = size;
-                $scope.search.limit = params.count();
-                    
-                if (params.sorting()) {
-                    var orderBy = params.orderBy()[0];
-
-                    var sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
-                    var sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
-                    $scope.BindFilterViewModel(sortColumn, '', sortType);
-
-                    $scope.getEmployeeDetails();
+        var search = {};
+        $scope.EmployeeDetails = function (IsFromSearch) {
+            $scope.tableParams = new NgTableParams({
+                page: 0,
+                count: 10,
+                sorting: {
+                    CreatedOn: 'desc'
                 }
-               
-            },
-        });
+            }, {
+                getData: function ($defer, params) {
+                    search.page = params.page();
+                    search.per_page = params.count();
+                    search.limit = params.count();
+
+                    if (params.sorting()) {
+                        var orderBy = params.orderBy()[0];
+
+                        var sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
+                        var sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
+                        search.FilterViewModel=[];
+                        $scope.BindFilterViewModel(sortColumn, sortType);
+                    }
+                    if (IsFromSearch)
+                        $scope.FilterViewModel();
+
+                    EmployeeProfileService.GetEmployeeDetails(search)
+                        .then(function (res) {
+                            params.total(res.data.total_count);
+                            $defer.resolve(res.data.employees);
+                        }, function (err) {
+                            $defer.reject();
+                        })
+                }
+            });
+        }
+        $scope.EmployeeDetails(false);
 
         $scope.FilterViewModel = function () {
             var properties = Object.keys($scope.EmployeeDirectory);
@@ -62,27 +73,21 @@
             $scope.getEmployeeDetails();
 
         }
-        
+
         $scope.BindFilterViewModel = function (val, action) {
             $scope.filterViewModel.Field = val;
             $scope.filterViewModel.Value = (action == "asc" || action == "desc") ? $scope.EmployeeDirectory[val] : '';
-            $scope.filterViewModel.Action = action;
-            $scope.search.FilterViewModel.push($scope.filterViewModel);
+            $scope.filterViewModel.Type = action;
+            search.FilterViewModel.push($scope.filterViewModel);
         }
 
-        EmployeeProfileService.GetEmployeeDetails().then(function (response) {
-            $scope.EmployeeDetailsList = response.data.employees;
-        });
+        //EmployeeProfileService.GetEmployeeDetails().then(function (response) {
+        //    $scope.EmployeeDetailsList = response.data.employees;
+        //});
 
-        $scope.getEmployeeDetails = function () {
-            EmployeeProfileService.GetEmployeeDetails({ params: $scope.search, headers: { 'Content-Type': 'application/json' } })
-                    .then(function (res) {
-                        params.total(res.data.total_count);
-                        $defer.resolve(res.data.employees);
-                    }, function (reason) {
-                        $defer.reject();
-                    });
-        }
+        //$scope.getEmployeeDetails = function () {
+
+        //}
 
         $scope.GetLookUpData = function () {
             LookUp.GetLookUpData("EmployeeDesignation").then(function (response) {
