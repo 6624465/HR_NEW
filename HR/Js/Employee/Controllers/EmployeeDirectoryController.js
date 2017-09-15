@@ -98,6 +98,7 @@
                 if (response.data && response.data.message == "Saved Successfully.") {
                     $scope.EmployeeDesignations = response.data.lookUpLists;
                     var config = {};
+                    debugger;
                     growl.success(" a success message and not unique", config);
                 }
             })

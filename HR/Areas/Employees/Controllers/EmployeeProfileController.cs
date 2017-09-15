@@ -220,6 +220,7 @@ namespace HR.Areas.Employees.Controllers
         }
 
         private IEnumerable<EmployeeViewModel> Sorting(FilterViewModel filterViewModel, IEnumerable<EmployeeViewModel> employeeHeader)
+
         {
 
             switch (filterViewModel.Field)
