@@ -21,8 +21,8 @@ namespace HR.Areas.Employees.Controllers
             JsonResult jsonResult = new JsonResult();
             try
             {
-                var employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
-                                                            select new 
+                IEnumerable<EmployeeViewModel> employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
+                                                            select new EmployeeViewModel
                                                             {
                                                                 EmployeeName = employee.FirstName + employee.MiddleName + employee.LastName,
                                                                 JoiningDate = employee.EmployeeWorkDetail.JoiningDate.Value,
@@ -224,42 +224,45 @@ namespace HR.Areas.Employees.Controllers
                 case "EmployeeId":
                     if (filterViewModel.Type == "Where")
                         employeeHeader.Where(e => e.EmployeeId == Convert.ToInt32(filterViewModel.Value));
-                  else if (filterViewModel.Type == "asc")
+                    else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.EmployeeId);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeId);
                     break;
                 case "EmployeeName":
-                    employeeHeader.Where(e => e.EmployeeName == searchViewModel.FirstName);
-                    if (searchViewModel.Type == "asc")
+                    employeeHeader.Where(e => e.EmployeeName == filterViewModel.Value);
+                    if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.EmployeeName);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeName);
                     break;
                 case "JoiningDate":
-                    employeeHeader.Where(e => e.JoiningDate == searchViewModel.DateOfJoining);
-                    if (searchViewModel.Type == "asc")
+
+                    employeeHeader.Where(e => e.JoiningDate == Convert.ToDateTime(filterViewModel.Value));
+                    if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.JoiningDate);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.JoiningDate);
                     break;
                 case "Email":
-                    employeeHeader.Where(e => e.DOB == searchViewModel.DOB);
-                    if (searchViewModel.Type == "asc")
+                    employeeHeader.Where(e => e.Email == filterViewModel.Value);
+                    if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.Email);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.Email);
                     break;
                 case "MobileNo":
-                    employeeHeader = employeeHeader.Where(e => e.Designation == searchViewModel.Designation);
-                    employeeHeader.Where(e => e.CountryCode == searchViewModel.CountryCode);
-                    if (searchViewModel.Type == "asc")
+                    employeeHeader = employeeHeader.Where(e => e.MobileNo == filterViewModel.Value);
+                    if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.MobileNo);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.MobileNo);
                     break;
 
-                    
+                case "Country":
+                    employeeHeader = employeeHeader.Where(e => e.CountryCode == filterViewModel.Value);
+                    break;
+
                 default:
                     break;
 
