@@ -36,27 +36,41 @@
                     var sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
                     $scope.BindFilterViewModel(sortColumn, '', sortType);
 
-                    $scope.getEmployeeDetails();
+                    //$scope.getEmployeeDetails();
+                    $scope.getEmployeeDetails = function () {
+                        debugger;
+                        EmployeeProfileService.GetEmployeeDetails({ params: $scope.search, headers: { 'Content-Type': 'application/json' } })
+                                .then(function (res) {
+                                    debugger;
+                                    params.total(res.data.total_count);
+                                    $defer.resolve(res.data.employees);
+                                }, function (reason) {
+                                    $defer.reject();
+                                });
+                    }
                 }
                
             },
         });
 
         $scope.FilterViewModel = function () {
+            debugger;
             var properties = Object.keys($scope.EmployeeDirectory);
             angular.forEach(properties, function (val, idx) {
+                debugger;
+                var Fields = "Where";
                 if (val == "FirstName")
-                    $scope.BindFilterViewModel(val, action);
+                    $scope.BindFilterViewModel(val, Fields);
                 if (val == "JoiningDate")
-                    $scope.BindFilterViewModel(val, action);
-                if (val == "DOB")
-                    $scope.BindFilterViewModel(val, action);
-                if (val == "IDNumber")
-                    $scope.BindFilterViewModel(val, action);
+                    $scope.BindFilterViewModel(val, Fields);
+                //if (val == "DOB")
+                //    $scope.BindFilterViewModel(val, Fields);
+                if (val == "EmployeeId")
+                    $scope.BindFilterViewModel(val, Fields);
                 if (val == "CountryCode")
-                    $scope.BindFilterViewModel(val, action);
+                    $scope.BindFilterViewModel(val, Fields);
                 if (val == "Designation")
-                    $scope.BindFilterViewModel(val, action);
+                    $scope.BindFilterViewModel(val, Fields);
             })
 
             $scope.getEmployeeDetails();
@@ -64,6 +78,7 @@
         }
         
         $scope.BindFilterViewModel = function (val, action) {
+            debugger;
             $scope.filterViewModel.Field = val;
             $scope.filterViewModel.Value = (action == "asc" || action == "desc") ? $scope.EmployeeDirectory[val] : '';
             $scope.filterViewModel.Action = action;
@@ -74,15 +89,7 @@
             $scope.EmployeeDetailsList = response.data.employees;
         });
 
-        $scope.getEmployeeDetails = function () {
-            EmployeeProfileService.GetEmployeeDetails({ params: $scope.search, headers: { 'Content-Type': 'application/json' } })
-                    .then(function (res) {
-                        params.total(res.data.total_count);
-                        $defer.resolve(res.data.employees);
-                    }, function (reason) {
-                        $defer.reject();
-                    });
-        }
+       
 
         $scope.GetLookUpData = function () {
             LookUp.GetLookUpData("EmployeeDesignation").then(function (response) {
