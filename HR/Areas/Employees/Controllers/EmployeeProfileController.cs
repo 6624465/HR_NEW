@@ -262,7 +262,9 @@ namespace HR.Areas.Employees.Controllers
                 case "Country":
                     employeeHeader = employeeHeader.Where(e => e.CountryCode == filterViewModel.Value);
                     break;
-
+                case "DOB":
+                    employeeHeader = employeeHeader.Where(e =>e.DOB ==Convert.ToDateTime(filterViewModel.Value));
+                    break;
                 default:
                     break;
 
