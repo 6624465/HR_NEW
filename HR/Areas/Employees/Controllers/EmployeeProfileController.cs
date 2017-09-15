@@ -233,39 +233,43 @@ namespace HR.Areas.Employees.Controllers
                         employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeId);
                     break;
                 case "EmployeeName":
-                    employeeHeader.Where(e => e.EmployeeName == filterViewModel.Value);
-                    if (filterViewModel.Type == "asc")
+                    if (filterViewModel.Type == "Where")
+                        employeeHeader.Where(e => e.EmployeeName == filterViewModel.Value);
+                    else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.EmployeeName);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeName);
                     break;
                 case "JoiningDate":
-
-                    employeeHeader.Where(e => e.JoiningDate == Convert.ToDateTime(filterViewModel.Value));
-                    if (filterViewModel.Type == "asc")
+                    if (filterViewModel.Type == "Where")
+                        employeeHeader.Where(e => e.JoiningDate == Convert.ToDateTime(filterViewModel.Value));
+                    else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.JoiningDate);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.JoiningDate);
                     break;
                 case "Email":
-                    employeeHeader.Where(e => e.Email == filterViewModel.Value);
-                    if (filterViewModel.Type == "asc")
+                    if (filterViewModel.Type == "Where")
+                        employeeHeader.Where(e => e.Email == filterViewModel.Value);
+                    else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.Email);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.Email);
                     break;
                 case "MobileNo":
-                    employeeHeader = employeeHeader.Where(e => e.MobileNo == filterViewModel.Value);
-                    if (filterViewModel.Type == "asc")
+                    if (filterViewModel.Type == "Where")
+                        employeeHeader = employeeHeader.Where(e => e.MobileNo == filterViewModel.Value);
+                   else if (filterViewModel.Type == "asc")
                         employeeHeader = employeeHeader.OrderBy(e => e.MobileNo);
                     else
                         employeeHeader = employeeHeader.OrderByDescending(e => e.MobileNo);
                     break;
-
                 case "Country":
                     employeeHeader = employeeHeader.Where(e => e.CountryCode == filterViewModel.Value);
                     break;
-
+                case "Designation":
+                    employeeHeader = employeeHeader.Where(e => e.Designation == Convert.ToInt32(filterViewModel.Value));
+                    break;
                 default:
                     break;
 

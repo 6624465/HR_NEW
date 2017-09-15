@@ -1,152 +1,152 @@
 ﻿<div ng-controller="EmployeeDirectoryController" ng-init="GetEmployeeDetails()">
         <form id="frmEmployeeDirectory" name="frmEmployeeDirectory" ng-class="{'submitted':submitted}" ng-submit="EmployeeDetails(true)" novalidate>
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
 
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Search</h3>
+                <div class="box-header with-border">
+                    <h3 class="box-title">Search</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-2">
+                            <div class="form-group">
+                                <label>
+                                    Employee Name
+                                </label>
+                                <input class="form-control" type="text" ng-model="EmployeeDirectory.FirstName"
+                                       ng-required="true">
+                            </div>
                         </div>
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-xs-12 col-md-2">
-                                    <div class="form-group">
-                                        <label>
-                                            Employee Name
-                                        </label>
-                                        <input class="form-control" type="text" ng-model="EmployeeDirectory.FirstName"
-                                               ng-required="true">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-md-2">
-                                    <div class="form-group ">
-                                        <label>
-                                            Date Of Joining
-                                        </label>
-                                        <div class="dropdown">
-                                            <a class="dropdown-toggle" id="JoiningDate" role="button" data-toggle="dropdown">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control input-sm datepicker valid"
-                                                           ng-model="EmployeeDirectory.JoiningDate"
-                                                           name="EmployeeDirectory.JoiningDate"
-                                                           ng-change="onChageText(EmployeeDirectory.JoiningDate)"
-                                                           ng-required="true"
-                                                           date-time-input="{{dateFormat}}">
-                                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                                </div>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                <datetimepicker ng-model="EmployeeDirectory.JoiningDate"
-                                                                data-datetimepicker-config="{ dropdownSelector: '#JoiningDate', startView:'day', minView:'day' }" />
-                                            </ul>
+                        <div class="col-xs-12 col-md-2">
+                            <div class="form-group ">
+                                <label>
+                                    Date Of Joining
+                                </label>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" id="JoiningDate" role="button" data-toggle="dropdown">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-sm datepicker valid"
+                                                   ng-model="EmployeeDirectory.JoiningDate"
+                                                   name="EmployeeDirectory.JoiningDate"
+                                                   ng-change="onChageText(EmployeeDirectory.JoiningDate)"
+                                                   ng-required="true"
+                                                   date-time-input="{{dateFormat}}">
+                                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                         </div>
-                                        @*<div class="dropdown">
-                                            <a class="dropdown-toggle" id="DOB" role="button" data-toggle="dropdown">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control input-sm datepicker valid"
-                                                           ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
-                                                           name="EmployeeHeader.EmployeePersonalInfo.DOB"
-                                                           ng-required="true"
-                                                           ng-change="onChageText(EmployeeHeader.EmployeePersonalInfo.DOB)"
-                                                           date-time-input="{{dateFormat}}">
-                                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                                </div>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                <datetimepicker ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
-                                                                data-datetimepicker-config="{ dropdownSelector: '#DOB', startView:'day', minView:'day' }" />
-                                            </ul>
-                                        </div>*@
-                                    </div>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <datetimepicker ng-model="EmployeeDirectory.JoiningDate"
+                                                        data-datetimepicker-config="{ dropdownSelector: '#JoiningDate', startView:'day', minView:'day' }" />
+                                    </ul>
                                 </div>
-                                <div class="col-xs-12 col-md-2">
-                                    <div class="form-group ">
-                                        <label>
-                                            Date Of Birth
-                                        </label>
-                                        <div class="dropdown">
-                                            <a class="dropdown-toggle" id="DOB" role="button" data-toggle="dropdown">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control input-sm datepicker"
-                                                           ng-model="EmployeeDirectory.DOB"
-                                                           name="EmployeeDirectory.DOB"
-                                                           ng-required="true"
-                                                           date-time-input="{{dateFormat}}">
-                                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                                </div>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                <datetimepicker ng-model="EmployeeDirectory.DOB"
-                                                                data-datetimepicker-config="{ dropdownSelector: '#DOB', startView:'day', minView:'day' }" />
-                                            </ul>
+                                @*<div class="dropdown">
+                                    <a class="dropdown-toggle" id="DOB" role="button" data-toggle="dropdown">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-sm datepicker valid"
+                                                   ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
+                                                   name="EmployeeHeader.EmployeePersonalInfo.DOB"
+                                                   ng-required="true"
+                                                   ng-change="onChageText(EmployeeHeader.EmployeePersonalInfo.DOB)"
+                                                   date-time-input="{{dateFormat}}">
+                                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-md-2">
-                                    <div class="form-group ">
-                                        <label>Employee Number</label>
-                                        <input class="form-control " type="text" autocomplete="off" ng-model="EmployeeDirectory.IDNumber">
-                                    </div>
-                                </div>
-
-                                <div class="col-xs-12 col-md-2 pull-right">
-                                    <button type="button" id="btn-Search" class="btn btn-primary " ng-click="FilterViewModel()">Search</button>
-                                    <button type="button" id="btn-clear" class="btn btn-primary " ng-click="Clear();">Clear</button>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <datetimepicker ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
+                                                        data-datetimepicker-config="{ dropdownSelector: '#DOB', startView:'day', minView:'day' }" />
+                                    </ul>
+                                </div>*@
+                            </div>
+                        </div>
+                        @*<div class="col-xs-12 col-md-2">
+                            <div class="form-group ">
+                                <label>
+                                    Date Of Birth
+                                </label>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" id="DOB" role="button" data-toggle="dropdown">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-sm datepicker"
+                                                   ng-model="EmployeeDirectory.DOB"
+                                                   name="EmployeeDirectory.DOB"
+                                                   ng-required="true"
+                                                   date-time-input="{{dateFormat}}">
+                                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <datetimepicker ng-model="EmployeeDirectory.DOB"
+                                                        data-datetimepicker-config="{ dropdownSelector: '#DOB', startView:'day', minView:'day' }" />
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="row">
-
-                                <div class="col-xs-12 col-md-2">
-                                    <div class="form-group fg-line">
-
-                                        <label for="Country"> Country</label>
-
-                                        <select name="Country"
-                                                ng-options="s.CountryCode as s.CountryName for s in Locations"
-                                                ng-model="EmployeeDirectory.CountryCode"
-                                                class="form-control">
-                                            <option value="">--Select Country--</option>
-                                        </select>
-
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-md-2">
-                                    <div class="form-group fg-line">
-                                        <label>
-                                            Designation
-                                        </label>
-                                        <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeDesignations"
-                                                ng-model="EmployeeDirectory.Designation" class="form-control">
-                                            <option value="">--Select Designation--</option>
-                                        </select>
-                                    </div>
-                                </div>
+                        </div>*@
+                        <div class="col-xs-12 col-md-2">
+                            <div class="form-group ">
+                                <label>Employee Number</label>
+                                <input class="form-control " type="text" autocomplete="off" ng-model="EmployeeDirectory.EmployeeId">
                             </div>
+                        </div>
 
-
+                        <div class="col-xs-12 col-md-2 pull-right">
+                            <button type="button" id="btn-Search" class="btn btn-primary " ng-click="FilterViewModel()">Search</button>
+                            <button type="button" id="btn-clear" class="btn btn-primary " ng-click="Clear();">Clear</button>
                         </div>
                     </div>
-                </div>
-            </div>
+                    <div class="row">
 
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Employee Directory</h3>
-                            <div class="pull-right">
-                                <button type="button" class="btn" ui-sref="EmployeeHeader({id:'new'})">
-                                    <i class="zmdi zmdi-plus"></i>&nbsp; Add Employee
-                                </button>
+                        <div class="col-xs-12 col-md-2">
+                            <div class="form-group fg-line">
+
+                                <label for="Country"> Country</label>
+
+                                <select name="Country"
+                                        ng-options="s.CountryCode as s.CountryName for s in Locations"
+                                        ng-model="EmployeeDirectory.CountryCode"
+                                        class="form-control">
+                                    <option value="">--Select Country--</option>
+                                </select>
+
                             </div>
                         </div>
-                        <div class="box-body">
-                            <div class="table-responsive">
-                                <div class="" style="min-height: 250px;">
-                                    <div class="table-responsive">
-                                        <table ng-table="tableParams" class="table table-vmiddle">
-                                            @*<thead>
+                        <div class="col-xs-12 col-md-2">
+                            <div class="form-group fg-line">
+                                <label>
+                                    Designation
+                                </label>
+                                <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeDesignations"
+                                        ng-model="EmployeeDirectory.Designation" class="form-control">
+                                    <option value="">--Select Designation--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Employee Directory</h3>
+                        <div class="pull-right">
+                            <button type="button" class="btn" ui-sref="EmployeeHeader({id:'new'})">
+                                <i class="zmdi zmdi-plus"></i>&nbsp; Add Employee
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <div class="" style="min-height: 250px;">
+                                <div class="table-responsive">
+                                    <table ng-table="tableParams" class="table table-vmiddle">
+                                        @*<thead>
                                                 <tr>
                                                     <th>#Action</th>
                                                     <th>
@@ -159,41 +159,41 @@
 
                                                 </tr>
                                             </thead>*@
-                                            @*<tbody>*@
-                                            <tr ng-repeat="employeeDetails in $data">
-                                                <td data-title="'#Action'">
-                                                    <button class="btn btn-default ng-scope waves-effect"
-                                                            type="button"
-                                                            ui-sref="EmployeeHeader({id:employeeDetails.EmployeeId})"
-                                                            aria-label="button" uib-tooltip="Edit" tooltip-placement="top">
-                                                        <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                </td>
-                                                <td sortable="'EmployeeId'" data-title="'Employee No'">
-                                                    {{employeeDetails.EmployeeId}}
-                                                </td>
-                                                <td sortable="'EmployeeName'" data-title="'Employee Name'">
-                                                    {{employeeDetails.EmployeeName}}
-                                                </td>
-                                                <td sortable="'JoiningDate'" data-title="'Joining Date'">
-                                                    {{formatDate(employeeDetails.JoiningDate)}}
-                                                </td>
-                                                <td sortable="'MobileNo'" data-title="'Phone No'">
-                                                    {{employeeDetails.MobileNo}}
-                                                </td>
-                                                <td sortable="'Email'" data-title="'Email'">
-                                                    {{employeeDetails.Email}}
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                        @*<tbody>*@
+                                        <tr ng-repeat="employeeDetails in $data">
+                                            <td data-title="'#Action'">
+                                                <button class="btn btn-default ng-scope waves-effect"
+                                                        type="button"
+                                                        ui-sref="EmployeeHeader({id:employeeDetails.EmployeeId})"
+                                                        aria-label="button" uib-tooltip="Edit" tooltip-placement="top">
+                                                    <i class="zmdi zmdi-edit"></i>
+                                                </button>
+                                            </td>
+                                            <td sortable="'EmployeeId'" data-title="'Employee No'">
+                                                {{employeeDetails.EmployeeId}}
+                                            </td>
+                                            <td sortable="'EmployeeName'" data-title="'Employee Name'">
+                                                {{employeeDetails.EmployeeName}}
+                                            </td>
+                                            <td sortable="'JoiningDate'" data-title="'Joining Date'">
+                                                {{formatDate(employeeDetails.JoiningDate)}}
+                                            </td>
+                                            <td sortable="'MobileNo'" data-title="'Phone No'">
+                                                {{employeeDetails.MobileNo}}
+                                            </td>
+                                            <td sortable="'Email'" data-title="'Email'">
+                                                {{employeeDetails.Email}}
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
 </div>
 
 @*</div>*@

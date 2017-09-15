@@ -1,6 +1,6 @@
 ﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams', 'LookUp', 'HolidayListService',
     'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams, LookUp, HolidayListService) {
-
+      
 
         $scope.init = function () {
             $scope.EmployeeDirectory = {};
@@ -18,23 +18,23 @@
         }
         var search = {};
         $scope.EmployeeDetails = function (IsFromSearch) {
-            $scope.tableParams = new NgTableParams({
+        $scope.tableParams = new NgTableParams({
                 page: 0,
-                count: 10,
+            count: 10,
                 sorting: {
                     CreatedOn: 'desc'
                 }
-            }, {
-                getData: function ($defer, params) {
+        }, {
+            getData: function ($defer, params) {
                     search.page = params.page();
                     search.per_page = params.count();
                     search.limit = params.count();
+                    
+                if (params.sorting()) {
+                    var orderBy = params.orderBy()[0];
 
-                    if (params.sorting()) {
-                        var orderBy = params.orderBy()[0];
-
-                        var sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
-                        var sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
+                    var sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
+                    var sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
                         search.FilterViewModel=[];
                         $scope.BindFilterViewModel(sortColumn, sortType);
                     }
@@ -49,32 +49,36 @@
                             $defer.reject();
                         })
                 }
-            });
+        });
         }
         $scope.EmployeeDetails(false);
 
         $scope.FilterViewModel = function () {
+            debugger;
             var properties = Object.keys($scope.EmployeeDirectory);
             angular.forEach(properties, function (val, idx) {
+                debugger;
+                var Fields = "Where";
                 if (val == "FirstName")
-                    $scope.BindFilterViewModel(val, action);
+                    $scope.BindFilterViewModel(val, Fields);
                 if (val == "JoiningDate")
-                    $scope.BindFilterViewModel(val, action);
-                if (val == "DOB")
-                    $scope.BindFilterViewModel(val, action);
-                if (val == "IDNumber")
-                    $scope.BindFilterViewModel(val, action);
+                    $scope.BindFilterViewModel(val, Fields);
+                //if (val == "DOB")
+                //    $scope.BindFilterViewModel(val, Fields);
+                if (val == "EmployeeId")
+                    $scope.BindFilterViewModel(val, Fields);
                 if (val == "CountryCode")
-                    $scope.BindFilterViewModel(val, action);
+                    $scope.BindFilterViewModel(val, Fields);
                 if (val == "Designation")
-                    $scope.BindFilterViewModel(val, action);
+                    $scope.BindFilterViewModel(val, Fields);
             })
 
             $scope.getEmployeeDetails();
 
         }
-
+        
         $scope.BindFilterViewModel = function (val, action) {
+            debugger;
             $scope.filterViewModel.Field = val;
             $scope.filterViewModel.Value = (action == "asc" || action == "desc") ? $scope.EmployeeDirectory[val] : '';
             $scope.filterViewModel.Type = action;
