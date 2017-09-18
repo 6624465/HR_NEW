@@ -4,9 +4,9 @@
 
         $scope.init = function () {
             $scope.EmployeeDirectory = {};
-            $scope.filterViewModel = {}
+            $scope.filter = {}
             $scope.search = {
-                FilterViewModel: []
+                FilterViewModel: new Array()
             };
         }
         $scope.dateFormat = UtilityFunc.DateFormat();
@@ -18,26 +18,22 @@
         }
         var search = {};
         $scope.EmployeeDetails = function (IsFromSearch) {
-            debugger
-            $scope.tableParams = new NgTableParams({
+            $scope.EmployeeDetailParams = new NgTableParams({
                 page: 0,
                 count: 10,
-                sorting: {
-                    CreatedOn: 'desc'
-                }
-            }, {
+            },
+            {
+                counts: [10, 20, 30],
                 getData: function ($defer, params) {
-                    search.page = params.page();
-                    search.per_page = params.count();
                     search.limit = params.count();
-
+                    search.offset = params.page() == 0 ? 0 : (params.count() * (params.page() - 1));
                     if (params.sorting()) {
                         var orderBy = params.orderBy()[0];
 
-                        var sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
-                        var sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
-                        search.FilterViewModel = [];
-                        $scope.BindFilterViewModel(sortColumn, sortType);
+                        search.sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
+                        search.sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
+                        //search.FilterViewModel = [];
+                        //$scope.BindFilterViewModel(sortColumn, sortType);
                     }
                     if (IsFromSearch)
                         $scope.FilterViewModel();
@@ -78,11 +74,11 @@
         }
 
         $scope.BindFilterViewModel = function (val, action) {
-            debugger;
-            $scope.filterViewModel.Field = val;
-            $scope.filterViewModel.Value = !(action == "asc" || action == "desc") ? $scope.EmployeeDirectory[val] : '';
-            $scope.filterViewModel.Type = action;
-            search.FilterViewModel.push($scope.filterViewModel);
+            $scope.filter = {};
+            $scope.filter.Field = val;
+            $scope.filter.Value = !(action == "asc" || action == "desc") ? $scope.EmployeeDirectory[val] : '';
+            $scope.filter.Type = action;
+            search.FilterViewModel.push($scope.filter);
         }
 
         //EmployeeProfileService.GetEmployeeDetails().then(function (response) {
@@ -97,9 +93,7 @@
             LookUp.GetLookUpData("EmployeeDesignation").then(function (response) {
                 if (response.data && response.data.message == "Saved Successfully.") {
                     $scope.EmployeeDesignations = response.data.lookUpLists;
-                    var config = {};
-                    debugger;
-                    growl.success(" a success message and not unique", config);
+                    growl.success(" a success message and not unique", "success");
                 }
             })
         }

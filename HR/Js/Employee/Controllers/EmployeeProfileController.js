@@ -130,34 +130,34 @@
             })
 
             if (errorCount >= 1) {
-                if (mandtoryFields[0].parentElement.innerText == "First Name ") {
+                if ((mandtoryFields[0].parentElement.innerText).trim() == "First Name") {
                     var basic = angular.element('.basic');
                     basic[0].style.backgroundColor = "#f76b66";
                 }
-                if (mandtoryFields[0].parentElement.innerText == "Address ") {
+                if ((mandtoryFields[0].parentElement.innerText).trim() == "Address") {
                     var address = angular.element('.address');
                     address[0].style.backgroundColor = "#f76b66";
                 }
-                if (mandtoryFields[0].parentElement.innerText == "Designation ") {
+                if ((mandtoryFields[0].parentElement.innerText).trim() == "Designation") {
                     var basic = angular.element('.position');
                     position[0].style.backgroundColor = "#f76b66";
                 }
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             }
             else {
-                if (mandtoryFields[0].parentElement.innerText == "First Name ") {
+                if ((mandtoryFields[0].parentElement.innerText).trim() == "First Name") {
                     $state.go('EmployeeHeader.EmployeeAddress');
                     var basic = angular.element('.basic');
-                    basic[0].style.backgroundColor = "lightgreen";
+                    basic[0].style.backgroundColor = "#008d4c";
                 }
 
-                if (mandtoryFields[0].parentElement.innerText == "Address ") {
+                if ((mandtoryFields[0].parentElement.innerText).trim() == "Address") {
                     $scope.IsAddressPageComplete = true;
                     $state.go('EmployeeHeader.EmployeePosition');
                     var address = angular.element('.address');
                     address[0].style.backgroundColor = "lightgreen";
                 }
-                if (mandtoryFields[0].parentElement.innerText == 'Designation ') {
+                if ((mandtoryFields[0].parentElement.innerText).trim() == "Designation") {
                     var position = angular.element('.position');
                     position[0].style.backgroundColor = "lightgreen";
                 }
