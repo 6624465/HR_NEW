@@ -78,42 +78,54 @@
             }
         }
 
+        $scope.onChangeEmployeetype = function (id) {
+
+            EmployeeProfileService.GetEmployeeNumber(id).then(function (response) {
+                if (response && response.data) {
+                    debugger
+                    if (response.data != null) {
+                        $scope.EmployeeHeader.IDNumber = response.data;
+                    }
+                }
+            })
+        }
+
         $scope.SaveEmlployee = function (EmployeeHeader) {
             $scope.ValidateForm();
             if ($scope.IsfrmEmployeeProfile) {
-               
-                    if ($scope.IsValid) {
-                        if (EmployeeHeader.Address.Address1 == null) {
-                            growlService.growl("Please Enter Employee Address Details", 'danger')
-                            return false;
-                        }
-                        if (EmployeeHeader.EmployeeWorkDetail.Designation == null || EmployeeHeader.EmployeeWorkDetail.Department == null) {
-                            growlService.growl("Please enter employee position details", 'danger')
-                            return false;
-                        }
-                        if (EmployeeHeader.FirstName != null) {
-                            $scope.BasicNextButton = true
-                        }
-                        EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
-                            if (response.data && response.data.sucess == true) {
-                                growlService.growl(response.data.message, 'success');
-                            $state.go('EmployeeDirectory');
-                            }
-                            else {
-                                growlService.growl("Error Occured While Saving The Employee", 'danger');
-                            }
-                        }), function (err) {
-                            growlService.growl(err, 'danger');
-                        }
+
+                if ($scope.IsValid) {
+                    if (EmployeeHeader.Address.Address1 == null) {
+                        growlService.growl("Please Enter Employee Address Details", 'danger')
+                        return false;
                     }
-              
+                    if (EmployeeHeader.EmployeeWorkDetail.Designation == null || EmployeeHeader.EmployeeWorkDetail.Department == null) {
+                        growlService.growl("Please enter employee position details", 'danger')
+                        return false;
+                    }
+                    if (EmployeeHeader.FirstName != null) {
+                        $scope.BasicNextButton = true
+                    }
+                    EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
+                        if (response.data && response.data.sucess == true) {
+                            growlService.growl(response.data.message, 'success');
+                            $state.go('EmployeeDirectory');
+                        }
+                        else {
+                            growlService.growl("Error Occured While Saving The Employee", 'danger');
+                        }
+                    }), function (err) {
+                        growlService.growl(err, 'danger');
+                    }
+                }
+
             }
-            
+
         }
-           
+
         $scope.onClickValid = function (buttonType) {
             $scope.ValidateForm(buttonType);
-            
+
         }
 
         $scope.ValidateForm = function (buttonType) {
@@ -153,13 +165,13 @@
                         $state.go('EmployeeHeader.EmployeeAddress');
                     else
                         $state.go('EmployeeHeader.EmployeeBasicInformation');
-                    
+
                     var basic = angular.element('.basic');
                     if (basic != null && basic != undefined) {
                         basic[0].style.backgroundColor = "#008d4c";
                         basic[0].style.color = "white";
                     }
-                    
+
 
                 }
 
@@ -193,8 +205,9 @@
                 $scope.IsValid = true;
             }
         }
+
         $scope.EmailValid = function () {
-            
+
             if (!angular.isUndefined($scope.EmployeeHeader.Address.Email)) {
             }
             else {
