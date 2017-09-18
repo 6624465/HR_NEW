@@ -7,6 +7,7 @@ namespace HR.Models
 {
     public class EmployeeViewModel
     {
+        public int Id { get; set; }
         public string EmployeeName { get; set; }
         public string EmployeeId { get; set; }
         public DateTime JoiningDate { get; set; }

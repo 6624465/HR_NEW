@@ -23,16 +23,17 @@ namespace HR.Areas.Employees.Controllers
             try
             {
                 IQueryable<EmployeeViewModel> employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
-                                                            select new EmployeeViewModel
-                                                            {
-                                                                EmployeeName = employee.FirstName,
-                                                                JoiningDate = employee.EmployeeWorkDetail.JoiningDate.Value,
-                                                                MobileNo = employee.Address.MobileNo,
-                                                                Email = employee.Address.Email,
-                                                               EmployeeId =employee.IDNumber,
-                                                                CountryCode = employee.Address.CountryCode,
-                                                                Designation = employee.EmployeeWorkDetail.Designation
-                                                            }).ToList().AsQueryable();
+                                                           select new EmployeeViewModel
+                                                           {
+                                                               Id = employee.Id,
+                                                               EmployeeName = employee.FirstName,
+                                                               JoiningDate = employee.EmployeeWorkDetail.JoiningDate.Value,
+                                                               MobileNo = employee.Address.MobileNo,
+                                                               Email = employee.Address.Email,
+                                                               EmployeeId = employee.IDNumber,
+                                                               CountryCode = employee.Address.CountryCode,
+                                                               Designation = employee.EmployeeWorkDetail.Designation
+                                                           }).ToList().AsQueryable();
 
                 if (searchViewModel.FilterViewModel != null)
                 {
@@ -113,23 +114,32 @@ namespace HR.Areas.Employees.Controllers
         {
             JsonResult result = new JsonResult();
             string newEmployeeNumber = string.Empty;
+            string existingemployeeNumber = string.Empty;
             try
             {
                 if (employeeTypeId > 0)
                 {
-                    string employeeNumber = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().Where(x => x.IDType == employeeTypeId).Select(x => x.IDNumber).LastOrDefault();
-                    if (!string.IsNullOrWhiteSpace(employeeNumber))
+                    EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().Where(x => x.IDType == employeeTypeId).OrderByDescending(o => o.Id).FirstOrDefault();
+                    if (employeeHeader != null)
                     {
-                        string existingNumber = employeeNumber.Substring(1);
-                         newEmployeeNumber = existingNumber + 1;
-                        result = Json(newEmployeeNumber);
+                        existingemployeeNumber = employeeHeader.IDNumber;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(existingemployeeNumber))
+                    {
+                        string existingNumber = existingemployeeNumber.Substring(1);
+                        char type = employeeTypeId == 2 ? 'P' : 'T';
+                        int number = Convert.ToInt32(existingNumber);
+                        newEmployeeNumber = type + (number + 1).ToString();
+                        result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
                     }
                     else
                     {
                         if (employeeTypeId == 2)
                             newEmployeeNumber = "P1000";
-                        else
+                        else if (employeeTypeId == 3)
                             newEmployeeNumber = "T1000";
+                        result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
                     }
                 }
             }
@@ -137,6 +147,7 @@ namespace HR.Areas.Employees.Controllers
             {
                 if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
                     return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+
             }
             return result;
         }
@@ -275,28 +286,28 @@ namespace HR.Areas.Employees.Controllers
             {
                 case "EmployeeId":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader = employeeHeader.Where(e => e.EmployeeId ==filterViewModel.Value);
-                   
+                        employeeHeader = employeeHeader.Where(e => e.EmployeeId == filterViewModel.Value);
+
                     break;
                 case "FirstName":
                     if (filterViewModel.Type == "Where")
                         employeeHeader = employeeHeader.Where(e => e.EmployeeName.ToLower() == filterViewModel.Value.ToLower());
-                   
+
                     break;
                 case "JoiningDate":
                     if (filterViewModel.Type == "Where")
                         employeeHeader = employeeHeader.Where(e => e.JoiningDate == Convert.ToDateTime(filterViewModel.Value));
-                   
+
                     break;
                 case "Email":
                     if (filterViewModel.Type == "Where")
                         employeeHeader = employeeHeader.Where(e => e.Email.ToLower() == filterViewModel.Value.ToLower());
-                   
+
                     break;
                 case "MobileNo":
                     if (filterViewModel.Type == "Where")
                         employeeHeader = employeeHeader = employeeHeader.Where(e => e.MobileNo.ToLower() == filterViewModel.Value.ToLower());
-                  
+
                     break;
                 case "CountryCode":
                     employeeHeader = employeeHeader.Where(e => e.CountryCode == filterViewModel.Value);

@@ -40,7 +40,6 @@
 
                     EmployeeProfileService.GetEmployeeDetails(search)
                         .then(function (res) {
-                            debugger;
                             params.total(res.data.total_count);
                             $defer.resolve(res.data.employees);
                         }, function (err) {
@@ -81,15 +80,7 @@
             $scope.filter.Type = action;
             search.FilterViewModel.push($scope.filter);
         }
-
-        //EmployeeProfileService.GetEmployeeDetails().then(function (response) {
-        //    $scope.EmployeeDetailsList = response.data.employees;
-        //});
-
-        //$scope.getEmployeeDetails = function () {
-
-        //}
-
+   
         $scope.GetLookUpData = function () {
             LookUp.GetLookUpData("EmployeeDesignation").then(function (response) {
                 if (response.data && response.data.message == "Saved Successfully.") {
