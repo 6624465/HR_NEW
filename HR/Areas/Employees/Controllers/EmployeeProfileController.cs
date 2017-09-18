@@ -167,6 +167,8 @@ namespace HR.Areas.Employees.Controllers
             _employeePersonalInfo.BirthCountry = employeePersonalInfo.BirthCountry;
             _employeePersonalInfo.MaritalStatus = employeePersonalInfo.MaritalStatus;
             _employeePersonalInfo.SpouseName = employeePersonalInfo.SpouseName;
+            _employeePersonalInfo.EmergencyContactNumber = employeePersonalInfo.EmergencyContactNumber;
+            _employeePersonalInfo.EmergencyContactName = employeePersonalInfo.EmergencyContactName;
             if (employeePersonalInfo.MarriageDate.HasValue)
                 _employeePersonalInfo.MarriageDate = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.MarriageDate.Value);
             else

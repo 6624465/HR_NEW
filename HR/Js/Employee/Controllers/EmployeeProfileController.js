@@ -193,14 +193,11 @@
                 $scope.IsValid = true;
             }
         }
-        $scope.EmailValid=function()
-        {
+        $scope.EmailValid = function () {
             
-            if (!angular.isUndefined($scope.EmployeeHeader.Address.Email))
-            {
+            if (!angular.isUndefined($scope.EmployeeHeader.Address.Email)) {
             }
-            else
-            {
+            else {
                 growlService.growl("Invalid Email", 'danger');
             }
         }
