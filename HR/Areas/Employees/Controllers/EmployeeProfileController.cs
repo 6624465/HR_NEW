@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using HR.Core.Utilities;
 using C = HR.Core.Constants;
 using HR.Models;
+using System.Linq.Expressions;
 
 namespace HR.Areas.Employees.Controllers
 {
@@ -21,23 +22,34 @@ namespace HR.Areas.Employees.Controllers
             JsonResult jsonResult = new JsonResult();
             try
             {
-                IEnumerable<EmployeeViewModel> employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
+                IQueryable<EmployeeViewModel> employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
                                                             select new EmployeeViewModel
                                                             {
                                                                 EmployeeName = employee.FirstName,
                                                                 JoiningDate = employee.EmployeeWorkDetail.JoiningDate.Value,
                                                                 MobileNo = employee.Address.MobileNo,
                                                                 Email = employee.Address.Email,
-                                                                EmployeeId = employee.Id
-                                                            }).ToList().Skip(searchViewModel.offset).Take(searchViewModel.limit);
+                                                                EmployeeId = employee.Id,
+                                                                CountryCode = employee.Address.CountryCode,
+                                                                Designation = employee.EmployeeWorkDetail.Designation
+                                                            }).ToList().AsQueryable();
+
                 if (searchViewModel.FilterViewModel != null)
                 {
                     foreach (FilterViewModel item in searchViewModel.FilterViewModel)
                     {
-                        employees = Sorting(item, employees);
+                        employees = ApplyWhere(item, employees);
                     }
                 }
-               
+                if (!string.IsNullOrWhiteSpace(searchViewModel.sortType))
+                {
+                    if (searchViewModel.sortType.ToLower() == "asc")
+                        employees = OrderBy(employees, searchViewModel.sortColumn, false, false);
+                    else
+                        employees = OrderBy(employees, searchViewModel.sortColumn, false, false);
+                }
+
+                employees = employees.Take(searchViewModel.limit);
 
                 jsonResult = Json(new { sucess = true, employees = employees, total_count = employees.Count() }, JsonRequestBehavior.AllowGet);
             }
@@ -221,7 +233,7 @@ namespace HR.Areas.Employees.Controllers
             return _employeeWorkDetail;
         }
 
-        private IEnumerable<EmployeeViewModel> Sorting(FilterViewModel filterViewModel, IEnumerable<EmployeeViewModel> employeeHeader)
+        private IQueryable<EmployeeViewModel> ApplyWhere(FilterViewModel filterViewModel, IQueryable<EmployeeViewModel> employeeHeader)
 
         {
 
@@ -230,44 +242,29 @@ namespace HR.Areas.Employees.Controllers
                 case "EmployeeId":
                     if (filterViewModel.Type == "Where")
                         employeeHeader = employeeHeader.Where(e => e.EmployeeId == Convert.ToInt32(filterViewModel.Value));
-                    else if (filterViewModel.Type == "asc")
-                        employeeHeader = employeeHeader.OrderBy(e => e.EmployeeId);
-                    else
-                        employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeId);
+                   
                     break;
                 case "FirstName":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader= employeeHeader.Where(e => e.EmployeeName.ToLower() == filterViewModel.Value.ToLower());
-                    else if (filterViewModel.Type == "asc")
-                        employeeHeader = employeeHeader.OrderBy(e => e.EmployeeName);
-                    else
-                        employeeHeader = employeeHeader.OrderByDescending(e => e.EmployeeName);
+                        employeeHeader = employeeHeader.Where(e => e.EmployeeName.ToLower() == filterViewModel.Value.ToLower());
+                   
                     break;
                 case "JoiningDate":
                     if (filterViewModel.Type == "Where")
                         employeeHeader = employeeHeader.Where(e => e.JoiningDate == Convert.ToDateTime(filterViewModel.Value));
-                    else if (filterViewModel.Type == "asc")
-                        employeeHeader = employeeHeader.OrderBy(e => e.JoiningDate);
-                    else
-                        employeeHeader = employeeHeader.OrderByDescending(e => e.JoiningDate);
+                   
                     break;
                 case "Email":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader= employeeHeader.Where(e => e.Email.ToLower() == filterViewModel.Value.ToLower());
-                    else if (filterViewModel.Type == "asc")
-                        employeeHeader = employeeHeader.OrderBy(e => e.Email);
-                    else
-                        employeeHeader = employeeHeader.OrderByDescending(e => e.Email);
+                        employeeHeader = employeeHeader.Where(e => e.Email.ToLower() == filterViewModel.Value.ToLower());
+                   
                     break;
                 case "MobileNo":
                     if (filterViewModel.Type == "Where")
                         employeeHeader = employeeHeader = employeeHeader.Where(e => e.MobileNo.ToLower() == filterViewModel.Value.ToLower());
-                   else if (filterViewModel.Type == "asc")
-                        employeeHeader = employeeHeader.OrderBy(e => e.MobileNo);
-                    else
-                        employeeHeader = employeeHeader.OrderByDescending(e => e.MobileNo);
+                  
                     break;
-                case "Country":
+                case "CountryCode":
                     employeeHeader = employeeHeader.Where(e => e.CountryCode == filterViewModel.Value);
                     break;
                 case "Designation":
@@ -280,6 +277,27 @@ namespace HR.Areas.Employees.Controllers
             return employeeHeader;
         }
 
+        public IOrderedQueryable<EmployeeViewModel> OrderBy(IQueryable<EmployeeViewModel> source, string propertyName, bool descending, bool anotherLevel)
+        {
+            try
+            {
+                ParameterExpression param = Expression.Parameter(typeof(EmployeeViewModel), string.Empty);
+                MemberExpression property = Expression.PropertyOrField(param, propertyName);
+                LambdaExpression sort = Expression.Lambda(property, param);
+                MethodCallExpression call = Expression.Call(
+                    typeof(Queryable),
+                    (!anotherLevel ? "OrderBy" : "ThenBy") + (descending ? "Descending" : string.Empty),
+                    new[] { typeof(EmployeeViewModel), property.Type },
+                    source.Expression,
+                    Expression.Quote(sort));
+                return (IOrderedQueryable<EmployeeViewModel>)source.Provider.CreateQuery<EmployeeViewModel>(call);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
 
         #region ActionResult
