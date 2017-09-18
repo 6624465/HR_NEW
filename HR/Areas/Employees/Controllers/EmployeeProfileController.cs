@@ -61,8 +61,6 @@ namespace HR.Areas.Employees.Controllers
             }
             return jsonResult;
         }
-        #endregion
-
         public JsonResult GetEmployeeById(int employeeId)
         {
             JsonResult result = null;
@@ -82,84 +80,6 @@ namespace HR.Areas.Employees.Controllers
 
             return result;
         }
-        public JsonResult GetEmployeeNumber(int employeeTypeId)
-        {
-            JsonResult result = new JsonResult();
-            string newEmployeeNumber = string.Empty;
-            try
-            {
-                if (employeeTypeId > 0)
-                {
-                    string employeeNumber = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().Where(x => x.IDType == employeeTypeId).Select(x => x.IDNumber).LastOrDefault();
-                    if (!string.IsNullOrWhiteSpace(employeeNumber))
-                    {
-                        string existingNumber = employeeNumber.Substring(1);
-                         newEmployeeNumber = existingNumber + 1;
-                        result = Json(newEmployeeNumber);
-                    }
-                    else
-                    {
-                        if (employeeTypeId == 2)
-                            newEmployeeNumber = "P1000";
-                        else
-                            newEmployeeNumber = "T1000";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-            return result;
-        }
-
-
-        #region Employee Number
-        public JsonResult GetEmployeeNumber(int employeeTypeId)
-        {
-            JsonResult result = new JsonResult();
-            string newEmployeeNumber = string.Empty;
-            string existingemployeeNumber = string.Empty;
-            try
-            {
-                if (employeeTypeId > 0)
-                {
-                    EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().Where(x => x.IDType == employeeTypeId).OrderByDescending(o => o.Id).FirstOrDefault();
-                    if (employeeHeader != null)
-                    {
-                        existingemployeeNumber = employeeHeader.IDNumber;
-                    }
-
-                    if (!string.IsNullOrWhiteSpace(existingemployeeNumber))
-                    {
-                        string existingNumber = existingemployeeNumber.Substring(1);
-                        char type = employeeTypeId == 2 ? 'P' : 'T';
-                        int number = Convert.ToInt32(existingNumber);
-                        newEmployeeNumber = type + (number + 1).ToString();
-                        result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
-                    }
-                    else
-                    {
-                        if (employeeTypeId == 2)
-                            newEmployeeNumber = "P1000";
-                        else if (employeeTypeId == 3)
-                            newEmployeeNumber = "T1000";
-                        result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
-                    return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
-
-            }
-
-            return result;
-        }
-
         #endregion
 
         #region Save
@@ -186,6 +106,41 @@ namespace HR.Areas.Employees.Controllers
             }
             return result;
         }
+        #endregion
+
+        #region EmployeeNumber
+        public JsonResult GetEmployeeNumber(int employeeTypeId)
+        {
+            JsonResult result = new JsonResult();
+            string newEmployeeNumber = string.Empty;
+            try
+            {
+                if (employeeTypeId > 0)
+                {
+                    string employeeNumber = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().Where(x => x.IDType == employeeTypeId).Select(x => x.IDNumber).LastOrDefault();
+                    if (!string.IsNullOrWhiteSpace(employeeNumber))
+                    {
+                        string existingNumber = employeeNumber.Substring(1);
+                         newEmployeeNumber = existingNumber + 1;
+                        result = Json(newEmployeeNumber);
+                    }
+                    else
+                    {
+                        if (employeeTypeId == 2)
+                            newEmployeeNumber = "P1000";
+                        else
+                            newEmployeeNumber = "T1000";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                    return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+            }
+            return result;
+        }
+
         #endregion
 
         #endregion
