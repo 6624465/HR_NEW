@@ -111,12 +111,12 @@
             
         }
            
-        $scope.onClickValid = function () {
-                $scope.ValidateForm();
+        $scope.onClickValid = function (buttonType) {
+            $scope.ValidateForm(buttonType);
             
         }
 
-        $scope.ValidateForm = function () {
+        $scope.ValidateForm = function (buttonType) {
             $scope.IsValid = false;
             var errorCount = 0;
             var mandtoryFields = angular.element('.valid');
@@ -132,34 +132,62 @@
             if (errorCount >= 1) {
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "First Name") {
                     var basic = angular.element('.basic');
-                    basic[0].style.backgroundColor = "#f76b66";
+                    basic[0].style.backgroundColor = "red";
+                    basic[0].style.color = "white";
                 }
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "Address") {
                     var address = angular.element('.address');
-                    address[0].style.backgroundColor = "#f76b66";
+                    address[0].style.backgroundColor = "red";
+                    address[0].style.color = "white";
                 }
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "Designation") {
-                    var basic = angular.element('.position');
-                    position[0].style.backgroundColor = "#f76b66";
+                    var position = angular.element('.position');
+                    position[0].style.backgroundColor = "red";
+                    position[0].style.color = "white";
                 }
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             }
             else {
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "First Name") {
-                    $state.go('EmployeeHeader.EmployeeAddress');
+                    if (buttonType == "Next")
+                        $state.go('EmployeeHeader.EmployeeAddress');
+                    else
+                        $state.go('EmployeeHeader.EmployeeBasicInformation');
+                    
                     var basic = angular.element('.basic');
-                    basic[0].style.backgroundColor = "#008d4c";
+                    if (basic != null && basic != undefined) {
+                        basic[0].style.backgroundColor = "#008d4c";
+                        basic[0].style.color = "white";
+                    }
+                    
+
                 }
 
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "Address") {
                     $scope.IsAddressPageComplete = true;
-                    $state.go('EmployeeHeader.EmployeePosition');
+                    if (buttonType == "Next")
+                        $state.go('EmployeeHeader.EmployeePosition');
+                    else
+                        $state.go('EmployeeHeader.EmployeeBasicInformation');
+
                     var address = angular.element('.address');
-                    address[0].style.backgroundColor = "lightgreen";
+                    if (address != null && address != undefined) {
+                        address[0].style.backgroundColor = "#008d4c";
+                        address[0].style.color = "white";
+                    }
                 }
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "Designation") {
                     var position = angular.element('.position');
-                    position[0].style.backgroundColor = "lightgreen";
+
+                    if (buttonType == "Next")
+                        $state.go('EmployeeHeader.EmployeePosition');
+                    else
+                        $state.go('EmployeeHeader.EmployeeAddress');
+
+                    if (position != null && position != undefined) {
+                        position[0].style.backgroundColor = "#008d4c";
+                        position[0].style.color = "white";
+                    }
                 }
 
                 $scope.IsValid = true;
