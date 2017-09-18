@@ -11,7 +11,7 @@ namespace HR.Models
         public string sortColumn { get; set; }
         public string sortType { get; set; }
         public Int64 recordsCount { get; set; }
-        public int EmployeeId { get; set; }
+        public string EmployeeId { get; set; }
         public Int16 offset { get; set; }
         public string  FirstName{ get; set; }
         public DateTime? DateOfJoining { get; set; }
