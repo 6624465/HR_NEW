@@ -81,39 +81,39 @@
         $scope.SaveEmlployee = function (EmployeeHeader) {
             $scope.ValidateForm();
             if ($scope.IsfrmEmployeeProfile) {
-               
-                    if ($scope.IsValid) {
-                        if (EmployeeHeader.Address.Address1 == null) {
-                            growlService.growl("Please Enter Employee Address Details", 'danger')
-                            return false;
-                        }
-                        if (EmployeeHeader.EmployeeWorkDetail.Designation == null || EmployeeHeader.EmployeeWorkDetail.Department == null) {
-                            growlService.growl("Please enter employee position details", 'danger')
-                            return false;
-                        }
-                        if (EmployeeHeader.FirstName != null) {
-                            $scope.BasicNextButton = true
-                        }
-                        EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
-                            if (response.data && response.data.sucess == true) {
-                                growlService.growl(response.data.message, 'success');
-                            $state.go('EmployeeDirectory');
-                            }
-                            else {
-                                growlService.growl("Error Occured While Saving The Employee", 'danger');
-                            }
-                        }), function (err) {
-                            growlService.growl(err, 'danger');
-                        }
+
+                if ($scope.IsValid) {
+                    if (EmployeeHeader.Address.Address1 == null) {
+                        growlService.growl("Please Enter Employee Address Details", 'danger')
+                        return false;
                     }
-              
+                    if (EmployeeHeader.EmployeeWorkDetail.Designation == null || EmployeeHeader.EmployeeWorkDetail.Department == null) {
+                        growlService.growl("Please enter employee position details", 'danger')
+                        return false;
+                    }
+                    if (EmployeeHeader.FirstName != null) {
+                        $scope.BasicNextButton = true
+                    }
+                    EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
+                        if (response.data && response.data.sucess == true) {
+                            growlService.growl(response.data.message, 'success');
+                            $state.go('EmployeeDirectory');
+                        }
+                        else {
+                            growlService.growl("Error Occured While Saving The Employee", 'danger');
+                        }
+                    }), function (err) {
+                        growlService.growl(err, 'danger');
+                    }
+                }
+
             }
-            
+
         }
-           
+
         $scope.onClickValid = function () {
-                $scope.ValidateForm();
-            
+            $scope.ValidateForm();
+
         }
 
         $scope.ValidateForm = function () {
@@ -151,7 +151,8 @@
                     basic[0].style.backgroundColor = "lightgreen";
                 }
 
-                if (mandtoryFields[0].parentElement.innerText == "Address ") {
+                if (mandtoryFields[0
+                ].parentElement.innerText == "Address ") {
                     $scope.IsAddressPageComplete = true;
                     $state.go('EmployeeHeader.EmployeePosition');
                     var address = angular.element('.address');
@@ -165,14 +166,11 @@
                 $scope.IsValid = true;
             }
         }
-        $scope.EmailValid=function()
-        {
-            
-            if (!angular.isUndefined($scope.EmployeeHeader.Address.Email))
-            {
+        $scope.EmailValid = function () {
+
+            if (!angular.isUndefined($scope.EmployeeHeader.Address.Email)) {
             }
-            else
-            {
+            else {
                 growlService.growl("Invalid Email", 'danger');
             }
         }

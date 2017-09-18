@@ -29,5 +29,7 @@ namespace HR.Core.Models
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
+        public string EmergencyContactNumber { get; set; }
+        public string EmergencyContactName { get; set; }
     }
 }
