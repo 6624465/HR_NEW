@@ -75,6 +75,8 @@
 
         }
 
+        
+
         $scope.BindFilterViewModel = function (val, action) {
             $scope.filter = {};
             $scope.filter.Field = val;
