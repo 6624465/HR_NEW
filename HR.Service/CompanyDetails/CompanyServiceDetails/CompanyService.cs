@@ -85,13 +85,15 @@ namespace HR.Service.CompanyDetails.CompanyServiceDetails
         #endregion
 
         #region HolidayList
-        public void SaveHolidayList(HolidayList holidayList)
+        public void SaveHolidayList(HolidayList holidayList, bool autoCommit = true)
         {
             if (holidayList.Id == 0)
                 HolidayListRepository.Insert(holidayList);
             else
                 HolidayListRepository.Update(holidayList);
 
+            if (autoCommit)
+                HolidayListRepository.Commit();
 
         }
 
