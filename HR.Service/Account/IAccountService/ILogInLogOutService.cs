@@ -12,6 +12,6 @@ namespace HR.Service.Account.IAccountService
     public interface ILogInLogOutService
     {
         IQueryable<T> GetUser<T>(Expression<Func<T, bool>> predicate = null) where T : User;
-        void Save(User user);
+        void Save(User user, bool autoCommit = true);
     }
 }

@@ -8,9 +8,10 @@ namespace HR.Data.BaseRepositories
 {
     public interface IRepository<T> where T : class
     {
+        void Commit();
         T GetById(object id);
         void Insert(T entity);
-        void Update(T entity);
+        void Update(T entity, bool setToChanged = true);
         void Remove(T entity);
         IQueryable<T> FindAll(bool disableProxies = false);
         IQueryable<T> Table { get; }

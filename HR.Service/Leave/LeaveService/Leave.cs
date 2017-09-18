@@ -29,12 +29,15 @@ namespace HR.Service.Leave.LeaveService
             return query;
         }
 
-        public void SaveEmployeeLeaveList(EmployeeLeaveList employeeLeaveList)
+        public void SaveEmployeeLeaveList(EmployeeLeaveList employeeLeaveList, bool autoCommit = true)
         {
             if (employeeLeaveList.Id == 0)
                 EmployeeLeaveListRepository.Insert(employeeLeaveList);
             else
                 EmployeeLeaveListRepository.Update(employeeLeaveList);
+
+            if (autoCommit == true)
+                EmployeeLeaveListRepository.Commit();
         }
 
         public EmployeeLeaveList GetEmployeeLeaveListById(int id)

@@ -19,16 +19,16 @@ namespace HR.Service.Master.MasterService
         public IRepository<LookUp> LookUpCodeRepository { get; set; }
         [Inject]
         public IRepository<EmployeePersonalInfo> EmployeeRepository { get; set; }
-        //public LookUpCodeService(Repository<LookUp> LookUpCodeRepository, Repository<Employee> EmployeeRepository) {
-        //    this.LookUpCodeRepository = LookUpCodeRepository;
-        //    this.EmployeeRepository = EmployeeRepository;
-        //}
-        public void Save(LookUp lookUp)
+      
+        public void Save(LookUp lookUp, bool autoCommit = true)
         {
             if (lookUp.LookUpID == 0)
                 LookUpCodeRepository.Insert(lookUp);
             else
                 LookUpCodeRepository.Update(lookUp);
+
+            if (autoCommit)
+                LookUpCodeRepository.Commit();
         }
 
         public IQueryable<T> GetLookUp<T>(Expression<Func<T, bool>> predicate = null) where T : LookUp

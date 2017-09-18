@@ -13,7 +13,7 @@ namespace HR.Service.EmployeeProfile.IEmployeeProfile
         #region EmployeeProfile
 
         IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeHeader;
-        void SaveEmployeeProfile(EmployeeHeader EmployeePersonalInfo);
+        void SaveEmployeeProfile(EmployeeHeader EmployeePersonalInfo, bool autoCommit = true);
         EmployeeHeader GetEmployeeProfileDetailsById(int Id);
         #endregion
     }

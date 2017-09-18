@@ -38,12 +38,15 @@ namespace HR.Service.CompanyDetails.CompanyServiceDetails
                 query = query.Where(predicate);
             return query;
         }
-        public void SaveCompanyDetails(Company company)
+        public void SaveCompanyDetails(Company company, bool autoCommit = true)
         {
             if (company.Id == 0)
                 CompanyRepository.Insert(company);
             else
                 CompanyRepository.Update(company);
+
+            if (autoCommit)
+                CompanyRepository.Commit();
         }
         public IQueryable<T> GetCountries<T>(Expression<Func<T, bool>> predicate = null) where T : Country
         {
@@ -69,12 +72,15 @@ namespace HR.Service.CompanyDetails.CompanyServiceDetails
             return BranchRepository.GetById(Id);
         }
 
-        public void SaveBranchDetails(Branch branch)
+        public void SaveBranchDetails(Branch branch, bool autoCommit =true)
         {
             if (branch.BranchID == 0)
                 BranchRepository.Insert(branch);
             else
                 BranchRepository.Update(branch);
+
+            if (autoCommit)
+                CompanyRepository.Commit();
         }
         #endregion
 

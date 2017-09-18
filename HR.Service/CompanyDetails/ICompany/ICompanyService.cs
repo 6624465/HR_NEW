@@ -13,7 +13,7 @@ namespace HR.Service.CompanyDetails.ICompany
         #region Company
         Company GetCompany(int Id);
         IQueryable<T> GetCompanyDetails<T>(Expression<Func<T, bool>> predicate = null) where T : Company;
-        void SaveCompanyDetails(Company company);
+        void SaveCompanyDetails(Company company, bool autoCommit = true);
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace HR.Service.CompanyDetails.ICompany
 
         #region Branch
         Branch GetBranch(int Id);
-        void SaveBranchDetails(Branch branch);
+        void SaveBranchDetails(Branch branch, bool autoCommit = true);
         IQueryable<T> GetBranchDetails<T>(Expression<Func<T, bool>> predicate = null) where T : Branch;
         #endregion
 

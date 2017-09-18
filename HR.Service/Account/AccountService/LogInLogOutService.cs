@@ -29,12 +29,13 @@ namespace HR.Service.Account.AccountService
             return query;
         }
 
-        public void Save(User user)
+        public void Save(User user, bool autoCommit = true)
         {
             if (!string.IsNullOrWhiteSpace(user.UserID) && !string.IsNullOrWhiteSpace(user.UserName))
-            {
                 UsersRepository.Update(user);
-            }
+
+            if (autoCommit)
+                UsersRepository.Commit();
 
         }
     }

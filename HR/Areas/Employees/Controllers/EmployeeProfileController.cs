@@ -32,7 +32,8 @@ namespace HR.Areas.Employees.Controllers
                                                                Email = employee.Address.Email,
                                                                EmployeeId = employee.IDNumber,
                                                                CountryCode = employee.Address.CountryCode,
-                                                               Designation = employee.EmployeeWorkDetail.Designation
+                                                               Designation = employee.EmployeeWorkDetail.Designation,
+                                                               EmployeeType = employee.IDType
                                                            }).ToList().AsQueryable();
 
                 if (searchViewModel.FilterViewModel != null)
@@ -297,23 +298,20 @@ namespace HR.Areas.Employees.Controllers
                 case "JoiningDate":
                     if (filterViewModel.Type == "Where")
                         employeeHeader = employeeHeader.Where(e => e.JoiningDate == Convert.ToDateTime(filterViewModel.Value));
-
                     break;
-                case "Email":
-                    if (filterViewModel.Type == "Where")
-                        employeeHeader = employeeHeader.Where(e => e.Email.ToLower() == filterViewModel.Value.ToLower());
 
-                    break;
                 case "MobileNo":
                     if (filterViewModel.Type == "Where")
                         employeeHeader = employeeHeader = employeeHeader.Where(e => e.MobileNo.ToLower() == filterViewModel.Value.ToLower());
-
                     break;
                 case "CountryCode":
                     employeeHeader = employeeHeader.Where(e => e.CountryCode == filterViewModel.Value);
                     break;
                 case "Designation":
                     employeeHeader = employeeHeader.Where(e => e.Designation == Convert.ToInt32(filterViewModel.Value));
+                    break;
+                case "EmployeeType":
+                    employeeHeader = employeeHeader.Where(et => et.EmployeeType == Convert.ToInt32(filterViewModel.Value));
                     break;
                 default:
                     break;

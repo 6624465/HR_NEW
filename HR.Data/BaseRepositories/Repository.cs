@@ -6,6 +6,7 @@ using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace HR.Data.BaseRepositories
 {
@@ -30,8 +31,7 @@ namespace HR.Data.BaseRepositories
                 {
                     throw new ArgumentNullException("entity");
                 }
-                this.Entities.Add(entity);
-                this.hrDbContext.SaveChanges();
+                this.hrDbContext.Set<T>().Add(entity);
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -50,8 +50,7 @@ namespace HR.Data.BaseRepositories
                 throw fail;
             }
         }
-
-        public void Update(T entity)
+        public void Update(T entity, bool setToChanged = true)
         {
             try
             {
@@ -59,10 +58,10 @@ namespace HR.Data.BaseRepositories
                 {
                     throw new ArgumentNullException("entity");
                 }
-               // Entities.Attach(entity) = EntityState.Modified;
-                this.Entities.Attach(entity);
-                //hrDbContext.Entry(entity).State = EntityState.Modified;
-                this.hrDbContext.SaveChanges();
+                if (setToChanged)
+                    hrDbContext.Entry(entity).State = EntityState.Modified;
+                else
+                    this.hrDbContext.Set<T>().Attach(entity);
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -88,7 +87,6 @@ namespace HR.Data.BaseRepositories
                     throw new ArgumentNullException("entity");
                 }
                 this.Entities.Remove(entity);
-                this.hrDbContext.SaveChanges();
             }
             catch (DbEntityValidationException dbEx)
             {
@@ -120,6 +118,45 @@ namespace HR.Data.BaseRepositories
             {
                 if (disableProxies)
                     ((IObjectContextAdapter)hrDbContext).ObjectContext.ContextOptions.ProxyCreationEnabled = true;
+            }
+        }
+
+        public void Commit()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                try
+                {
+                    this.hrDbContext.Configuration.ValidateOnSaveEnabled = false;
+                    this.hrDbContext.Configuration.AutoDetectChangesEnabled = false;
+                    using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Snapshot }))
+                    {
+                        this.hrDbContext.SaveChanges();
+                        scope.Complete();
+                    }
+                    this.hrDbContext.Configuration.ValidateOnSaveEnabled = true;
+                    this.hrDbContext.Configuration.AutoDetectChangesEnabled = true;
+                    break;
+                }
+                catch (DbUpdateException ex)
+                {
+                    var innerEx = ex.InnerException;
+                    if (innerEx.InnerException != null && innerEx.InnerException is System.Data.SqlClient.SqlException)
+                        innerEx = innerEx.InnerException;
+
+                    var message = innerEx != null ? innerEx.Message.ToLower() : string.Empty;
+
+                    if (!string.IsNullOrEmpty(message)
+                        && (message.Contains("deadlock victim")
+                            || message.Contains("timeout")))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        throw ex;
+                    }
+                }
             }
         }
 

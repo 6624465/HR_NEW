@@ -13,7 +13,7 @@ namespace HR.Service.Master.IMasterService
     public interface ILookUpCodeService
     {
         #region EmployeeType
-        void Save(LookUp lookUpData);
+        void Save(LookUp lookUpData, bool autoCommit = true);
         IQueryable<T> GetLookUp<T>(Expression<Func<T, bool>> predicate = null) where T : LookUp;
         LookUp GetLookUpType(int LookUpID);
 

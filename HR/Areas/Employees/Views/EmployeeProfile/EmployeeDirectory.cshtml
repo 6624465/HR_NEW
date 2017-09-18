@@ -119,6 +119,17 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-xs-12 col-md-2">
+                                <div class="form-group fg-line">
+                                    <label>
+                                        Employee Type
+                                    </label>
+                                    <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeTypes"
+                                            ng-model="EmployeeDirectory.EmployeeType" class="form-control">
+                                        <option value="">--Select EmployeeType--</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
 

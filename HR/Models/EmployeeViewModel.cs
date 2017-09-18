@@ -15,6 +15,7 @@ namespace HR.Models
         public string Email { get; set; }
         public DateTime DOB { get; set; }
         public string CountryCode { get; set; }
+        public int EmployeeType { get; set; }
         public int Designation { get; set; }
     }
 }

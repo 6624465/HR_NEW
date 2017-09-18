@@ -26,12 +26,16 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
 
         }
 
-        public void SaveEmployeeProfile(EmployeeHeader employeeHeader)
+        public void SaveEmployeeProfile(EmployeeHeader employeeHeader, bool autoCommit =true)
         {
             if (employeeHeader.Id == 0)
                 EmployeeRepository.Insert(employeeHeader);
             else
                 EmployeeRepository.Update(employeeHeader);
+
+            if (autoCommit == true)
+                EmployeeRepository.Commit();
+
         }
         public EmployeeHeader GetEmployeeProfileDetailsById(int id)
         {

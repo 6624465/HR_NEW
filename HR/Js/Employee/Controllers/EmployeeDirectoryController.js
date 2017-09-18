@@ -67,6 +67,8 @@
                     $scope.BindFilterViewModel(val, Fields);
                 if (val == "Designation")
                     $scope.BindFilterViewModel(val, Fields);
+                if (val == "EmployeeType")
+                    $scope.BindFilterViewModel(val, Fields);
             })
 
             //$scope.getEmployeeDetails();
@@ -88,7 +90,14 @@
                     growl.success(" a success message and not unique", "success");
                 }
             })
+            LookUp.GetLookUpData("EmployeeType").then(function (response) {
+                if (response.data && response.data.message == "Saved Successfully.") {
+                    $scope.EmployeeTypes = response.data.lookUpLists;
+                    growl.success(" a success message and not unique", "success");
+                }
+            })
         }
+
         $scope.GetLookUpData();
         HolidayListService.GetBranchLocations().then(function (response) {
             if (response.data && response.data.success == true) {

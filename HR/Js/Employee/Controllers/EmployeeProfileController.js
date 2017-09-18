@@ -102,9 +102,6 @@
                         growlService.growl("Please enter employee position details", 'danger')
                         return false;
                     }
-                    if (EmployeeHeader.FirstName != null) {
-                        $scope.BasicNextButton = true
-                    }
                     EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
                         if (response.data && response.data.sucess == true) {
                             growlService.growl(response.data.message, 'success');
@@ -141,7 +138,7 @@
             })
 
             if (errorCount >= 1) {
-                if ((mandtoryFields[0].parentElement.innerText).trim() == "First Name") {
+                if ((mandtoryFields[0].parentElement.innerText).trim() == "Employee Id Type") {
                     var basic = angular.element('.basic');
                     basic[0].style.backgroundColor = "red";
                     basic[0].style.color = "white";
@@ -159,10 +156,10 @@
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             }
             else {
-                if ((mandtoryFields[0].parentElement.innerText).trim() == "First Name") {
+                if ((mandtoryFields[0].parentElement.innerText).trim() == "Employee Id Type") {
                     if (buttonType == "Next")
                         $state.go('EmployeeHeader.EmployeeAddress');
-                    else
+                    else if (buttonType == "Previous")
                         $state.go('EmployeeHeader.EmployeeBasicInformation');
 
                     var basic = angular.element('.basic');
@@ -170,15 +167,13 @@
                         basic[0].style.backgroundColor = "#008d4c";
                         basic[0].style.color = "white";
                     }
-
-
                 }
 
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "Address") {
                     $scope.IsAddressPageComplete = true;
                     if (buttonType == "Next")
                         $state.go('EmployeeHeader.EmployeePosition');
-                    else
+                    else if (buttonType == "Previous")
                         $state.go('EmployeeHeader.EmployeeBasicInformation');
 
                     var address = angular.element('.address');
@@ -192,7 +187,7 @@
 
                     if (buttonType == "Next")
                         $state.go('EmployeeHeader.EmployeePosition');
-                    else
+                    else if(buttonType == "Previous")
                         $state.go('EmployeeHeader.EmployeeAddress');
 
                     if (position != null && position != undefined) {

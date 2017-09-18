@@ -12,7 +12,7 @@ namespace HR.Service.Leave.ILeaveService
     {
         #region EmployeeLeaveList
         IQueryable<T> GetEmployeeLeaveList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeLeaveList;
-        void SaveEmployeeLeaveList(EmployeeLeaveList employeeLeaveList);
+        void SaveEmployeeLeaveList(EmployeeLeaveList employeeLeaveList, bool autoCommit = true);
         EmployeeLeaveList GetEmployeeLeaveListById(int id);
         #endregion
 
