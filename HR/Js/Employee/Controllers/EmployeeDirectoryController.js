@@ -40,6 +40,7 @@
 
                     EmployeeProfileService.GetEmployeeDetails(search)
                         .then(function (res) {
+                            debugger;
                             params.total(res.data.total_count);
                             $defer.resolve(res.data.employees);
                         }, function (err) {
