@@ -4,7 +4,11 @@
         growlService, EmployeeProfileService, $timeout, $stateParams, $state) {
 
         $scope.init = function () {
-
+            $scope.MaritalStatus = "No";
+            debugger;
+            if ($scope.MaritalStatus == "No") {
+                $scope.IsMaritalStatus = false;
+            }
             $scope.AddressNextButton = false;
             $scope.BasicNextButton = false;
             $scope.PositionNextButton = false;
@@ -126,8 +130,23 @@
             $scope.ValidateForm(buttonType);
 
         }
+        debugger;
+        $scope.Status = function (isYes) {
+            debugger;
+            if (isYes == "No") {
+                $scope.IsMaritalStatus = false;
+                $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = "";
+                $scope.EmployeeHeader.EmployeePersonalInfo.SpouseName = "";
+            }
+            else {
+                $scope.IsMaritalStatus = true;
+            }
+        };
+
+
 
         $scope.ValidateForm = function (buttonType) {
+            debugger;
             $scope.IsValid = false;
             var errorCount = 0;
             var mandtoryFields = angular.element('.valid');
@@ -217,7 +236,14 @@
         $scope.employeeId = $stateParams.id;
         if ($scope.employeeId != null && $scope.employeeId != "") {
             EmployeeProfileService.GetEmployeeById($scope.employeeId).then(function (response) {
+                debugger;
                 if (response && response.data) {
+                    debugger;
+                    if (response.data.EmployeePersonalInfo.MarriageDate != null || response.data.EmployeePersonalInfo.SpouseName != null) {
+                        if ($scope.MaritalStatus = "Yes") {
+                            $scope.IsMaritalStatus = true;
+                        }
+                    }
                     $scope.EmployeeHeader = response.data;
                     if ($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate && $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate != null) {
                         $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate);
