@@ -6781,6 +6781,7 @@
     <Content Include="Js\Company\Templates\Company\branchdetails.html" />
     <Content Include="Js\Company\Templates\Company\companydetails.html" />
     <Content Include="Js\Employee\Controllers\EmployeeDirectoryController.js" />
+    <Content Include="Js\Employee\Controllers\EmployeeInfo.js" />
     <Content Include="Js\Employee\Controllers\EmployeeProfileController.js" />
     <Content Include="Js\Employee\Services\EmployeeProfileService.js" />
     <Content Include="Js\Employee\Templates\BasicInformation.html" />
@@ -6789,6 +6790,7 @@
     <Content Include="Js\Employee\Templates\EmployeePaymentMode.html" />
     <Content Include="Js\Employee\Templates\EmployeePFESI.html" />
     <Content Include="Js\Employee\Templates\EmployeePosition.html" />
+    <Content Include="Js\Employee\Templates\LoginDetails.html" />
     <Content Include="Js\Home\Controllers\ActivitySummaryCntrl.js" />
     <Content Include="Js\Home\Controllers\HomeController.js" />
     <Content Include="Js\Home\Views\activitysummary.html" />
@@ -7587,6 +7589,8 @@
     <Content Include="Areas\Master\Views\LookUp\EmployeeStatus.cshtml" />
     <Content Include="Areas\Leave\Views\SetUp\HolidayList.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeDirectory.cshtml" />
+    <Content Include="Areas\Account\Views\RoleRights\Index.cshtml" />
+    <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeInfo.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7605,6 +7609,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Account\Controllers\LoginController.cs" />
     <Compile Include="Areas\Account\AccountClaimsAreaRegistration.cs" />
+    <Compile Include="Areas\Account\Controllers\RoleRightsController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Employees\Controllers\EmployeeProfileController.cs" />

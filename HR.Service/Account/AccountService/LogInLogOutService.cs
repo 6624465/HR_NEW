@@ -31,7 +31,9 @@ namespace HR.Service.Account.AccountService
 
         public void Save(User user, bool autoCommit = true)
         {
-            if (!string.IsNullOrWhiteSpace(user.UserID) && !string.IsNullOrWhiteSpace(user.UserName))
+            if (user.Id == 0)
+                UsersRepository.Insert(user);
+            else
                 UsersRepository.Update(user);
 
             if (autoCommit)

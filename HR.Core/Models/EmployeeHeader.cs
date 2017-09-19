@@ -27,11 +27,14 @@ namespace HR.Core.Models
         public int AddressId { get; set; }
         public virtual Address Address { get; set; }
         public int EmployeePersonalInfoId { get; set; }
-        
         public virtual EmployeePersonalInfo EmployeePersonalInfo { get; set; }
         public int EmployeeWorkDetailId { get; set; }
         public virtual EmployeeWorkDetail EmployeeWorkDetail { get; set; }
-        //[Required]
-        //public virtual EmployeeDocument EmployeeDocument { get; set; }
+        public int  UserId { get; set; }
+        public  virtual User User  { get; set; }
+        public string UserEmailId { get; set; }
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
+        public bool IsActive { get; set; }
     }
 }

@@ -9,6 +9,8 @@ using HR.Core.Utilities;
 using C = HR.Core.Constants;
 using HR.Models;
 using System.Linq.Expressions;
+using System.Text;
+using HR.Core;
 
 namespace HR.Areas.Employees.Controllers
 {
@@ -93,10 +95,29 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     EmployeeHeader _employeeHeader = new EmployeeHeader();
-
+                    User user = null;
                     _employeeHeader = PrepareEmployeeHeader(employeeHeader);
 
                     EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
+
+                    if (_employeeHeader == null)
+                        user = new User();
+                    else
+                        user = _employeeHeader.User;
+
+                    PrepareUserDetails(employeeHeader, user);
+                    LogInLogOutService.Save(user);
+
+                    string message = "UserId : " + _employeeHeader.UserEmailId
+                         + "<br/>"
+                         + "Password: " + employeeHeader.Password
+                         + "<br/>"
+                         + "Please go through this link to login HR:"
+                         + "<br/>" +
+                          "http://ragsarma-001-site20.htempurl.com";
+
+                    var emailGen = new HR.Core.HelperMethods();
+                    emailGen.ConfigMail(employeeHeader.UserEmailId, true, "Login Crediantials for HR", message.ToString());
 
                     result = Json(new { sucess = true, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
                 }
@@ -184,6 +205,9 @@ namespace HR.Areas.Employees.Controllers
             _employeeHeader.Nationality = !string.IsNullOrWhiteSpace(employeeHeader.Nationality) ? employeeHeader.Nationality : string.Empty;
             _employeeHeader.IDNumber = !string.IsNullOrWhiteSpace(employeeHeader.IDNumber) ? employeeHeader.IDNumber : string.Empty;
             _employeeHeader.IDType = employeeHeader.IDType;
+            _employeeHeader.UserId = employeeHeader.UserId;
+            _employeeHeader.Password = employeeHeader.Password;
+            _employeeHeader.ConfirmPassword = employeeHeader.ConfirmPassword;
             _employeeHeader.EmployeePersonalInfo = PrepareEmployeePersonalInfo(employeePersonalInfo, _employeeHeader);
             _employeeHeader.Address = PrepareEmployeeAddress(employeeHeader.Address, _employeeHeader);
             _employeeHeader.EmployeeWorkDetail = PrepareEmployeeWorkDetail(employeeHeader.EmployeeWorkDetail, _employeeHeader);
@@ -279,6 +303,20 @@ namespace HR.Areas.Employees.Controllers
             return _employeeWorkDetail;
         }
 
+        private void PrepareUserDetails(EmployeeHeader employeeHeader, User user = null)
+        {
+
+            user.UserID = employeeHeader.UserEmailId;
+            user.UserName = employeeHeader.UserEmailId;
+            user.Password = employeeHeader.Password;
+            user.IsActive = employeeHeader.IsActive;
+            user.Email = employeeHeader.Address.Email;
+            user.MobileNumber = employeeHeader.Address.MobileNo;
+            user.RoleCode = "Employee";
+            user.CreatedBy = USER_OBJECT.UserName;
+            user.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+        }
+
         private IQueryable<EmployeeViewModel> ApplyWhere(FilterViewModel filterViewModel, IQueryable<EmployeeViewModel> employeeHeader)
 
         {
@@ -349,6 +387,11 @@ namespace HR.Areas.Employees.Controllers
             return View();
         }
         public ActionResult EmployeeDirectory()
+        {
+            return View();
+        }
+
+        public ActionResult EmployeeInfo()
         {
             return View();
         }

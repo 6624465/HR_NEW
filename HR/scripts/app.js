@@ -35,6 +35,20 @@ app.config(
                     }
                 }
             })
+                       .state('Roles', {
+                           url: '/Roles',
+                           templateUrl: baseUrl + 'RoleRights/RoleRights/Index',
+                           //resolve: {
+                           //    loadPlugin: function ($ocLazyLoad) {
+                           //        return $ocLazyLoad.load([
+                           //            {
+                           //                name: 'ngHR',
+                           //                files: [baseUrl + 'Js/Home/Controllers/HomeController.js']
+                           //            }
+                           //        ]);
+                           //    }
+                           //}
+                       })
 
 
             .state('Company', {
@@ -277,6 +291,21 @@ app.config(
                      }
                  }
              })
+
+            .state('EmployeeHeader.EmployeeLogin', {
+                url: '/EmployeeLogin',
+                templateUrl: baseUrl + 'Js/Employee/Templates/LoginDetails.html',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                            }
+                        ]);
+                    }
+                }
+            })
             .state('EmployeeDirectory', {
                 url: '/EmployeeDirectory',
                 templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeDirectory',
@@ -295,6 +324,23 @@ app.config(
                     }
                 }
             })
+
+            .state('EmployeeProfileInfo', {
+                url: '/EmployeeProfileInfo',
+                templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeInfo',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeInfo.js',
+                                ]
+                            }
+                        ]);
+                    }
+                }
+            })
+            
             //.state('Employee.EmployeePaymentMode', {
             //    url: '/EmployeePaymentMode',
             //    templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePaymentMode.html',
@@ -422,3 +468,33 @@ app.directive('logiconNumber', function () {
     };
 });
 
+app.directive('compareTo', function () {
+
+    return {
+        require: "ngModel",
+        scope: {
+            otherModelValue: "=compareTo"
+        },
+        link: function (scope, element, attributes, ngModel) {
+
+            ngModel.$validators.compareTo = function (modelValue) {
+                return modelValue == scope.otherModelValue;
+            };
+
+            scope.$watch("otherModelValue", function () {
+                ngModel.$validate();
+            });
+        }
+    };
+});
+
+app.directive("showContact", function () {
+    return {
+        restrict: "A",
+        link: function(scope, element){
+            element.on("click", function (){
+                angular.element('.pmb-block').toggleClass('toggled');
+            })
+        }
+    }
+})
