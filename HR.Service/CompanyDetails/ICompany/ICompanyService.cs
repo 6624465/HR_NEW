@@ -28,7 +28,7 @@ namespace HR.Service.CompanyDetails.ICompany
         #endregion
 
         #region HolidayList
-        void SaveHolidayList(HolidayList holidayList);
+        void SaveHolidayList(HolidayList holidayList, bool autoCommit = true);
         IQueryable<T> GetHolidayList<T>(Expression<Func<T, bool>> predicate = null) where T : HolidayList;
         HolidayList GetHolidayListById(int Id);
         #endregion

@@ -8,6 +8,7 @@ namespace HR.Core.Models
     [Table("Security.Users")]
     public partial class User
     {
+        public int Id { get; set; }
         [StringLength(25)]
         public string UserID { get; set; }
 

@@ -95,6 +95,9 @@
 
         $scope.SaveEmlployee = function (EmployeeHeader) {
             $scope.ValidateForm();
+            if (EmployeeHeader.Password.trim() != EmployeeHeader.ConfirmPassword.trim()) {
+                growlService.growl("Password and confirm password should be same", 'danger');
+            }
             if ($scope.IsfrmEmployeeProfile) {
 
                 if ($scope.IsValid) {
@@ -125,11 +128,8 @@
 
         $scope.onClickValid = function (buttonType) {
             $scope.ValidateForm(buttonType);
-
         }
-        debugger;
         $scope.Status = function (isYes) {
-            debugger;
             if (isYes == "No") {
                 $scope.IsMaritalStatus = false;
                 $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = "";
@@ -205,7 +205,7 @@
                     var position = angular.element('.position');
 
                     if (buttonType == "Next")
-                        $state.go('EmployeeHeader.EmployeePosition');
+                        $state.go('EmployeeHeader.EmployeeLogin');
                     else if(buttonType == "Previous")
                         $state.go('EmployeeHeader.EmployeeAddress');
 

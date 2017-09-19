@@ -1,0 +1,69 @@
+﻿<style>
+    .switch-container .switch-label {
+    position:relative;
+    top:-11px;
+    }
+</style>
+<div class="tab-pane  m-t-20" id="employee-login">
+    <div class="card">
+        <div class="card-body card-padding">
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group fg-line">
+                        <label>
+                            Email
+                        </label>
+                        <input id="Email" class="form-control valid" type="text" ng-model="EmployeeHeader.UserEmailId"
+                         ng-blur="onChageText(EmployeeHeader.UserEmailId);EmailValid();" ng-required="true"/>
+                    </div>
+                    </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="switch-container">
+                        <label class="switch-label" style="margin-left:10px;margin-right:15px;">Status</label>
+                        <label class="switch">
+                            <input type="checkbox" ng-model="EmployeeHeader.IsActive">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                   
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group fg-line">
+                        <label>
+                            Password
+                        </label>
+                        <input id="Password" class="form-control valid" type="password" ng-model="EmployeeHeader.Password"
+                               ng-required="true" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group fg-line">
+                        <label>
+                            Confirm Password
+                        </label>
+                        <input id="Password" class="form-control valid" type="password" ng-model="EmployeeHeader.ConfirmPassword"
+                          compare-to="EmployeeHeader.Password" ng-required="true" />
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-xs-12 text-center">
+        <a ng-click="onClickValid('Previous')" class="btn  btn-info" style="border-radius: 50%;width: 35px;height: 35px;line-height: 24px;">
+            <span class="fa fa-angle-left fa-1g" style="font-size:21px;"></span>
+        </a>
+        <button class="btn  btn-info" type="submit">
+            Finish
+        </button>
+        <!--<a ui-sref="Employee.EmployeePFESI" class="btn  btn-info">
+            Next Section <span class="glyphicon glyphicon-circle-arrow-right"></span>
+        </a>-->
+    </div>
+</div>
