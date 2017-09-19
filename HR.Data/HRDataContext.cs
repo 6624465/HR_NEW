@@ -31,6 +31,8 @@ namespace HR.Data
         public virtual DbSet<EmployeeDocument> EmployeeDocuments { get; set; }
         public virtual DbSet<EmployeeWorkDetail> EmployeeWorkDetails { get; set; }
 
+        public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Securable> Securable { get; set; }
         #endregion
 
         #region OnModelCreating

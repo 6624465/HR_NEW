@@ -1,4 +1,7 @@
-﻿/// <reference path="D:\08042017\HR\HR\dist/js/datetime-picker.js" />
+﻿/// <reference path="D:\HRLATEST9142017\HR_LATEST_9182017\HR_NEW\HR\Js/Account/Services/RoleService.js" />
+/// <reference path="D:\HRLATEST9142017\HR_LATEST_9182017\HR_NEW\HR\Js/Account/Controllers/RolesController.js" />
+/// <reference path="D:\HRLATEST9142017\HR_LATEST_9182017\HR_NEW\HR\Js/Account/Controllers/RolesController.js" />
+/// <reference path="D:\08042017\HR\HR\dist/js/datetime-picker.js" />
 
 var app = angular.module('ngHR', ['mwl.calendar',
     'ui.bootstrap',
@@ -55,6 +58,8 @@ app.config(
                     }
                 }
             })
+                
+
 
             .state('EmployeeType', {
                 url: '/EmployeeType',
@@ -73,6 +78,46 @@ app.config(
                     }
                 }
             })
+
+
+
+            .state('RoleRights', {
+                url: '/RoleRights',
+                templateUrl: baseUrl + 'Account/RoleRights/Roles',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [
+                                       baseUrl + 'Js/Account/Controllers/RolesController.js',
+                                       baseUrl + 'Js/Account/Services/RoleService.js'
+                                ]
+                            }
+                        ]);
+                    }
+                }
+            })
+
+
+             .state('Roles', {
+                 url: '/Roles',
+                 templateUrl: baseUrl + 'Account/RoleRights/RolerRights',
+                 resolve: {
+                     loadPlugin: function ($ocLazyLoad) {
+                         return $ocLazyLoad.load([
+                             {
+                                 name: 'ngHR',
+                                 files: [
+                                        baseUrl + 'Js/Account/Controllers/RoleRightsController.js',
+                                        baseUrl + 'Js/Account/Services/RoleService.js'
+                                 ]
+                             }
+                         ]);
+                     }
+                 }
+             })
+
 
             .state('EmployeeDesgination', {
                 url: '/EmployeeDesgination',
@@ -342,6 +387,9 @@ app.config(
                 }
             })
 
+     
+
+
         $urlRouterProvider.otherwise('/');
         growlProvider.onlyUniqueMessages(false);
         cfpLoadingBarProvider.includeSpinner = false;//includeBar
@@ -418,6 +466,140 @@ app.directive('logiconNumber', function () {
                 }
                 return transformedInput;
             });
+        }
+    };
+});
+
+app.directive('treeView', function ($compile) {
+    return {
+        restrict: 'E',
+        scope: {
+            localNodes: '=model',
+            localClick: '&click'
+        },
+        link: function (scope, tElement, tAttrs, transclude) {
+
+            var maxLevels = (angular.isUndefined(tAttrs.maxlevels)) ? 10 : tAttrs.maxlevels;
+            var hasCheckBox = (angular.isUndefined(tAttrs.checkbox)) ? false : true;
+            scope.showItems = [];
+
+            scope.showHide = function (ulId) {
+                //
+                var hideThis = document.getElementById(ulId);
+                var showHide = angular.element(hideThis).attr('class');
+                angular.element(hideThis).attr('class', (showHide === 'show' ? 'hide' : 'show'));
+            }
+
+            scope.showIcon = function (node) {
+                if (!angular.isUndefined(node.children)) return true;
+            }
+
+            scope.checkIfChildren = function (node) {
+                if (!angular.isUndefined(node.children)) return true;
+            }
+
+            /////////////////////////////////////////////////
+            /// SELECT ALL CHILDRENS
+            // as seen at: http://jsfiddle.net/incutonez/D8vhb/5/
+            function parentCheckChange(item) {
+
+                for (var i in item.children) {
+                    item.children[i].checked = item.checked;
+                    if (item.children[i].children) {
+                        parentCheckChange(item.children[i]);
+                    }
+                }
+            }
+
+            scope.checkChange = function (node, child) {
+                // scope.active = scope.active == node.id ? node.id : node.id;
+
+                if (node.children) {
+
+                    parentCheckChange(node);
+                }
+
+                $('input[type=checkbox]').change(function () {
+                    debugger;
+                    if (this.checked) { // if checked - check all parent checkboxes
+                        $(this).parents('li').children('input[type=checkbox]').prop('checked', true);
+                    }
+                    // children checkboxes depend on current checkbox
+                    $(this).parent().find('input[type=checkbox]').prop('checked', this.checked);
+                });
+            }
+
+            scope.showAccessRights = true;
+            scope.active = 9156;
+            scope.showAcessRights = function (node) {
+
+                scope.active = scope.active == node.id ? node.id : node.id;
+                if (node.type != "page") {
+                    scope.showAccessRights = true;
+                    node.Access = "0";
+                }
+                else {
+                    scope.showAccessRights = false;
+                    if (node.Access == 0)
+                        node.Access = 1;
+                }
+
+
+            }
+            /////////////////////////////////////////////////
+
+            function renderTreeView(collection, level, max) {
+                //
+                var text = '';
+
+                text += '<li ng-repeat="n in ' + collection + '" >';
+                text += '<span ng-show=showIcon(n) class="show-hide" ng-click=showHide(n.id)><i class="fa fa-plus-square"></i></span>';
+                text += '<span ng-show=!showIcon(n) style="padding-right: 13px"></span>';
+
+                if (hasCheckBox) {
+                    text += '<input class="treeview-checkbox"  class="custom-unchecked" type="checkbox" ng-model=n.checked ng-change=checkChange(n,localNodes) value="" >&nbsp;&nbsp;&nbsp;&nbsp;<label ng-click=showAcessRights(n) >{{n.name}}</label>';
+
+                    //<div class="checkbox m-b-15 ">   <label> <input type="checkbox" class="tree-checkbox" value="" aria-label="Freight" ng-model=n.checked ng-change=checkChange(n)> <i class="input-helper"></i></label></div>';
+
+                    //
+
+                }
+
+                //text += '<span class="edit" ng-click=localClick({node:n})><i class="fa fa-pencil"></i></span>'
+
+                // text += '<label>{{n.name}}</label>';
+                if (level < max) {
+                    text += '<ul id="{{n.id}}" class="hide" ng-if=checkIfChildren(n)>' + renderTreeView('n.children', level + 1, max) + '';
+                    text += '</li></ul>';
+
+                    text += '<ul class="radioctn"> <li  ng-class={active:active==n.id}>';
+                    text += '<div class="treeRadio border-row-left p-l-15"><md-radio-group ng-model="n.Access" >';
+                    text += '<md-radio-button value=1 class="md-primary" ng-disabled=showAccessRights> Read Only</md-radio-button>';
+                    text += '<md-radio-button value=2 class="md-primary" ng-disabled=showAccessRights>  Read Write </md-radio-button>';
+                    text += '<md-radio-button value=3 class="md-dangar" ng-disabled=showAccessRights>Delete</md-radio-button>';
+                    text += '<md-radio-button value=4 class="md-success" ng-disabled=showAccessRights>Full Access </md-radio-button>';
+                    text += '</md-radio-group></li></ul>';
+
+                } else {
+                    text += '</li>';
+                }
+
+
+                return text;
+            }// end renderTreeView();
+
+
+            try {
+                var text = '<ul  class="tree-view-wrapper ">';
+                text += renderTreeView('localNodes', 1, maxLevels);
+                text += '</ul>';
+                tElement.html(text);
+                $compile(tElement.contents())(scope);
+            }
+            catch (err) {
+                tElement.html('<b>ERROR!!!</b> - ' + err);
+                $compile(tElement.contents())(scope);
+            }
         }
     };
 });

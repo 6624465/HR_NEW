@@ -55,6 +55,10 @@
     <Compile Include="Master\IMasterService\ILookUpCodeService.cs" />
     <Compile Include="Master\MasterService\LookUpCodeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Roles\IRoleService\IRoleRightService.cs" />
+    <Compile Include="Roles\RolesService\RoleRightService.cs" />
+    <Compile Include="Securables\ISecurableService\ISecurableServices.cs" />
+    <Compile Include="Securables\SecurableService\SecurableServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HR.Core\HR.Core.csproj">

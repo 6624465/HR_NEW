@@ -6775,7 +6775,10 @@
     <Content Include="img\safari-pinned-tab.svg" />
     <Content Include="img\search.png" />
     <Content Include="Js\Account\Controllers\LoginController.js" />
+    <Content Include="Js\Account\Controllers\RoleRightsController.js" />
+    <Content Include="Js\Account\Controllers\RolesController.js" />
     <Content Include="Js\Account\Services\LoginService.js" />
+    <Content Include="Js\Account\Services\RoleService.js" />
     <Content Include="Js\Company\Controllers\CompanyController.js" />
     <Content Include="Js\Company\Services\CompanyService.js" />
     <Content Include="Js\Company\Templates\Company\branchdetails.html" />
@@ -7587,6 +7590,8 @@
     <Content Include="Areas\Master\Views\LookUp\EmployeeStatus.cshtml" />
     <Content Include="Areas\Leave\Views\SetUp\HolidayList.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeDirectory.cshtml" />
+    <Content Include="Areas\Account\Views\RoleRights\Roles.cshtml" />
+    <Content Include="Areas\Account\Views\RoleRights\RolerRights.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7604,7 +7609,9 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Account\Controllers\LoginController.cs" />
-    <Compile Include="Areas\Account\AccountClaimsAreaRegistration.cs" />
+    <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
+    <Compile Include="Areas\Account\Controllers\RoleRightsController.cs" />
+    <Compile Include="Areas\Account\Controllers\SecurableController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Employees\Controllers\EmployeeProfileController.cs" />
