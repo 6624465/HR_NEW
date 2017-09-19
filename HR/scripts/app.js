@@ -38,20 +38,7 @@ app.config(
                     }
                 }
             })
-                       .state('Roles', {
-                           url: '/Roles',
-                           templateUrl: baseUrl + 'RoleRights/RoleRights/Index',
-                           //resolve: {
-                           //    loadPlugin: function ($ocLazyLoad) {
-                           //        return $ocLazyLoad.load([
-                           //            {
-                           //                name: 'ngHR',
-                           //                files: [baseUrl + 'Js/Home/Controllers/HomeController.js']
-                           //            }
-                           //        ]);
-                           //    }
-                           //}
-                       })
+                      
 
 
             .state('Company', {
