@@ -58,6 +58,7 @@
     <Compile Include="Models\LeaveType.cs" />
     <Compile Include="Models\LookUp.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\RoleRights.cs" />
     <Compile Include="Models\Securable.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -100,13 +100,13 @@ namespace HR.Areas.Employees.Controllers
 
                     EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
 
-                    if (_employeeHeader == null)
-                        user = new User();
-                    else
-                        user = _employeeHeader.User;
+                    //if (_employeeHeader == null)
+                    //    user = new User();
+                    //else
+                    //    user = _employeeHeader.User;
 
-                    PrepareUserDetails(employeeHeader, user);
-                    LogInLogOutService.Save(user);
+                    //PrepareUserDetails(employeeHeader, user);
+                    //LogInLogOutService.Save(user);
 
                     string message = "UserId : " + _employeeHeader.UserEmailId
                          + "<br/>"
@@ -305,7 +305,7 @@ namespace HR.Areas.Employees.Controllers
 
         private void PrepareUserDetails(EmployeeHeader employeeHeader, User user = null)
         {
-
+            user.BranchId = employeeHeader.BranchId;
             user.UserID = employeeHeader.UserEmailId;
             user.UserName = employeeHeader.UserEmailId;
             user.Password = employeeHeader.Password;

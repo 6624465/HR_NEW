@@ -7593,8 +7593,8 @@
     <Content Include="Areas\Leave\Views\SetUp\HolidayList.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeDirectory.cshtml" />
     <Content Include="Areas\Account\Views\RoleRights\Roles.cshtml" />
-    <Content Include="Areas\Account\Views\RoleRights\RolerRights.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeInfo.cshtml" />
+    <Content Include="Areas\Account\Views\Securable\RolerRights.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7637,6 +7637,7 @@
     <Compile Include="Models\EmployeeLeaveViewModel.cs" />
     <Compile Include="Models\EmployeeViewModel.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
+    <Compile Include="Models\SecurableViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

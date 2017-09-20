@@ -103,7 +103,7 @@ app.config(
 
              .state('Roles', {
                  url: '/Roles',
-                 templateUrl: baseUrl + 'Account/RoleRights/RolerRights',
+                 templateUrl: baseUrl + 'Account/Securable/RolerRights',
                  resolve: {
                      loadPlugin: function ($ocLazyLoad) {
                          return $ocLazyLoad.load([
@@ -565,7 +565,7 @@ app.directive('treeView', function ($compile) {
             scope.showAccessRights = true;
             scope.active = 9156;
             scope.showAcessRights = function (node) {
-
+                debugger;
                 scope.active = scope.active == node.id ? node.id : node.id;
                 if (node.type != "page") {
                     scope.showAccessRights = true;
@@ -597,21 +597,29 @@ app.directive('treeView', function ($compile) {
                     //
 
                 }
-
+               
                 //text += '<span class="edit" ng-click=localClick({node:n})><i class="fa fa-pencil"></i></span>'
 
                 // text += '<label>{{n.name}}</label>';
+                //text += '<ul class="radioctn"> <li  ng-class={active:active==n.id}>';
+                //text += '<div class="treeRadio border-row-left p-l-15"><md-radio-group ng-model="n.Access" >';
+                //text += '<md-radio-button value=1 class="md-primary" ng-disabled=showAccessRights> Read Only</md-radio-button>';
+                //text += '<md-radio-button value=2 class="md-primary" ng-disabled=showAccessRights>  Read Write </md-radio-button>';
+                //text += '<md-radio-button value=3 class="md-dangar" ng-disabled=showAccessRights>Delete</md-radio-button>';
+                //text += '<md-radio-button value=4 class="md-success" ng-disabled=showAccessRights>Full Access </md-radio-button>';
+                //text += '</md-radio-group></li></ul>';
+              
                 if (level < max) {
                     text += '<ul id="{{n.id}}" class="hide" ng-if=checkIfChildren(n)>' + renderTreeView('n.children', level + 1, max) + '';
                     text += '</li></ul>';
 
                     text += '<ul class="radioctn"> <li  ng-class={active:active==n.id}>';
-                    text += '<div class="treeRadio border-row-left p-l-15"><md-radio-group ng-model="n.Access" >';
-                    text += '<md-radio-button value=1 class="md-primary" ng-disabled=showAccessRights> Read Only</md-radio-button>';
-                    text += '<md-radio-button value=2 class="md-primary" ng-disabled=showAccessRights>  Read Write </md-radio-button>';
-                    text += '<md-radio-button value=3 class="md-dangar" ng-disabled=showAccessRights>Delete</md-radio-button>';
-                    text += '<md-radio-button value=4 class="md-success" ng-disabled=showAccessRights>Full Access </md-radio-button>';
-                    text += '</md-radio-group></li></ul>';
+                    text += '<div class="treeRadio border-row-left p-l-15"><div ng-model="n.Access">';
+                    text += '<input type="radio" value=1 ng-disabled=showAccessRights> Read Only</input>';
+                    text += '<input type="radio" value=2 ng-disabled=showAccessRights>  Read Write </input>';
+                    text += '<input type="radio" value=3 ng-disabled=showAccessRights>  Delete </input>';
+                    text += '<input type="radio" value=4 ng-disabled=showAccessRights>  Full Access </input>';
+                    text += '</div></li></ul>';
 
                 } else {
                     text += '</li>';

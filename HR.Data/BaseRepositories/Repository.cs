@@ -78,6 +78,35 @@ namespace HR.Data.BaseRepositories
                 throw fail;
             }
         }
+
+        public bool Remove<T>(T entity) where T : class
+        {
+            try
+            {
+                if (entity == null)
+                {
+                    throw new ArgumentNullException("entity");
+                }
+                var value = this.hrDbContext.Set<T>().Remove(entity);
+                return this.hrDbContext.ChangeTracker.Entries<T>().Any(entry => (entry.Entity == value) && ((entry.State & EntityState.Deleted) == EntityState.Deleted));
+            }
+            catch (DbEntityValidationException dbEx)
+            {
+                var msg = string.Empty;
+
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        msg += Environment.NewLine + string.Format("Property: {0} Error: {1}",
+                        validationError.PropertyName, validationError.ErrorMessage);
+                    }
+                }
+                var fail = new Exception(msg, dbEx);
+                throw fail;
+            }
+
+        }
         public void Remove(T entity)
         {
             try

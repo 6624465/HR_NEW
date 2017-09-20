@@ -35,7 +35,8 @@ namespace HR.Areas.Account.Controllers
                             Email = _user.Email,
                             RoleCode = _user.RoleCode,
                             BranchId = _user.BranchId,
-                            BranchName = _user.Branch.BranchName
+                            BranchName = _user.Branch.BranchName,
+                            CompanyId=_user.Branch.CompanyId
                         };
                         USER_OBJECT = sessionObject;
                         result = Json(new { success = true, SessionObject = USER_OBJECT }, JsonRequestBehavior.AllowGet);
