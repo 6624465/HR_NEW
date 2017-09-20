@@ -103,7 +103,7 @@ app.config(
 
              .state('Roles', {
                  url: '/Roles',
-                 templateUrl: baseUrl + 'Account/RoleRights/RolerRights',
+                 templateUrl: baseUrl + 'Account/Securable/RolerRights',
                  resolve: {
                      loadPlugin: function ($ocLazyLoad) {
                          return $ocLazyLoad.load([

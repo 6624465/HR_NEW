@@ -35,7 +35,6 @@ namespace HR.Core.Models
         public string RoleCode { get; set; }
 
         public int BranchId { get; set; }
-        public virtual Branch Branch { get; set; }
 
         [Required]
         [StringLength(25)]
