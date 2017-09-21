@@ -142,7 +142,6 @@
 
 
         $scope.ValidateForm = function (buttonType) {
-            debugger;
             $scope.IsValid = false;
             var errorCount = 0;
             var mandtoryFields = angular.element('.valid');
@@ -229,10 +228,8 @@
 
         $scope.employeeId = $stateParams.id;
         if ($scope.employeeId != null && $scope.employeeId != "") {
-            EmployeeProfileService.GetEmployeeById($scope.employeeId).then(function (response) {
-                debugger;
+            EmployeeProfileService.GetEmployeeById($scope.employeeId, false).then(function (response) {
                 if (response && response.data) {
-                    debugger;
                     if (response.data.EmployeePersonalInfo.MarriageDate != null || response.data.EmployeePersonalInfo.SpouseName != null) {
                         if ($scope.MaritalStatus = "Yes") {
                             $scope.IsMaritalStatus = true;

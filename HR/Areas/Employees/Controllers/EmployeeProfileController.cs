@@ -65,14 +65,16 @@ namespace HR.Areas.Employees.Controllers
             }
             return jsonResult;
         }
-        public JsonResult GetEmployeeById(int employeeId)
+        public JsonResult GetEmployeeById(int employeeId, bool IsfromIndividualEmployee)
         {
             JsonResult result = null;
-            if (employeeId > 0)
-            {
                 try
                 {
-                    EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
+                    EmployeeHeader employeeHeader = null;
+                if (!IsfromIndividualEmployee)
+                    employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
+                else if(employeeId == 0)
+                    employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.UserId == USER_OBJECT.Id).FirstOrDefault();
                     result = Json(employeeHeader, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
@@ -80,7 +82,6 @@ namespace HR.Areas.Employees.Controllers
                     if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
                         return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
                 }
-            }
 
             return result;
         }
@@ -288,7 +289,7 @@ namespace HR.Areas.Employees.Controllers
         {
             if (user.Id == 0)
             {
-                user = new User(); 
+                user = new User();
                 user.CreatedBy = USER_OBJECT.UserName;
                 user.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -312,7 +313,8 @@ namespace HR.Areas.Employees.Controllers
             return user;
         }
 
-        private void PrepareEmail(EmployeeHeader employeeHeader) {
+        private void PrepareEmail(EmployeeHeader employeeHeader)
+        {
 
             string message = "UserId : " + employeeHeader.UserEmailId
                          + "<br/>"

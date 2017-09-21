@@ -30,6 +30,7 @@ namespace HR.Areas.Account.Controllers
                         User _user = LogInLogOutService.GetUser<User>(u => u.UserName == user.UserName && u.Password == user.Password).FirstOrDefault();
                         SessionObject sessionObject = new SessionObject()
                         {
+                            Id = _user.Id,
                             UserID = _user.UserID,
                             UserName = _user.UserName,
                             Email = _user.Email,

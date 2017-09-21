@@ -873,6 +873,7 @@ label.error {
     .pmo-map img {
         width: 100%;
     }
+
 .tab-nav {
     list-style: none;
     padding: 0;
@@ -886,9 +887,12 @@ label.error {
 .card, .mini-charts-item {
     box-shadow: 0 1px 1px rgba(0,0,0,.1);
 }
-.card .card{
- border: 1px solid rgba(176, 176, 176, 0.1);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);}
+
+    .card .card {
+        border: 1px solid rgba(176, 176, 176, 0.1);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
 .tab-nav li {
     display: inline-block;
     vertical-align: top;
@@ -1005,8 +1009,8 @@ label.error {
         display: block;
         padding: 13px 15px;
         border-radius: 2px 2px 0 0;
-          border-bottom: 1px solid rgb(243,243,243);
-          margin-bottom:20px;
+        border-bottom: 1px solid rgb(243,243,243);
+        margin-bottom: 20px;
     }
 
         .card .card-header h2 {
@@ -1063,22 +1067,26 @@ label.error {
 .card-light .card-header h2, .card-light .card-header h2 small {
     color: #fff;
 }
+
 .pmbb-header {
     background: rgb(243, 243, 243) none repeat scroll 0 0;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid rgba(173, 173, 173, 0.2);
 }
+
     .pmbb-header li, ul li {
-    list-style:none;
+        list-style: none;
     }
-        .pmbb-header li i {
-        margin-right:15px;
-        line-height:45px;
-        font-size:20px;
-        color:#000;
+
+        .pmbb-header li i{
+            margin-right: 15px;
+            line-height: 40px;
+            font-size: 15px;
+            color: #000;
         }
+
 .pmb-block li a {
-color:#000;
+    color: #000;
 }
 
 .fw-container .tab-content {
@@ -1138,4 +1146,3 @@ color:#000;
     padding: 40px 0;
     margin-top: 0;
 }
-

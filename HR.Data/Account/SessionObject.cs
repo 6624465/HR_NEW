@@ -8,6 +8,7 @@ namespace HR.Data.Account
 {
     public class SessionObject
     {
+        public int Id { get; set; }
         public string UserID { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
