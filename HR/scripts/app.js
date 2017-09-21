@@ -366,6 +366,7 @@ app.config(
                             {
                                 name: 'ngHR',
                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeInfo.js',
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
                                 ]
                             }
                         ]);
@@ -636,34 +637,3 @@ app.directive('treeView', function ($compile) {
         }
     };
 });
-
-app.directive('compareTo', function () {
-
-    return {
-        require: "ngModel",
-        scope: {
-            otherModelValue: "=compareTo"
-        },
-        link: function (scope, element, attributes, ngModel) {
-
-            ngModel.$validators.compareTo = function (modelValue) {
-                return modelValue == scope.otherModelValue;
-            };
-
-            scope.$watch("otherModelValue", function () {
-                ngModel.$validate();
-            });
-        }
-    };
-});
-
-app.directive("showContact", function () {
-    return {
-        restrict: "A",
-        link: function(scope, element){
-            element.on("click", function (){
-                angular.element('.pmb-block').toggleClass('toggled');
-            })
-        }
-    }
-})

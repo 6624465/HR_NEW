@@ -613,7 +613,7 @@ label.error {
 }
 
 
-/*@media (min-width:1200px) {
+@media (min-width:1200px) {
     #profile-main .pm-overview {
         width: 300px;
     }
@@ -795,7 +795,7 @@ label.error {
 #profile-main .pmb-block .pmbb-edit {
     position: relative;
     z-index: 1;
-    display: none;
+    /*display: none;*/
 }
 
 #profile-main .pmb-block .pmbb-edit, #profile-main .pmb-block .pmbb-view {
@@ -1062,4 +1062,80 @@ label.error {
 
 .card-light .card-header h2, .card-light .card-header h2 small {
     color: #fff;
-}*/
+}
+.pmbb-header {
+    background: rgb(243, 243, 243) none repeat scroll 0 0;
+    padding: 10px;
+    border: 1px solid rgba(173, 173, 173, 0.2);
+}
+    .pmbb-header li, ul li {
+    list-style:none;
+    }
+        .pmbb-header li i {
+        margin-right:15px;
+        line-height:45px;
+        font-size:20px;
+        color:#000;
+        }
+.pmb-block li a {
+color:#000;
+}
+
+.fw-container .tab-content {
+    padding: 25px 0;
+}
+
+.fw-container .fw-footer {
+    text-align: center;
+    margin: 30px 0 0;
+    width: 100%;
+    border-top: 2px solid #eee;
+    padding: 15px 0;
+}
+
+.pagination {
+    border-radius: 0;
+}
+
+    .pagination > li {
+        margin: 0 2px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+.lc-block, .login-content:before {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.pagination > li > a, .pagination > li > span {
+    border-radius: 50% !important;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    line-height: 38px;
+    text-align: center;
+    font-size: 14px;
+    z-index: 1;
+    position: relative;
+    cursor: pointer;
+    background-clip: padding-box;
+}
+
+    .pagination > li > a > .zmdi, .pagination > li > span > .zmdi {
+        font-size: 22px;
+        line-height: 39px;
+    }
+
+.pagination > li.disabled {
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+
+.lg-pagination {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 0;
+}
+
