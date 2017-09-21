@@ -19,5 +19,9 @@ namespace HR.Service.Master.IMasterService
 
         IQueryable<T> GetEmployeeList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeHeader;
         #endregion
+
+        #region Address
+        void Save(Address address, bool autoCommit = true);
+        #endregion
     }
 }

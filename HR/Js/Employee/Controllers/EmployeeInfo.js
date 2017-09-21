@@ -72,15 +72,20 @@
                 $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
         }, function (err) {
         })
+        debugger
         $scope.IsfrmPersonalInfo = false;
         $scope.$watch('frmPersonalInfo.$valid', function (Valid) {
             $scope.IsfrmPersonalInfo = Valid;
         });
         $scope.SavePersonalInfo = function (EmployeeHeader) {
-            if (IsfrmPersonalInfo) {
+            if ($scope.IsfrmPersonalInfo) {
+                $scope.EmployeeHeader.CreatedOn = moment($scope.EmployeeHeader.CreatedOn);
+                $scope.EmployeeHeader.EmployeePersonalInfo.CreatedOn = moment($scope.EmployeeHeader.EmployeePersonalInfo.CreatedOn);
+
                 EmployeeProfileService.SaveEmployeeHeader(EmployeeHeader).then(function (response) {
                     if (response.data && response.data.sucess == true) {
                         growlService.growl(response.data.message, 'success');
+                        $scope.EmployeeInfo.editInfo = 0;
                     }
                 })
             }
@@ -94,8 +99,9 @@
             $scope.IsfrmAddressInfo = Valid;
         });
         $scope.SaveEmployeeAddress = function (EmployeeAddress) {
-            if (IsfrmAddressInfo || IsfrmAddressInfo) {
-                EmployeeProfileService.SaveEmployeeAddress(EmployeeHeader).then(function (response) {
+            if ($scope.IsfrmAddressInfo || $scope.IsfrmAddressInfo) {
+                $scope.EmployeeAddress.CreatedOn = moment($scope.EmployeeAddress.CreatedOn);
+                EmployeeProfileService.SaveEmployeeAddress(EmployeeAddress).then(function (response) {
                     if (response.data && response.data.sucess == true) {
                         growlService.growl(response.data.message, 'success');
                     }
@@ -105,13 +111,17 @@
 
         $scope.IsfrmUserInfo = false;
         $scope.$watch('frmUserInfo.$valid', function (Valid) {
-            $scope.IsfrmAddressInfo = Valid;
+            $scope.IsfrmUserInfo = Valid;
         });
         $scope.SaveEmployeeUser = function (EmployeeUser) {
-            if (IsfrmAddressInfo) {
-                EmployeeProfileService.SaveEmployeeUser(EmployeeUser).then(function (response) {
+            if ($scope.IsfrmUserInfo) {
+                $scope.EmployeeUser.CreatedOn = moment($scope.EmployeeUser.CreatedOn);
+                EmployeeProfileService.SaveEmployeeUser(EmployeeUser, $scope.EmployeeHeader.Id).then(function (response) {
                     if (response.data && response.data.sucess == true) {
-                        growlService.growl(response.data.message, 'success');
+                        growlService.growl("Password is changes successfully please login your profile once", 'success');
+                        $scope.EmployeeInfo.editResetPassword = 0;
+                        window.location.pathname = '';
+                        
                     }
                 })
             }
