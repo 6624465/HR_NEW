@@ -79,6 +79,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
                 'name': d.Securable[i].RegistrationTypeName,
                 'id': d.Securable[i].registrationType,
                 'i': i,
+                'SecurableID': d.Securable[i].SecurableID,
                 'checked': d.Securable[i].IsChecked,
                 'type': 'module',
                 'children': GetPageArr(d.Securable[i].pageList, i)
@@ -114,7 +115,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
             if (i.checked) {
                 var Obj = {
                     IsChecked: i.checked,
-                    id: i.id,
+                    id: i.SecurableID,
                     name: i.name,
                     type: i.type
                 };
