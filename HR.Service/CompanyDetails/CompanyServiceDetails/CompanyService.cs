@@ -56,6 +56,11 @@ namespace HR.Service.CompanyDetails.CompanyServiceDetails
 
             return query;
         }
+
+        public Country GetCountryById(int id)
+        {
+            return CountryRepository.GetById(id);
+        }
         #endregion
 
         #region Branch

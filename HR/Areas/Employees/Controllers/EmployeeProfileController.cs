@@ -11,6 +11,9 @@ using HR.Models;
 using System.Linq.Expressions;
 using System.Text;
 using HR.Core;
+using System.IO;
+using Newtonsoft.Json;
+using System.Web.Hosting;
 
 namespace HR.Areas.Employees.Controllers
 {
@@ -34,7 +37,7 @@ namespace HR.Areas.Employees.Controllers
                                                                Email = employee.Address.Email,
                                                                EmployeeId = employee.IDNumber,
                                                                CountryCode = employee.Address.CountryCode,
-                                                               Designation = employee.EmployeeWorkDetail.Designation,
+                                                               Designation = employee.EmployeeWorkDetail.DesignationId,
                                                                EmployeeType = employee.IDType
                                                            }).ToList().AsQueryable();
 
@@ -65,21 +68,38 @@ namespace HR.Areas.Employees.Controllers
             }
             return jsonResult;
         }
-        public JsonResult GetEmployeeById(int employeeId)
+        public JsonResult GetEmployeeById(int employeeId, bool IsfromIndividualEmployee)
         {
             JsonResult result = null;
-            if (employeeId > 0)
+            try
             {
-                try
+                EmployeeHeader employeeHeader = null;
+                string imagePathName = string.Empty;
+                LookUpDescriptions lookUpDescriptions = null;
+                if (!IsfromIndividualEmployee)
+                    employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
+                else if (employeeId == 0)
                 {
-                    EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
-                    result = Json(employeeHeader, JsonRequestBehavior.AllowGet);
+                    employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.UserId == USER_OBJECT.Id).FirstOrDefault();
+                    EmployeeDocument employeeDocument = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(ed => ed.EmployeeHeaderId == employeeHeader.Id).FirstOrDefault();
+                    if (employeeDocument != null)
+                        imagePathName = employeeDocument.FileName;
+                    lookUpDescriptions = new LookUpDescriptions()
+                    {
+                        MarriedStatus = LookUpCodeService.GetLookUpType(employeeHeader.EmployeePersonalInfo.MaritalStatus).LookUpCode,
+                        Country = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Address.CountryCode).FirstOrDefault().CountryName,
+                        Nationality = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Nationality).FirstOrDefault().CountryName,
+                        Designation = LookUpCodeService.GetLookUpType(employeeHeader.EmployeeWorkDetail.DesignationId).LookUpCode,
+                        Department = LookUpCodeService.GetLookUpType(employeeHeader.EmployeeWorkDetail.DepartmentId).LookUpCode,
+
+                    };
                 }
-                catch (Exception ex)
-                {
-                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
-                        return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
-                }
+                result = Json(new { employeeHeader = employeeHeader, imagePathName= imagePathName, LookUpDescriptions = lookUpDescriptions }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                    return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
             }
 
             return result;
@@ -95,6 +115,7 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     EmployeeHeader _employeeHeader = new EmployeeHeader();
+                    //HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
                     _employeeHeader = PrepareEmployeeHeader(employeeHeader);
 
                     EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
@@ -110,6 +131,140 @@ namespace HR.Areas.Employees.Controllers
                 }
             }
             return result;
+        }
+        #endregion
+
+        #region SaveIndividual
+
+        public JsonResult SaveEmployeeHeader(EmployeeHeader employeeHeader)
+        {
+            JsonResult result = null;
+            if (employeeHeader != null)
+            {
+                try
+                {
+                    if (employeeHeader.Id > 0)
+                    {
+                        EmployeeHeader _employeeHeader = employeeHeader;
+                        _employeeHeader.ModifiedBy = USER_OBJECT.UserID;
+                        _employeeHeader.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                        _employeeHeader.FirstName = employeeHeader.FirstName;
+                        _employeeHeader.MiddleName = employeeHeader.MiddleName;
+                        _employeeHeader.LastName = employeeHeader.LastName;
+                        _employeeHeader.EmployeePersonalInfo = PrepareEmployeePersonalInfo(employeeHeader.EmployeePersonalInfo, employeeHeader);
+
+                        _employeeHeader.Nationality = employeeHeader.Nationality;
+                        EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
+                        result = Json(new { sucess = true, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                        return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+                }
+            }
+            return result;
+        }
+
+        public JsonResult SaveAddressDetails(Address address)
+        {
+            JsonResult result = null;
+            if (address != null)
+            {
+                try
+                {
+                    if (address.AddressId > 0)
+                    {
+                        Address _address = PrepareEmployeeAddress(address, null);
+                        LookUpCodeService.Save(address);
+                        result = Json(new { sucess = true, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                        return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+                }
+            }
+            return result;
+        }
+
+        public JsonResult SaveEmployeeUser(User EmployeeUser, Int32 employeeId)
+        {
+            JsonResult result = null;
+            if (EmployeeUser != null)
+            {
+                try
+                {
+                    if (EmployeeUser.Id > 0)
+                    {
+                        User _user = EmployeeUser;
+
+
+                        EmployeeHeader _employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
+                        _user.ModifiedOn = _employeeHeader.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                        _user.ModifiedBy = _employeeHeader.ModifiedBy = USER_OBJECT.UserID;
+                        _user.UserName = _employeeHeader.UserEmailId = EmployeeUser.UserName;
+                        _user.Password = _employeeHeader.Password = _employeeHeader.ConfirmPassword = EmployeeUser.Password;
+
+                        LogInLogOutService.Save(EmployeeUser, true);
+                        EmployeeProfileService.SaveEmployeeProfile(_employeeHeader, true);
+
+                        result = Json(new { sucess = true, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                        return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+                }
+            }
+            return result;
+        }
+
+        public JsonResult SaveEmployeeDocuments()
+        {
+            var employeeId = Convert.ToInt16(System.Web.HttpContext.Current.Request["employeeId"]);
+            HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
+            JsonResult result = null;
+            if (hfc != null)
+            {
+                try
+                {
+                    EmployeeDocument employeeDocument = null;
+                    employeeDocument = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(ed => ed.EmployeeHeaderId == employeeId).FirstOrDefault();
+
+                    //EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeDocuments(Convert.ToInt16(employeeId));
+                    if (employeeDocument != null)
+                    {
+                        employeeDocument.ModifiedBy = USER_OBJECT.UserID;
+                        employeeDocument.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                    }
+                    else
+                    {
+                        employeeDocument = new EmployeeDocument();
+                        employeeDocument.CreatedBy = USER_OBJECT.UserID;
+                        employeeDocument.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                    }
+
+                    employeeDocument.FileName = System.IO.Path.GetFileName(hfc[0].FileName);
+                    employeeDocument.BranchId = USER_OBJECT.BranchId;
+                    employeeDocument.EmployeeHeaderId = Convert.ToInt32(employeeId);
+
+                    SaveFile(System.Web.HttpContext.Current.Request.Files);
+
+                    EmployeeProfileService.SaveEmployeeDocuments(employeeDocument);
+
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
+            }
+            return result;
+
         }
         #endregion
 
@@ -189,12 +344,25 @@ namespace HR.Areas.Employees.Controllers
             _employeeHeader.IDType = employeeHeader.IDType;
             _employeeHeader.UserEmailId = employeeHeader.UserEmailId;
             _employeeHeader.Password = employeeHeader.Password;
+            _employeeHeader.IsActive = employeeHeader.IsActive;
             _employeeHeader.ConfirmPassword = employeeHeader.ConfirmPassword;
             _employeeHeader.EmployeePersonalInfo = PrepareEmployeePersonalInfo(employeePersonalInfo, _employeeHeader);
             _employeeHeader.Address = PrepareEmployeeAddress(employeeHeader.Address, _employeeHeader);
             _employeeHeader.EmployeeWorkDetail = PrepareEmployeeWorkDetail(employeeHeader.EmployeeWorkDetail, _employeeHeader);
+            employeeHeader.User = employeeHeader.User == null ? new User() : employeeHeader.User;
             _employeeHeader.User = PrepareUserDetails(employeeHeader.User, _employeeHeader);
+            
+            //EmployeeDocument employeeDocument = null;
+            //PrepareEmployeeDocuments(hfc, _employeeHeader, employeeDocument);
             return _employeeHeader;
+        }
+
+        private void PrepareEmployeeDocuments(HttpFileCollection httpFileCollection, EmployeeHeader employeeHeader, EmployeeDocument employeeDocument)
+        {
+            foreach (var item in httpFileCollection)
+            {
+
+            }
         }
         private EmployeePersonalInfo PrepareEmployeePersonalInfo(EmployeePersonalInfo employeePersonalInfo, EmployeeHeader employeeHeader)
         {
@@ -202,7 +370,7 @@ namespace HR.Areas.Employees.Controllers
             if (employeePersonalInfo.Id > 0)
             {
                 _employeePersonalInfo = employeeHeader.EmployeePersonalInfo;
-                _employeePersonalInfo.ModifiedBy = USER_OBJECT.UserName;
+                _employeePersonalInfo.ModifiedBy = USER_OBJECT.UserID;
                 _employeePersonalInfo.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
             else
@@ -229,12 +397,12 @@ namespace HR.Areas.Employees.Controllers
 
             return _employeePersonalInfo;
         }
-        private Address PrepareEmployeeAddress(Address address, EmployeeHeader employeeHeader)
+        private Address PrepareEmployeeAddress(Address address, EmployeeHeader employeeHeader = null)
         {
             Address _address = null;
             if (address.AddressId > 0)
             {
-                _address = employeeHeader.Address;
+                _address = employeeHeader != null ? employeeHeader.Address : address;
                 _address.ModifiedBy = USER_OBJECT.UserName;
                 _address.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -280,15 +448,15 @@ namespace HR.Areas.Employees.Controllers
             _employeeWorkDetail.ConfirmationDate = employeeWorkDetail.ConfirmationDate.HasValue ? DateTimeConverter.SingaporeDateTimeConversion(employeeWorkDetail.ConfirmationDate.Value) : DateTime.Now;
             _employeeWorkDetail.ProbationPeriod = employeeWorkDetail.ProbationPeriod;
             _employeeWorkDetail.NoticePeriod = employeeWorkDetail.NoticePeriod;
-            _employeeWorkDetail.Designation = employeeWorkDetail.Designation;
-            _employeeWorkDetail.Department = employeeWorkDetail.Department;
+            _employeeWorkDetail.DesignationId = employeeWorkDetail.DesignationId;
+            _employeeWorkDetail.DepartmentId = employeeWorkDetail.DepartmentId;
             return _employeeWorkDetail;
         }
         private User PrepareUserDetails(User user, EmployeeHeader employeeHeader)
         {
             if (user.Id == 0)
             {
-                user = new User(); 
+                user = new User();
                 user.CreatedBy = USER_OBJECT.UserName;
                 user.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -312,7 +480,8 @@ namespace HR.Areas.Employees.Controllers
             return user;
         }
 
-        private void PrepareEmail(EmployeeHeader employeeHeader) {
+        private void PrepareEmail(EmployeeHeader employeeHeader)
+        {
 
             string message = "UserId : " + employeeHeader.UserEmailId
                          + "<br/>"
@@ -324,6 +493,26 @@ namespace HR.Areas.Employees.Controllers
 
             var emailGen = new HR.Core.HelperMethods();
             emailGen.ConfigMail(employeeHeader.User.UserName, true, "Login Crediantials for HR", message.ToString());
+        }
+
+        public void ExportEmployeeDocumentFile(string employeeFileName)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(employeeFileName))
+                {
+
+                    string employeeFilePathToSave = Path.Combine(Server.MapPath("~/img/profile-pics"), employeeFileName);
+                    //var buffer = System.IO.File.ReadAllBytes(employeeFilePathToSave);
+                    //var stream = new MemoryStream(buffer);
+                    //return File(stream.ToArray(), "text/html", employeeFileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //return this.Content(string.Empty);
         }
 
         private IQueryable<EmployeeViewModel> ApplyWhere(FilterViewModel filterViewModel, IQueryable<EmployeeViewModel> employeeHeader)

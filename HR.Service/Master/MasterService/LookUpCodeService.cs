@@ -19,7 +19,10 @@ namespace HR.Service.Master.MasterService
         public IRepository<LookUp> LookUpCodeRepository { get; set; }
         [Inject]
         public IRepository<EmployeePersonalInfo> EmployeeRepository { get; set; }
-      
+
+        [Inject]
+        public IRepository<Address> AddressRepository { get; set; }
+
         public void Save(LookUp lookUp, bool autoCommit = true)
         {
             if (lookUp.LookUpID == 0)
@@ -54,6 +57,18 @@ namespace HR.Service.Master.MasterService
                 query = query.Where(predicate);
             return query;
         }
+
+        public void Save(Address address, bool autoCommit = true)
+        {
+            if (address.AddressId == 0)
+                AddressRepository.Insert(address);
+            else
+                AddressRepository.Update(address);
+
+            if (autoCommit)
+                AddressRepository.Commit();
+        }
+
 
 
     }

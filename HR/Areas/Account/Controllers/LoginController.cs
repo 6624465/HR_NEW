@@ -42,6 +42,7 @@ namespace HR.Areas.Account.Controllers
 
                         SessionObject sessionObject = new SessionObject()
                         {
+                            Id = _user.Id,
                             UserID = _user.UserID,
                             UserName = _user.UserName,
                             Email = _user.Email,

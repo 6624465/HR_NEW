@@ -15,6 +15,9 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
         #region Properties
         [Inject]
         public IRepository<EmployeeHeader> EmployeeRepository { get; set; }
+
+        [Inject]
+        public IRepository<EmployeeDocument> EmployeeDocumentRepository { get; set; }
         #endregion
 
         public IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeHeader
@@ -41,5 +44,27 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
         {
             return EmployeeRepository.GetById(id);
         }
+
+        public IQueryable<T> GetEmployeeDocuments<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeDocument
+        {
+            var query = EmployeeDocumentRepository.FindAll().OfType<T>();
+            if (predicate != null)
+                query = query.Where(predicate);
+            return query;
+        }
+
+        public void SaveEmployeeDocuments(EmployeeDocument employeeDocument, bool autoCommit = true)
+        {
+            if (employeeDocument.Id == 0)
+                EmployeeDocumentRepository.Insert(employeeDocument);
+            else
+                EmployeeDocumentRepository.Update(employeeDocument);
+
+            if (autoCommit == true)
+                EmployeeDocumentRepository.Commit();
+
+        }
+
+
     }
 }

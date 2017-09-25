@@ -1,9 +1,4 @@
-﻿/// <reference path="D:\HRLATEST9142017\HR_LATEST_9182017\HR_NEW\HR\Js/Account/Services/RoleService.js" />
-/// <reference path="D:\HRLATEST9142017\HR_LATEST_9182017\HR_NEW\HR\Js/Account/Controllers/RolesController.js" />
-/// <reference path="D:\HRLATEST9142017\HR_LATEST_9182017\HR_NEW\HR\Js/Account/Controllers/RolesController.js" />
-/// <reference path="D:\08042017\HR\HR\dist/js/datetime-picker.js" />
-
-var app = angular.module('ngHR', ['mwl.calendar',
+﻿var app = angular.module('ngHR', ['mwl.calendar',
     'ui.bootstrap',
     'angular-growl',
     'ngAnimate',
@@ -38,9 +33,6 @@ app.config(
                     }
                 }
             })
-                      
-
-
             .state('Company', {
                 url: '/Company',
                 templateUrl: baseUrl + 'Company/Company/CompanyList',
@@ -79,9 +71,6 @@ app.config(
                     }
                 }
             })
-
-
-
             .state('RoleRights', {
                 url: '/RoleRights',
                 templateUrl: baseUrl + 'Account/RoleRights/Roles',
@@ -99,8 +88,6 @@ app.config(
                     }
                 }
             })
-
-
              .state('Roles', {
                  url: '/Roles',
                  templateUrl: baseUrl + 'Account/Securable/RolerRights',
@@ -119,7 +106,6 @@ app.config(
                  }
              })
 
-
             .state('EmployeeDesgination', {
                 url: '/EmployeeDesgination',
                 templateUrl: baseUrl + 'Master/LookUp/EmployeeDesignation',
@@ -137,7 +123,6 @@ app.config(
                     }
                 }
             })
-
             .state('EmployeeDepartment', {
                 url: '/EmployeeDepartment',
                 templateUrl: baseUrl + 'Master/LookUp/EmployeeDepartment',
@@ -338,6 +323,21 @@ app.config(
                     }
                 }
             })
+
+            .state('EmployeeHeader.EmployeeDocuments', {
+                url: '/EmployeeDocuments',
+                templateUrl: baseUrl + 'Js/Employee/Templates/EmployeeDocuments.html',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                            }
+                        ]);
+                    }
+                }
+            })
             .state('EmployeeDirectory', {
                 url: '/EmployeeDirectory',
                 templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeDirectory',
@@ -366,6 +366,8 @@ app.config(
                             {
                                 name: 'ngHR',
                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeInfo.js',
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
+                                    baseUrl + 'Js/Employee/Services/EmployeeProfileService.js',
                                 ]
                             }
                         ]);
@@ -419,9 +421,6 @@ app.config(
                     }
                 }
             })
-
-     
-
 
         $urlRouterProvider.otherwise('/');
         growlProvider.onlyUniqueMessages(false);
@@ -597,7 +596,7 @@ app.directive('treeView', function ($compile) {
                     //
 
                 }
-               
+
                 //text += '<span class="edit" ng-click=localClick({node:n})><i class="fa fa-pencil"></i></span>'
 
                 // text += '<label>{{n.name}}</label>';
@@ -663,33 +662,7 @@ app.directive('compareTo', function () {
         }
     };
 });
-app.directive('hasRight', function () {
-    return {
-        link: function (scope, element, attrs) {
-            debugger;
-            var rightvalue = attrs.rightvalue;
-            var AccessRight = attrs.accessright;
-            var flag = false;
-            var rights = JSON.parse(sessionStorage.getItem('SECURABLES'));
-            angular.forEach(rights, function (item, index) {
-                if (item.OperationID == rightvalue && item.AccessRight != "1" && AccessRight != "3" && item.AccessRight != "0")
-                    flag = true;
-                else if (item.OperationID == rightvalue && item.AccessRight == AccessRight)
-                    flag = true;
-                else if (item.OperationID == rightvalue && item.AccessRight == "0")
-                    flag = true;
-                else if (item.OperationID == rightvalue && item.AccessRight == "4")
-                    flag = true;
-                if (item.OperationID == rightvalue && item.AccessRight == "1")
-                    flag = false;
-            });
-            if (flag)
-                element.show();
-            else
-                element.hide();
-        }
-    }
-});
+
 app.directive("showContact", function () {
     return {
         restrict: "A",

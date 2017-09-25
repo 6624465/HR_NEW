@@ -324,6 +324,7 @@ label {
     padding: 5px;
     border-bottom-width: 1px;
     font-size: 12px;
+    color: #3c8dbc;
 }
 
 .box-body {
@@ -613,7 +614,7 @@ label.error {
 }
 
 
-/*@media (min-width:1200px) {
+@media (min-width:1200px) {
     #profile-main .pm-overview {
         width: 300px;
     }
@@ -795,7 +796,7 @@ label.error {
 #profile-main .pmb-block .pmbb-edit {
     position: relative;
     z-index: 1;
-    display: none;
+    /*display: none;*/
 }
 
 #profile-main .pmb-block .pmbb-edit, #profile-main .pmb-block .pmbb-view {
@@ -873,6 +874,7 @@ label.error {
     .pmo-map img {
         width: 100%;
     }
+
 .tab-nav {
     list-style: none;
     padding: 0;
@@ -886,13 +888,17 @@ label.error {
 .card, .mini-charts-item {
     box-shadow: 0 1px 1px rgba(0,0,0,.1);
 }
-.card .card{
- border: 1px solid rgba(176, 176, 176, 0.1);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);}
+
+    .card .card {
+        border: 1px solid rgba(176, 176, 176, 0.1);
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
 .tab-nav li {
     display: inline-block;
     vertical-align: top;
 }
+
 
     .tab-nav li > a {
         display: inline-block;
@@ -1005,8 +1011,8 @@ label.error {
         display: block;
         padding: 13px 15px;
         border-radius: 2px 2px 0 0;
-          border-bottom: 1px solid rgb(243,243,243);
-          margin-bottom:20px;
+        border-bottom: 1px solid rgb(243,243,243);
+        margin-bottom: 20px;
     }
 
         .card .card-header h2 {
@@ -1062,4 +1068,172 @@ label.error {
 
 .card-light .card-header h2, .card-light .card-header h2 small {
     color: #fff;
+}
+
+.pmbb-header {
+    background: rgb(243, 243, 243) none repeat scroll 0 0;
+    padding: 8px;
+    border: 1px solid rgba(173, 173, 173, 0.2);
+}
+
+    .pmbb-header li, ul li {
+        list-style: none;
+    }
+
+    /*.pmbb-header li i {
+            margin-right: 15px;
+            line-height: 40px;
+            font-size: 15px;
+            color: #000;
+        }*/
+    .pmbb-header ul li a:hover {
+        cursor: pointer;
+    }
+
+    .pmbb-header ul li i {
+        margin-right: 15px;
+        line-height: 40px;
+        font-size: 15px;
+        color: #000;
+    }
+.pmb-block ul li a:hover {
+    cursor: pointer;
+}
+
+.pmb-block li a {
+    color: #000;
+}
+
+.fw-container .tab-content {
+    padding: 25px 0;
+}
+
+.fw-container .fw-footer {
+    text-align: center;
+    margin: 30px 0 0;
+    width: 100%;
+    border-top: 2px solid #eee;
+    padding: 15px 0;
+}
+
+.pagination {
+    border-radius: 0;
+}
+
+    .pagination > li {
+        margin: 0 2px;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+        /*.lc-block, .login-content:before {
+    vertical-align: middle;
+    display: inline-block;
 }*/
+
+        .pagination > li > a, .pagination > li > span {
+            border-radius: 50% !important;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            line-height: 38px;
+            text-align: center;
+            font-size: 14px;
+            z-index: 1;
+            position: relative;
+            cursor: pointer;
+            background-clip: padding-box;
+        }
+
+            .pagination > li > a > .zmdi, .pagination > li > span > .zmdi {
+                font-size: 22px;
+                line-height: 39px;
+            }
+
+        .pagination > li.disabled {
+            opacity: .5;
+            filter: alpha(opacity=50);
+        }
+
+.lg-pagination {
+    width: 100%;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 0;
+}
+
+
+.pagination {
+    padding-left: 0;
+    margin: 18px 0;
+}
+
+    .pagination > li > a, .pagination > li > span {
+        float: left;
+        text-decoration: none;
+        color: #7E7E7E;
+        background-color: #f1f1f1;
+        border: 1px solid #fff;
+        margin-left: -1px;
+    }
+
+.pagination-lg > li:first-child > a, .pagination-lg > li:first-child > span, .pagination-sm > li:first-child > a, .pagination-sm > li:first-child > span {
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+}
+
+.pagination-lg > li:last-child > a, .pagination-lg > li:last-child > span, .pagination-sm > li:last-child > a, .pagination-sm > li:last-child > span, .pagination > li:last-child > a, .pagination > li:last-child > span {
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.pagination > li:first-child > a, .pagination > li:first-child > span {
+    margin-left: 0;
+    border-bottom-left-radius: 2px;
+    border-top-left-radius: 2px;
+}
+
+.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+    z-index: 2;
+    color: #333;
+    background-color: #e4e4e4;
+    border-color: #fff;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    z-index: 3;
+    color: #fff;
+    background-color: #58d6e6;
+    border-color: #fff;
+    cursor: default;
+}
+
+.pagination > .disabled > a, .pagination > .disabled > a:focus, .pagination > .disabled > a:hover, .pagination > .disabled > span, .pagination > .disabled > span:focus, .pagination > .disabled > span:hover {
+    color: #777;
+    background-color: #E2E2E2;
+    border-color: #fff;
+    cursor: not-allowed;
+}
+
+.pagination-lg > li > a, .pagination-lg > li > span {
+    padding: 10px 16px;
+    font-size: 17px;
+    line-height: 1.3333333;
+}
+
+.pagination-sm > li > a, .pagination-sm > li > span {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.pager li > a, .pager li > span {
+    padding: 5px 10px 6px;
+    color: #7E7E7E;
+}
+.tab-nav > li > a {
+     border-bottom:3px solid #eee;
+}
+.tab-nav  > li.active > a {
+    border-bottom:3px solid rgb(199,56,64);
+}

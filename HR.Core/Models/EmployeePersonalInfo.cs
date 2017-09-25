@@ -21,7 +21,7 @@ namespace HR.Core.Models
         public int BirthCountry { get; set; }
         public int CitizenshipCountry { get; set; }
         public string FatherName { get; set; }
-        public Int16 MaritalStatus { get; set; }
+        public int MaritalStatus { get; set; }
         public string SpouseName { get; set; }
         public DateTime? MarriageDate { get; set; }
         public Int16 ResidentialStatus { get; set; }
