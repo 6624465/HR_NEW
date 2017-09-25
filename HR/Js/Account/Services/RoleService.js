@@ -1,6 +1,5 @@
 ﻿app.service('RoleService', ['$http', '$q', function ($http, $q) {
     this.GetRoles = function () {
-        debugger;
         var deferred = $q.defer();
         $http.get('/RoleRights/GetRoles').then(function (response) {
             deferred.resolve(response);
@@ -19,7 +18,6 @@
         return deferred.promise;
     }
     this.GetSecurables = function () {
-        debugger;
         var deferred = $q.defer();
         $http.get('/Securable/GetSecurables').then(function (response) {
             deferred.resolve(response);
@@ -28,10 +26,11 @@
         })
         return deferred.promise;
     }
-    this.SaveSecurables = function (securableViewModel)
+    this.SaveSecurables = function (role,securableViewModel)
     {
+        debugger;
         var deferred = $q.defer();
-        $http.post('/Securable/SaveSecurables', securableViewModel).then(function (response) {
+        $http.post('/Securable/SaveSecurables',{ role,securableViewModel }).then(function (response) {
             deferred.resolve(response);
         }, function (err) {
             deferred.reject(err);

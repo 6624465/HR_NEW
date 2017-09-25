@@ -95,29 +95,11 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     EmployeeHeader _employeeHeader = new EmployeeHeader();
-                    User user = null;
                     _employeeHeader = PrepareEmployeeHeader(employeeHeader);
 
                     EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
 
-                    //if (_employeeHeader == null)
-                    //    user = new User();
-                    //else
-                    //    user = _employeeHeader.User;
-
-                    //PrepareUserDetails(employeeHeader, user);
-                    //LogInLogOutService.Save(user);
-
-                    string message = "UserId : " + _employeeHeader.UserEmailId
-                         + "<br/>"
-                         + "Password: " + employeeHeader.Password
-                         + "<br/>"
-                         + "Please go through this link to login HR:"
-                         + "<br/>" +
-                          "http://ragsarma-001-site20.htempurl.com";
-
-                    var emailGen = new HR.Core.HelperMethods();
-                    emailGen.ConfigMail(employeeHeader.UserEmailId, true, "Login Crediantials for HR", message.ToString());
+                    PrepareEmail(_employeeHeader);
 
                     result = Json(new { sucess = true, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
                 }
@@ -205,15 +187,15 @@ namespace HR.Areas.Employees.Controllers
             _employeeHeader.Nationality = !string.IsNullOrWhiteSpace(employeeHeader.Nationality) ? employeeHeader.Nationality : string.Empty;
             _employeeHeader.IDNumber = !string.IsNullOrWhiteSpace(employeeHeader.IDNumber) ? employeeHeader.IDNumber : string.Empty;
             _employeeHeader.IDType = employeeHeader.IDType;
-            _employeeHeader.UserId = employeeHeader.UserId;
+            _employeeHeader.UserEmailId = employeeHeader.UserEmailId;
             _employeeHeader.Password = employeeHeader.Password;
             _employeeHeader.ConfirmPassword = employeeHeader.ConfirmPassword;
             _employeeHeader.EmployeePersonalInfo = PrepareEmployeePersonalInfo(employeePersonalInfo, _employeeHeader);
             _employeeHeader.Address = PrepareEmployeeAddress(employeeHeader.Address, _employeeHeader);
             _employeeHeader.EmployeeWorkDetail = PrepareEmployeeWorkDetail(employeeHeader.EmployeeWorkDetail, _employeeHeader);
+            _employeeHeader.User = PrepareUserDetails(employeeHeader.User, _employeeHeader);
             return _employeeHeader;
         }
-
         private EmployeePersonalInfo PrepareEmployeePersonalInfo(EmployeePersonalInfo employeePersonalInfo, EmployeeHeader employeeHeader)
         {
             EmployeePersonalInfo _employeePersonalInfo = null;
@@ -302,9 +284,20 @@ namespace HR.Areas.Employees.Controllers
             _employeeWorkDetail.Department = employeeWorkDetail.Department;
             return _employeeWorkDetail;
         }
-
-        private void PrepareUserDetails(EmployeeHeader employeeHeader, User user = null)
+        private User PrepareUserDetails(User user, EmployeeHeader employeeHeader)
         {
+            if (user.Id == 0)
+            {
+                user = new User(); 
+                user.CreatedBy = USER_OBJECT.UserName;
+                user.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+            }
+            else
+        {
+                user = employeeHeader.User;
+                user.ModifiedBy = USER_OBJECT.UserName;
+                user.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+            }
             user.BranchId = employeeHeader.BranchId;
             user.UserID = employeeHeader.UserEmailId;
             user.UserName = employeeHeader.UserEmailId;
@@ -315,6 +308,22 @@ namespace HR.Areas.Employees.Controllers
             user.RoleCode = "Employee";
             user.CreatedBy = USER_OBJECT.UserName;
             user.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+
+            return user;
+        }
+
+        private void PrepareEmail(EmployeeHeader employeeHeader) {
+
+            string message = "UserId : " + employeeHeader.UserEmailId
+                         + "<br/>"
+                         + "Password: " + employeeHeader.Password
+                         + "<br/>"
+                         + "Please go through this link to login HR:"
+                         + "<br/>" +
+                          "http://ragsarma-001-site20.htempurl.com";
+
+            var emailGen = new HR.Core.HelperMethods();
+            emailGen.ConfigMail(employeeHeader.User.UserName, true, "Login Crediantials for HR", message.ToString());
         }
 
         private IQueryable<EmployeeViewModel> ApplyWhere(FilterViewModel filterViewModel, IQueryable<EmployeeViewModel> employeeHeader)

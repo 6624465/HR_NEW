@@ -5,7 +5,6 @@
 
         $scope.init = function () {
             $scope.MaritalStatus = "No";
-            debugger;
             if ($scope.MaritalStatus == "No") {
                 $scope.IsMaritalStatus = false;
             }
@@ -111,7 +110,7 @@
                     }
                     EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
                         if (response.data && response.data.sucess == true) {
-                            growlService.growl(response.data.message, 'success');
+                            growlService.growl(response.data.message + "  Employee Crediantials sent to '"+ EmployeeHeader.UserEmailId +"' mail", 'success');
                             $state.go('EmployeeDirectory');
                         }
                         else {

@@ -35,10 +35,13 @@ app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', '
             $scope.showLoading = true;
             $scope.IsEnable = true;
             LoginService.LogIn($scope.User).then(function (response) {
+                debugger;
                 if (response && response.data && response.data.success == true) {
                     $scope.showLoading = false;
                     //$scope.IsEnable = true;
                     sessionStorage.setItem('authenticatedUser', JSON.stringify(response.data.SessionObject));
+                    sessionStorage.setItem('SECURABLES', JSON.stringify(response.data.securables));
+
                     location.href = "Home/index/";
                 }
                 else {
