@@ -12,7 +12,10 @@ namespace HR.Core.Models
     {
         public int Id { get; set; }
         public int BranchId { get; set; }
-        public int DocumentType { get; set; }
+        public Int16 DocumentType { get; set; }
+
+        public int EmployeeHeaderId { get; set; }
+        public virtual EmployeeHeader EmployeeHeader { get; set; }
         public string FileName { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }

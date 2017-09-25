@@ -19,6 +19,7 @@ namespace HR.Service.CompanyDetails.ICompany
 
         #region Country
         IQueryable<T> GetCountries<T>(Expression<Func<T, bool>> predicate = null) where T : Country;
+        Country GetCountryById(int id); 
         #endregion
 
         #region Branch

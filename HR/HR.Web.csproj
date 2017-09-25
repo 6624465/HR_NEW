@@ -86,6 +86,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -6801,6 +6805,7 @@
     <Content Include="Js\Employee\Templates\BasicInformation.html" />
     <Content Include="Js\Employee\Templates\EmployeeAddressDetails.html" />
     <Content Include="Js\Employee\Templates\EmployeeDirecter.html" />
+    <Content Include="Js\Employee\Templates\EmployeeDocuments.html" />
     <Content Include="Js\Employee\Templates\EmployeePaymentMode.html" />
     <Content Include="Js\Employee\Templates\EmployeePFESI.html" />
     <Content Include="Js\Employee\Templates\EmployeePosition.html" />
@@ -7647,6 +7652,7 @@
     <Compile Include="Models\CountryViewModel.cs" />
     <Compile Include="Models\EmployeeLeaveViewModel.cs" />
     <Compile Include="Models\EmployeeViewModel.cs" />
+    <Compile Include="Models\LookUpDescriptions.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

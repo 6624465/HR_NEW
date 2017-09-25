@@ -6,7 +6,7 @@
     }
 </style>
 <div class="card-header">
-    <h2> Employee Profile</h2>
+    <h3> Employee Profile</h3>
 </div>
 <div class="card-body card-padding" ng-controller="EmployeeInfoController">
     <div class="row m-t-25">
@@ -16,7 +16,7 @@
                     <div class="pmo-pic">
                         <div class="p-relative">
                             <a href="">
-                                <img class="img-responsive" src="~/img/profile-pics/profile-pic-2.jpg" alt="">
+                                <img class="img-responsive" src="{{ImageFile}}/{{EmployeeProfilePic}}" alt="">
                             </a>
                             <a href="" class="pmop-edit">
                                 @*<span class="fileinput fileinput-new pull-right" data-provides="fileinput">
@@ -49,11 +49,10 @@
                                        onchange="angular.element(this).scope().uploadFile(this)">
                             </span>
                             <span class="fileinput-filename"></span>
-                            <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
                         </span>
                         <div class="pmo-stat ">
                             <h2 class="m-0 c-white  f-18">{{EmployeeHeader.FirstName}} {{EmployeeHeader.MiddleName}}{{EmployeeHeader.LastName}}</h2>
-                            {{EmployeeAddress.CityName}}, {{EmployeeAddress.StateName}}, {{EmployeeAddress.CountryCode}}
+                            {{EmployeeAddress.CityName}}, {{EmployeeAddress.StateName}}, {{lookUpDescriptions.Country}}
 
                         </div>
                     </div>
@@ -119,7 +118,7 @@
                                                     </dl>
                                                     <dl class="dl-horizontal">
                                                         <dt>Martial Status</dt>
-                                                        <dd ng-bind="EmployeeHeader.EmployeePersonalInfo.MaritalStatus == 1 ? 'Married' : 'Single'"></dd>
+                                                        <dd>{{lookUpDescriptions.MarriedStatus}}</dd>
                                                     </dl>
                                                     <dl class="dl-horizontal" ng-if="EmployeeHeader.EmployeePersonalInfo.MaritalStatus = 'Married'">
                                                         <dt> Marriage Date</dt>
@@ -135,7 +134,7 @@
                                                     </dl>
                                                     <dl class="dl-horizontal">
                                                         <dt> Nationality</dt>
-                                                        <dd>{{EmployeeHeader.Nationality}}</dd>
+                                                        <dd>{{lookUpDescriptions.Nationality}}</dd>
                                                     </dl>
                                                 </div>
 
@@ -152,7 +151,7 @@
                                                             <label>Employee First Name</label>
 
                                                             <div class="fg-line">
-                                                                <input type="text" class="form-control" ng-model="EmployeeHeader.FirstName" ng-required="true">
+                                                                <input type="text" class="form-control valid" ng-model="EmployeeHeader.FirstName" ng-required="true">
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
@@ -165,7 +164,7 @@
                                                         <div class="form-group fg-line">
                                                             <label>Employee Last Name</label>
                                                             <div class="fg-line">
-                                                                <input type="text" class="form-control" ng-model="EmployeeHeader.LastName" ng-required="true">
+                                                                <input type="text" class="form-control valid" ng-model="EmployeeHeader.LastName" ng-required="true">
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
@@ -217,12 +216,12 @@
                                                                         ng-options="s.LookUpID as s.LookUpCode for s in MaritalStatus"
                                                                         ng-model="EmployeeHeader.EmployeePersonalInfo.MaritalStatus"
                                                                         class="form-control valid" ng-required="true">
-                                                                    <option value="">--Select EmployeeType--</option>
+                                                                    <option value="">--Select--</option>
                                                                 </select>
                                                                 @*<input type="text" class="form-control" ng-model="EmployeeHeader.EmployeePersonalInfo.MaritalStatus"/>*@
                                                             </div>
                                                         </div>
-                                                        <div class="form-group fg-line">
+                                                        <div class="form-group fg-line" ng-if="EmployeeHeader.EmployeePersonalInfo.MaritalStatus == 1067">
                                                             <label> MarriageDate </label>
                                                             <div class="fg-line">
                                                                 <div class="dropdown">
@@ -240,6 +239,12 @@
                                                                                         data-datetimepicker-config="{ dropdownSelector: '#MarriageDate', startView:'day', minView:'day' }" />
                                                                     </ul>
                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group fg-line" ng-if="EmployeeHeader.EmployeePersonalInfo.MaritalStatus == 1067">
+                                                            <label> Spouse Name </label>
+                                                            <div class="fg-line">
+                                                                <input type="text" ng-model="EmployeeHeader.EmployeePersonalInfo.SpouseName" class="form-control"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
@@ -307,14 +312,14 @@
                                                         <div class="form-group fg-line">
                                                             <label>Mobile Phone</label>
                                                             <div class="fg-line">
-                                                                <input type="text" class="form-control"
+                                                                <input type="text" class="form-control valid"
                                                                        ng-model="EmployeeAddress.MobileNo" ng-required="true">
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
                                                             <label>Email Address</label>
                                                             <div class="fg-line">
-                                                                <input type="email" class="form-control"
+                                                                <input type="email" class="form-control valid"
                                                                        ng-model="EmployeeAddress.Email" ng-required="true">
                                                             </div>
                                                         </div>
@@ -358,7 +363,7 @@
                                                                 {{EmployeeAddress.Address1}},<br>
                                                                 {{EmployeeAddress.CityName}}<br>
                                                                 {{EmployeeAddress.StateName}}<br>
-                                                                {{EmployeeAddress.CountryCode}} - {{EmployeeAddress.ZipCode}}
+                                                                {{lookUpDescriptions.Country}} - {{EmployeeAddress.ZipCode}}
                                                                 @*{{EmployeeAddress.CountryCode}}  change CountryCode countryName*@
 
                                                             </address>
@@ -373,13 +378,13 @@
                                                         <div class="form-group fg-line">
                                                             <label>Address 1</label>
                                                             <div class="fg-line">
-                                                                <input type="text" class="form-control" ng-model="EmployeeAddress.Address1" ng-required="true">
+                                                                <input type="text" class="form-control valid" ng-model="EmployeeAddress.Address1" ng-required="true">
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
                                                             <label>Address 2</label>
                                                             <div class="fg-line">
-                                                                <input type="text" class="form-control" ng-model="EmployeeAddress.Address2" ng-required="true">
+                                                                <input type="text" class="form-control valid" ng-model="EmployeeAddress.Address2" ng-required="true">
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
@@ -387,7 +392,7 @@
                                                                 City
                                                             </label>
                                                             <div class="fg-line">
-                                                                <input type="text" class="form-control" ng-model="EmployeeAddress.CityName" ng-required="true">
+                                                                <input type="text" class="form-control valid" ng-model="EmployeeAddress.CityName" ng-required="true">
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
@@ -404,7 +409,7 @@
                                                             </label>
                                                             <div class="fg-line">
                                                                 <select name="CountryCode" ng-options="s.CountryCode as s.CountryName for s in Countries"
-                                                                        ng-model="EmployeeAddress.CountryCode" class="form-control"
+                                                                        ng-model="EmployeeAddress.CountryCode" class="form-control valid"
                                                                         ng-required="true">
                                                                     <option value="">--Select Country--</option>
                                                                 </select>
@@ -413,7 +418,7 @@
                                                         <div class="form-group fg-line">
                                                             <label>Postal Code</label>
                                                             <div class="fg-line">
-                                                                <input type="text" class="form-control" ng-model="EmployeeAddress.ZipCode">
+                                                                <input type="text" class="form-control valid" ng-model="EmployeeAddress.ZipCode">
                                                             </div>
                                                         </div>
                                                         <div class="m-t-30">
@@ -469,12 +474,12 @@
 
                                                     <dl class="dl-horizontal">
                                                         <dt>Department</dt>
-                                                        <dd>{{EmployeeWorkDetail.Department.LookUpCode}}</dd>
+                                                        <dd>{{EmployeeWorkDetail.Department}}</dd>
                                                         @*get the department text and change the vale*@
                                                     </dl>
                                                     <dl class="dl-horizontal">
                                                         <dt>Designation</dt>
-                                                        <dd>{{EmployeeWorkDetail.Designation.LookUpCode}}</dd>
+                                                        <dd>{{lookUpDescriptions.Designation}}</dd>
                                                         @*get the Development text and change the vale*@
                                                     </dl>
                                                 </div>
@@ -525,7 +530,7 @@
                                                                 User Name
                                                             </label>
                                                             <div class="fg-line">
-                                                                <input type="text" class="form-control" ng-model="EmployeeUser.UserName" ng-required="true" />
+                                                                <input type="text" class="form-control valid" ng-model="EmployeeUser.UserName"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
@@ -533,7 +538,7 @@
                                                                 New Password
                                                             </label>
                                                             <div class="fg-line">
-                                                                <input type="password" class="form-control" ng-model="EmployeeUser.Password" ng-required="true" />
+                                                                <input type="password" class="form-control valid" ng-model="EmployeeUser.Password" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
@@ -541,7 +546,7 @@
                                                                 Confirm Password
                                                             </label>
                                                             <div class="fg-line">
-                                                                <input type="password" class="form-control" ng-model="EmployeeUser.ConfirmPassword" ng-required="true" />
+                                                                <input type="password" class="form-control valid" ng-model="EmployeeUser.ConfirmPassword"/>
                                                             </div>
                                                         </div>
                                                         <div class="m-t-30">

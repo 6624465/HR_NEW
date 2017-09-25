@@ -89,5 +89,34 @@ namespace HR.Controllers
 
             return address;
         }
+
+
+        public string SaveFile(HttpFileCollection httpFileCollection)
+        {
+
+            HttpPostedFile hpf = httpFileCollection[0];
+            /*Geting the file name*/
+            string filename = System.IO.Path.GetFileName(hpf.FileName);
+            string mapPath = Server.MapPath("~/img/profile-pics/");
+
+            var dirInfo = new System.IO.DirectoryInfo(mapPath);
+            if (!dirInfo.Exists)
+            {
+                dirInfo.Create();
+            }
+
+            string filepathtosave = mapPath + filename;
+
+            try
+            {
+                hpf.SaveAs(filepathtosave);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return filename;
+        }
     }
 }

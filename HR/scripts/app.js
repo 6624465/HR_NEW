@@ -323,6 +323,21 @@ app.config(
                     }
                 }
             })
+
+            .state('EmployeeHeader.EmployeeDocuments', {
+                url: '/EmployeeDocuments',
+                templateUrl: baseUrl + 'Js/Employee/Templates/EmployeeDocuments.html',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                            }
+                        ]);
+                    }
+                }
+            })
             .state('EmployeeDirectory', {
                 url: '/EmployeeDirectory',
                 templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeDirectory',

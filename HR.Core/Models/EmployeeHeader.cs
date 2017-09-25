@@ -30,7 +30,6 @@ namespace HR.Core.Models
         public virtual EmployeePersonalInfo EmployeePersonalInfo { get; set; }
         public int EmployeeWorkDetailId { get; set; }
         public virtual EmployeeWorkDetail EmployeeWorkDetail { get; set; }
-
         public int UserId { get; set; }
         public virtual User User { get; set; }
         public string UserEmailId { get; set; }
