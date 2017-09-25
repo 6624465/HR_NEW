@@ -1,13 +1,12 @@
 ﻿@*<link href="~/Css/app_1.min.css" rel="stylesheet" />*@
 <style>
     #profile-main {
-        min-height: 500px;
+        min-height: 700px;
         position: relative;
     }
 </style>
 <div class="card-header">
     <h2> Employee Profile</h2>
-
 </div>
 <div class="card-body card-padding" ng-controller="EmployeeInfoController">
     <div class="row m-t-25">
@@ -17,12 +16,41 @@
                     <div class="pmo-pic">
                         <div class="p-relative">
                             <a href="">
-                                @* <img class="img-responsive" src="~/img/demo/profile-pics/profile-pic-2.jpg" alt="">*@
+                                <img class="img-responsive" src="~/img/profile-pics/profile-pic-2.jpg" alt="">
                             </a>
                             <a href="" class="pmop-edit">
-                                <i class="zmdi zmdi-camera"></i> <span class="hidden-xs">Update Profile Picture</span>
+                                @*<span class="fileinput fileinput-new pull-right" data-provides="fileinput">
+                                        <span class="btn btn-primary btn-file m-r-10">
+                                            <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload Image</span>
+                                            <span class="fileinput-exists">Change</span>
+                                            <input type="file"
+                                                   id="containerFile"
+                                                   name="containerFile"
+                                                   onchange="angular.element(this).scope().ContainerFileUpload(this)">
+                                        </span>
+                                        <span class="fileinput-filename"></span>
+                                        <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+                                    </span>*@
+                                @*<span class="fileinput fileinput-new pull-right" data-provides="fileinput">
+                                    <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" />
+                                </span>*@
+                                @*<i class="zmdi zmdi-camera">*@
+
+                                @*</i> <span class="hidden-xs">Update Profile Picture</span>*@
                             </a>
                         </div>
+                        <span class="fileinput fileinput-new pull-right" data-provides="fileinput">
+                            <span class="btn btn-primary btn-file m-r-10">
+                                <span class="fileinput-new"> <i class="zmdi zmdi-camera" aria-hidden="true"></i> Upload Image</span>
+                               @* <span class="fileinput-exists">Change</span>*@
+                                <input type="file"
+                                       id="containerFile"
+                                       name="containerFile"
+                                       onchange="angular.element(this).scope().uploadFile(this)">
+                            </span>
+                            <span class="fileinput-filename"></span>
+                            <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
+                        </span>
                         <div class="pmo-stat ">
                             <h2 class="m-0 c-white  f-18">{{EmployeeHeader.FirstName}} {{EmployeeHeader.MiddleName}}{{EmployeeHeader.LastName}}</h2>
                             {{EmployeeAddress.CityName}}, {{EmployeeAddress.StateName}}, {{EmployeeAddress.CountryCode}}
@@ -42,31 +70,34 @@
                     <div class="form-wizard-basic fw-container">
                         <ul class="tab-nav text-center">
                             <li><a href="#Personal-Information" data-toggle="tab">Personal Information</a></li>
-                            @*<li><a href="#Education-Employee-Identity" data-toggle="tab">Education &amp; Employee Identity </a></li>*@
                             <li><a href="#Details-Position" data-toggle="tab">Joining Details &amp; Current Position</a></li>
                             <li><a href="#Reset-Password" data-toggle="tab">Reset Password</a></li>
                         </ul>
 
                         <div class="tab-content">
-                            <div class="tab-pane fade" id="Personal-Information">
+                            <div class="tab-pane fade active in Personal" id="Personal-Information">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6">
                                         <div class="pmb-block">
                                             <div class="pmbb-header">
                                                 <h2><i class="zmdi zmdi-account m-r-10"></i>&nbsp; Personal Information</h2>
-
                                                 <ul class="actions">
-                                                    <li class="dropdown">
-                                                        <a href="" data-toggle="dropdown">
-                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                        </a>
-                                                        <ul class="dropdown-menu dropdown-menu-right">
-                                                            <li>
-                                                                <a ng-click="EmployeeInfo.editInfo = 1">Edit</a>
-                                                            </li>
-                                                        </ul>
+                                                    <li>
+                                                        <a ng-click="EmployeeInfo.editInfo = 1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                                     </li>
                                                 </ul>
+                                                @*<ul class="actions">
+                                                        <li class="dropdown">
+                                                            <a href="" data-toggle="dropdown">
+                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                                <li>
+                                                                    <a ng-click="EmployeeInfo.editInfo = 1">Edit</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>*@
                                             </div>
                                             <div class="pmbb-body p-l-0">
                                                 <div class="pmbb-view" ng-if="EmployeeInfo.editInfo === 0">
@@ -89,6 +120,14 @@
                                                     <dl class="dl-horizontal">
                                                         <dt>Martial Status</dt>
                                                         <dd ng-bind="EmployeeHeader.EmployeePersonalInfo.MaritalStatus == 1 ? 'Married' : 'Single'"></dd>
+                                                    </dl>
+                                                    <dl class="dl-horizontal" ng-if="EmployeeHeader.EmployeePersonalInfo.MaritalStatus = 'Married'">
+                                                        <dt> Marriage Date</dt>
+                                                        <dd>{{EmployeeHeader.EmployeePersonalInfo.MarriageDate}}</dd>
+                                                    </dl>
+                                                    <dl class="dl-horizontal" ng-if="EmployeeHeader.EmployeePersonalInfo.MaritalStatus = 'Married'">
+                                                        <dt> Spouse Name</dt>
+                                                        <dd>{{EmployeeHeader.EmployeePersonalInfo.SpouseName}}</dd>
                                                     </dl>
                                                     <dl class="dl-horizontal">
                                                         <dt>Father's Name</dt>
@@ -174,13 +213,39 @@
                                                         <div class="form-group fg-line">
                                                             <label>Martial Status</label>
                                                             <div class="fg-line">
-                                                                <input type="text" class="form-control" ng-model="EmployeeHeader.EmployeePersonalInfo.MaritalStatus == 0 ?'Married' : 'Single'"/>
+                                                                <select name="MaritalStatus"
+                                                                        ng-options="s.LookUpID as s.LookUpCode for s in MaritalStatus"
+                                                                        ng-model="EmployeeHeader.EmployeePersonalInfo.MaritalStatus"
+                                                                        class="form-control valid" ng-required="true">
+                                                                    <option value="">--Select EmployeeType--</option>
+                                                                </select>
+                                                                @*<input type="text" class="form-control" ng-model="EmployeeHeader.EmployeePersonalInfo.MaritalStatus"/>*@
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group fg-line">
+                                                            <label> MarriageDate </label>
+                                                            <div class="fg-line">
+                                                                <div class="dropdown">
+                                                                    <a class="dropdown-toggle" id="MarriageDate" role="button" data-toggle="dropdown">
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control input-sm datepicker"
+                                                                                   ng-model="EmployeeHeader.EmployeePersonalInfo.MarriageDate"
+                                                                                   name="EmployeeHeader.EmployeePersonalInfo.MarriageDate"
+                                                                                   date-time-input="{{dateFormat}}">
+                                                                            <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                                        </div>
+                                                                    </a>
+                                                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                                        <datetimepicker ng-model="EmployeeHeader.EmployeePersonalInfo.MarriageDate"
+                                                                                        data-datetimepicker-config="{ dropdownSelector: '#MarriageDate', startView:'day', minView:'day' }" />
+                                                                    </ul>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
                                                             <label> Father's Name</label>
                                                             <div class="fg-line">
-                                                                <input type="text" class="form-control" ng-model="EmployeeHeader.EmployeePersonalInfo.FatherName" ng-required="true">
+                                                                <input type="text" class="form-control valid" ng-model="EmployeeHeader.EmployeePersonalInfo.FatherName" ng-required="true">
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
@@ -196,8 +261,8 @@
 
                                                         </div>
                                                         <div class="m-t-30">
-                                                            <button class="btn btn-primary btn-sm" ng-click="submitted = true;" type="submit">Save</button>
-                                                            <button data-ma-action="profile-edit-cancel" class="btn bgm-gray waves-effect btn-sm" ng-click="EmployeeInfo.editInfo = 0">Cancel</button>
+                                                            <button class="btn" ng-click="submitted = true;" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+                                                            <button class="btn btn-default" type="button" ng-click="EmployeeInfo.editInfo = 0"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -209,17 +274,22 @@
                                             <div class="pmbb-header">
                                                 <h2><i class="zmdi zmdi-phone m-r-10"></i>&nbsp; Contact Information</h2>
                                                 <ul class="actions">
-                                                    <li class="dropdown">
-                                                        <a href="" data-toggle="dropdown">
-                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                        </a>
-                                                        <ul class="dropdown-menu dropdown-menu-right">
-                                                            <li>
-                                                                <a ng-click="EmployeeInfo.editContact =1">Edit</a>
-                                                            </li>
-                                                        </ul>
+                                                    <li>
+                                                        <a ng-click="EmployeeInfo.editContact =1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                                     </li>
                                                 </ul>
+                                                @*<ul class="actions">
+                                                        <li class="dropdown">
+                                                            <a href="" data-toggle="dropdown">
+                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                                <li>
+                                                                    <a ng-click="EmployeeInfo.editContact =1">Edit</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>*@
                                             </div>
                                             <div class="pmbb-body p-l-0">
                                                 <form id="frmContactAddressInfo" name="frmContactAddressInfo" enctype="multipart/form-data" ng-class="{'submitted':submitted}" ng-submit="SaveEmployeeAddress(EmployeeAddress);" novalidate>
@@ -249,8 +319,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="m-t-30">
-                                                            <button class="btn btn-primary btn-sm" type="submit">Save</button>
-                                                            <button data-ma-action="profile-edit-cancel" class="btn bgm-gray waves-effect btn-sm" ng-click="EmployeeInfo.editContact = 0">Cancel</button>
+                                                            <button class="btn" ng-click="submitted = true;" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+                                                            <button class="btn btn-default" type="button" ng-click="EmployeeInfo.editContact = 0"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -261,18 +331,23 @@
                                                 <h2><i class="zmdi zmdi-pin m-r-10"></i>&nbsp; Address Information</h2>
                                             </div>
                                             <ul class="actions text-right">
-                                                <li class="dropdown">
-                                                    <a href="" data-toggle="dropdown">
-                                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                    </a>
-
-                                                    <ul class="dropdown-menu dropdown-menu-right">
-                                                        <li>
-                                                            <a ng-click="EmployeeInfo.editAddress =1">Edit</a>
-                                                        </li>
-                                                    </ul>
+                                                <li>
+                                                    <a ng-click="EmployeeInfo.editAddress =1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                                 </li>
                                             </ul>
+                                            @*<ul class="actions text-right">
+                                                    <li class="dropdown">
+                                                        <a href="" data-toggle="dropdown">
+                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                        </a>
+
+                                                        <ul class="dropdown-menu dropdown-menu-right">
+                                                            <li>
+                                                                <a ng-click="EmployeeInfo.editAddress =1">Edit</a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>*@
                                             <div class="pmbb-body p-l-0">
                                                 <div class="pmbb-view" ng-if="EmployeeInfo.editAddress === 0">
                                                     <dl class="dl-horizontal">
@@ -342,8 +417,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="m-t-30">
-                                                            <button class="btn btn-primary btn-sm" type="submit">Save</button>
-                                                            <button data-ma-action="profile-edit-cancel" class="btn bgm-gray waves-effect btn-sm" ng-click="EmployeeInfo.editAddress = 0">Cancel</button>
+                                                            <button class="btn" ng-click="submitted = true;" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+                                                            <button class="btn btn-default" type="button" ng-click="EmployeeInfo.editAddress = 0"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -399,7 +474,7 @@
                                                     </dl>
                                                     <dl class="dl-horizontal">
                                                         <dt>Designation</dt>
-                                                        <dd>{{EmployeeWorkDetail.Designation.LookUpCode}}</dd> 
+                                                        <dd>{{EmployeeWorkDetail.Designation.LookUpCode}}</dd>
                                                         @*get the Development text and change the vale*@
                                                     </dl>
                                                 </div>
@@ -417,36 +492,48 @@
                                         <div class="pmb-block">
                                             <div class="pmbb-header">
                                                 <h2><i class="zmdi zmdi-assignment m-r-10"></i>&nbsp; Reset - Password </h2>
-
                                                 <ul class="actions">
-                                                    <li class="dropdown">
-                                                        <a href="" data-toggle="dropdown">
-                                                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                        </a>
-
-                                                        <ul class="dropdown-menu dropdown-menu-right">
-                                                            <li>
-                                                                <a ng-click="EmployeeInfo.editResetPassword = 1">Edit</a>
-                                                            </li>
-                                                        </ul>
+                                                    <li>
+                                                        <a ng-click="EmployeeInfo.editResetPassword = 1"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                                     </li>
                                                 </ul>
+                                                @*<ul class="actions">
+                                                        <li class="dropdown">
+                                                            <a href="" data-toggle="dropdown">
+                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                            </a>
+
+                                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                                <li>
+                                                                    <a ng-click="EmployeeInfo.editResetPassword = 1">Edit</a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>*@
                                             </div>
                                             <div class="pmbb-body p-l-0">
                                                 <div class="pmbb-view" ng-if="EmployeeInfo.editResetPassword === 0">
                                                     <dl class="dl-horizontal">
-                                                        <dt></dt>
-                                                        <dd> </dd>
+                                                        <dt>User Name</dt>
+                                                        <dd>{{EmployeeUser.UserName}}</dd>
                                                     </dl>
                                                 </div>
                                                 <form id="frmUserInfo" name="frmUserInfo" enctype="multipart/form-data" ng-class="{'submitted':submitted}" ng-submit="SaveEmployeeUser(EmployeeUser);" novalidate">
                                                     <div class="pmbb-edit" ng-if="EmployeeInfo.editResetPassword === 1">
                                                         <div class="form-group fg-line">
                                                             <label>
+                                                                User Name
+                                                            </label>
+                                                            <div class="fg-line">
+                                                                <input type="text" class="form-control" ng-model="EmployeeUser.UserName" ng-required="true" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group fg-line">
+                                                            <label>
                                                                 New Password
                                                             </label>
                                                             <div class="fg-line">
-                                                                <input type="password" class="form-control" ng-model="EmployeeUser.Password" ng-required="true"/>
+                                                                <input type="password" class="form-control" ng-model="EmployeeUser.Password" ng-required="true" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">
@@ -458,8 +545,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="m-t-30">
-                                                            <button class="btn btn-primary btn-sm" type="submit" ng-click="submitted = true;">Save</button>
-                                                            <button data-ma-action="profile-edit-cancel" class="btn bgm-gray waves-effect btn-sm" ng-click="EmployeeInfo.editResetPassword = 0">Cancel</button>
+                                                            <button class="btn" ng-click="submitted = true;" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+                                                            <button class="btn btn-default" type="button" ng-click="EmployeeInfo.editResetPassword = 0"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -469,28 +556,28 @@
                                 </div>
                             </div>
 
-                            <ul class="fw-footer pagination wizard">
-                                <li class="previous first">
-                                    <a class="a-prevent" href="">
-                                        <i class="zmdi zmdi-more-horiz"></i>
-                                    </a>
-                                </li>
-                                <li class="previous">
-                                    <a class="a-prevent" href="">
-                                        <i class="zmdi zmdi-chevron-left"></i>
-                                    </a>
-                                </li>
-                                <li class="next">
-                                    <a class="a-prevent" href="">
-                                        <i class="zmdi zmdi-chevron-right"></i>
-                                    </a>
-                                </li>
-                                <li class="next last">
-                                    <a class="a-prevent" href="">
-                                        <i class="zmdi zmdi-more-horiz"></i>
-                                    </a>
-                                </li>
-                            </ul>
+                            @*<ul class="fw-footer pagination wizard">
+                                    <li class="previous first">
+                                        <a class="a-prevent" ng-click="nextOrPreviousButtonClick()">
+                                            <i class="zmdi zmdi-more-horiz"></i>
+                                        </a>
+                                    </li>
+                                    <li class="previous">
+                                        <a class="a-prevent" ng-click="nextOrPreviousButtonClick()">
+                                            <i class="zmdi zmdi-chevron-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="next">
+                                        <a class="a-prevent" ng-click="nextOrPreviousButtonClick()">
+                                            <i class="zmdi zmdi-chevron-right"></i>
+                                        </a>
+                                    </li>
+                                    <li class="next last">
+                                        <a class="a-prevent" ng-click="nextOrPreviousButtonClick()">
+                                            <i class="zmdi zmdi-more-horiz"></i>
+                                        </a>
+                                    </li>
+                                </ul>*@
 
                         </div>
                     </div>

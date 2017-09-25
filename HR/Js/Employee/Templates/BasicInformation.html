@@ -211,15 +211,18 @@
                 <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
                         <label>MaritalStatus</label>
-                        <select class="form-control" ng-model="MaritalStatus"  ng-change="Status(MaritalStatus)">
-                             <option value="No">No</option>
-                             <option value="Yes">Yes</option>
+                        <select name="MaritalStatus"
+                                ng-options="s.LookUpID as s.LookUpCode for s in MaritalStatus"
+                                ng-model="EmployeeHeader.EmployeePersonalInfo.MaritalStatus"
+                                ng-change="onChangeEmployeeType(EmployeeHeader.MaritalStatus)"
+                                class="form-control valid" ng-required="true">
+                            <option value="">--Select EmployeeType--</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-md-6" ng-show="IsMaritalStatus">
+            <div class="row" ng-if="EmployeeHeader.EmployeePersonalInfo.MaritalStatus == 1067">
+                <div class="col-xs-12 col-md-6">
                     <div class="form-group" >
                         <label>
                             MarriageDate
@@ -242,7 +245,7 @@
                     </div>
                 </div>
 
-                <div class="col-xs-12 col-md-6" ng-show="IsMaritalStatus">
+                <div class="col-xs-12 col-md-6">
                     <div class="form-group ">
                         <label>
                             Spouse Name

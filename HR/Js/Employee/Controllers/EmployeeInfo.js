@@ -1,5 +1,5 @@
-﻿angular.module('ngHR').controller('EmployeeInfoController', ['$scope', '$http', 'growlService', '$filter', 'UtilityFunc', 'LookUp', 'EmployeeProfileService',
-    function ($scope, $http, growlService, $filter, UtilityFunc, LookUp, EmployeeProfileService) {
+﻿angular.module('ngHR').controller('EmployeeInfoController', ['$scope', '$http', 'growlService', '$filter', 'UtilityFunc', 'LookUp', 'EmployeeProfileService','$location',
+function ($scope, $http, growlService, $filter, UtilityFunc, LookUp, EmployeeProfileService,$location) {
 
         $scope.init = function () {
             $scope.employeeId = 0;
@@ -32,6 +32,7 @@
         }
 
         $scope.employeeId = 0;
+
         EmployeeProfileService.GetEmployeeById($scope.employeeId, true).then(function (response) {
             if (response && response.data) {
                 $scope.EmployeeHeader = response.data;
@@ -72,11 +73,16 @@
                 $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
         }, function (err) {
         })
-        debugger
+        LookUp.GetActiveLookUpData("MaritalStatus").then(function (response) {
+            $scope.MaritalStatus = response.data.lookUpLists;
+        })
+
         $scope.IsfrmPersonalInfo = false;
+
         $scope.$watch('frmPersonalInfo.$valid', function (Valid) {
             $scope.IsfrmPersonalInfo = Valid;
         });
+
         $scope.SavePersonalInfo = function (EmployeeHeader) {
             if ($scope.IsfrmPersonalInfo) {
                 $scope.EmployeeHeader.CreatedOn = moment($scope.EmployeeHeader.CreatedOn);
@@ -86,11 +92,14 @@
                     if (response.data && response.data.sucess == true) {
                         growlService.growl(response.data.message, 'success');
                         $scope.EmployeeInfo.editInfo = 0;
+                        $scope.EmployeeInfo.editAddress = 0;
                     }
                 })
             }
         }
+
         $scope.IsfrmAddressInfo = false;
+
         $scope.$watch('frmContactAddressInfo.$valid', function (Valid) {
             $scope.IsfrmAddressInfo = Valid;
         });
@@ -104,6 +113,7 @@
                 EmployeeProfileService.SaveEmployeeAddress(EmployeeAddress).then(function (response) {
                     if (response.data && response.data.sucess == true) {
                         growlService.growl(response.data.message, 'success');
+                        $scope.EmployeeInfo.editContact = 0;
                     }
                 })
             }
@@ -121,10 +131,24 @@
                         growlService.growl("Password is changes successfully please login your profile once", 'success');
                         $scope.EmployeeInfo.editResetPassword = 0;
                         window.location.pathname = '';
-                        
+
                     }
                 })
             }
+        }
+
+        $scope.uploadFile = function (e) {
+            debugger
+            var file = e.files[0];
+
+            EmployeeProfileService.SaveEmployeeDocuments(file, $scope.EmployeeHeader.Id).then(function (response) {
+                debugger
+            })
+            
+        }
+        $scope.nextOrPreviousButtonClick = function () {
+            debugger
+            angular.element('.tab-pane fade').addClass('tab-pane fade active in');
         }
 
         $scope.init();

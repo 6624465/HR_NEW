@@ -407,9 +407,6 @@ app.config(
                 }
             })
 
-     
-
-
         $urlRouterProvider.otherwise('/');
         growlProvider.onlyUniqueMessages(false);
         cfpLoadingBarProvider.includeSpinner = false;//includeBar

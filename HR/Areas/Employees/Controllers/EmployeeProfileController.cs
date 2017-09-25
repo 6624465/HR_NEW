@@ -11,6 +11,7 @@ using HR.Models;
 using System.Linq.Expressions;
 using System.Text;
 using HR.Core;
+using System.IO;
 
 namespace HR.Areas.Employees.Controllers
 {
@@ -34,7 +35,7 @@ namespace HR.Areas.Employees.Controllers
                                                                Email = employee.Address.Email,
                                                                EmployeeId = employee.IDNumber,
                                                                CountryCode = employee.Address.CountryCode,
-                                                               Designation = employee.EmployeeWorkDetail.Designation_LookUpId,
+                                                               Designation = employee.EmployeeWorkDetail.DesignationId,
                                                                EmployeeType = employee.IDType
                                                            }).ToList().AsQueryable();
 
@@ -179,12 +180,13 @@ namespace HR.Areas.Employees.Controllers
                 {
                     if (EmployeeUser.Id > 0)
                     {
-                       User _user = EmployeeUser;
-                      
+                        User _user = EmployeeUser;
+
 
                         EmployeeHeader _employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
                         _user.ModifiedOn = _employeeHeader.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                         _user.ModifiedBy = _employeeHeader.ModifiedBy = USER_OBJECT.UserID;
+                        _user.UserName = _employeeHeader.UserEmailId = EmployeeUser.UserName;
                         _user.Password = _employeeHeader.Password = _employeeHeader.ConfirmPassword = EmployeeUser.Password;
 
                         LogInLogOutService.Save(EmployeeUser, true);
@@ -200,6 +202,33 @@ namespace HR.Areas.Employees.Controllers
                 }
             }
             return result;
+        }
+
+        public JsonResult SaveEmployeeDocuments(HttpPostedFileBase employeeFiles, int employeeId)
+        {
+            JsonResult result = null;
+            if (employeeFiles != null)
+            {
+                try
+                {
+                    if (employeeId > 0)
+                    {
+                        //EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
+                        //if (employeeHeader.EmployeeDocuments != null || employeeHeader.EmployeeDocuments.Any())
+                        //{
+                        //    EmployeeDocument employeedocument = new EmployeeDocument();
+                        //}
+
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+            return result;
+
         }
         #endregion
 
@@ -283,6 +312,7 @@ namespace HR.Areas.Employees.Controllers
             _employeeHeader.EmployeePersonalInfo = PrepareEmployeePersonalInfo(employeePersonalInfo, _employeeHeader);
             _employeeHeader.Address = PrepareEmployeeAddress(employeeHeader.Address, _employeeHeader);
             _employeeHeader.EmployeeWorkDetail = PrepareEmployeeWorkDetail(employeeHeader.EmployeeWorkDetail, _employeeHeader);
+            employeeHeader.User =  employeeHeader.User == null ?  new User() : employeeHeader.User;
             _employeeHeader.User = PrepareUserDetails(employeeHeader.User, _employeeHeader);
             return _employeeHeader;
         }
@@ -370,8 +400,8 @@ namespace HR.Areas.Employees.Controllers
             _employeeWorkDetail.ConfirmationDate = employeeWorkDetail.ConfirmationDate.HasValue ? DateTimeConverter.SingaporeDateTimeConversion(employeeWorkDetail.ConfirmationDate.Value) : DateTime.Now;
             _employeeWorkDetail.ProbationPeriod = employeeWorkDetail.ProbationPeriod;
             _employeeWorkDetail.NoticePeriod = employeeWorkDetail.NoticePeriod;
-            _employeeWorkDetail.Designation = employeeWorkDetail.Designation;
-            _employeeWorkDetail.Department = employeeWorkDetail.Department;
+            _employeeWorkDetail.DesignationId = employeeWorkDetail.DesignationId;
+            _employeeWorkDetail.DepartmentId = employeeWorkDetail.DepartmentId;
             return _employeeWorkDetail;
         }
         private User PrepareUserDetails(User user, EmployeeHeader employeeHeader)
@@ -415,6 +445,26 @@ namespace HR.Areas.Employees.Controllers
 
             var emailGen = new HR.Core.HelperMethods();
             emailGen.ConfigMail(employeeHeader.User.UserName, true, "Login Crediantials for HR", message.ToString());
+        }
+
+        public void ExportEmployeeDocumentFile(string employeeFileName)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(employeeFileName))
+                {
+
+                    string employeeFilePathToSave = Path.Combine(Server.MapPath("~/img/profile-pics"), employeeFileName);
+                    //var buffer = System.IO.File.ReadAllBytes(employeeFilePathToSave);
+                    //var stream = new MemoryStream(buffer);
+                    //return File(stream.ToArray(), "text/html", employeeFileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            //return this.Content(string.Empty);
         }
 
         private IQueryable<EmployeeViewModel> ApplyWhere(FilterViewModel filterViewModel, IQueryable<EmployeeViewModel> employeeHeader)

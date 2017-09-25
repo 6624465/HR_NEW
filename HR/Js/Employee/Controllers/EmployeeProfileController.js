@@ -4,10 +4,6 @@
         growlService, EmployeeProfileService, $timeout, $stateParams, $state) {
 
         $scope.init = function () {
-            $scope.MaritalStatus = "No";
-            if ($scope.MaritalStatus == "No") {
-                $scope.IsMaritalStatus = false;
-            }
             $scope.AddressNextButton = false;
             $scope.BasicNextButton = false;
             $scope.PositionNextButton = false;
@@ -48,6 +44,9 @@
             })
             LookUp.GetActiveLookUpData("PaymentType").then(function (response) {
                 $scope.PaymentType = response.data.lookUpLists;
+            })
+            LookUp.GetActiveLookUpData("MaritalStatus").then(function (response) {
+                $scope.MaritalStatus = response.data.lookUpLists;
             })
 
             LookUp.GetCountries().then(function (res) {
@@ -104,7 +103,7 @@
                         growlService.growl("Please Enter Employee Address Details", 'danger')
                         return false;
                     }
-                    if (EmployeeHeader.EmployeeWorkDetail.Designation == null || EmployeeHeader.EmployeeWorkDetail.Department == null) {
+                    if (EmployeeHeader.EmployeeWorkDetail.DesignationId == null || EmployeeHeader.EmployeeWorkDetail.DepartmentId == null) {
                         growlService.growl("Please enter employee position details", 'danger')
                         return false;
                     }
@@ -120,26 +119,12 @@
                         growlService.growl(err, 'danger');
                     }
                 }
-
             }
-
         }
 
         $scope.onClickValid = function (buttonType) {
             $scope.ValidateForm(buttonType);
         }
-        $scope.Status = function (isYes) {
-            if (isYes == "No") {
-                $scope.IsMaritalStatus = false;
-                $scope.EmployeeHeader.EmployeePersonalInfo.MarriageDate = "";
-                $scope.EmployeeHeader.EmployeePersonalInfo.SpouseName = "";
-            }
-            else {
-                $scope.IsMaritalStatus = true;
-            }
-        };
-
-
 
         $scope.ValidateForm = function (buttonType) {
             $scope.IsValid = false;
@@ -169,6 +154,12 @@
                     var position = angular.element('.position');
                     position[0].style.backgroundColor = "red";
                     position[0].style.color = "white";
+                }
+                if ((mandtoryFields[0].parentElement.innerText).trim() == "Email") {
+                    var user = angular.element('.position');
+                    user[0].style.backgroundColor = "red";
+                    user[0].style.color = "white";
+
                 }
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             }
@@ -212,6 +203,18 @@
                         position[0].style.color = "white";
                     }
                 }
+                if ((mandtoryFields[0].parentElement.innerText).trim() == "Email") {
+                    var user = angular.element('.position');
+
+                    if (buttonType == "Previous")
+                        $state.go('EmployeeHeader.EmployeePosition');
+
+                    if (user != null && user != undefined) {
+                        user[0].style.backgroundColor = "#008d4c";
+                        user[0].style.color = "white";
+                    }
+
+                }
 
                 $scope.IsValid = true;
             }
@@ -230,11 +233,6 @@
         if ($scope.employeeId != null && $scope.employeeId != "") {
             EmployeeProfileService.GetEmployeeById($scope.employeeId, false).then(function (response) {
                 if (response && response.data) {
-                    if (response.data.EmployeePersonalInfo.MarriageDate != null || response.data.EmployeePersonalInfo.SpouseName != null) {
-                        if ($scope.MaritalStatus = "Yes") {
-                            $scope.IsMaritalStatus = true;
-                        }
-                    }
                     $scope.EmployeeHeader = response.data;
                     if ($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate && $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate != null) {
                         $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment(response.data.EmployeeWorkDetail.JoiningDate);

@@ -11,10 +11,7 @@ namespace HR.Core.Models
     public class EmployeeDocument
     {
         public int Id { get; set; }
-        public int EmployeeId { get; set; }
         public int BranchId { get; set; }
-        //public virtual EmployeeHeader Employee { get; set; }
-        public virtual Branch Branch { get; set; }
         public int DocumentType { get; set; }
         public string FileName { get; set; }
         public string CreatedBy { get; set; }
