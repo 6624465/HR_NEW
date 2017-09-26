@@ -534,7 +534,6 @@ app.directive('treeView', function ($compile) {
             /// SELECT ALL CHILDRENS
             // as seen at: http://jsfiddle.net/incutonez/D8vhb/5/
             function parentCheckChange(item) {
-                debugger;
                 for (var i in item.children) {
                     item.children[i].checked = item.checked;
                     if (item.children[i].children) {
@@ -545,14 +544,12 @@ app.directive('treeView', function ($compile) {
 
             scope.checkChange = function (node, child) {
                 // scope.active = scope.active == node.id ? node.id : node.id;
-                debugger;
                 if (node.children) {
 
                     parentCheckChange(node);
                 }
 
                 $('input[type=checkbox]').change(function () {
-                    debugger;
                     if (this.checked) { // if checked - check all parent checkboxes
                         $(this).parents('li').children('input[type=checkbox]').prop('checked', true);
                     }
@@ -564,7 +561,6 @@ app.directive('treeView', function ($compile) {
             scope.showAccessRights = true;
             scope.active = 1060;
             scope.showAcessRights = function (node) {
-                debugger;
                 scope.active = scope.active == node.id ? node.id : node.id;
                 if (node.type != "page") {
                     scope.showAccessRights = true;

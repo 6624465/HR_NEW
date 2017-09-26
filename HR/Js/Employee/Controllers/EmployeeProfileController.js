@@ -83,7 +83,6 @@
         $scope.onChangeEmployeeType = function (id) {
             EmployeeProfileService.GetEmployeeNumber(id).then(function (response) {
                 if (response && response.data) {
-                    debugger
                     if (response.data != null) {
                         $scope.EmployeeHeader.IDNumber = response.data;
                     }

@@ -28,7 +28,6 @@
     }
     this.SaveSecurables = function (role,securableViewModel)
     {
-        debugger;
         var deferred = $q.defer();
         $http.post('/Securable/SaveSecurables',{ role,securableViewModel }).then(function (response) {
             deferred.resolve(response);

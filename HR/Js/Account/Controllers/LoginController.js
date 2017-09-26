@@ -35,7 +35,6 @@ app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', '
             $scope.showLoading = true;
             $scope.IsEnable = true;
             LoginService.LogIn($scope.User).then(function (response) {
-                debugger;
                 if (response && response.data && response.data.success == true) {
                     $scope.showLoading = false;
                     //$scope.IsEnable = true;
