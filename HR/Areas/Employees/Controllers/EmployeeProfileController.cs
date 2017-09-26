@@ -107,8 +107,11 @@ namespace HR.Areas.Employees.Controllers
         #endregion
 
         #region Save
-        public JsonResult SaveEmlployee(EmployeeHeader employeeHeader)
+        public JsonResult SaveEmlployee()
         {
+            EmployeeHeader employeeHeader = JsonConvert.DeserializeObject<EmployeeHeader>(System.Web.HttpContext.Current.Request["EmployeeDetails"]);
+           var test =  System.Web.HttpContext.Current.Request["EmployeeDocument"];
+            HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
             JsonResult result = new JsonResult();
             if (employeeHeader != null)
             {
