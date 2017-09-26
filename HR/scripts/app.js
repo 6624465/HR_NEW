@@ -532,7 +532,6 @@ app.directive('hasRight', function () {
     }
 });
 
-
 app.directive('treeView', function ($compile) {
     return {
         restrict: 'E',
@@ -587,7 +586,7 @@ app.directive('treeView', function ($compile) {
                     // children checkboxes depend on current checkbox
                     $(this).parent().find('input[type=checkbox]').prop('checked', this.checked);
                 });
-        }
+            }
 
             scope.showAccessRights = true;
             scope.active = 1060;
@@ -623,7 +622,7 @@ app.directive('treeView', function ($compile) {
                     //
 
                 }
-               
+
                 //text += '<span class="edit" ng-click=localClick({node:n})><i class="fa fa-pencil"></i></span>'
 
                 // text += '<label>{{n.name}}</label>';
@@ -640,10 +639,10 @@ app.directive('treeView', function ($compile) {
 
                     text += '<ul class="radioctn"> <li  ng-class={active:active==n.id}>';
                     text += '<div class="treeRadio border-row-left p-l-15"><div ng-model="n.Access">';
-                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=1   ng-disabled=showAccessRights /> <label > Read Only</label> </div>';
-                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=2  ng-disabled=showAccessRights/> <label>Read Write</label></div>';
-                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=3  ng-disabled=showAccessRights /> <label> Delete </label></div>';
-                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=4  ng-disabled=showAccessRights /> <label> Full Access </label></div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=1   ng-disabled=showAccessRights > <label > Read Only</label> </div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=2  ng-disabled=showAccessRights> <label>Read Write</label></div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=3  ng-disabled=showAccessRights > <label> Delete </label></div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=4  ng-disabled=showAccessRights > <label> Full Access </label></div>';
                     text += '</div></li></ul>';
 
                 } else {
@@ -670,6 +669,7 @@ app.directive('treeView', function ($compile) {
     };
 });
 
+
 app.directive('compareTo', function () {
 
     return {
@@ -689,33 +689,7 @@ app.directive('compareTo', function () {
         }
     };
 });
-app.directive('hasRight', function () {
-    return {
-        link: function (scope, element, attrs) {
-            debugger;
-            var rightvalue = attrs.rightvalue;
-            var AccessRight = attrs.accessright;
-            var flag = false;
-            var rights = JSON.parse(sessionStorage.getItem('SECURABLES'));
-            angular.forEach(rights, function (item, index) {
-                if (item.OperationID == rightvalue && item.AccessRight != "1" && AccessRight != "3" && item.AccessRight != "0")
-                    flag = true;
-                else if (item.OperationID == rightvalue && item.AccessRight == AccessRight)
-                    flag = true;
-                else if (item.OperationID == rightvalue && item.AccessRight == "0")
-                    flag = true;
-                else if (item.OperationID == rightvalue && item.AccessRight == "4")
-                    flag = true;
-                if (item.OperationID == rightvalue && item.AccessRight == "1")
-                    flag = false;
-            });
-            if (flag)
-                element.show();
-            else
-                element.hide();
-        }
-    }
-});
+
 app.directive("showContact", function () {
     return {
         restrict: "A",
