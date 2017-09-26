@@ -13,6 +13,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
     $scope.GetSecure = function () {
         RoleService.GetSecurables().then(function (d) {
+            debugger;
             $scope.GetRolesList(d.data);
         });
     };
@@ -30,10 +31,10 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
     function GetPageArr(data, parentIndex) {
         var arr = new Array();
-
+        debugger;
         if (typeof data != 'undefined') {
             for (var i = 0; i < data.length; i++) {
-
+                debugger;
                 var obj = {
                     'name': data[i].PageName,
                     'id': data[i].id,
@@ -53,6 +54,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
 
     function GetOperationArr(data, parentIndex) {
+        debugger;
         var arr = new Array();
         if (typeof data != 'undefined') {
             for (var i = 0; i < data.length; i++) {
