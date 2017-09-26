@@ -212,7 +212,7 @@
                     if (buttonType == "Previous") {
                         $state.go('EmployeeHeader.EmployeePosition');
                         //$state.go('EmployeeHeader.EmployeeDocuments');
-                    }
+                }
 
                     if (user != null && user != undefined) {
                         user[0].style.backgroundColor = "#008d4c";

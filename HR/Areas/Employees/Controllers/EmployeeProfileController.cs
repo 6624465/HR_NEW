@@ -71,8 +71,8 @@ namespace HR.Areas.Employees.Controllers
         public JsonResult GetEmployeeById(int employeeId, bool IsfromIndividualEmployee)
         {
             JsonResult result = null;
-            try
-            {
+                try
+                {
                 EmployeeHeader employeeHeader = null;
                 string imagePathName = string.Empty;
                 LookUpDescriptions lookUpDescriptions = null;
@@ -96,11 +96,11 @@ namespace HR.Areas.Employees.Controllers
                 }
                 result = Json(new { employeeHeader = employeeHeader, imagePathName= imagePathName, LookUpDescriptions = lookUpDescriptions }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception ex)
-            {
-                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
-                    return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
-            }
+                catch (Exception ex)
+                {
+                    if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                        return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+                }
 
             return result;
         }
@@ -211,8 +211,8 @@ namespace HR.Areas.Employees.Controllers
                         LogInLogOutService.Save(EmployeeUser, true);
                         EmployeeProfileService.SaveEmployeeProfile(_employeeHeader, true);
 
-                        result = Json(new { sucess = true, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
-                    }
+                    result = Json(new { sucess = true, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
+                }
                 }
                 catch (Exception ex)
                 {
