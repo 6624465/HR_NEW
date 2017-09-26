@@ -25,7 +25,7 @@ namespace HR.Areas.Account.Controllers
             {
                 try
                 {
-                     if (!string.IsNullOrWhiteSpace(user.UserName) && !string.IsNullOrWhiteSpace(user.Password))
+                    if (!string.IsNullOrWhiteSpace(user.UserName) && !string.IsNullOrWhiteSpace(user.Password))
                     {
                         User _user = LogInLogOutService.GetUser<User>(u => u.UserName == user.UserName && u.Password == user.Password).FirstOrDefault();
 
@@ -42,6 +42,7 @@ namespace HR.Areas.Account.Controllers
 
                         SessionObject sessionObject = new SessionObject()
                         {
+                            Id = _user.Id,
                             UserID = _user.UserID,
                             UserName = _user.UserName,
                             Email = _user.Email,

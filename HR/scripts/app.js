@@ -1,9 +1,4 @@
-﻿/// <reference path="D:\HRLATEST9142017\HR_LATEST_9182017\HR_NEW\HR\Js/Account/Services/RoleService.js" />
-/// <reference path="D:\HRLATEST9142017\HR_LATEST_9182017\HR_NEW\HR\Js/Account/Controllers/RolesController.js" />
-/// <reference path="D:\HRLATEST9142017\HR_LATEST_9182017\HR_NEW\HR\Js/Account/Controllers/RolesController.js" />
-/// <reference path="D:\08042017\HR\HR\dist/js/datetime-picker.js" />
-
-var app = angular.module('ngHR', ['mwl.calendar',
+﻿var app = angular.module('ngHR', ['mwl.calendar',
     'ui.bootstrap',
     'angular-growl',
     'ngAnimate',
@@ -38,9 +33,6 @@ app.config(
                     }
                 }
             })
-                      
-
-
             .state('Company', {
                 url: '/Company',
                 templateUrl: baseUrl + 'Company/Company/CompanyList',
@@ -79,9 +71,6 @@ app.config(
                     }
                 }
             })
-
-
-
             .state('RoleRights', {
                 url: '/RoleRights',
                 templateUrl: baseUrl + 'Account/RoleRights/Roles',
@@ -99,8 +88,6 @@ app.config(
                     }
                 }
             })
-
-
              .state('Roles', {
                  url: '/Roles',
                  templateUrl: baseUrl + 'Account/Securable/RolerRights',
@@ -119,7 +106,6 @@ app.config(
                  }
              })
 
-
             .state('EmployeeDesgination', {
                 url: '/EmployeeDesgination',
                 templateUrl: baseUrl + 'Master/LookUp/EmployeeDesignation',
@@ -137,7 +123,6 @@ app.config(
                     }
                 }
             })
-
             .state('EmployeeDepartment', {
                 url: '/EmployeeDepartment',
                 templateUrl: baseUrl + 'Master/LookUp/EmployeeDepartment',
@@ -338,6 +323,21 @@ app.config(
                     }
                 }
             })
+
+            .state('EmployeeHeader.EmployeeDocuments', {
+                url: '/EmployeeDocuments',
+                templateUrl: baseUrl + 'Js/Employee/Templates/EmployeeDocuments.html',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                            }
+                        ]);
+                    }
+                }
+            })
             .state('EmployeeDirectory', {
                 url: '/EmployeeDirectory',
                 templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeDirectory',
@@ -366,6 +366,8 @@ app.config(
                             {
                                 name: 'ngHR',
                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeInfo.js',
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
+                                    baseUrl + 'Js/Employee/Services/EmployeeProfileService.js',
                                 ]
                             }
                         ]);
@@ -419,9 +421,6 @@ app.config(
                     }
                 }
             })
-
-     
-
 
         $urlRouterProvider.otherwise('/');
         growlProvider.onlyUniqueMessages(false);
@@ -535,7 +534,6 @@ app.directive('treeView', function ($compile) {
             /// SELECT ALL CHILDRENS
             // as seen at: http://jsfiddle.net/incutonez/D8vhb/5/
             function parentCheckChange(item) {
-                debugger;
                 for (var i in item.children) {
                     item.children[i].checked = item.checked;
                     if (item.children[i].children) {
@@ -546,14 +544,12 @@ app.directive('treeView', function ($compile) {
 
             scope.checkChange = function (node, child) {
                 // scope.active = scope.active == node.id ? node.id : node.id;
-                debugger;
                 if (node.children) {
 
                     parentCheckChange(node);
                 }
 
                 $('input[type=checkbox]').change(function () {
-                    debugger;
                     if (this.checked) { // if checked - check all parent checkboxes
                         $(this).parents('li').children('input[type=checkbox]').prop('checked', true);
                     }
@@ -565,7 +561,6 @@ app.directive('treeView', function ($compile) {
             scope.showAccessRights = true;
             scope.active = 1060;
             scope.showAcessRights = function (node) {
-                debugger;
                 scope.active = scope.active == node.id ? node.id : node.id;
                 if (node.type != "page") {
                     scope.showAccessRights = true;

@@ -3,24 +3,37 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
     $scope.rr = {};
 
+    //$scope.init = function () {
+    //    $scope.Securable = {
+    //        Checked: false,
+    //        //Access:"1"
+    //    }
+
+    //}
+
     $scope.GetSecure = function () {
         RoleService.GetSecurables().then(function (d) {
-            debugger;
             $scope.GetRolesList(d.data);
         });
     };
     $scope.GetSecure();
+
     $scope.roleChanged = function () {
+
         RoleService.GetRoles($scope.rr.role).then(function (d) {
+
             $scope.GetSecure();
         });
     };
- 
+
+
+
     function GetPageArr(data, parentIndex) {
-        debugger;
         var arr = new Array();
+
         if (typeof data != 'undefined') {
             for (var i = 0; i < data.length; i++) {
+
                 var obj = {
                     'name': data[i].PageName,
                     'id': data[i].id,
@@ -34,29 +47,50 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
                 arr.push(obj);
             }
         }
+
+        return arr;
+        }
+        }
         return arr;
     }
+      
 
     function GetOperationArr(data, parentIndex) {
-        debugger;
-        var arr = new Array();
+            var arr = new Array();
         if (typeof data != 'undefined') {
             for (var i = 0; i < data.length; i++) {
-                var obj1 = {
+                var obj = {
                     'name': data[i].OperationName,
                     'id': data[i].id,
                     'i': i,
                     'checked': data[i].IsChecked,
                     'type': 'operation',
-                    parentIndex: parentIndex
+                        parentIndex: parentIndex
                     //'children': GetOperationArr(data[i].BranchList)
                 };
-                arr.push(obj1);
-            }
+                arr.push(obj);
+                    }
         }
 
         return arr;
     }
+
+    $scope.GetRolesList = function (d) {
+        var arr = new Array();
+        for (var i = 0; i < d.Securable.length; i++) {
+            var obj = {
+                'name': d.Securable[i].RegistrationTypeName,
+                'id': d.Securable[i].registrationType,
+                'i': i,
+                'SecurableID': d.Securable[i].SecurableID,
+                'checked': d.Securable[i].IsChecked,
+                'type': 'module',
+                'children': GetPageArr(d.Securable[i].pageList, i)
+            };
+            arr.push(obj);
+            }
+        $scope.nodes = arr;
+        }
 
     $scope.GetRolesList = function (d) {
         debugger;
@@ -75,37 +109,38 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
         $scope.nodes = arr;
     }
 
-    $scope.GetRole = function () {
-        RoleService.GetRoles().then(function (res) {
-            $scope.roles = res.data.Roles;
-        });
-    };
-    $scope.GetRole();
 
-    $scope.SaveEmployeeSecurbles = function (securables) {
-        debugger;
-        var arr = new Array();
-        var Obj = {
-            checked: '',
-            id: '',
-            name: '',
-            type: ''
+
+
+
+
+        $scope.GetRole = function () {
+            RoleService.GetRoles().then(function (res) {
+                $scope.roles = res.data.Roles;
+            });
         };
+        $scope.GetRole();
+      
+    $scope.SaveEmployeeSecurbles = function (securables) {
+            var arr = new Array();
+            var Obj = {
+                checked: '',
+                id: '',
+                name: '',
+                type: ''
+            };
 
         angular.forEach(securables, function (i, val) {
-            if (i.checked) {
-                debugger;
-                var Obj = {
-                    IsChecked: i.checked,
-                    id: i.id,
-                    RoleRightId:i.RoleRightId,
-                    name: i.name,
-                    type: i.type
-                };
+                if (i.checked) {
+                    var Obj = {
+                        IsChecked: i.checked,
+                    id: i.SecurableID,
+                        name: i.name,
+                        type: i.type
+                    };
                 arr.push(Obj);
             }
             angular.forEach(i.children, function (x, Child) {
-                debugger;
                 //if (x.checked) {
                 var Obj1 = {
                     IsChecked: x.checked,
@@ -116,7 +151,6 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
                 };
                 angular.forEach(x.children, function (y, subChild) {
                     if (y.checked) {
-                        debugger;
                         Obj1.IsChecked = true;
                         var Obj = {
                             IsChecked: y.checked,
@@ -124,9 +158,9 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
                             name: y.name,
                             type: y.type
                         }
-                        arr.push(Obj);
-                    }
-                });
+                    arr.push(Obj);
+                }
+            });
                 arr.push(Obj1);
                 //}
             });
@@ -134,6 +168,37 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
         });
 
 
+
+        RoleService.SaveSecurables($scope.rr.role, arr).then(function (d) {
+            growlService.growl('Success', 'success');
+        }, function (err) { });
+
+
+
+        //var isValid = false;
+        //angular.forEach(arr, function (obj, i) {
+        //    if (obj.IsChecked == true)
+        //        isValid = true;
+        //});
+
+        //if ($scope.IsFrmRoleRightsIsValid && isValid) {
+        //    SecurablesService.SaveSecurables(arr, $scope.rr.role).then(function (d) {
+        //        growlService.growl('Success', 'success');
+        //    }, function (err) { });
+        //} else {
+
+        //    if (angular.isUndefined($scope.rr.role)) {
+        //        growlService.growl('please select atleast one Role ', 'danger');
+        //    }
+        //    else
+        //        growlService.growl('please select atleast one Module ', 'danger');
+        //}
+    };
+
+
+
+
+    $scope.init();
 
         RoleService.SaveSecurables($scope.rr.role,arr).then(function (d) {
                     growlService.growl('Success', 'success');

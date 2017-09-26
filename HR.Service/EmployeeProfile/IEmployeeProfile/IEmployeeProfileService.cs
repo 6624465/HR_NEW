@@ -15,6 +15,9 @@ namespace HR.Service.EmployeeProfile.IEmployeeProfile
         IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeHeader;
         void SaveEmployeeProfile(EmployeeHeader EmployeePersonalInfo, bool autoCommit = true);
         EmployeeHeader GetEmployeeProfileDetailsById(int Id);
+
+        IQueryable<T> GetEmployeeDocuments<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeDocument;
+        void SaveEmployeeDocuments(EmployeeDocument employeeDocument, bool autoCommit = true);
         #endregion
     }
 }

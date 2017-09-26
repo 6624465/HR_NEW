@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HR.Core.Models
 {
-   public class EmployeeHeader
+    public class EmployeeHeader
     {
         //public int Id { get; set; }
         [Key]
@@ -17,7 +17,7 @@ namespace HR.Core.Models
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
-        public string Nationality{ get; set; }
+        public string Nationality { get; set; }
         public int IDType { get; set; }
         public string IDNumber { get; set; }
         public string CreatedBy { get; set; }
@@ -30,8 +30,8 @@ namespace HR.Core.Models
         public virtual EmployeePersonalInfo EmployeePersonalInfo { get; set; }
         public int EmployeeWorkDetailId { get; set; }
         public virtual EmployeeWorkDetail EmployeeWorkDetail { get; set; }
-        public int  UserId { get; set; }
-        public  virtual User User  { get; set; }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
         public string UserEmailId { get; set; }
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }

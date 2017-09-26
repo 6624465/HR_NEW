@@ -13,8 +13,8 @@ namespace HR.Core.Models
         public int Id { get; set; }
         public int EmployeeId { get; set; }
         public int BranchId { get; set; }
-        public int Designation { get; set; }
-        public int Department { get; set; }
+        public int DesignationId { get; set; }
+        public int DepartmentId { get; set; }
         //public virtual EmployeeHeader Employee { get; set; }
         //public virtual Branch Branch  { get; set; }
         public DateTime? JoiningDate { get; set; }
