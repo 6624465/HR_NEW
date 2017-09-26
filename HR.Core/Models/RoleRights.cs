@@ -18,7 +18,7 @@
        // public virtual List<Securable> Securable { get; set; }
         public Int16 AccessRight { get; set; }
         public Int64 SecurableID { get; set; }
-        [Required]
-        public virtual Securable Securables { get; set; }
+        //[Required]
+        //public virtual Securable Securables { get; set; }
     }
 }
