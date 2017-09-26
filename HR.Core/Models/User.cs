@@ -5,6 +5,8 @@ namespace HR.Core.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    using System.Web.Script.Serialization;
+
     [Table("Security.Users")]
     public partial class User
     {
@@ -35,6 +37,7 @@ namespace HR.Core.Models
         public string RoleCode { get; set; }
 
         public int BranchId { get; set; }
+        [ScriptIgnore(ApplyToOverrides = true)]
         public virtual Branch Branch { get; set; }
         [Required]
         [StringLength(25)]

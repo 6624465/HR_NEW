@@ -83,7 +83,6 @@
         $scope.onChangeEmployeeType = function (id) {
             EmployeeProfileService.GetEmployeeNumber(id).then(function (response) {
                 if (response && response.data) {
-                    debugger
                     if (response.data != null) {
                         $scope.EmployeeHeader.IDNumber = response.data;
                     }
@@ -213,7 +212,7 @@
                     if (buttonType == "Previous") {
                         $state.go('EmployeeHeader.EmployeePosition');
                         //$state.go('EmployeeHeader.EmployeeDocuments');
-                    }
+                }
 
                     if (user != null && user != undefined) {
                         user[0].style.backgroundColor = "#008d4c";
