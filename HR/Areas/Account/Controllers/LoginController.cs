@@ -40,6 +40,15 @@ namespace HR.Areas.Account.Controllers
                                                     })
                                                     .ToList();
 
+                        var sec = RoleRightService.GetRoleRights<RoleRights>().Where(x => x.CompanyId == _user.Branch.CompanyId && x.RoleCode == _user.RoleCode)
+                                                    .Select(x => new
+                                                    {
+                                                        SecurableItem = x.SecurableID,
+                                                        //  OperationID = x.Securables.OperationID,
+                                                        AccessRight = x.AccessRight
+                                                    })
+                                                    .ToList();
+
                         SessionObject sessionObject = new SessionObject()
                         {
                             Id = _user.Id,

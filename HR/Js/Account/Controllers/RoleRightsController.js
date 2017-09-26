@@ -13,6 +13,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
     $scope.GetSecure = function () {
         RoleService.GetSecurables().then(function (d) {
+            debugger;
             $scope.GetRolesList(d.data);
         });
     };
@@ -30,10 +31,10 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
     function GetPageArr(data, parentIndex) {
         var arr = new Array();
-
+        debugger;
         if (typeof data != 'undefined') {
             for (var i = 0; i < data.length; i++) {
-
+                debugger;
                 var obj = {
                     'name': data[i].PageName,
                     'id': data[i].id,
@@ -49,14 +50,12 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
         }
 
         return arr;
-        }
-        }
-        return arr;
     }
-      
+
 
     function GetOperationArr(data, parentIndex) {
-            var arr = new Array();
+        debugger;
+        var arr = new Array();
         if (typeof data != 'undefined') {
             for (var i = 0; i < data.length; i++) {
                 var obj = {
@@ -65,11 +64,11 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
                     'i': i,
                     'checked': data[i].IsChecked,
                     'type': 'operation',
-                        parentIndex: parentIndex
+                    parentIndex: parentIndex
                     //'children': GetOperationArr(data[i].BranchList)
                 };
                 arr.push(obj);
-                    }
+            }
         }
 
         return arr;
@@ -88,23 +87,6 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
                 'children': GetPageArr(d.Securable[i].pageList, i)
             };
             arr.push(obj);
-            }
-        $scope.nodes = arr;
-        }
-
-    $scope.GetRolesList = function (d) {
-        debugger;
-        var arr = new Array();
-        for (var i = 0; i < d.Securable.length; i++) {
-            var obj = {
-                'name': d.Securable[i].RegistrationTypeName,
-                'id': d.Securable[i].registrationType,
-                'i': i,
-                'checked': d.Securable[i].IsChecked,
-                'type': 'module',
-                'children': GetPageArr(d.Securable[i].pageList, i)
-            };
-            arr.push(obj);
         }
         $scope.nodes = arr;
     }
@@ -114,30 +96,31 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
 
 
-        $scope.GetRole = function () {
-            RoleService.GetRoles().then(function (res) {
-                $scope.roles = res.data.Roles;
-            });
-        };
-        $scope.GetRole();
-      
+
+    $scope.GetRole = function () {
+        RoleService.GetRoles().then(function (res) {
+            $scope.roles = res.data.Roles;
+        });
+    };
+    $scope.GetRole();
+
     $scope.SaveEmployeeSecurbles = function (securables) {
-            var arr = new Array();
-            var Obj = {
-                checked: '',
-                id: '',
-                name: '',
-                type: ''
-            };
+        var arr = new Array();
+        var Obj = {
+            checked: '',
+            id: '',
+            name: '',
+            type: ''
+        };
 
         angular.forEach(securables, function (i, val) {
-                if (i.checked) {
-                    var Obj = {
-                        IsChecked: i.checked,
+            if (i.checked) {
+                var Obj = {
+                    IsChecked: i.checked,
                     id: i.SecurableID,
-                        name: i.name,
-                        type: i.type
-                    };
+                    name: i.name,
+                    type: i.type
+                };
                 arr.push(Obj);
             }
             angular.forEach(i.children, function (x, Child) {
@@ -158,9 +141,9 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
                             name: y.name,
                             type: y.type
                         }
-                    arr.push(Obj);
-                }
-            });
+                        arr.push(Obj);
+                    }
+                });
                 arr.push(Obj1);
                 //}
             });
@@ -200,10 +183,5 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
     $scope.init();
 
-        RoleService.SaveSecurables($scope.rr.role,arr).then(function (d) {
-                    growlService.growl('Success', 'success');
-                }, function (err) { });
-    };
-  $scope.init();
 }]);
 
