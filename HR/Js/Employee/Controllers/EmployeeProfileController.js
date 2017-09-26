@@ -195,8 +195,8 @@
                     var position = angular.element('.position');
 
                     if (buttonType == "Next") {
-                        $state.go('EmployeeHeader.EmployeeLogin');
-                        //$state.go('EmployeeHeader.EmployeeDocuments');
+                        //$state.go('EmployeeHeader.EmployeeLogin');
+                        $state.go('EmployeeHeader.EmployeeDocuments');
                     }
                     else if (buttonType == "Previous")
                         $state.go('EmployeeHeader.EmployeeAddress');
@@ -210,8 +210,8 @@
                     var user = angular.element('.position');
 
                     if (buttonType == "Previous") {
-                        $state.go('EmployeeHeader.EmployeePosition');
-                        //$state.go('EmployeeHeader.EmployeeDocuments');
+                        //$state.go('EmployeeHeader.EmployeePosition');
+                        $state.go('EmployeeHeader.EmployeeDocuments');
                 }
 
                     if (user != null && user != undefined) {
