@@ -28,7 +28,8 @@
     <link href="@Url.Content("~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.css")" rel="stylesheet" />
     <link href="@Url.Content("~/dist/style.css?v=1")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/tree-control.css")" rel="stylesheet" />
-
+    <!-- Select2 -->
+    <link rel="stylesheet" href="@Url.Content("~/bower_components/select2/dist/css/select2.min.css")">
     <link href="@Url.Content("~/Css/angular-bootstrap-calendar.min.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/material-design-iconic-font.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/datetimepicker.css")" rel="stylesheet" />
@@ -239,6 +240,7 @@
             $.widget.bridge('uibutton', $.ui.button);
         </script>*@
     <!-- Bootstrap 3.3.7 -->
+    
     <script src="@Url.Content("~/bower_components/bootstrap/dist/js/bootstrap.min.js")"></script>
     <!-- Morris.js charts -->
     <script src="@Url.Content("~/bower_components/raphael/raphael.min.js")"></script>
@@ -263,7 +265,7 @@
     <script src="@Url.Content("~/bower_components/fastclick/lib/fastclick.js")"></script>
     <!-- AdminLTE App -->
     <!-- iCheck 1.0.1 -->
-    
+
     <script src="@Url.Content("~/dist/js/adminlte.min.js")"></script>
     <script src="@Url.Content("~/dist/js/pages/dashboard.js")"></script>
     <script src="@Url.Content("~/scripts/angular.js")"></script>
@@ -285,8 +287,14 @@
     <script src="@Url.Content("~/scripts/services.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap-growl.min.js")"></script>
     <script src="@Url.Content("~/scripts/bootstrap-growl.js")"></script>
+    <!-- Select2 -->
+    <script src="@Url.Content("~/bower_components/select2/dist/js/select2.full.min.js")"></script>
+    <!-- InputMask -->
+    <script src="@Url.Content("~/plugins/input-mask/jquery.inputmask.js")"></script>
+    <script src="@Url.Content("~/plugins/input-mask/jquery.inputmask.date.extensions.js")"></script>
+    <script src="@Url.Content("~/plugins/input-mask/jquery.inputmask.extensions.js")"></script>
     <script src="@Url.Content("~/plugins/iCheck/icheck.min.js")"></script>
-    
+   
     <!-- End Script files -->
     <script type="text/javascript">
         var baseUrl = '@Url.Content("~/")';
