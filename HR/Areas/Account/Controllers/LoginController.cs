@@ -30,13 +30,13 @@ namespace HR.Areas.Account.Controllers
                         User _user = LogInLogOutService.GetUser<User>(u => u.UserName == user.UserName && u.Password == user.Password).FirstOrDefault();
 
                         var securables = SecurableServices.GetSecurable<Securable>()
-                                                    .Where(x => x.RoleRights.CompanyId == _user.Branch.CompanyId && x.RoleRights.RoleCode == _user.RoleCode
+                                                    .Where(x => x.RoleRight.CompanyId == _user.Branch.CompanyId && x.RoleRight.RoleCode == _user.RoleCode
                                                     )
                                                     .Select(x => new
                                                     {
                                                         SecurableItem = x.SecurableID,
                                                         OperationID = x.OperationID,
-                                                        AccessRight = x.RoleRights.AccessRight
+                                                        AccessRight = x.RoleRight.AccessRight
                                                     })
                                                     .ToList();
 

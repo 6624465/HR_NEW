@@ -4,7 +4,7 @@ namespace HR.Core.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
+    using System.Web.Script.Serialization;
     [Table("Master.Branches")]
     public class Branch
     {
@@ -20,6 +20,7 @@ namespace HR.Core.Models
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public int CompanyId { get; set; }
+        [ScriptIgnore(ApplyToOverrides = true)]
         public virtual Company Companies { get; set; }
         public virtual Address Address { get; set; }
 

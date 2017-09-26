@@ -4,7 +4,7 @@ namespace HR.Core.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
+    using System.Web.Script.Serialization;
     [Table("Master.Companies")]
     public class Company
     {
@@ -25,6 +25,7 @@ namespace HR.Core.Models
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
         public virtual Address Address { get; set; }
+        [ScriptIgnore(ApplyToOverrides = true)]
         public virtual ICollection<Branch> Branches { get; set; }
     }
 }
