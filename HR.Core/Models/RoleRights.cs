@@ -9,14 +9,14 @@
     public class RoleRights
     {
         public int Id { get; set; }
-        public int CompanyCode { get; set; }//if it is not access rename the property as CompanyaId
-        public virtual Company Company { get; set; }
+        public int CompanyId { get; set; }//if it is not access rename the property as CompanyaId
+        //public virtual Company Company { get; set; }
         public string RoleCode { get; set; }
-        public int SecurableItemId { get; set; }//if it is not access rename the property as Securableid
-        public virtual List<Securable> Securables { get; set; }
+        //public int SecurableId { get; set; }//if it is not access rename the property as Securableid
+        //public virtual List<Securable> Securables { get; set; }
         public Int16 AccessRight { get; set; }
 
 
-
+        public Int64 SecurableID { get; set; }
     }
 }

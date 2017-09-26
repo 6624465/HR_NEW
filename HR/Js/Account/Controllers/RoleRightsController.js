@@ -1,105 +1,144 @@
 ﻿angular.module('ngHR').controller('RoleRightsController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'RoleService', 'growlService',
 function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService) {
+
+    $scope.rr = {};
+
     $scope.GetSecure = function () {
         RoleService.GetSecurables().then(function (d) {
             debugger;
-            $scope.Securable = d.data.Securable;
-            $scope.GetSecurable(d);
+            $scope.GetRolesList(d.data);
         });
     };
     $scope.GetSecure();
-        $scope.GetSecurable = function (d) {
-            var Securables = d.data.Securable;
-          //  $scope.Securables = d.data.Securable;
-            var arr = new Array();
-            angular.forEach(Securables, function (value, key) {
-                debugger;
+    $scope.roleChanged = function () {
+        RoleService.GetRoles($scope.rr.role).then(function (d) {
+            $scope.GetSecure();
+        });
+    };
+ 
+    function GetPageArr(data, parentIndex) {
+        debugger;
+        var arr = new Array();
+        if (typeof data != 'undefined') {
+            for (var i = 0; i < data.length; i++) {
                 var obj = {
-                    //RegistrationType: value.RegistrationType,
-                    //OperationDescription: value.OperationDescription,
-                    //SecurableID: value.SecurableID,
-                    'name': value.PageID,
-                    'id': value.SecurableID,
-                    'type': 'module',
-                    'children': GetPageArr(Securables, key)
+                    'name': data[i].PageName,
+                    'id': data[i].id,
+                    'i': i,
+                    'checked': data[i].IsChecked,
+                    'type': 'page',
+                    'Access': data[i].Access == undefined ? 1 : data[i].Access,
+                    parentIndex: parentIndex,
+                    'children': GetOperationArr(data[i].operationList, i)
                 };
-                debugger;
                 arr.push(obj);
-            });
-            $scope.nodes = arr;
-
-        }
-      
-        function GetPageArr(Securables, parentIndex) {
-            debugger;
-            var arr = new Array();
-            if (Securables) {
-                debugger;
-                angular.forEach(Securables, function (value, key) {
-                    var obj = {
-                        'name': value.OperationID,
-                        'id': value.SecurableID,
-                        'i': key,
-                        'type': 'page',
-                        parentIndex: parentIndex
-                    }
-                    arr.push(obj);
-                })
             }
-            return arr;
+        }
+        return arr;
+    }
+
+    function GetOperationArr(data, parentIndex) {
+        debugger;
+        var arr = new Array();
+        if (typeof data != 'undefined') {
+            for (var i = 0; i < data.length; i++) {
+                var obj1 = {
+                    'name': data[i].OperationName,
+                    'id': data[i].id,
+                    'i': i,
+                    'checked': data[i].IsChecked,
+                    'type': 'operation',
+                    parentIndex: parentIndex
+                    //'children': GetOperationArr(data[i].BranchList)
+                };
+                arr.push(obj1);
+            }
         }
 
+        return arr;
+    }
 
-        $scope.GetRole = function () {
-            RoleService.GetRoles().then(function (res) {
-                $scope.roles = res.data.Roles;
-            });
-        };
-        $scope.GetRole();
-      
-        $scope.SaveEmployeeSecurbles=function()
-        {
-            debugger;
-            var arr = new Array();
-            var Obj = {
-                checked: '',
-                id: '',
-                name: '',
-                type: ''
+    $scope.GetRolesList = function (d) {
+        debugger;
+        var arr = new Array();
+        for (var i = 0; i < d.Securable.length; i++) {
+            var obj = {
+                'name': d.Securable[i].RegistrationTypeName,
+                'id': d.Securable[i].registrationType,
+                'i': i,
+                'checked': d.Securable[i].IsChecked,
+                'type': 'module',
+                'children': GetPageArr(d.Securable[i].pageList, i)
             };
-            angular.forEach($scope.securables, function (i, val) {
-                if (i.checked) {
-                    debugger;
-                    var Obj = {
-                        IsChecked: i.checked,
-                        id: i.id,
-                        name: i.name,
-                        type: i.type
-                    };
-                    debugger;
-                    arr.push(Obj);
-                }
-            });
-            //angular.forEach(i.children, function (x, Child) {
-            //    debugger;
-            //    //if (x.checked) {
-            //    var Obj1 = {
-            //        IsChecked: x.checked,
-            //        id: x.id,
-            //        name: x.name,
-            //        type: x.type,
-            //        Access: x.Access == 0 ? 1 : x.Access
-            //    };
-            //    arr.push(Obj1);
-            //});
-            //var isValid = false;
-            //angular.forEach(arr, function (obj, i) {
-            //    if (obj.IsChecked == true)
-            //        isValid = true;
-            //});
-            RoleService.SaveSecurables($scope.Securable).then(function () {
-
-            });
+            arr.push(obj);
         }
+        $scope.nodes = arr;
+    }
 
+    $scope.GetRole = function () {
+        RoleService.GetRoles().then(function (res) {
+            $scope.roles = res.data.Roles;
+        });
+    };
+    $scope.GetRole();
+
+    $scope.SaveEmployeeSecurbles = function (securables) {
+        debugger;
+        var arr = new Array();
+        var Obj = {
+            checked: '',
+            id: '',
+            name: '',
+            type: ''
+        };
+
+        angular.forEach(securables, function (i, val) {
+            if (i.checked) {
+                debugger;
+                var Obj = {
+                    IsChecked: i.checked,
+                    id: i.id,
+                    RoleRightId:i.RoleRightId,
+                    name: i.name,
+                    type: i.type
+                };
+                arr.push(Obj);
+            }
+            angular.forEach(i.children, function (x, Child) {
+                debugger;
+                //if (x.checked) {
+                var Obj1 = {
+                    IsChecked: x.checked,
+                    id: x.id,
+                    name: x.name,
+                    type: x.type,
+                    Access: x.Access == 0 ? 1 : x.Access
+                };
+                angular.forEach(x.children, function (y, subChild) {
+                    if (y.checked) {
+                        debugger;
+                        Obj1.IsChecked = true;
+                        var Obj = {
+                            IsChecked: y.checked,
+                            id: y.id,
+                            name: y.name,
+                            type: y.type
+                        }
+                        arr.push(Obj);
+                    }
+                });
+                arr.push(Obj1);
+                //}
+            });
+
+        });
+
+
+
+        RoleService.SaveSecurables($scope.rr.role,arr).then(function (d) {
+                    growlService.growl('Success', 'success');
+                }, function (err) { });
+    };
+  $scope.init();
 }]);
+

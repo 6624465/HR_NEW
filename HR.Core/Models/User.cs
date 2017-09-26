@@ -36,7 +36,6 @@ namespace HR.Core.Models
 
         public int BranchId { get; set; }
         public virtual Branch Branch { get; set; }
-
         [Required]
         [StringLength(25)]
         public string CreatedBy { get; set; }

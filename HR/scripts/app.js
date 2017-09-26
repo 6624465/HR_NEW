@@ -535,7 +535,7 @@ app.directive('treeView', function ($compile) {
             /// SELECT ALL CHILDRENS
             // as seen at: http://jsfiddle.net/incutonez/D8vhb/5/
             function parentCheckChange(item) {
-
+                debugger;
                 for (var i in item.children) {
                     item.children[i].checked = item.checked;
                     if (item.children[i].children) {
@@ -546,7 +546,7 @@ app.directive('treeView', function ($compile) {
 
             scope.checkChange = function (node, child) {
                 // scope.active = scope.active == node.id ? node.id : node.id;
-
+                debugger;
                 if (node.children) {
 
                     parentCheckChange(node);
@@ -563,7 +563,7 @@ app.directive('treeView', function ($compile) {
         }
 
             scope.showAccessRights = true;
-            scope.active = 9156;
+            scope.active = 1060;
             scope.showAcessRights = function (node) {
                 debugger;
                 scope.active = scope.active == node.id ? node.id : node.id;
@@ -608,17 +608,16 @@ app.directive('treeView', function ($compile) {
                 //text += '<md-radio-button value=3 class="md-dangar" ng-disabled=showAccessRights>Delete</md-radio-button>';
                 //text += '<md-radio-button value=4 class="md-success" ng-disabled=showAccessRights>Full Access </md-radio-button>';
                 //text += '</md-radio-group></li></ul>';
-              
                 if (level < max) {
                     text += '<ul id="{{n.id}}" class="hide" ng-if=checkIfChildren(n)>' + renderTreeView('n.children', level + 1, max) + '';
                     text += '</li></ul>';
 
                     text += '<ul class="radioctn"> <li  ng-class={active:active==n.id}>';
                     text += '<div class="treeRadio border-row-left p-l-15"><div ng-model="n.Access">';
-                    text += '<input type="radio" value=1 ng-disabled=showAccessRights> Read Only</input>';
-                    text += '<input type="radio" value=2 ng-disabled=showAccessRights>  Read Write </input>';
-                    text += '<input type="radio" value=3 ng-disabled=showAccessRights>  Delete </input>';
-                    text += '<input type="radio" value=4 ng-disabled=showAccessRights>  Full Access </input>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=1  ng-disabled=showAccessRights> Read Only</input> </div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=2  ng-disabled=showAccessRights> Read Write </input></div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=3  ng-disabled=showAccessRights> Delete </input></div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=4  ng-disabled=showAccessRights> Full Access </input></div>';
                     text += '</div></li></ul>';
 
                 } else {
@@ -664,7 +663,33 @@ app.directive('compareTo', function () {
         }
     };
 });
-
+app.directive('hasRight', function () {
+    return {
+        link: function (scope, element, attrs) {
+            debugger;
+            var rightvalue = attrs.rightvalue;
+            var AccessRight = attrs.accessright;
+            var flag = false;
+            var rights = JSON.parse(sessionStorage.getItem('SECURABLES'));
+            angular.forEach(rights, function (item, index) {
+                if (item.OperationID == rightvalue && item.AccessRight != "1" && AccessRight != "3" && item.AccessRight != "0")
+                    flag = true;
+                else if (item.OperationID == rightvalue && item.AccessRight == AccessRight)
+                    flag = true;
+                else if (item.OperationID == rightvalue && item.AccessRight == "0")
+                    flag = true;
+                else if (item.OperationID == rightvalue && item.AccessRight == "4")
+                    flag = true;
+                if (item.OperationID == rightvalue && item.AccessRight == "1")
+                    flag = false;
+            });
+            if (flag)
+                element.show();
+            else
+                element.hide();
+        }
+    }
+});
 app.directive("showContact", function () {
     return {
         restrict: "A",

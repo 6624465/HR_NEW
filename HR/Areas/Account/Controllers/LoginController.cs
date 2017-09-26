@@ -25,9 +25,21 @@ namespace HR.Areas.Account.Controllers
             {
                 try
                 {
-                    if (!string.IsNullOrWhiteSpace(user.UserName) && !string.IsNullOrWhiteSpace(user.Password))
+                     if (!string.IsNullOrWhiteSpace(user.UserName) && !string.IsNullOrWhiteSpace(user.Password))
                     {
                         User _user = LogInLogOutService.GetUser<User>(u => u.UserName == user.UserName && u.Password == user.Password).FirstOrDefault();
+
+                        var securables = SecurableServices.GetSecurable<Securable>()
+                                                    .Where(x => x.RoleRight.CompanyId == _user.Branch.CompanyId && x.RoleRight.RoleCode == _user.RoleCode
+                                                    )
+                                                    .Select(x => new
+                                                    {
+                                                        SecurableItem = x.SecurableID,
+                                                        OperationID = x.OperationID,
+                                                        AccessRight = x.RoleRight.AccessRight
+                                                    })
+                                                    .ToList();
+
                         SessionObject sessionObject = new SessionObject()
                         {
                             UserID = _user.UserID,
@@ -36,10 +48,12 @@ namespace HR.Areas.Account.Controllers
                             RoleCode = _user.RoleCode,
                             BranchId = _user.BranchId,
                             BranchName = _user.Branch.BranchName,
-                            CompanyId=_user.Branch.CompanyId
+                            CompanyId = _user.Branch.CompanyId,
+
                         };
                         USER_OBJECT = sessionObject;
-                        result = Json(new { success = true, SessionObject = USER_OBJECT }, JsonRequestBehavior.AllowGet);
+
+                        result = Json(new { success = true, SessionObject = USER_OBJECT, securables = securables }, JsonRequestBehavior.AllowGet);
 
                     }
                 }
