@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Mvc;
 using HR.Core.Models;
 using Ninject;
+using HR.Models;
 
 namespace HR.Areas.Account.Controllers
 {
@@ -29,14 +30,19 @@ namespace HR.Areas.Account.Controllers
                     {
                         User _user = LogInLogOutService.GetUser<User>(u => u.UserName == user.UserName && u.Password == user.Password).FirstOrDefault();
 
-                       
-                   
+                        var securables = RoleRightService.GetRoleRights<RoleRight>(x => x.CompanyId == _user.Branch.CompanyId && x.RoleCode == _user.RoleCode)
+                                                    .Select(x => new SecurableViewModel()
+                                                    {
+                                                        securableitem = x.Securable.SecurableID,
+                                                        operationid = x.Securable.OperationID,
+                                                        accessright = x.AccessRight
+                                                    }).ToList();
 
-                        var securables = RoleRightService.GetRoleRights<RoleRights>(x => x.CompanyId == _user.Branch.CompanyId && x.RoleCode == _user.RoleCode)
+                        var sec = RoleRightService.GetRoleRights<RoleRight>(x => x.CompanyId == _user.Branch.CompanyId && x.RoleCode == _user.RoleCode)
                                                     .Select(x => new
                                                     {
                                                         securableitem = x.SecurableID,
-                                                        OperationID = x.Securable.OperationID,
+                                                        operationid = x.Securable.OperationID,
                                                         accessright = x.AccessRight
                                                     }).ToList();
 
@@ -54,7 +60,7 @@ namespace HR.Areas.Account.Controllers
                         };
                         USER_OBJECT = sessionObject;
 
-                        result = Json(new { success = true, SessionObject = USER_OBJECT, securables = securables }, JsonRequestBehavior.AllowGet);
+                        result = Json(new { success = true, SessionObject = USER_OBJECT}, JsonRequestBehavior.AllowGet);
 
                     }
                 }

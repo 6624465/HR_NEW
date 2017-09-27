@@ -12,7 +12,7 @@ namespace HR.Data
         public HRDataContext()
             : base("name=HRDataContext")
         {
-           
+
         }
         #endregion
 
@@ -33,13 +33,14 @@ namespace HR.Data
 
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Securable> Securable { get; set; }
-        public virtual DbSet<RoleRights> RoleRights { get; set; }
+        public virtual DbSet<RoleRight> RoleRights { get; set; }
         #endregion
 
         #region OnModelCreating
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EmployeeLeaveList>().ToTable("EmployeeLeaveLists", "Leave");
+            modelBuilder.Entity<RoleRight>().ToTable("RoleRights", "Security");
             //modelBuilder.Entity<LookUp>().Map<LeaveType>(m => { m.Requires("DiscriminatorTypeId").HasValue(4); });
 
             modelBuilder.Entity<Securable>().Ignore(p => p.RegistrationTypeDescription);

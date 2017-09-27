@@ -5,8 +5,9 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    [Table("[Security].[RoleRights]")]
-    public class RoleRights
+    using System.Web.Script.Serialization;
+    
+    public class RoleRight
     {
         // public int Id { get; set; }
 

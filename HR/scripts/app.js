@@ -12,7 +12,7 @@
     'ui.dateTimeInput']);
 
 app.controller('MainCtrl', function ($scope) {
-    $scope.iframeHeight = window.innerHeight - 100;
+    $scope.iframeHeight = window.innerHeight - 200;
 });
 
 angular.element('.skin-blue').addClass("sidebar-collapse");
@@ -502,35 +502,35 @@ app.directive('logiconNumber', function () {
     };
 });
 
-app.directive('hasRight', function () {
-    debugger;
-    return {
+//app.directive('hasRight', function () {
+//    debugger;
+//    return {
         
-        link: function (scope, element, attrs) {
-            var rightvalue = attrs.rightvalue;
-            var AccessRight = attrs.accessright;
-            var flag = false;
-            var rights = JSON.parse(sessionStorage.getItem('SECURABLES'));
-            angular.forEach(rights, function (item, index) {
-                debugger;
-                if (item.OperationID == rightvalue && item.AccessRight != "1" && AccessRight != "3" && item.AccessRight != "0")
-                    flag = true;
-                else if (item.OperationID == rightvalue && item.AccessRight == AccessRight)
-                    flag = true;
-                else if (item.OperationID == rightvalue && item.AccessRight == "0")
-                    flag = true;
-                else if (item.OperationID == rightvalue && item.AccessRight == "4")
-                    flag = true;
-                if (item.OperationID == rightvalue && item.AccessRight == "1")
-                    flag = false;
-            });
-            if (flag)
-                element.show();
-            else
-                element.hide();
-        }
-    }
-});
+//        link: function (scope, element, attrs) {
+//            var rightvalue = attrs.rightvalue;
+//            var AccessRight = attrs.accessright;
+//            var flag = false;
+//            var rights = JSON.parse(sessionStorage.getItem('SECURABLES'));
+//            angular.forEach(rights, function (item, index) {
+//                debugger;
+//                if (item.OperationID == rightvalue && item.AccessRight != "1" && AccessRight != "3" && item.AccessRight != "0")
+//                    flag = true;
+//                else if (item.OperationID == rightvalue && item.AccessRight == AccessRight)
+//                    flag = true;
+//                else if (item.OperationID == rightvalue && item.AccessRight == "0")
+//                    flag = true;
+//                else if (item.OperationID == rightvalue && item.AccessRight == "4")
+//                    flag = true;
+//                if (item.OperationID == rightvalue && item.AccessRight == "1")
+//                    flag = false;
+//            });
+//            if (flag)
+//                element.show();
+//            else
+//                element.hide();
+//        }
+//    }
+//});
 
 app.directive('treeView', function ($compile) {
     return {
@@ -586,7 +586,7 @@ app.directive('treeView', function ($compile) {
                     // children checkboxes depend on current checkbox
                     $(this).parent().find('input[type=checkbox]').prop('checked', this.checked);
                 });
-            }
+        }
 
             scope.showAccessRights = true;
             scope.active = 1060;
@@ -622,7 +622,7 @@ app.directive('treeView', function ($compile) {
                     //
 
                 }
-
+               
                 //text += '<span class="edit" ng-click=localClick({node:n})><i class="fa fa-pencil"></i></span>'
 
                 // text += '<label>{{n.name}}</label>';
@@ -689,7 +689,33 @@ app.directive('compareTo', function () {
         }
     };
 });
-
+//app.directive('hasRight', function () {
+//    return {
+//        link: function (scope, element, attrs) {
+//            debugger;
+//            var rightvalue = attrs.rightvalue;
+//            var AccessRight = attrs.accessright;
+//            var flag = false;
+//            var rights = JSON.parse(sessionStorage.getItem('SECURABLES'));
+//            angular.forEach(rights, function (item, index) {
+//                if (item.OperationID == rightvalue && item.AccessRight != "1" && AccessRight != "3" && item.AccessRight != "0")
+//                    flag = true;
+//                else if (item.OperationID == rightvalue && item.AccessRight == AccessRight)
+//                    flag = true;
+//                else if (item.OperationID == rightvalue && item.AccessRight == "0")
+//                    flag = true;
+//                else if (item.OperationID == rightvalue && item.AccessRight == "4")
+//                    flag = true;
+//                if (item.OperationID == rightvalue && item.AccessRight == "1")
+//                    flag = false;
+//            });
+//            if (flag)
+//                element.show();
+//            else
+//                element.hide();
+//        }
+//    }
+//});
 app.directive("showContact", function () {
     return {
         restrict: "A",
