@@ -256,16 +256,16 @@ label.required:after {
 .main-header, .skin-blue .main-header .navbar {
     background: rgb(29,54,73);
     /* Old browsers */
-    background: -moz-linear-gradient(left, rgb(29,54,73) 0%, #0178bc 100%);
+    background: -moz-linear-gradient(left,  rgb(181,34,39) 0%, rgba(237,35,36,0.5) 100%);
     /* FF3.6-15 */
-    background: -webkit-linear-gradient(left, rgb(29,54,73) 0%, #0178bc 100%);
+    background: -webkit-linear-gradient(left, rgb(181,34,39) 0%,  rgba(237,35,36,0.5) 100%);
     /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right, rgb(29,54,73) 0%, #0178bc 100%);
+    background: linear-gradient(to right,  rgb(181,34,39) 0%,  rgba(237,35,36,0.5) 100%);
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 
 .skin-blue .main-header .logo:hover, .skin-blue .main-header .logo:active, .skin-blue .main-header .logo {
-    background-color: rgb(29,54,73);
+   background-color: rgb(181,34,39);
 }
 
 .content-wrapper {
@@ -273,26 +273,26 @@ label.required:after {
 }
 
 .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
-    background-color: rgb(29,54,73);
+    background-color: rgb(181,34,39);
 }
 
 .main-header .sidebar-toggle:focus, .main-header .sidebar-toggle:active,
 .main-header .sidebar-toggle {
-    background: rgb(20, 75, 109);
+    background:rgb(222,70,54);
     margin-right: 10px;
 }
 
 .skin-blue .main-header .navbar .sidebar-toggle:hover {
-    background: rgba(20, 75, 109,0.5);
+    background: rgba(181,34,39,0.5);
 }
 
 .skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a, .skin-blue .sidebar-menu > li.menu-open > a {
-    background: rgb(24, 65, 92) none repeat scroll 0 0;
+    background-color:rgb(145, 1, 6);
     color: #fff;
 }
 
 .skin-blue .sidebar-menu > li > .treeview-menu {
-    background: rgb(20, 75, 109) none;
+    background-color: rgb(167,20,25);
 }
 
 .user-footer.user-other {

@@ -12,7 +12,7 @@
     'ui.dateTimeInput']);
 
 app.controller('MainCtrl', function ($scope) {
-    $scope.iframeHeight = window.innerHeight - 100;
+    $scope.iframeHeight = window.innerHeight - 200;
 });
 
 angular.element('.skin-blue').addClass("sidebar-collapse");
