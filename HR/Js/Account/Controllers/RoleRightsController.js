@@ -21,9 +21,13 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
     $scope.roleChanged = function () {
 
-        RoleService.GetRoles($scope.rr.role).then(function (d) {
+        //RoleService.GetRoles($scope.rr.role).then(function (d) {
 
-            $scope.GetSecure();
+        //   // $scope.GetSecure();
+        //});
+        RoleService.GetSecurablebyId($scope.rr.role).then(function (d) {
+            debugger;
+            $scope.GetRolesList(d.data);
         });
     };
 

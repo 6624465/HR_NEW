@@ -37,4 +37,15 @@
         })
         return deferred.promise;
     }
+    this.GetSecurablebyId = function (role)
+    {
+        debugger;
+        var deferred = $q.defer();
+        $http.get('/Securable/GetSecurablebyId' , role).then(function (response) {
+            deferred.resolve(response);
+        }, function (err) {
+            deferred.reject(err);
+        })
+        return deferred.promise;
+    }
 }])
