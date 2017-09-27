@@ -1,22 +1,49 @@
-﻿<div class="tab-pane  m-t-20" id="employee-Documents">
-    <div class="card">
-        <div class="card-body card-padding">
-            <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <span class="fileinput fileinput-new" data-provides="fileinput">
-                        <span class="btn btn-primary btn-file m-r-10">
-                            <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
-                            <span class="fileinput-exists">Change</span>
-                            <input type="file" multiple
-                                   id="containerFile"
-                                   name="containerFile"
-                                   class="form-control valid"
-                                   onchange="angular.element(this).scope().EmployeeDocumentsUpload(this)">
-                        </span>
-                        <span class="fileinput-filename"></span>
-                    </span>
+﻿<div class="container-fluid">
+    <div class="tab-pane  m-t-20" id="employee-Documents">
+        <div class="card">
+            <div class="card-body card-padding">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group fg-line">
+                            <label class="col-md-4">
+                                PAN CARD
+                            </label>
+                            &nbsp;&nbsp;
+                            <span class="fileinput fileinput-new" data-provides="fileinput">
+                                <span class="btn btn-primary btn-file m-r-10">
+                                    <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
+                                    <input type="file"
+                                           id="containerFile"
+                                           name="containerFile"
+                                           class="form-control valid"
+                                           onchange="angular.element(this).scope().EmployeeDocumentsUpload(this)">
+                                </span>
+                                <span class="fileinput-filename"></span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group fg-line">
+                            <label class="col-md-4">
+                                UID CARD
+                            </label>
+                            &nbsp;&nbsp;
+                            <span class="fileinput fileinput-new" data-provides="fileinput">
+                                <span class="btn btn-primary btn-file m-r-10">
+                                    <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
+                                    <input type="file"
+                                           id="containerFile"
+                                           name="containerFile"
+                                           class="form-control valid"
+                                           onchange="angular.element(this).scope().EmployeeDocumentsUpload(this)">
+                                </span>
+                                <span class="fileinput-filename"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
@@ -27,12 +54,12 @@
             <span class="fa fa-angle-left fa-1g" style="font-size:21px;"></span>
         </a>
 
-        <a ui-sref="EmployeeHeader.EmployeeLogin" class="btn  btn-info" style="border-radius: 50%;width: 35px;height: 35px;line-height: 24px;">
-            <span class="fa fa-angle-right fa-1g" style="font-size:21px;"></span>
+        <a class="btn  btn-info" ng-click="saveDocuments()">
+            Finish
         </a>
-        <!-- <a class="btn btn-info" ng-click="onClickValid()">Valid</a>-->
+
 
     </div>
 
 </div>
-
+</div>

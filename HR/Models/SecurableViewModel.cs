@@ -18,5 +18,9 @@ namespace HR.Models
         public string RoleCode { get; set; }
         public Int64 SecurableID { get; set; }
         public bool Checked { get; set; }
+
+        public string operationid { get; set; }
+        public Int16 accessright { get; set; }
+        public int securableitem{ get; set; }
     }
 }

@@ -25,6 +25,7 @@
             };
             $scope.dateFormat = UtilityFunc.DateFormat();
             $scope.IsfrmEmployeeProfile = false;
+            $scope.files = [];
         }
 
         $scope.detailsUrl = baseUrl + 'Js/Employee/Templates/BasicInformation.html';
@@ -195,8 +196,8 @@
                     var position = angular.element('.position');
 
                     if (buttonType == "Next") {
-                        //$state.go('EmployeeHeader.EmployeeLogin');
-                        $state.go('EmployeeHeader.EmployeeDocuments');
+                        $state.go('EmployeeHeader.EmployeeLogin');
+                        //$state.go('EmployeeHeader.EmployeeDocuments');
                     }
                     else if (buttonType == "Previous")
                         $state.go('EmployeeHeader.EmployeeAddress');
@@ -207,13 +208,18 @@
                     }
                 }
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "Email") {
-                    var user = angular.element('.position');
+                    var user = angular.element('.logindetails');
 
-                    if (buttonType == "Previous") {
-                        //$state.go('EmployeeHeader.EmployeePosition');
-                        $state.go('EmployeeHeader.EmployeeDocuments');
-                }
+                    if (buttonType == "Previous")
+                        $state.go('EmployeeHeader.EmployeePosition');
 
+                    if (buttonType == "Next") {
+                        if ($scope.EmployeeHeader.Id > 0) {
+                            $state.go('EmployeeHeader.EmployeeDocuments');
+                        }
+                        else
+                            growlService.growl("Save Employee before To Upload Documents", 'danger');
+                    }
                     if (user != null && user != undefined) {
                         user[0].style.backgroundColor = "#008d4c";
                         user[0].style.color = "white";
@@ -222,11 +228,31 @@
                 $scope.IsValid = true;
             }
         }
+        $scope.saveDocuments = function () {
+            EmployeeProfileService.SaveEmployeeDocuments($scope.files, $scope.EmployeeHeader.Id).then(function (response) {
+                $scope.GetEmployeeById();
+            })
+        }
 
         $scope.EmployeeDocumentsUpload = function (e) {
+            debugger
             var file = e.files;
-            $scope.EmployeeHeader.EmployeeDocument = file;
+            $scope.$apply(function () {
 
+                // STORE THE FILE OBJECT IN AN ARRAY.
+                for (var i = 0; i < e.files.length; i++) {
+
+                    var DocumentType = { 'DocumentType': 1 }
+                    angular.extend(e.files[i], DocumentType);
+                    $scope.files.push(e.files[i]);
+                }
+
+            });
+            //$scope.EmployeeHeader.EmployeeDocument = file;
+            //var file = e.files[0];
+            //EmployeeProfileService.SaveEmployeeDocuments(file, $scope.EmployeeHeader.Id).then(function (response) {
+            //    $scope.GetEmployeeById();
+            //})
         }
 
         $scope.EmailValid = function () {

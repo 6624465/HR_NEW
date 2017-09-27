@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Mvc;
 using HR.Core.Models;
 using Ninject;
+using HR.Models;
 
 namespace HR.Areas.Account.Controllers
 {
@@ -29,25 +30,21 @@ namespace HR.Areas.Account.Controllers
                     {
                         User _user = LogInLogOutService.GetUser<User>(u => u.UserName == user.UserName && u.Password == user.Password).FirstOrDefault();
 
-                        var securables = SecurableServices.GetSecurable<Securable>()
-                                                    .Where(x => x.RoleRight.CompanyId == _user.Branch.CompanyId && x.RoleRight.RoleCode == _user.RoleCode
-                                                    )
+                        var securables = RoleRightService.GetRoleRights<RoleRight>(x => x.CompanyId == _user.Branch.CompanyId && x.RoleCode == _user.RoleCode)
+                                                    .Select(x => new SecurableViewModel()
+                                                    {
+                                                        securableitem = x.Securable.SecurableID,
+                                                        operationid = x.Securable.OperationID,
+                                                        accessright = x.AccessRight
+                                                    }).ToList();
+
+                        var sec = RoleRightService.GetRoleRights<RoleRight>(x => x.CompanyId == _user.Branch.CompanyId && x.RoleCode == _user.RoleCode)
                                                     .Select(x => new
                                                     {
-                                                        SecurableItem = x.SecurableID,
-                                                        OperationID = x.OperationID,
-                                                        AccessRight = x.RoleRight.AccessRight
-                                                    })
-                                                    .ToList();
-
-                        //var sec = RoleRightService.GetRoleRights<RoleRights>().Where(x => x.CompanyId == _user.BranchId && x.RoleCode == _user.RoleCode)
-                        //                            .Select(x => new
-                        //                            {
-                        //                                securableitem = x.securableid,
-                        //                                //  operationid = x.securables.operationid,
-                        //                                accessright = x.accessright
-                        //                            })
-                        //                            .Tolist();
+                                                        securableitem = x.SecurableID,
+                                                        operationid = x.Securable.OperationID,
+                                                        accessright = x.AccessRight
+                                                    }).ToList();
 
                         SessionObject sessionObject = new SessionObject()
                         {
@@ -63,7 +60,7 @@ namespace HR.Areas.Account.Controllers
                         };
                         USER_OBJECT = sessionObject;
 
-                        result = Json(new { success = true, SessionObject = USER_OBJECT, securables = securables }, JsonRequestBehavior.AllowGet);
+                        result = Json(new { success = true, SessionObject = USER_OBJECT}, JsonRequestBehavior.AllowGet);
 
                     }
                 }

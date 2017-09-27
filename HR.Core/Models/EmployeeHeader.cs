@@ -36,5 +36,7 @@ namespace HR.Core.Models
         public string Password { get; set; }
         public string ConfirmPassword { get; set; }
         public bool IsActive { get; set; }
+
+        public List<EmployeeDocument> EmployeeDocument { get; set; }
     }
 }
