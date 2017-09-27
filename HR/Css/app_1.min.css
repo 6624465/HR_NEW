@@ -3381,13 +3381,13 @@ a.btn.disabled, fieldset[disabled] a.btn, a.btns.disabled, fieldset[disabled] a.
 
 .btn-success {
     color: #fff;
-    background-color: #0178bc;
+    background-color: rgb(237,35,36);
     border-color: #449d48;
 }
 
     .btn-success.active, .btn-success:active, .btn-success:hover, .open > .dropdown-toggle.btn-success {
         color: #fff;
-        background-color: #3d8b40;
+        background-color: rgba(237,35,36,0.8) !important;
         border-color: #327334;
     }
 
@@ -11941,13 +11941,14 @@ html:not(.ie9) .select.fg-line:before {
 .login-content {
     min-height: 100vh;
     text-align: center;
-   background: rgb(29,54,73);
+   background: rgb(181,34,39);
   /* Old browsers */
-  background: -moz-linear-gradient(left, rgb(29,54,73)  0%, #0178bc 100%);
+  
+  background: -moz-linear-gradient(left, rgb(181,34,39)  0%, rgba(237,35,36,0.7) 100%);
   /* FF3.6-15 */
-  background: -webkit-linear-gradient(left, rgb(29,54,73) 0%, #0178bc 100%);
+  background: -webkit-linear-gradient(left, rgb(181,34,39) 0%, rgba(237,35,36,0.7) 100%);
   /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right, rgb(29,54,73) 0%, #0178bc 100%);
+  background: linear-gradient(to right, rgb(181,34,39) 0%, rgba(237,35,36,0.7) 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
 

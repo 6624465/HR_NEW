@@ -12,7 +12,7 @@
     'ui.dateTimeInput']);
 
 app.controller('MainCtrl', function ($scope) {
-    $scope.iframeHeight = window.innerHeight - 100;
+    $scope.iframeHeight = window.innerHeight - 200;
 });
 
 angular.element('.skin-blue').addClass("sidebar-collapse");
@@ -532,7 +532,6 @@ app.directive('logiconNumber', function () {
 //    }
 //});
 
-
 app.directive('treeView', function ($compile) {
     return {
         restrict: 'E',
@@ -640,10 +639,10 @@ app.directive('treeView', function ($compile) {
 
                     text += '<ul class="radioctn"> <li  ng-class={active:active==n.id}>';
                     text += '<div class="treeRadio border-row-left p-l-15"><div ng-model="n.Access">';
-                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=1   ng-disabled=showAccessRights /> <label > Read Only</label> </div>';
-                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=2  ng-disabled=showAccessRights/> <label>Read Write</label></div>';
-                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=3  ng-disabled=showAccessRights /> <label> Delete </label></div>';
-                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=4  ng-disabled=showAccessRights /> <label> Full Access </label></div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=1   ng-disabled=showAccessRights > <label > Read Only</label> </div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=2  ng-disabled=showAccessRights> <label>Read Write</label></div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=3  ng-disabled=showAccessRights > <label> Delete </label></div>';
+                    text += '<div class="treecheck"><input type="radio" ng-model="n.Access" value=4  ng-disabled=showAccessRights > <label> Full Access </label></div>';
                     text += '</div></li></ul>';
 
                 } else {
@@ -669,6 +668,7 @@ app.directive('treeView', function ($compile) {
         }
     };
 });
+
 
 app.directive('compareTo', function () {
 
