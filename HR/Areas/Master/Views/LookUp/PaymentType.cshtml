@@ -6,7 +6,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Payment Type</h3>
                     <div class="pull-right">
-                        <button type="button" class="btn" ng-click="addPaymentType(table)">
+                        <button type="button" class="btn" ng-click="addPaymentType(table)" has-Right data-rightValue="PaymentType.Add">
                             <i class="zmdi zmdi-plus"></i>&nbsp; ADD
                         </button>
                     </div>
@@ -54,8 +54,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="right: 270px;">
-                                    <button class="btn" type="submit" ng-click="submitted = true;">Save</button>
-                                    <button type="submit" class="btn btn-default" ng-click="onClickCancelPaymentType()">Cancel</button>
+                                    <button class="btn" type="submit" ng-click="submitted = true;" has-Right data-rightValue="PaymentType.Save">Save</button>
+                                    <button type="submit" class="btn btn-default" ng-click="onClickCancelPaymentType()" has-Right data-rightValue="PaymentType.Cancel">Cancel</button>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                             <tbody>
                                 <tr ng-repeat="paymentType in PaymentTypes">
                                     <td>
-                                        <button type="button" ng-click="onEditPaymentType(paymentType)" class="btn btn-default ng-scope waves-effect" aria-label="button">
+                                        <button type="button" ng-click="onEditPaymentType(paymentType)" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="PaymentType.Edit">
                                             <i class="zmdi zmdi-edit" aria-hidden="true"></i>
                                         </button>
                                     </td>
