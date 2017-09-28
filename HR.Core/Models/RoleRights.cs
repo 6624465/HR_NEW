@@ -9,18 +9,6 @@
     
     public class RoleRight
     {
-        // public int Id { get; set; }
-
-        // public int CompanyId { get; set; }//if it is not access rename the property as CompanyaId
-        // //public virtual Company Company { get; set; }
-        // public string RoleCode { get; set; }
-        // //public int SecurableId { get; set; }//if it is not access rename the property as Securableid
-        // //
-        //// public virtual List<Securable> Securable { get; set; }
-        // public Int16 AccessRight { get; set; }
-        // public System.Int64 SecurableID { get; set; }
-
-        // public virtual Securable Securables { get; set; }
         public int Id { get; set; }
 
         public int CompanyId { get; set; }

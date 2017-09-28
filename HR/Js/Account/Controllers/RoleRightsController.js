@@ -144,7 +144,5 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
         }
     };
-
-
 }]);
 

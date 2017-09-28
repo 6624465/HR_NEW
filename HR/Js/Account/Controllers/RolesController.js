@@ -1,5 +1,5 @@
-﻿angular.module('ngHR').controller('RolesController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc','RoleService','growlService',
-function ($scope, $http, growl, $filter, UtilityFunc, RoleService,growlService) {
+﻿angular.module('ngHR').controller('RolesController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'RoleService', 'growlService',
+function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService) {
 
     $scope.addEmployeeRoles = function () {
         $('#addEmployeeRolesdialog').modal('show');
@@ -12,14 +12,12 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService,growlService) 
     },
     $scope.SaveEmployeeRoles = function () {
         RoleService.SaveEmployeeRoles($scope.role).then(function (res) {
-            if (response.data && response.data.message == "Saved Successfully.")
-            {
+            if (response.data && response.data.message == "Saved Successfully.") {
                 growlService.growl("Saved Successfully..", 'success');
             }
         });
     }
-    $scope.List=function()
-    {
+    $scope.List = function () {
         RoleService.GetRoles().then(function (response) {
             $scope.roles = response.data.Roles;
             $scope.onEditRoles();
@@ -27,7 +25,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService,growlService) 
     }
     $scope.List();
     $scope.onEditRoles = function (employeeRoles) {
-        $scope.role.RoleCode= employeeRoles.RoleCode;
+        $scope.role.RoleCode = employeeRoles.RoleCode;
         $scope.role.RoleDescription = employeeRoles.RoleDescription;
         $('#addEmployeeRolesdialog').modal('show');
     };

@@ -9,18 +9,18 @@ namespace HR.Models
     public class SecurableViewModel
     {
 
+        public bool IsChecked { get; set; }
         public int Id { get; set; }
-        public bool IsActive { get; set; }       
-        public string Name { get; set; }
-        public string Type { get; set; }
-        public Int16 Access { get; set; }
-        public int RoleRightId { get; set; }
-        public string RoleCode { get; set; }
-        public Int64 SecurableID { get; set; }
-        public bool Checked { get; set; }
+        public string name { get; set; }
+        public string type { get; set; }
 
+        public string Access { get; set; }
+        public int RoleRightId { get; set; }
+        public int securableitem { get; set; }
         public string operationid { get; set; }
-        public Int16 accessright { get; set; }
-        public int securableitem{ get; set; }
+        public int accessright { get; set; }
+        public string PageId { get; set; }
+        public string PageName { get; set; }
+
     }
 }
