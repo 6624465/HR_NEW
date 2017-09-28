@@ -1,8 +1,9 @@
 ﻿<form id="Cntrl.frmCompanyDetails" name="Cntrl.frmCompanyDetails" enctype="multipart/form-data" ng-class="{'submitted':submitted}" ng-submit="SaveCompany(CompanyDetails);" novalidate>
-    <div class="box box-widget">
+    <div class="box">
         <div class="box-header with-border">
 
-            <h3 class="box-title"> Company Details </h3><div class="pull-right">
+            <h3 class="box-title"> Company Details </h3>
+            <div class="pull-right">
 
                 <div>
                     <button type="button" class="btn" ng-if="isbranch" ng-click="AddBranch(CompanyDetails.CompanyCode, CompanyDetails.CompanyName,CompanyDetails.Id)">
@@ -10,8 +11,9 @@
                     </button>
 
                 </div>
+                <div class="clearfix"></div>
 
-
+            </div>
             </div>
             <div class="box-body">
 
@@ -244,6 +246,6 @@
 
             </div>
         </div>
-    </div>
+   
 </form>
 

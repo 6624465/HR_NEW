@@ -129,7 +129,10 @@ namespace HR.Areas.Master.Controllers
         #endregion
 
         #region Action Result
-        public ActionResult Index()
+        public ActionResult Index() {
+            return View();
+        }
+        public ActionResult EmployeeType()
         {
             return View();
         }
@@ -154,8 +157,19 @@ namespace HR.Areas.Master.Controllers
         {
             return View();
         }
-
-
+        public ActionResult MasterData()
+        {
+            return View();
+        }
+        public ActionResult AdministrationData()
+        {
+            return View();
+        }
+        
+        public ActionResult Administration()
+        {
+            return View();
+        }
         #endregion
     }
 }

@@ -110,7 +110,6 @@ namespace HR.Areas.Employees.Controllers
         public JsonResult SaveEmlployee()
         {
             EmployeeHeader employeeHeader = JsonConvert.DeserializeObject<EmployeeHeader>(System.Web.HttpContext.Current.Request["EmployeeDetails"]);
-            var test = System.Web.HttpContext.Current.Request["file"];
             HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
             JsonResult result = new JsonResult();
             if (employeeHeader != null)
@@ -118,7 +117,6 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     EmployeeHeader _employeeHeader = new EmployeeHeader();
-                    //HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
                     _employeeHeader = PrepareEmployeeHeader(employeeHeader);
 
                     EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
@@ -235,13 +233,13 @@ namespace HR.Areas.Employees.Controllers
             try
             {
                 EmployeeDocument employeeDocument = null;
-                for (int i=0; i<= hfc.Count; i++)
+                for (int i = 0; i <= hfc.Count; i++)
                 {
                     if (hfc[1] != null)
                     {
-                        
+
                         employeeDocument = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(ed => ed.EmployeeHeaderId == employeeId).FirstOrDefault();
-                        
+
                         //EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeDocuments(Convert.ToInt16(employeeId));
                         if (employeeDocument != null)
                         {
@@ -262,7 +260,7 @@ namespace HR.Areas.Employees.Controllers
                         SaveFile(System.Web.HttpContext.Current.Request.Files);
                         EmployeeHeader.EmployeeDocument.Add(employeeDocument);
 
-                        
+
                     }
                 }
                 EmployeeProfileService.SaveEmployeeDocuments(employeeDocument);
@@ -324,7 +322,7 @@ namespace HR.Areas.Employees.Controllers
         #endregion
 
         #region Private Accessors
-        private EmployeeHeader PrepareEmployeeHeader(EmployeeHeader employeeHeader)
+        private EmployeeHeader PrepareEmployeeHeader(EmployeeHeader employeeHeader, HttpFileCollection hfc = null)
         {
             EmployeeHeader _employeeHeader = null;
             if (employeeHeader.Id > 0)
@@ -360,15 +358,36 @@ namespace HR.Areas.Employees.Controllers
             employeeHeader.User = employeeHeader.User == null ? new User() : employeeHeader.User;
             _employeeHeader.User = PrepareUserDetails(employeeHeader.User, _employeeHeader);
 
-            //EmployeeDocument employeeDocument = null;
+            //List<EmployeeDocument> employeeDocument = employeeHeader.EmployeeDocument;
             //PrepareEmployeeDocuments(hfc, _employeeHeader, employeeDocument);
             return _employeeHeader;
         }
 
-        private void PrepareEmployeeDocuments(HttpFileCollection httpFileCollection, EmployeeHeader employeeHeader, EmployeeDocument employeeDocument)
+        private void PrepareEmployeeDocuments(HttpFileCollection hfc, EmployeeHeader employeeHeader, List<EmployeeDocument> employeeDocuments)
         {
-            foreach (var item in httpFileCollection)
+            for (var i = 0; i < hfc.Count; i++)
             {
+                if (employeeDocuments != null && employeeDocuments.Any())
+                {
+                    EmployeeDocument employeeDocument = new EmployeeDocument();
+
+                    //if (employeeDocument.Id > 0)
+                    //{
+                    //    employeeDocument = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(e=>e.Id == employeeDocument.Id).FirstOrDefault()
+                    //    employeeDocument.ModifiedBy = USER_OBJECT.UserID;
+                    //    employeeDocument.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                    //}
+                    //else
+                    //{
+                    employeeDocument.CreatedBy = USER_OBJECT.UserID;
+                    employeeDocument.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                    //}
+                    employeeDocument.FileName = hfc[i].FileName;
+                    employeeDocument.BranchId = USER_OBJECT.BranchId;
+                    //employeeDocument.DocumentType = hfc[i].ContentLength
+                    employeeDocuments.Add(employeeDocument);
+
+                }
 
             }
         }
@@ -601,7 +620,10 @@ namespace HR.Areas.Employees.Controllers
         {
             return View();
         }
-
+        public ActionResult Index()
+        {
+            return View();
+        }
         #endregion
     }
 }

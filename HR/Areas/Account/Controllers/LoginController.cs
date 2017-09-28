@@ -111,6 +111,10 @@ namespace HR.Areas.Account.Controllers
         {
             return View();
         }
+        public ActionResult Index()
+        {
+            return View();
+        }
         #endregion
 
 

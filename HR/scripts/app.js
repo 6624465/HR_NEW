@@ -11,27 +11,26 @@
     'ui.bootstrap.datetimepicker',
     'ui.dateTimeInput']);
 
-app.controller('MainCtrl', function ($scope) {
-    $scope.iframeHeight = window.innerHeight - 200;
-});
+//app.controller('MainCtrl', function ($scope) {
+//    $scope.iframeHeight = window.innerHeight - 109;
+//});
 
-angular.element('.skin-blue').addClass("sidebar-collapse");
 app.config(
     function ($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider, $ocLazyLoadProvider, growlProvider) {
         $stateProvider
             .state('Home', {
                 url: '/Home',
                 templateUrl: baseUrl + '/Home/index',
-                resolve: {
-                    loadPlugin: function ($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                            {
-                                name: 'ngHR',
-                                files: [baseUrl + 'Js/Home/Controllers/HomeController.js']
-                            }
-                        ]);
-                    }
-                }
+                //resolve: {
+                //    loadPlugin: function ($ocLazyLoad) {
+                //        return $ocLazyLoad.load([
+                //            {
+                //                name: 'ngHR',
+                //                files: [baseUrl + 'Js/Home/Controllers/HomeController.js']
+                //            }
+                //        ]);
+                //    }
+                //}
             })
             .state('Company', {
                 url: '/Company',
@@ -52,11 +51,27 @@ app.config(
                 }
             })
 
+             .state('Master', {
+                 url: '/Master',
+                 templateUrl: baseUrl + 'Master/LookUp/Index',
+             })
+              .state('MasterData', {
+                  url: '/MasterData',
+                  templateUrl: baseUrl + 'MasterData/LookUp/Index',
+              })
+            .state('Employees', {
+                url: '/Employees',
+                templateUrl: baseUrl + 'Master/LookUp/MasterData',
+            })
 
+            .state('Administration', {
+                url: '/Administration',
+                templateUrl: baseUrl + 'Master/LookUp/AdministrationData',
+            })
 
             .state('EmployeeType', {
                 url: '/EmployeeType',
-                templateUrl: baseUrl + 'Master/LookUp/Index',
+                templateUrl: baseUrl + 'Master/LookUp/EmployeeType',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -357,6 +372,12 @@ app.config(
                 }
             })
 
+             .state('EmployeeProfile', {
+                 url: '/EmployeeProfile',
+                 templateUrl: baseUrl + 'Employees/EmployeeProfile/Index',
+             })
+
+
             .state('EmployeeProfileInfo', {
                 url: '/EmployeeProfileInfo',
                 templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeInfo',
@@ -374,7 +395,7 @@ app.config(
                     }
                 }
             })
-            
+
             //.state('Employee.EmployeePaymentMode', {
             //    url: '/EmployeePaymentMode',
             //    templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePaymentMode.html',
@@ -505,7 +526,7 @@ app.directive('logiconNumber', function () {
 //app.directive('hasRight', function () {
 //    debugger;
 //    return {
-        
+
 //        link: function (scope, element, attrs) {
 //            var rightvalue = attrs.rightvalue;
 //            var AccessRight = attrs.accessright;
@@ -586,7 +607,7 @@ app.directive('treeView', function ($compile) {
                     // children checkboxes depend on current checkbox
                     $(this).parent().find('input[type=checkbox]').prop('checked', this.checked);
                 });
-        }
+            }
 
             scope.showAccessRights = true;
             scope.active = 1060;
@@ -622,7 +643,7 @@ app.directive('treeView', function ($compile) {
                     //
 
                 }
-               
+
                 //text += '<span class="edit" ng-click=localClick({node:n})><i class="fa fa-pencil"></i></span>'
 
                 // text += '<label>{{n.name}}</label>';
@@ -719,8 +740,8 @@ app.directive('compareTo', function () {
 app.directive("showContact", function () {
     return {
         restrict: "A",
-        link: function(scope, element){
-            element.on("click", function (){
+        link: function (scope, element) {
+            element.on("click", function () {
                 angular.element('.pmb-block').toggleClass('toggled');
             })
         }

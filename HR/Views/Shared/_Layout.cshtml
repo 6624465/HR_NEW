@@ -44,18 +44,18 @@
     <!-- End of layout top -->
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" ng-controller="layOutController">
+<body class="hold-transition skin-blue sidebar-mini" ng-controller="layOutController as layOutcntrl">
     @*sidebar-mini*@
-    <div class="wrapper">
+    <div class="wrapper" style="background:#fff !important;">
         <header class="main-header">
-            <a href="#" class="logo">
+            <a href="/Home/Index" class="logo">
                 <span class="logo-mini"><b>HR</b></span>
                 <span class="logo-lg"><i class="fa fa-diamond" aria-hidden="true"></i>&nbsp;EZY-HR</span>
             </a>
-            <nav class="navbar navbar-static-top" role="navigation">
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
-                </a>
+                <nav class="navbar navbar-static-top" role="navigation">
+                    @*<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                    </a>*@
                 <span style="padding-top: 15px; color: #fff;" class="pull-left">Loggedin Branch  <b style="font-size: 15px;"></b></span>
 
                 <div class="navbar-custom-menu">
@@ -90,73 +90,9 @@
                 </div>
             </nav>
         </header>
-        <aside class="main-sidebar">
-            <section class="sidebar">
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="treeview">
-
-                        <a href="#">
-                            <i class="fa fa-university" aria-hidden="true"></i><span>Company</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-
-                            <li>
-                                <a data-ui-sref="Company">
-                                    <i class="fa fa-university"></i>Company
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-
-                        <a href="#">
-                            <i class="fa fa-user" aria-hidden="true"></i><span>Employee</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a ui-sref="EmployeeDirectory"><i class="fa fa-users"></i>Employee Directory</a></li>
-                            <li><a ui-sref="EmployeeProfileInfo"><i class="fa fa-users"></i>Employee Profile Info</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-asterisk" aria-hidden="true"></i><span>Master Data</span> <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a ui-sref="EmployeeDesgination">&nbsp;Employee Desgination</a></li>
-                            <li><a ui-sref="EmployeeDepartment">&nbsp;Employee Department</a></li>
-                            <li><a ui-sref="EmployeeType">&nbsp;Employee Type</a></li>
-                            <li><a ui-sref="EmployeeStatus">&nbsp;Employee Status</a></li>
-                            <li><a ui-sref="PaymentType">&nbsp;Payment Type</a></li>
-                            <li><a ui-sref="LeaveType">&nbsp;Leave Type</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-calendar-plus-o" aria-hidden="true"></i><span>Leave</span><span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a ui-sref="HolidayList"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;HolidayList</a></li>
-                            <li><a ui-sref="EmployeeLeave"><i class="fa fa-wpforms" aria-hidden="true"></i>&nbsp;Employee Leave Form</a></li>
-                            <li><a ui-sref="AppliedLeaveList"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Applied Leave List</a></li>
-
-                            <li><a ui-sref="RoleRights"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Roles</a></li>
-                            <li><a ui-sref="Roles"><i class="fa fa-list-alt" aria-hidden="true"></i>&nbsp;Role Rights</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
-        </aside>
-        
-            <section class="content-wrapper" ng-controller="MainCtrl" style="min-height:{{iframeHeight + 'px'}}">
-                <div id="content" class="content-header"  ><data ui-view >@RenderBody()  </data></div></section>
+       
+            <section class="content-wrapper"  >
+                <div id="content" class="content-header" style="background-color:#fff;min-height:{{iframeHeight + 'px'}}"  ><data ui-view >@RenderBody()  </data></div></section>
       
         
         <footer class="main-footer">
@@ -302,8 +238,9 @@
     <!-- End Script files -->
     <script type="text/javascript">
         var baseUrl = '@Url.Content("~/")';
-        angular.module('ngHR').controller('layOutController', ['$scope', '$http', 'growlService', function ($scope, $http, growlService) {
+        angular.module('ngHR').controller('layOutController', ['$scope', '$http', 'growlService', '$window', function ($scope, $http, growlService, $window) {
             $scope.init = function () {
+                $scope.iframeHeight = window.innerHeight - 109;
                 $scope.User = JSON.parse(sessionStorage.getItem("authenticatedUser"));
                 var Ismessagedisplayed = sessionStorage.getItem('Ismessagedisplayed') == 'true' ? true : false;
                 if (!Ismessagedisplayed && Ismessagedisplayed != undefined) {
@@ -321,6 +258,11 @@
                     }
 
                 })
+            }
+
+            $scope.onClick = function () {
+                debugger
+                $window.parent.MainModuleFunction('Master', 'Master');
             }
             $scope.init();
 

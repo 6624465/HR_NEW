@@ -18,9 +18,8 @@
                     Designation: null,
                     Department: null
                 },
-                EmployeeDocument: {
-                    BranchId: UtilityFunc.BranchId()
-                }
+                //EmployeeDocument: [
+                //]
 
             };
             $scope.dateFormat = UtilityFunc.DateFormat();
@@ -107,7 +106,7 @@
                         growlService.growl("Please enter employee position details", 'danger')
                         return false;
                     }
-                    EmployeeProfileService.SaveEmlployee(EmployeeHeader).then(function (response) {
+                    EmployeeProfileService.SaveEmlployee(EmployeeHeader, $scope.files).then(function (response) {
                         if (response.data && response.data.sucess == true) {
                             $timeout(function () {
                                 growlService.growl(response.data.message + "  Employee Crediantials sent to '" + EmployeeHeader.UserEmailId + "' mail", 'success');
@@ -165,26 +164,31 @@
                 }
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             }
-            else {
+            else if (mandtoryFields.length > 0) {
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "Employee Id Type") {
-                    if (buttonType == "Next")
+                    if (buttonType == "Next") {
                         $state.go('EmployeeHeader.EmployeeAddress');
-                    else if (buttonType == "Previous")
+                    }
+                    else if (buttonType == "Previous") {
                         $state.go('EmployeeHeader.EmployeeBasicInformation');
+                    }
 
                     var basic = angular.element('.basic');
                     if (basic != null && basic != undefined) {
                         basic[0].style.backgroundColor = "#008d4c";
                         basic[0].style.color = "white";
+                        basic[0].addClass('active');
                     }
                 }
 
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "Address") {
                     $scope.IsAddressPageComplete = true;
-                    if (buttonType == "Next")
+                    if (buttonType == "Next") {
                         $state.go('EmployeeHeader.EmployeePosition');
-                    else if (buttonType == "Previous")
+                    }
+                    else if (buttonType == "Previous") {
                         $state.go('EmployeeHeader.EmployeeBasicInformation');
+                    }
 
                     var address = angular.element('.address');
                     if (address != null && address != undefined) {
@@ -197,10 +201,12 @@
 
                     if (buttonType == "Next") {
                         $state.go('EmployeeHeader.EmployeeLogin');
+                        //angular.element('.logindetailsli').addClass('active');
                         //$state.go('EmployeeHeader.EmployeeDocuments');
                     }
-                    else if (buttonType == "Previous")
+                    else if (buttonType == "Previous") {
                         $state.go('EmployeeHeader.EmployeeAddress');
+                    }
 
                     if (position != null && position != undefined) {
                         position[0].style.backgroundColor = "#008d4c";
@@ -215,6 +221,7 @@
 
                     if (buttonType == "Next") {
                         if ($scope.EmployeeHeader.Id > 0) {
+                            angular.element('.documentsli').addClass('active');
                             $state.go('EmployeeHeader.EmployeeDocuments');
                         }
                         else
@@ -225,26 +232,32 @@
                         user[0].style.color = "white";
                     }
                 }
-                $scope.IsValid = true;
             }
+            else
+                $scope.IsValid = true;
         }
-        $scope.saveDocuments = function () {
-            EmployeeProfileService.SaveEmployeeDocuments($scope.files, $scope.EmployeeHeader.Id).then(function (response) {
-                $scope.GetEmployeeById();
-            })
-        }
+        //$scope.saveDocuments = function () {
+        //    EmployeeProfileService.SaveEmployeeDocuments($scope.files, $scope.EmployeeHeader.Id).then(function (response) {
+        //        $scope.GetEmployeeById();
+        //    })
+        //}
 
-        $scope.EmployeeDocumentsUpload = function (e) {
-            debugger
+        $scope.EmployeeDocumentsUpload = function (e, documentType) {
             var file = e.files;
+            var extensionFileNames = ['jpeg', 'pdf', 'gif', 'jpg'];
             $scope.$apply(function () {
 
                 // STORE THE FILE OBJECT IN AN ARRAY.
                 for (var i = 0; i < e.files.length; i++) {
-
-                    var DocumentType = { 'DocumentType': 1 }
-                    angular.extend(e.files[i], DocumentType);
-                    $scope.files.push(e.files[i]);
+                    if (extensionFileNames.indexOf(e.files[i].name.split('.')[1]) == -1) {
+                        growlService.growl('please upload "pdf,gif,jpeg" extension only', 'danger');
+                    }
+                    else {
+                        var DocumentType = { 'DocumentType': documentType };
+                        angular.extend(e.files[i], DocumentType);
+                        $scope.files.push(e.files[i]);
+                        //$scope.EmployeeHeader.EmployeeDocument.push(e.files[i]);
+                    }
                 }
 
             });

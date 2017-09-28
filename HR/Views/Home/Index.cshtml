@@ -4,200 +4,79 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<style>
-
-.menu_section.grey{ background: rgb(34,45,50);}
-.content-section.grey-btm{ background: rgba(34,45,50,0.1);}
-.menu_section.blue{ background: rgb(2,126,186);}
-.menu_section.blue i{color:rgba(215, 221, 225, 0.5);}
-.menu_section.blue span{border:2px solid rgba(215, 221, 225, 0.5); }
-.content-section.blue-btm{ background: rgba(2,126,186,0.1)}
-.menu_section.org{ background:rgb(247,129,68);}
-.menu_section.org i{color:rgba(215, 221, 225, 0.5);}
-.menu_section.org span{border:2px solid rgba(215, 221, 225, 0.5);  }
-.content-section.org-btm{ background: rgba(247,129,68,0.1);}
-.menu_section.green{ background:rgb(161,176,71);}
-.menu_section.green i{color:rgba(215, 221, 225, 0.5);}
-.menu_section.green span{border:2px solid rgba(215, 221, 225, 0.5);}
-.content-section.green-btm{ background: rgba(161,176,71,0.1)}
-.menu_section.pink{ background:rgba(234,76,137,0.5);}
-.menu_section.pink i{color:rgba(234,76,137,0.5);}
-.menu_section.pink span{border:2px solid rgba(234,76,137,0.5);}
-.content-section.pink-btm{ background: rgba(234,76,137,0.1)}
-.menu_section.dblue{ background:rgba(37,160,202,0.5)}
-.menu_section.dblue i{color:rgba(37,160,202,0.5)}
-.menu_section.dblue span{border:2px solid rgba(37,160,202,0.5)}
-.content-section.dblue-btm{ background: rgba(37,160,202,0.1)}
-.menu_section.dgreen{ background:rgba(13,155,143,0.5)}
-.menu_section.dgreen i{color:rgba(13,155,143,0.5)}
-.menu_section.dgreen span{border:2px solid rgba(13,155,143,0.5)}
-.content-section.dgreen-btm{ background: rgba(13,155,143,0.1)}
-.menu_section.ddgreen{ background:rgba(105,98,90,0.5)}
-.menu_section.ddgreen i{color:rgba(105,98,90,0.5)}
-.menu_section.ddgreen span{border:2px solid rgba(105,98,90,0.5)}
-.content-section.ddgreen-btm{ background: rgba(105,98,90,0.1)}
-.main-section:hover {   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);}
-.content-section {
-    background: #fff none repeat scroll 0 0;
-    min-height: 174px;
-    padding: 20px 0;
-    text-align: center;
-	border: 1px solid #e3e3e3;
-	   position: relative;
-}
-.menu_section:hover { box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);  transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1) 0s;}
-.menu_section b{  bottom: 8px;
-    display: block;
-    position: absolute;
-    width: 100%;}
-/*.menu_section a{color:#fff; display: block; font-size:16px; text-transform:uppercase; line-height: 164px;}.*/
-.menu_section span {
-     border:2px solid rgba(215, 221, 225, 0.5);
-    border-radius: 50%;
-    display: block;
-    height: 120px;
-    margin: 0 auto;
-    width: 120px;
-}
-.menu_section span i {
-    line-height: 115px;
-color:rgba(215, 221, 225, 0.5);
-}
-
-.list-items .col-md-2 .content-section > b {
-font-size:16px;
-}
-
-.content-section > b {
-    color: rgb(215, 57, 37);
-    font-size: 18px;
-	font-weight:700;
-    text-transform: uppercase;
-}
-.content-section > p {
-    padding: 20px;
-}
-.content-section .btn-lg, .content-section .btn-group-lg > .btn {   border-radius: 0;
-    bottom: 0;
-    left: 0;
-    padding: 15px 16px !important;
-    position: absolute;
-    width: 100%;}
-.bs-example.list-items {
-    padding-top: 13%;
-}
-.main-section a {
-color:#333;
-}
-
-.col-md-2 .menu_section span {
-width:100px;
-height:100px;
-margin:10px auto;
-}
-.col-md-2 .menu_section span i{
-    line-height:100px;
-}
-.menu_section span i {
-    line-height: 115px;
-    color: rgba(215, 221, 225, 0.5);
-}
-.menu_section span {
-    border: 2px solid rgba(215, 221, 225, 0.5);
-    border-radius: 50%;
-    display: block;
-    height: 120px;
-    margin: 0 auto;
-    width: 120px;
-    text-align:center;
-}
-    .menu_section {
-    padding:15px 0px;
-    }
-</style>
-
 <div class="bs-example list-items">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="row">
-                <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row">
+                    <div class="col-md-3">
 
-                    <div class="main-section grey ">
-                        <a href="/Home/Masters">
+                        <div class="main-section grey ">
+                            <a ui-sref="Master">
 
-                            <div class="menu_section  grey">
+                                <div class="menu_section  grey">
 
-                                <span><i class="fa fa-share fa-5x" aria-hidden="true"></i> </span>
+                                    <span><i class="fa fa-database fa-5x" aria-hidden="true"></i></span>
 
-                            </div>
-                            <div class="content-section grey-btm">
-                                <b> Masters Data                             </b>
-                                <p>View the Masters list</p>
-                                <div class="btn btn-lg btn-danger"></div>
-                            </div>
-                        </a>
+                                </div>
+                                <div class="content-section grey-btm">
+                                    <b> Masters Data</b>
+                                    <p>View the Masters list</p>
+                                    <div class="btn btn-lg btn-danger" ></div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-
-                </div>
-                <div class="col-md-3">
-                    <div class="main-section blue">
-                        <a href="/Home/Transactions">
-                            <div class="menu_section blue">
-
-                                <span> <i class="fa fa-retweet  fa-5x" aria-hidden="true"></i></span>
-
-                            </div>
-                            <div class="content-section blue-btm">
-                                <b> Transactions</b>
-                                <p>View the Transactions list</p>
-                                <div class="btn btn-lg btn-danger"></div>
-                            </div>
-                        </a>
+                    <div class="col-md-3">
+                        <div class="main-section blue">
+                            <a ui-sref="EmployeeProfile">
+                                <div class="menu_section blue">
+                                    <span> <i class="fa fa-users  fa-5x" aria-hidden="true"></i></span>
+                                </div>
+                                <div class="content-section blue-btm">
+                                    <b> Employees</b>
+                                    <p>View the Employees list</p>
+                                    <div class="btn btn-lg btn-danger"></div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="main-section green">
-                        <a href="/Home/Administration">
-                            <div class="menu_section green">
+                    <div class="col-md-3">
+                        <div class="main-section green">
+                            <a ui-sref="Administration">
+                                <div class="menu_section green">
 
-                                <span> <i class="fa fa-laptop fa-5x" aria-hidden="true"></i>  </span>
+                                    <span> <i class="fa fa-laptop fa-5x" aria-hidden="true"></i>  </span>
 
-                            </div>
-                            <div class="content-section green-btm">
-                                <b> Administration</b>
-                                <p>View the Administration list </p>
-                                <div class="btn btn-lg btn-danger"></div>
-                            </div>
-                        </a>
+                                </div>
+                                <div class="content-section green-btm">
+                                    <b> Administration</b>
+                                    <p>View the Administration list </p>
+                                    <div class="btn btn-lg btn-danger"></div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="main-section org">
-                        <a href="/Home/Reports">
-                            <div class="menu_section org">
+                    @*<div class="col-md-3">
+                        <div class="main-section org">
+                            <a href="/Home/Reports">
+                                <div class="menu_section org">
 
-                                <span> <i class="fa fa-table fa-5x" aria-hidden="true"></i></span>
+                                    <span> <i class="fa fa-table fa-5x" aria-hidden="true"></i></span>
 
 
-                            </div>
-                            <div class="content-section org-btm">
-                                <b> Reports</b>
-                                <p>View the Reports list</p>
-                                <div class="btn btn-lg btn-danger"></div>
-                            </div>
-                        </a>
-                    </div>
+                                </div>
+                                <div class="content-section org-btm">
+                                    <b> Reports</b>
+                                    <p>View the Reports list</p>
+                                    <div class="btn btn-lg btn-danger"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>*@
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-@*<h2><p><font face="verdana" color="green">This is some text!</font></p></h2>*@
-
-
-
 
 
 
