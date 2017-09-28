@@ -2,31 +2,15 @@
 function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService) {
 
     $scope.rr = {};
-
-    //$scope.init = function () {
-    //    $scope.Securable = {
-    //        Checked: false,
-    //        //Access:"1"
-    //    }
-
-    //}
-
     $scope.GetSecure = function () {
         RoleService.GetSecurables().then(function (d) {
-            debugger;
             $scope.GetRolesList(d.data);
         });
     };
     $scope.GetSecure();
 
     $scope.roleChanged = function () {
-
-        //RoleService.GetRoles($scope.rr.role).then(function (d) {
-
-        //   // $scope.GetSecure();
-        //});
         RoleService.GetSecurablebyId($scope.rr.role).then(function (d) {
-            debugger;
             $scope.GetRolesList(d.data);
         });
     };
@@ -35,10 +19,8 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
     function GetPageArr(data, parentIndex) {
         var arr = new Array();
-        debugger;
         if (typeof data != 'undefined') {
             for (var i = 0; i < data.length; i++) {
-                debugger;
                 var obj = {
                     'name': data[i].PageName,
                     'id': data[i].id,
@@ -58,7 +40,6 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
 
 
     function GetOperationArr(data, parentIndex) {
-        debugger;
         var arr = new Array();
         if (typeof data != 'undefined') {
             for (var i = 0; i < data.length; i++) {
@@ -69,7 +50,6 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
                     'checked': data[i].IsChecked,
                     'type': 'operation',
                     parentIndex: parentIndex
-                    //'children': GetOperationArr(data[i].BranchList)
                 };
                 arr.push(obj);
             }
@@ -96,17 +76,18 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
     }
 
 
-
-
-
-
-
     $scope.GetRole = function () {
         RoleService.GetRoles().then(function (res) {
             $scope.roles = res.data.Roles;
         });
     };
     $scope.GetRole();
+
+    $scope.IsFrmRoleRightsValid = false;
+    $scope.$watch('frmRoleRight.$valid', function (isValid) {
+        $scope.IsFrmRoleRightsValid = isValid;
+    });
+
 
     $scope.SaveEmployeeSecurbles = function (securables) {
         var arr = new Array();
@@ -128,7 +109,6 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
                 arr.push(Obj);
             }
             angular.forEach(i.children, function (x, Child) {
-                //if (x.checked) {
                 var Obj1 = {
                     IsChecked: x.checked,
                     id: x.id,
@@ -149,43 +129,22 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
                     }
                 });
                 arr.push(Obj1);
-                //}
             });
 
         });
+        if ($scope.IsFrmRoleRightsValid) {
+            RoleService.SaveSecurables($scope.rr.role, arr).then(function (d) {
+                growlService.growl('Success', 'success');
+            }, function (err) { });
 
+        }
+        else {
 
+            growlService.growl('please select atleast one Role ', 'danger');
 
-        RoleService.SaveSecurables($scope.rr.role, arr).then(function (d) {
-            growlService.growl('Success', 'success');
-        }, function (err) { });
-
-
-
-        //var isValid = false;
-        //angular.forEach(arr, function (obj, i) {
-        //    if (obj.IsChecked == true)
-        //        isValid = true;
-        //});
-
-        //if ($scope.IsFrmRoleRightsIsValid && isValid) {
-        //    SecurablesService.SaveSecurables(arr, $scope.rr.role).then(function (d) {
-        //        growlService.growl('Success', 'success');
-        //    }, function (err) { });
-        //} else {
-
-        //    if (angular.isUndefined($scope.rr.role)) {
-        //        growlService.growl('please select atleast one Role ', 'danger');
-        //    }
-        //    else
-        //        growlService.growl('please select atleast one Module ', 'danger');
-        //}
+        }
     };
 
-
-
-
-    $scope.init();
 
 }]);
 

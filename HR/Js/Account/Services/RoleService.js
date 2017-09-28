@@ -19,6 +19,8 @@
     }
     this.GetSecurables = function () {
         var deferred = $q.defer();
+
+
         $http.get('/Securable/GetSecurables').then(function (response) {
             deferred.resolve(response);
         }, function (err) {
@@ -26,22 +28,18 @@
         })
         return deferred.promise;
     }
-    this.SaveSecurables = function (role,securableViewModel)
-    {
-        debugger;
+    this.SaveSecurables = function (role, securableViewModel) {
         var deferred = $q.defer();
-        $http.post('/Securable/SaveSecurables',{ role,securableViewModel }).then(function (response) {
+        $http.post('/Securable/SaveSecurables', { role, securableViewModel }).then(function (response) {
             deferred.resolve(response);
         }, function (err) {
             deferred.reject(err);
         })
         return deferred.promise;
     }
-    this.GetSecurablebyId = function (role)
-    {
-        debugger;
+    this.GetSecurablebyId = function (role) {
         var deferred = $q.defer();
-        $http.get('/Securable/GetSecurablebyId' , role).then(function (response) {
+        $http.get('/Securable/GetSecurablebyId?role=' + role).then(function (response) {
             deferred.resolve(response);
         }, function (err) {
             deferred.reject(err);
