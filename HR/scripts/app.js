@@ -57,13 +57,13 @@ app.config(
              })
               .state('MasterData', {
                   url: '/MasterData',
-                  templateUrl: baseUrl + 'MasterData/LookUp/Index',
+                  templateUrl: baseUrl + 'Master/LookUp/Index',
               })
             .state('Employees', {
                 url: '/Employees',
                 templateUrl: baseUrl + 'Master/LookUp/MasterData',
             })
-
+              
             .state('Administration', {
                 url: '/Administration',
                 templateUrl: baseUrl + 'Master/LookUp/AdministrationData',
