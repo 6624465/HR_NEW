@@ -153,6 +153,7 @@
     <Content Include="Areas\Employees\Views\web.config" />
     <Content Include="Areas\Master\Views\LookUp\Administration.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\AdministrationData.cshtml" />
+    <Content Include="Areas\Master\Views\LookUp\Master.cshtml" />
     <Content Include="bower_components\bootstrap-colorpicker\.bower.json" />
     <Content Include="bower_components\bootstrap-colorpicker\bower.json" />
     <Content Include="bower_components\bootstrap-colorpicker\CONTRIBUTING.md" />
@@ -7615,7 +7616,6 @@
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeDirectory.cshtml" />
     <Content Include="Areas\Account\Views\RoleRights\Roles.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeInfo.cshtml" />
-    <Content Include="Areas\Master\Views\LookUp\Index.cshtml" />
     <Content Include="Areas\Account\Views\Login\Index.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\MasterData.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\Index.cshtml" />

@@ -129,7 +129,7 @@ namespace HR.Areas.Master.Controllers
         #endregion
 
         #region Action Result
-        public ActionResult Index() {
+        public ActionResult Master() {
             return View();
         }
         public ActionResult EmployeeType()

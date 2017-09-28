@@ -51,23 +51,7 @@ app.config(
                 }
             })
 
-             .state('Master', {
-                 url: '/Master',
-                 templateUrl: baseUrl + 'Master/LookUp/Index',
-             })
-              .state('MasterData', {
-                  url: '/MasterData',
-                  templateUrl: baseUrl + 'Master/LookUp/Index',
-              })
-            .state('Employees', {
-                url: '/Employees',
-                templateUrl: baseUrl + 'Master/LookUp/MasterData',
-            })
-              
-            .state('Administration', {
-                url: '/Administration',
-                templateUrl: baseUrl + 'Master/LookUp/AdministrationData',
-            })
+          
 
             .state('EmployeeType', {
                 url: '/EmployeeType',
@@ -377,7 +361,20 @@ app.config(
                  templateUrl: baseUrl + 'Employees/EmployeeProfile/Index',
              })
 
+               .state('Master', {
+                   url: '/Master',
+                   templateUrl: baseUrl + 'Master/LookUp/Master',
+               })
 
+            .state('Employees', {
+                url: '/Employees',
+                templateUrl: baseUrl + 'Master/LookUp/MasterData',
+            })
+
+            .state('Administration', {
+                url: '/Administration',
+                templateUrl: baseUrl + 'Master/LookUp/AdministrationData',
+            })
             .state('EmployeeProfileInfo', {
                 url: '/EmployeeProfileInfo',
                 templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeInfo',
