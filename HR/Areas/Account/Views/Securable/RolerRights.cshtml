@@ -1,0 +1,146 @@
+﻿<style>
+    .treeview-checkbox {
+        position: relative;
+        top: 3px;
+        left: 10px;
+    }
+    /*, .tree-view-wrapper li ul li ul li .active > .treeRadio, .tree-view-wrapper > li >.radioctn*/
+    .tree-view-wrapper .treeRadio, .tree-view-wrapper > .treeRadio {
+        display: none;
+    }
+
+    .tree-view-wrapper > li .active .treeRadio {
+        display: block;
+    }
+
+    .treeRadio {
+        position: absolute;
+        top: 20px;
+        left: 520px;
+        width: 200px;
+    }
+
+    .tree-view-wrapper li ul.show li ul.show li.hide {
+        display: block !important;
+    }
+
+    tree-view ul li {
+        list-style: none;
+    }
+
+    .tree-view-wrapper {
+        min-height: 300px;
+    }
+
+    .treecheck {
+        margin: 3px 0px;
+    }
+</style>
+<div ng-controller="RoleRightsController">
+
+    <div class="box">
+        <div class="box-header with-border">
+            <h3 class="box-title">RoleRights</h3>
+        </div>
+        <div class="box-body">
+            <form id="frmRoleRight" name="frmRoleRight" ng-submit="SaveEmployeeSecurbles(nodes)" novalidate>
+                <div class="row">
+                    <div class="col-xs-12 col-md-4">
+
+                        <div class="form-group fg-line">
+                            <label>
+                                Roles
+                            </label>
+                            <select name="users" ng-options="s.RoleCode as s.RoleDescription for s in roles" ng-model="rr.role" class="form-control" ng-required="true" ng-change="roleChanged()">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <tree-view checkbox model="nodes" selected-node="SelectedNodeClick()"></tree-view>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12  m-t-15 m-b-10">
+                        <button type="submit" ng-click="submitted = true" class="btn btn-primary pull-left"><i class="fa fa-floppy-o"></i>&nbsp;Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<script>
+    $(function () {
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Datemask dd/mm/yyyy
+        $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+        //Datemask2 mm/dd/yyyy
+        $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+        //Money Euro
+        $('[data-mask]').inputmask()
+
+        //Date range picker
+        $('#reservation').daterangepicker()
+        //Date range picker with time picker
+        $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' })
+        //Date range as a button
+        $('#daterange-btn').daterangepicker(
+          {
+              ranges: {
+                  'Today': [moment(), moment()],
+                  'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                  'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                  'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                  'This Month': [moment().startOf('month'), moment().endOf('month')],
+                  'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+              },
+              startDate: moment().subtract(29, 'days'),
+              endDate: moment()
+          },
+          function (start, end) {
+              $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+          }
+        )
+
+        //Date picker
+        $('#datepicker').datepicker({
+            autoclose: true
+        })
+
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        })
+        //Red color scheme for iCheck
+        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+            checkboxClass: 'icheckbox_minimal-red',
+            radioClass: 'iradio_minimal-red'
+        })
+        //Flat red color scheme for iCheck
+        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        })
+
+        //Colorpicker
+        $('.my-colorpicker1').colorpicker()
+        //color picker with addon
+        $('.my-colorpicker2').colorpicker()
+
+        //Timepicker
+        $('.timepicker').timepicker({
+            showInputs: false
+        })
+    })
+</script>

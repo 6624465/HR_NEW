@@ -148,6 +148,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Account\Views\Securable\RolerRights.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeProfile.cshtml" />
     <Content Include="Areas\Employees\Views\web.config" />
     <Content Include="Areas\Master\Views\LookUp\MasterData.html" />
@@ -7613,7 +7614,6 @@
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeDirectory.cshtml" />
     <Content Include="Areas\Account\Views\RoleRights\Roles.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeInfo.cshtml" />
-    <Content Include="Areas\Account\Views\Securable\RolerRights.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\Index.cshtml" />
     <Content Include="Areas\Account\Views\Login\Index.cshtml" />
     <Content Include="Areas\Master\Views\LookUp\MasterData.cshtml" />
