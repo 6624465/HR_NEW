@@ -153,18 +153,9 @@
                     <input id="TelNo" class="form-control" type="text" ng-model="BranchDetails.Address.TelNo" ng-required="true" logicon-number />
 
                 </div>
-                <!--<div class="col-xs-12 col-md-7">
-                  <input id="companyCode" class="form-control" type="text"  />
-                </div>-->
             </div>
             <div class="row">
 
-                <!--<div class="col-xs-12 col-md-2">
-                     <label for="">Contact</label>
-                </div>
-                <div class="col-xs-12 col-md-4">
-                  <input id="companyCode" class="form-control" type="text"  />
-                </div>-->
                 <div class="col-xs-12 col-md-6 form-group">
 
                     <label>Mobile No.</label>
@@ -191,14 +182,6 @@
 
                 </div>
             </div>
-            <!--<div class="row">
-                <div class="col-xs-12 col-md-2">
-                     <label for="">Remarks</label>
-                </div>
-                <div class="col-xs-12 col-md-10">
-                    <textarea ></textarea>
-                </div>
-            </div>-->
             <div class="row">
                 <div class="col-xs-12 form-group">
 
@@ -211,8 +194,8 @@
 
             <div class="row">
                 <div class="col-xs-12 text-right">
-                    <button class="btn " type="submit" ng-click="submitted = true;"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
-                    <button class="btn btn-default" type="button" ng-click="ClearBranchDetails();"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
+                    <button class="btn " type="submit" ng-click="submitted = true;" has-Right data-rightValue="Branch.Save"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+                    <button class="btn btn-default" type="button" ng-click="ClearBranchDetails();" has-Right data-rightValue="Branch.Clear"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
                 </div>
             </div>
 

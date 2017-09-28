@@ -28,7 +28,7 @@
         public string RoleCode { get; set; }
         public Int16 AccessRight { get; set; }
         public int SecurableID { get; set; }
-
-        public virtual Securable Securable { get; set; }
+       
+       public virtual Securable Securable { get; set; }
     }
 }
