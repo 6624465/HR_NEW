@@ -28,6 +28,7 @@ namespace HR.Areas.Employees.Controllers
             try
             {
                 IQueryable<EmployeeViewModel> employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
+
                                                            select new EmployeeViewModel
                                                            {
                                                                Id = employee.Id,
@@ -37,8 +38,8 @@ namespace HR.Areas.Employees.Controllers
                                                                Email = employee.Address.Email,
                                                                EmployeeId = employee.IDNumber,
                                                                CountryCode = employee.Address.CountryCode,
-                                                               Designation = employee.EmployeeWorkDetail != null ?  employee.EmployeeWorkDetail.Designation_LookUpId:0 ,
-                                                               DesignationName = employee.EmployeeWorkDetail != null ?  employee.EmployeeWorkDetail.Designation.LookUpDescription :string.Empty,
+                                                               Designation = employee.EmployeeWorkDetail != null ?  employee.EmployeeWorkDetail.DesignationId:0 ,
+                                                             //  DesignationName = employee.EmployeeWorkDetail != null ? LookUpCodeService.GetLookUpType(Convert.ToInt32(employee.EmployeeWorkDetail.DesignationId)).LookUpCode : string.Empty,
                                                                EmployeeType = employee.IDType
                                                            }).ToList().AsQueryable();
 
@@ -90,8 +91,8 @@ namespace HR.Areas.Employees.Controllers
                         MarriedStatus = LookUpCodeService.GetLookUpType(employeeHeader.EmployeePersonalInfo.MaritalStatus).LookUpCode,
                         Country = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Address.CountryCode).FirstOrDefault().CountryName,
                         Nationality = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Nationality).FirstOrDefault().CountryName,
-                        Designation = employeeHeader.EmployeeWorkDetail.Designation.LookUpCode,
-                        Department = employeeHeader.EmployeeWorkDetail.Department.LookUpCode,
+                        Designation = LookUpCodeService.GetLookUpType(employeeHeader.EmployeeWorkDetail.DesignationId).LookUpCode,
+                        Department = LookUpCodeService.GetLookUpType(employeeHeader.EmployeeWorkDetail.DepartmentId).LookUpCode,
                     };
                 }
                 result = Json(new { employeeHeader = employeeHeader, imagePathName = imagePathName, LookUpDescriptions = lookUpDescriptions }, JsonRequestBehavior.AllowGet);
@@ -475,8 +476,8 @@ namespace HR.Areas.Employees.Controllers
             _employeeWorkDetail.ConfirmationDate = employeeWorkDetail.ConfirmationDate.HasValue ? DateTimeConverter.SingaporeDateTimeConversion(employeeWorkDetail.ConfirmationDate.Value) : DateTime.Now;
             _employeeWorkDetail.ProbationPeriod = employeeWorkDetail.ProbationPeriod;
             _employeeWorkDetail.NoticePeriod = employeeWorkDetail.NoticePeriod;
-            _employeeWorkDetail.Designation_LookUpId = employeeWorkDetail.Designation_LookUpId;
-            _employeeWorkDetail.Department_LookUpId = employeeWorkDetail.Department_LookUpId;
+            _employeeWorkDetail.DesignationId = employeeWorkDetail.DesignationId;
+            _employeeWorkDetail.DepartmentId = employeeWorkDetail.DepartmentId;
             return _employeeWorkDetail;
         }
         private User PrepareUserDetails(User user, EmployeeHeader employeeHeader)
