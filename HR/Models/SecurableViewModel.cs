@@ -17,8 +17,8 @@ namespace HR.Models
         public string Access { get; set; }
         public int RoleRightId { get; set; }
         public int securableitem { get; set; }
-        public string operationid { get; set; }
-        public int accessright { get; set; }
+        public string OperationID { get; set; }
+        public int AccessRight { get; set; }
         public string PageId { get; set; }
         public string PageName { get; set; }
 

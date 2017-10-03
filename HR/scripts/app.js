@@ -678,33 +678,34 @@ app.directive('compareTo', function () {
         }
     };
 });
-//app.directive('hasRight', function () {
-//    return {
-//        link: function (scope, element, attrs) {
-//            debugger;
-//            var rightvalue = attrs.rightvalue;
-//            var AccessRight = attrs.accessright;
-//            var flag = false;
-//            var rights = JSON.parse(sessionStorage.getItem('SECURABLES'));
-//            angular.forEach(rights, function (item, index) {
-//                if (item.OperationID == rightvalue && item.AccessRight != "1" && AccessRight != "3" && item.AccessRight != "0")
-//                    flag = true;
-//                else if (item.OperationID == rightvalue && item.AccessRight == AccessRight)
-//                    flag = true;
-//                else if (item.OperationID == rightvalue && item.AccessRight == "0")
-//                    flag = true;
-//                else if (item.OperationID == rightvalue && item.AccessRight == "4")
-//                    flag = true;
-//                if (item.OperationID == rightvalue && item.AccessRight == "1")
-//                    flag = false;
-//            });
-//            if (flag)
-//                element.show();
-//            else
-//                element.hide();
-//        }
-//    }
-//});
+app.directive('hasRight', function () {
+    return {
+        link: function (scope, element, attrs) {
+            debugger;
+            var rightvalue = attrs.rightvalue;
+            var AccessRight = attrs.accessright;
+            var flag = false;
+            var rights = JSON.parse(sessionStorage.getItem('SECURABLES'));
+            angular.forEach(rights, function (item, index) {
+                debugger;
+                if (item.OperationID == rightvalue && item.AccessRight != "1" && AccessRight != "3" && item.AccessRight != "0")
+                    flag = true;
+                else if (item.OperationID == rightvalue && item.AccessRight == AccessRight)
+                    flag = true;
+                else if (item.OperationID == rightvalue && item.AccessRight == "0")
+                    flag = true;
+                else if (item.OperationID == rightvalue && item.AccessRight == "4")
+                    flag = true;
+                if (item.OperationID == rightvalue && item.AccessRight == "1")
+                    flag = false;
+            });
+            if (flag)
+                element.show();
+            else
+                element.hide();
+        }
+    }
+});
 app.directive("showContact", function () {
     return {
         restrict: "A",

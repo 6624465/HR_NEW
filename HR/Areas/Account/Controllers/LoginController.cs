@@ -34,16 +34,16 @@ namespace HR.Areas.Account.Controllers
                                                     .Select(x => new SecurableViewModel()
                                                     {
                                                         securableitem = x.Securable.SecurableID,
-                                                        operationid = x.Securable.OperationID,
-                                                        accessright = x.AccessRight
+                                                        OperationID = x.Securable.OperationID,
+                                                        AccessRight = x.AccessRight
                                                     }).ToList();
 
                         var sec = RoleRightService.GetRoleRights<RoleRight>(x => x.CompanyId == _user.Branch.CompanyId && x.RoleCode == _user.RoleCode)
                                                     .Select(x => new
                                                     {
                                                         securableitem = x.SecurableID,
-                                                        operationid = x.Securable.OperationID,
-                                                        accessright = x.AccessRight
+                                                        OperationID = x.Securable.OperationID,
+                                                        AccessRight = x.AccessRight
                                                     }).ToList();
 
                         SessionObject sessionObject = new SessionObject()
@@ -60,7 +60,7 @@ namespace HR.Areas.Account.Controllers
                         };
                         USER_OBJECT = sessionObject;
 
-                        result = Json(new { success = true, SessionObject = USER_OBJECT}, JsonRequestBehavior.AllowGet);
+                        result = Json(new { success = true, SessionObject = USER_OBJECT, securables = securables }, JsonRequestBehavior.AllowGet);
 
                     }
                 }

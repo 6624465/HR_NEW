@@ -39,6 +39,7 @@ app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', '
                     $scope.showLoading = false;
                     sessionStorage.setItem('authenticatedUser', JSON.stringify(response.data.SessionObject));
                     sessionStorage.setItem('SECURABLES', JSON.stringify(response.data.securables));
+                    debugger;
                     location.href = "Home/index/";
                 }
                 else {
