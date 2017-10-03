@@ -2,7 +2,6 @@
     'UtilityFunc', 'Employee', 'LookUp', 'HolidayListService', 'growlService', 'EmployeeProfileService', '$timeout', '$stateParams',
     '$state', function ($scope, $http, growl, $filter, UtilityFunc, Employee, LookUp, HolidayListService,
         growlService, EmployeeProfileService, $timeout, $stateParams, $state) {
-
         $scope.init = function () {
             $scope.AddressNextButton = false;
             $scope.BasicNextButton = false;
@@ -48,7 +47,12 @@
             LookUp.GetActiveLookUpData("MaritalStatus").then(function (response) {
                 $scope.MaritalStatus = response.data.lookUpLists;
             })
-
+            LookUp.GetActiveLookUpData("ProbabtonPeriod").then(function (response) {
+                $scope.ProbabtonPeriod = response.data.lookUpLists;
+            })
+            LookUp.GetActiveLookUpData("NoticePeriod").then(function (response) {
+                $scope.NoticePeriod = response.data.lookUpLists;
+            })
             LookUp.GetCountries().then(function (res) {
                 $scope.Countries = res.data.countries;
                 $scope.EmployeeHeader.Address.CountryId =

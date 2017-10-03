@@ -34,10 +34,9 @@
                         <label>
                             Notice Period
                         </label>
-                        <select class="form-control" data-live-search="true">
-                            <option>30 Days</option>
-                            <option>45 Days</option>
-                            <option>60 Days</option>
+                        <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in NoticePeriod"
+                                ng-model="EmployeeHeader.EmployeeWorkDetail.NoticePeriod" class="form-control valid">
+                            <option value="">--Notice Period--</option>
                         </select>
                     </div>
                 </div>
@@ -46,8 +45,9 @@
                         <label>
                             Probition Period
                         </label>
-                        <select class="form-control" data-live-search="true">
-                            <option>60 Days</option>
+                        <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in ProbabtonPeriod"
+                                ng-model="EmployeeHeader.EmployeeWorkDetail.ProbationPeriod" class="form-control valid">
+                            <option value="">--Probation Period--</option>
                         </select>
                     </div>
                 </div>

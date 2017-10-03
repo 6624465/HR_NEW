@@ -367,10 +367,9 @@
                                                     <label>
                                                         Notice Period
                                                     </label>
-                                                    <select class="form-control" data-live-search="true">
-                                                        <option>30 Days</option>
-                                                        <option>45 Days</option>
-                                                        <option>60 Days</option>
+                                                    <select name="EmployeeHeader.EmployeeWorkDetail.NoticePeriod" ng-options="s.LookUpID as s.LookUpCode for s in NoticePeriod"
+                                                            ng-model="EmployeeHeader.EmployeeWorkDetail.NoticePeriod" class="form-control valid">
+                                                        <option value="">--Notice Period--</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -379,12 +378,13 @@
                                                     <label>
                                                         Probition Period
                                                     </label>
-                                                    <select class="form-control" data-live-search="true">
-                                                        <option>60 Days</option>
+                                                    <select name="EmployeeHeader.EmployeeWorkDetail.ProbationPeriod" ng-options="s.LookUpID as s.LookUpCode for s in ProbabtonPeriod"
+                                                            ng-model="EmployeeHeader.EmployeeWorkDetail.ProbabtonPeriod" class="form-control valid">
+                                                        <option value="">--Probation Period--</option>
                                                     </select>
                                                 </div>
                                             </div>
-
+                                         
                                             <!--<div class="col-xs-12 col-md-6">
                                                 <div class="form-group fg-line">
                                                     <label>

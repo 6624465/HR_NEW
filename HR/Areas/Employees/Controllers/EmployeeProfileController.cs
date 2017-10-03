@@ -477,7 +477,8 @@ namespace HR.Areas.Employees.Controllers
             _employeeWorkDetail.ProbationPeriod = employeeWorkDetail.ProbationPeriod;
             _employeeWorkDetail.NoticePeriod = employeeWorkDetail.NoticePeriod;
             _employeeWorkDetail.DesignationId = employeeWorkDetail.DesignationId;
-            _employeeWorkDetail.DepartmentId = employeeWorkDetail.DepartmentId;
+            _employeeWorkDetail.DepartmentId = employeeWorkDetail.DepartmentId;          
+            _employeeWorkDetail.ResignationDate = employeeWorkDetail.ResignationDate;
             return _employeeWorkDetail;
         }
         private User PrepareUserDetails(User user, EmployeeHeader employeeHeader)
