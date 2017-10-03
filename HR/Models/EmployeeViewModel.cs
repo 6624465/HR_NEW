@@ -17,6 +17,7 @@ namespace HR.Models
         public string CountryCode { get; set; }
         public int EmployeeType { get; set; }
         public int Designation { get; set; }
+        public string DesignationName { get; set; }
     }
 }
 

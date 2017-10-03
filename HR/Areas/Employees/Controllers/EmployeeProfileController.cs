@@ -37,7 +37,8 @@ namespace HR.Areas.Employees.Controllers
                                                                Email = employee.Address.Email,
                                                                EmployeeId = employee.IDNumber,
                                                                CountryCode = employee.Address.CountryCode,
-                                                               Designation = employee.EmployeeWorkDetail.DesignationId,
+                                                               Designation = employee.EmployeeWorkDetail.Designation_LookUpId,
+                                                               DesignationName = employee.EmployeeWorkDetail.Designation.LookUpDescription,
                                                                EmployeeType = employee.IDType
                                                            }).ToList().AsQueryable();
 
@@ -89,8 +90,8 @@ namespace HR.Areas.Employees.Controllers
                         MarriedStatus = LookUpCodeService.GetLookUpType(employeeHeader.EmployeePersonalInfo.MaritalStatus).LookUpCode,
                         Country = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Address.CountryCode).FirstOrDefault().CountryName,
                         Nationality = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Nationality).FirstOrDefault().CountryName,
-                        Designation = LookUpCodeService.GetLookUpType(employeeHeader.EmployeeWorkDetail.DesignationId).LookUpCode,
-                        Department = LookUpCodeService.GetLookUpType(employeeHeader.EmployeeWorkDetail.DepartmentId).LookUpCode,
+                        Designation = employeeHeader.EmployeeWorkDetail.Designation.LookUpCode,
+                        Department = employeeHeader.EmployeeWorkDetail.Department.LookUpCode,
 
                     };
                 }
@@ -475,8 +476,8 @@ namespace HR.Areas.Employees.Controllers
             _employeeWorkDetail.ConfirmationDate = employeeWorkDetail.ConfirmationDate.HasValue ? DateTimeConverter.SingaporeDateTimeConversion(employeeWorkDetail.ConfirmationDate.Value) : DateTime.Now;
             _employeeWorkDetail.ProbationPeriod = employeeWorkDetail.ProbationPeriod;
             _employeeWorkDetail.NoticePeriod = employeeWorkDetail.NoticePeriod;
-            _employeeWorkDetail.DesignationId = employeeWorkDetail.DesignationId;
-            _employeeWorkDetail.DepartmentId = employeeWorkDetail.DepartmentId;
+            _employeeWorkDetail.Designation_LookUpId = employeeWorkDetail.Designation_LookUpId;
+            _employeeWorkDetail.Department_LookUpId = employeeWorkDetail.Department_LookUpId;
             return _employeeWorkDetail;
         }
         private User PrepareUserDetails(User user, EmployeeHeader employeeHeader)

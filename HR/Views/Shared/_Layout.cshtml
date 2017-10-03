@@ -44,7 +44,7 @@
     <!-- End of layout top -->
 </head>
 
-<body class="hold-transition skin-blue sidebar-mini" ng-controller="layOutController as layOutcntrl">
+<body class="hold-transition skin-blue " ng-controller="layOutController as layOutcntrl">
     @*sidebar-mini*@
     <div class="wrapper" style="background:#fff !important;">
         <header class="main-header">
@@ -261,8 +261,9 @@
             }
 
             $scope.onLogoClick = function () {
-                //location.href = baseUrl + '/Home/index';
-                $state.go();
+                var baseHomeUrl = location.href.split('/');
+                location.href =baseHomeUrl[0]+"//"+ baseHomeUrl[2] + '/Home/index';
+                //$state.go('Home');
                 //location.href = $scope.HomeUrl;
             }
             $scope.init();
