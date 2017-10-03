@@ -21,12 +21,14 @@ namespace HR.Core.Models
         //public virtual Branch Branch  { get; set; }
         public DateTime? JoiningDate { get; set; }
         public DateTime? ConfirmationDate { get; set; }
-        public System.Int16 ProbationPeriod { get; set; }
-        public System.Int16 NoticePeriod { get; set; }
+        public Int16 ProbationPeriod { get; set; }
+        public Int16 NoticePeriod { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
-
         public DateTime? ModifiedOn { get; set; }
+
+        public DateTime? ResignationDate { get; set; }
+
     }
 }

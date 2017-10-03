@@ -48,7 +48,12 @@
             LookUp.GetActiveLookUpData("MaritalStatus").then(function (response) {
                 $scope.MaritalStatus = response.data.lookUpLists;
             })
-
+            LookUp.GetActiveLookUpData("ProbabtonPeriod").then(function (response) {
+                $scope.MaritalStatus = response.data.lookUpLists;
+            })
+            LookUp.GetActiveLookUpData("NoticePeriod").then(function (response) {
+                $scope.MaritalStatus = response.data.lookUpLists;
+            })
             LookUp.GetCountries().then(function (res) {
                 $scope.Countries = res.data.countries;
                 $scope.EmployeeHeader.Address.CountryId =

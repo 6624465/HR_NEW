@@ -478,6 +478,7 @@ namespace HR.Areas.Employees.Controllers
             _employeeWorkDetail.NoticePeriod = employeeWorkDetail.NoticePeriod;
             _employeeWorkDetail.Designation_LookUpId = employeeWorkDetail.Designation_LookUpId;
             _employeeWorkDetail.Department_LookUpId = employeeWorkDetail.Department_LookUpId;
+            _employeeWorkDetail.ResignationDate = employeeWorkDetail.ResignationDate;
             return _employeeWorkDetail;
         }
         private User PrepareUserDetails(User user, EmployeeHeader employeeHeader)
