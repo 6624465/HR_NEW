@@ -13,7 +13,7 @@ function ($scope, $http, LookUp, growl, growlService) {
         $scope.EmployeeDesignations = {}
     }
 
-    angular.element('.skin-blue').addClass("sidebar-collapse");
+    //angular.element('.skin-blue').addClass("sidebar-collapse");
 
     $scope.GetLookUpData = function () {
         LookUp.GetLookUpData("EmployeeDesignation").then(function (response) {
