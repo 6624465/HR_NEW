@@ -107,9 +107,9 @@
                         return false;
                     }
                     EmployeeProfileService.SaveEmlployee(EmployeeHeader, $scope.files).then(function (response) {
-                        if (response.data && response.data.sucess == true) {
+                        if (response == "Success") {
                             $timeout(function () {
-                                growlService.growl(response.data.message + "  Employee Crediantials sent to '" + EmployeeHeader.UserEmailId + "' mail", 'success');
+                                growlService.growl("Saved Successfully." + "  Employee Crediantials sent to '" + EmployeeHeader.UserEmailId + "' mail", 'success');
                             }, 1500);
                             $state.go('EmployeeDirectory');
                         }
@@ -177,7 +177,7 @@
                     if (basic != null && basic != undefined) {
                         basic[0].style.backgroundColor = "#008d4c";
                         basic[0].style.color = "white";
-                        basic[0].addClass('active');
+                        $scope.IsValid = true;
                     }
                 }
 
@@ -194,6 +194,7 @@
                     if (address != null && address != undefined) {
                         address[0].style.backgroundColor = "#008d4c";
                         address[0].style.color = "white";
+                        $scope.IsValid = true;
                     }
                 }
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "Designation") {
@@ -211,6 +212,7 @@
                     if (position != null && position != undefined) {
                         position[0].style.backgroundColor = "#008d4c";
                         position[0].style.color = "white";
+                        $scope.IsValid = true;
                     }
                 }
                 if ((mandtoryFields[0].parentElement.innerText).trim() == "Email") {
@@ -230,8 +232,11 @@
                     if (user != null && user != undefined) {
                         user[0].style.backgroundColor = "#008d4c";
                         user[0].style.color = "white";
+                        $scope.IsValid = true;
                     }
                 }
+
+
             }
             else
                 $scope.IsValid = true;

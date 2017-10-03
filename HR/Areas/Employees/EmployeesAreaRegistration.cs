@@ -4,23 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HR.Areas.Master
+namespace HR.Areas.Employees
 {
-    public class MasterAreaRegistration : AreaRegistration
+    public class EmployeesAreaRegistration : AreaRegistration
     {
         public override string AreaName
         {
             get
             {
-                return "Master";
+                return "Employees";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
-                "Master_default",
-                "Master/{controller}/{action}/{id}",
+                "Employees_default",
+                "Employees/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

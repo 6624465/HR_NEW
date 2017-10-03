@@ -151,9 +151,6 @@
     <Content Include="Areas\Account\Views\Securable\RolerRights.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeProfile.cshtml" />
     <Content Include="Areas\Employees\Views\web.config" />
-    <Content Include="Areas\Master\Views\LookUp\Administration.cshtml" />
-    <Content Include="Areas\Master\Views\LookUp\AdministrationData.cshtml" />
-    <Content Include="Areas\Master\Views\LookUp\Master.cshtml" />
     <Content Include="bower_components\bootstrap-colorpicker\.bower.json" />
     <Content Include="bower_components\bootstrap-colorpicker\bower.json" />
     <Content Include="bower_components\bootstrap-colorpicker\CONTRIBUTING.md" />
@@ -7008,7 +7005,7 @@
     <Content Include="fonts\roboto\Roboto-Regular-webfont.eot" />
     <Content Include="fonts\roboto\Roboto-Regular-webfont.ttf" />
     <Content Include="fonts\roboto\Roboto-Regular-webfont.woff" />
-    <Content Include="Areas\Master\Views\web.config" />
+    <Content Include="Areas\Settings\Views\web.config" />
     <Content Include="fonts\Material-Design-Iconic-Font.eot" />
     <Content Include="fonts\Material-Design-Iconic-Font.ttf" />
     <Content Include="fonts\Material-Design-Iconic-Font.woff" />
@@ -7606,19 +7603,18 @@
     <Content Include="Areas\Leave\Views\web.config" />
     <Content Include="Areas\Leave\Views\AppliedLeaveList\AppliedLeaveList.cshtml" />
     <Content Include="Areas\Leave\Views\EmployeeLeave\EmployeeLeave.cshtml" />
-    <Content Include="Areas\Master\Views\LookUp\EmployeeDepartment.cshtml" />
-    <Content Include="Areas\Master\Views\LookUp\EmployeeDesignation.cshtml" />
-    <Content Include="Areas\Master\Views\LookUp\EmployeeType.cshtml" />
-    <Content Include="Areas\Master\Views\LookUp\LeaveType.cshtml" />
-    <Content Include="Areas\Master\Views\LookUp\PaymentType.cshtml" />
-    <Content Include="Areas\Master\Views\LookUp\EmployeeStatus.cshtml" />
+    <Content Include="Areas\Settings\Views\LookUp\EmployeeDesignation.cshtml" />
+    <Content Include="Areas\Settings\Views\LookUp\EmployeeType.cshtml" />
+    <Content Include="Areas\Settings\Views\LookUp\LeaveType.cshtml" />
+    <Content Include="Areas\Settings\Views\LookUp\PaymentType.cshtml" />
+    <Content Include="Areas\Settings\Views\LookUp\EmployeeStatus.cshtml" />
     <Content Include="Areas\Leave\Views\SetUp\HolidayList.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeDirectory.cshtml" />
     <Content Include="Areas\Account\Views\RoleRights\Roles.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeInfo.cshtml" />
     <Content Include="Areas\Account\Views\Login\Index.cshtml" />
-    <Content Include="Areas\Master\Views\LookUp\MasterData.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\LookUp\EmployeeDepartment.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7647,8 +7643,8 @@
     <Compile Include="Areas\Leave\Controllers\AppliedLeaveListController.cs" />
     <Compile Include="Areas\Leave\Controllers\EmployeeLeaveController.cs" />
     <Compile Include="Areas\Leave\Controllers\SetUpController.cs" />
-    <Compile Include="Areas\Master\Controllers\LookUpController.cs" />
-    <Compile Include="Areas\Master\MasterAreaRegistration.cs" />
+    <Compile Include="Areas\Settings\Controllers\LookUpController.cs" />
+    <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -7678,6 +7674,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\AdministrationPage.cshtml" />
+    <Content Include="Views\Home\MasterData.cshtml" />
+    <Content Include="Views\Home\MasterList.cshtml" />
+    <Content Include="Views\Home\AdministrationData.cshtml" />
+    <Content Include="Views\Home\EmployeeDepartment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

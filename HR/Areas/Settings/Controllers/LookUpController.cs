@@ -1,25 +1,17 @@
-﻿using System;
+﻿using HR.Controllers;
+using HR.Core.Models;
+using HR.Core.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using HR.Data;
-using HR.Core.Models;
-using HR.Controllers;
-using HR.Service.Account.IAccountService;
-using HR.Service.Master.IMasterService;
-using HR.Core.Utilities;
 using C = HR.Core.Constants;
-using HR.Service.CompanyDetails.ICompany;
-using HR.Service.Leave.ILeaveService;
 
-namespace HR.Areas.Master.Controllers
+namespace HR.Areas.Settings.Controllers
 {
     public class LookUpController : BaseController
     {
-        // GET: Master/LookUp
-
-
         #region GetLookUp 
         //[HttpPost]
         public JsonResult GetLookUp(string LookUpCategory)
@@ -63,7 +55,7 @@ namespace HR.Areas.Master.Controllers
                 if (!string.IsNullOrWhiteSpace(LookUpCategory))
                 {
                     var lookUp = from eType in LookUpCodeService.GetLookUp<LookUp>(et => et.LookUpCategory == LookUpCategory && et.IsActive == true)
-                                 select new 
+                                 select new
                                  {
                                      LookUpID = eType.LookUpID,
                                      LookUpCode = eType.LookUpCode,
@@ -127,20 +119,18 @@ namespace HR.Areas.Master.Controllers
         }
 
         #endregion
-
         #region Action Result
-        public ActionResult Master() {
-            return View();
-        }
         public ActionResult EmployeeType()
         {
             return View();
         }
-        public ActionResult EmployeeDesignation() {
+        public ActionResult EmployeeDesignation()
+        {
             return View();
         }
 
-        public ActionResult EmployeeDepartment() {
+        public ActionResult EmployeeDepartment()
+        {
             return View();
         }
 
@@ -157,19 +147,7 @@ namespace HR.Areas.Master.Controllers
         {
             return View();
         }
-        public ActionResult MasterData()
-        {
-            return View();
-        }
-        public ActionResult AdministrationData()
-        {
-            return View();
-        }
-        
-        public ActionResult Administration()
-        {
-            return View();
-        }
+
         #endregion
     }
 }

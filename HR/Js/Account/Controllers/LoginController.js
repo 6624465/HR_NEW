@@ -37,16 +37,8 @@ app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', '
             LoginService.LogIn($scope.User).then(function (response) {
                 if (response && response.data && response.data.success == true) {
                     $scope.showLoading = false;
-                    //$scope.IsEnable = true;
                     sessionStorage.setItem('authenticatedUser', JSON.stringify(response.data.SessionObject));
                     sessionStorage.setItem('SECURABLES', JSON.stringify(response.data.securables));
-                    //var deferred = $q.defer();
-                    //$http.get("/Login/Index").then(function (response) {
-                    //    deferred.resolve(response);
-                    //}, function (err) {
-                    //    deferred.reject(err);
-                    //});
-                    //return deferred.promise;
                     location.href = "Home/index/";
                 }
                 else {

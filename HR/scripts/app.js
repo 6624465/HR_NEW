@@ -20,7 +20,7 @@ app.config(
         $stateProvider
             .state('Home', {
                 url: '/Home',
-                templateUrl: baseUrl + '/Home/index',
+                templateUrl: baseUrl + 'Home/index',
                 //resolve: {
                 //    loadPlugin: function ($ocLazyLoad) {
                 //        return $ocLazyLoad.load([
@@ -51,11 +51,9 @@ app.config(
                 }
             })
 
-          
-
             .state('EmployeeType', {
                 url: '/EmployeeType',
-                templateUrl: baseUrl + 'Master/LookUp/EmployeeType',
+                templateUrl: baseUrl + 'Settings/LookUp/EmployeeType',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -107,7 +105,7 @@ app.config(
 
             .state('EmployeeDesgination', {
                 url: '/EmployeeDesgination',
-                templateUrl: baseUrl + 'Master/LookUp/EmployeeDesignation',
+                templateUrl: baseUrl + 'Settings/LookUp/EmployeeDesignation',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -124,7 +122,7 @@ app.config(
             })
             .state('EmployeeDepartment', {
                 url: '/EmployeeDepartment',
-                templateUrl: baseUrl + 'Master/LookUp/EmployeeDepartment',
+                templateUrl: baseUrl + 'Home/EmployeeDepartment',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -142,7 +140,7 @@ app.config(
 
             .state('EmployeeStatus', {
                 url: '/EmployeeStatus',
-                templateUrl: baseUrl + 'Master/LookUp/EmployeeStatus',
+                templateUrl: baseUrl + 'Settings/LookUp/EmployeeStatus',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -160,7 +158,7 @@ app.config(
 
             .state('PaymentType', {
                 url: '/PaymentType',
-                templateUrl: baseUrl + 'Master/LookUp/PaymentType',
+                templateUrl: baseUrl + 'Settings/LookUp/PaymentType',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -196,7 +194,7 @@ app.config(
 
             .state('LeaveType', {
                 url: '/LeaveType',
-                templateUrl: baseUrl + 'Master/LookUp/LeaveType',
+                templateUrl: baseUrl + 'Settings/LookUp/LeaveType',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -363,17 +361,17 @@ app.config(
 
                .state('Master', {
                    url: '/Master',
-                   templateUrl: baseUrl + 'Master/LookUp/Master',
+                   templateUrl: baseUrl + 'Home/MasterList',
                })
 
             .state('Employees', {
                 url: '/Employees',
-                templateUrl: baseUrl + 'Master/LookUp/MasterData',
+                templateUrl: baseUrl + 'Home/MasterData',
             })
 
             .state('Administration', {
                 url: '/Administration',
-                templateUrl: baseUrl + 'Master/LookUp/AdministrationData',
+                templateUrl: baseUrl + 'Home/AdministrationData',
             })
             .state('EmployeeProfileInfo', {
                 url: '/EmployeeProfileInfo',
@@ -393,38 +391,6 @@ app.config(
                 }
             })
 
-            //.state('Employee.EmployeePaymentMode', {
-            //    url: '/EmployeePaymentMode',
-            //    templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePaymentMode.html',
-            //    resolve: {
-            //        loadPlugin: function ($ocLazyLoad) {
-            //            return $ocLazyLoad.load([
-            //                {
-            //                    name: 'ngHR',
-            //                    files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
-            //                }
-            //            ]);
-            //        }
-            //    }
-            //})
-
-            //.state('Employee.EmployeePFESI', {
-            //    url: '/EmployeePFESI',
-            //    templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePFESI.html',
-            //    resolve: {
-            //        loadPlugin: function ($ocLazyLoad) {
-            //            return $ocLazyLoad.load([
-            //                {
-            //                    name: 'ngHR',
-            //                    files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
-            //                }
-            //            ]);
-            //        }
-            //    }
-            //})
-
-
-
             .state('ActivitySummary', {
                 url: '/ActivitySummary',
                 templateUrl: baseUrl + 'Js/Home/Views/activitysummary.html',
@@ -440,7 +406,12 @@ app.config(
                 }
             })
 
-        $urlRouterProvider.otherwise('/');
+        //var sessionObject = JSON.parse(sessionStorage.getItem("authenticatedUser"));
+        //if (sessionObject.UserID != null)
+        //    $urlRouterProvider.otherwise('/Home/Index');
+        //else
+            $urlRouterProvider.otherwise('/');
+
         growlProvider.onlyUniqueMessages(false);
         cfpLoadingBarProvider.includeSpinner = false;//includeBar
         cfpLoadingBarProvider.includeBar = true;

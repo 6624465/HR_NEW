@@ -1,7 +1,7 @@
 ﻿app.service('LookUp', ['$http', '$q', function ($http, $q) {
     this.SaveLookUpData = function (lookUpTypeObj) {
         var deferred = $q.defer();
-        $http.post("/Master/LookUp/SaveLookUp", lookUpTypeObj).then(function (res) {
+        $http.post("/Settings/LookUp/SaveLookUp", lookUpTypeObj).then(function (res) {
             deferred.resolve(res);
         }, function (err) {
             deferred.reject(err);
@@ -11,7 +11,7 @@
 
     this.GetLookUpData = function (lookUpCode) {
         var deferred = $q.defer();
-        $http.get("/Master/LookUp/GetLookUp?LookUpCategory=" + lookUpCode).then(function (res) {
+        $http.get("/Settings/LookUp/GetLookUp?LookUpCategory=" + lookUpCode).then(function (res) {
             deferred.resolve(res);
         }, function (err) {
             deferred.reject(err);
@@ -21,7 +21,7 @@
 
     this.GetActiveLookUpData = function (lookUpCode) {
         var deferred = $q.defer();
-        $http.get("/Master/LookUp/GetActiveLookUp?LookUpCategory=" + lookUpCode).then(function (res) {
+        $http.get("/Settings/LookUp/GetActiveLookUp?LookUpCategory=" + lookUpCode).then(function (res) {
             deferred.resolve(res);
         }, function (err) {
             deferred.reject(err);

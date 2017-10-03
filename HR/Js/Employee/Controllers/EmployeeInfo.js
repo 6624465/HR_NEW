@@ -89,7 +89,7 @@ function ($scope, $http, growlService, $filter, UtilityFunc, LookUp, EmployeePro
         });
 
         $scope.SavePersonalInfo = function (EmployeeHeader) {
-            $scope.ValidateForm();
+            //$scope.ValidateForm();
             if ($scope.IsfrmPersonalInfo) {
                 $scope.EmployeeHeader.CreatedOn = moment($scope.EmployeeHeader.CreatedOn);
                 $scope.EmployeeHeader.EmployeePersonalInfo.CreatedOn = moment($scope.EmployeeHeader.EmployeePersonalInfo.CreatedOn);
