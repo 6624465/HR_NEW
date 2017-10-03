@@ -90,25 +90,26 @@
                 </div>
             </nav>
         </header>
-       
-            <section class="content-wrapper"  >
-                <div id="content" class="content-header" style="background-color:#fff;min-height:{{iframeHeight + 'px'}}"  ><data ui-view >@RenderBody()  </data></div></section>
-      
-        
-        <footer class="main-footer">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="hidden-xs">
-                        <b>Version</b> 1.0.0
+        <div style="margin-bottom:57px;">
+            <section class="content-wrapper">
+                <div id="content" class="content-header" style="background-color:#fff;   min-height:{{iframeHeight + 'px'}}"><data ui-view>@RenderBody()  </data></div>
+            </section>
+
+
+            <footer class="main-footer">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="hidden-xs">
+                            <b>Version</b> 1.0.0
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <p>&copy; 2017 - <a href="#">Ezy-HR</a> </p>
                     </div>
                 </div>
-                <div class="col-md-6 text-right">
-                    <p>&copy; 2017 - <a href="#">Ezy-HR</a> </p>
-                </div>
-            </div>
-        </footer>
+            </footer>
 
-
+        </div>
     </div>
 
     <div id="myModalTest" class="modal fade" role="dialog">
