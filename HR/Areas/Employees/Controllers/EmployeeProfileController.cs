@@ -32,13 +32,13 @@ namespace HR.Areas.Employees.Controllers
                                                            {
                                                                Id = employee.Id,
                                                                EmployeeName = employee.FirstName,
-                                                               JoiningDate = employee.EmployeeWorkDetail.JoiningDate.Value,
+                                                               JoiningDate = employee.EmployeeWorkDetail != null ? employee.EmployeeWorkDetail.JoiningDate.Value : DateTime.Now,
                                                                MobileNo = employee.Address.MobileNo,
                                                                Email = employee.Address.Email,
                                                                EmployeeId = employee.IDNumber,
                                                                CountryCode = employee.Address.CountryCode,
-                                                               Designation = employee.EmployeeWorkDetail.Designation_LookUpId,
-                                                               DesignationName = employee.EmployeeWorkDetail.Designation.LookUpDescription,
+                                                               Designation = employee.EmployeeWorkDetail != null ?  employee.EmployeeWorkDetail.Designation_LookUpId:0 ,
+                                                               DesignationName = employee.EmployeeWorkDetail != null ?  employee.EmployeeWorkDetail.Designation.LookUpDescription :string.Empty,
                                                                EmployeeType = employee.IDType
                                                            }).ToList().AsQueryable();
 
@@ -92,7 +92,6 @@ namespace HR.Areas.Employees.Controllers
                         Nationality = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Nationality).FirstOrDefault().CountryName,
                         Designation = employeeHeader.EmployeeWorkDetail.Designation.LookUpCode,
                         Department = employeeHeader.EmployeeWorkDetail.Department.LookUpCode,
-
                     };
                 }
                 result = Json(new { employeeHeader = employeeHeader, imagePathName = imagePathName, LookUpDescriptions = lookUpDescriptions }, JsonRequestBehavior.AllowGet);
