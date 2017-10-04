@@ -2,6 +2,8 @@
     'UtilityFunc', 'Employee', 'LookUp', 'HolidayListService', 'growlService', 'EmployeeProfileService', '$timeout', '$stateParams',
     '$state', function ($scope, $http, growl, $filter, UtilityFunc, Employee, LookUp, HolidayListService,
         growlService, EmployeeProfileService, $timeout, $stateParams, $state) {
+
+
         $scope.init = function () {
             $scope.AddressNextButton = false;
             $scope.BasicNextButton = false;
@@ -11,6 +13,7 @@
                 Address: {},
                 EmployeePersonalInfo: {
                     BranchId: UtilityFunc.BranchId(),
+
                 },
                 EmployeeWorkDetail: {
                     BranchId: UtilityFunc.BranchId(),
@@ -83,6 +86,51 @@
                 $scope.IsValid = false
             }
         }
+        $scope.ageChecking = function (DOB) {
+            if (DOB !== "Invalid Date") {
+                var userDate = new Date(DOB);
+                var current_date = new Date();
+                var year = current_date.getFullYear();
+                var month = current_date.getMonth();
+                var day = current_date.getDate();
+
+                var dateDiff = new Date(year + "-" + month + "-" + day);
+                var timeDiff = Math.abs(dateDiff.getTime() - userDate.getTime());
+                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                var noofyears = diffDays / 365;
+
+                if (noofyears < 18) {
+                    growlService.growl('Age should be 18 years', 'danger');
+                    $scope.EmployeeHeader.EmployeePersonalInfo.DOB = undefined;
+                    // return false;
+                } else {
+                    $scope.ageErrorMsg = "";
+                }
+            }
+        }
+        $scope.CheckJoiningDate = function (JoiningDate) {
+            if (JoiningDate !== "Invalid Date") {
+                var userDate = new Date(JoiningDate);
+                var current_date = new Date();
+                var year = current_date.getFullYear();
+                var month = current_date.getMonth();
+                var day = current_date.getDate();
+
+                var dateDiff = new Date(year + "-" + month + "-" + day);
+                var timeDiff = Math.abs(dateDiff.getTime() - userDate.getTime());
+                var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                var noofyears = diffDays / 365;
+
+                if (noofyears < 18) {
+                    growlService.growl('Date Of Joining should be 18 years', 'danger');
+                    $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = undefined;
+                    // return false;
+                } else {
+                    $scope.ageErrorMsg = "";
+                }
+            }
+        }
+
 
         $scope.onChangeEmployeeType = function (id) {
             EmployeeProfileService.GetEmployeeNumber(id).then(function (response) {
@@ -96,7 +144,7 @@
 
         $scope.SaveEmlployee = function (EmployeeHeader) {
             //$scope.ValidateForm();
-            if (EmployeeHeader.Password &&EmployeeHeader.ConfirmPassword && EmployeeHeader.Password.trim() != EmployeeHeader.ConfirmPassword.trim()) {
+            if (EmployeeHeader.Password && EmployeeHeader.ConfirmPassword && EmployeeHeader.Password.trim() != EmployeeHeader.ConfirmPassword.trim()) {
                 growlService.growl("Password and confirm password should be same", 'danger');
             }
             if ($scope.IsfrmEmployeeProfile) {

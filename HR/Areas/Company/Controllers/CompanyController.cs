@@ -94,7 +94,7 @@ namespace HR.Areas.Company.Controllers
                     company.RegNo = companyViewModel.RegNo;
                     company.Address = companyViewModel.Address.AddressID == 0 ? new Address() : company.Address;
                     company.Address = GetAddress(companyViewModel.Address, company.Address, true);
-
+                    company.InCorporationDate = DateTimeConverter.SingaporeDateTimeConversion(companyViewModel.InCorporationDate);
                     CompanyService.SaveCompanyDetails(company);
 
                     result = Json(new { success = true, message = "Saved Successfully.", JsonRequestBehavior.AllowGet });

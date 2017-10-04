@@ -107,13 +107,12 @@
                                                                        ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
                                                                        name="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
                                                                        ng-required="true"
-                                                                       ng-change="onChageText(EmployeeHeader.EmployeeWorkDetail.JoiningDate)"
                                                                        date-time-input="{{dateFormat}}">
                                                                 <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                                             </div>
                                                         </a>
                                                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                            <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
+                                                            <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate"  ng-change="CheckJoiningDate(EmployeeHeader.EmployeeWorkDetail.JoiningDate)"
                                                                             data-datetimepicker-config="{ dropdownSelector: '#JoiningDate', startView:'day', minView:'day' }" />
                                                         </ul>
                                                     </div>
@@ -162,13 +161,13 @@
                                                                        ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
                                                                        name="EmployeeHeader.EmployeePersonalInfo.DOB"
                                                                        ng-required="true"
-                                                                       ng-change="onChageText(EmployeeHeader.EmployeePersonalInfo.DOB)"
                                                                        date-time-input="{{dateFormat}}">
                                                                 <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                                             </div>
                                                         </a>
                                                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                                             <datetimepicker ng-model="EmployeeHeader.EmployeePersonalInfo.DOB"
+                                                                             ng-change="ageChecking(EmployeeHeader.EmployeePersonalInfo.DOB)"
                                                                             data-datetimepicker-config="{ dropdownSelector: '#DOB', startView:'day', minView:'day' }" />
                                                         </ul>
                                                     </div>
@@ -243,13 +242,12 @@
                                                                        ng-model="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
                                                                        name="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
                                                                        ng-required="true"
-                                                                       ng-change="onChageText(EmployeeHeader.EmployeeWorkDetail.ConfirmationDate)"
                                                                        date-time-input="{{dateFormat}}">
                                                                 <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                                             </div>
                                                         </a>
                                                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                            <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
+                                                            <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"  ng-change="CompareDates(EmployeeHeader.EmployeeWorkDetail.ConfirmationDate)"
                                                                             data-datetimepicker-config="{ dropdownSelector: '#ConfirmationDate', startView:'day', minView:'day' }" />
                                                         </ul>
                                                     </div>
