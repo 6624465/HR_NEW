@@ -129,7 +129,6 @@
         });
 
         $scope.SaveBranch = function (branchDetails) {
-            debugger;
             if ($scope.IsfrmBranchDetails) {
                 CompanyService.SaveBranch(branchDetails).then(function (res) {
                     if (res.data && res.data.success == true) {
