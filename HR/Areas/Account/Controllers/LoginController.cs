@@ -16,6 +16,7 @@ using HR.Models;
 
 namespace HR.Areas.Account.Controllers
 {
+
     public class LoginController : BaseController
     {
         #region Login
@@ -107,6 +108,7 @@ namespace HR.Areas.Account.Controllers
 
         #region Action Result
         // GET: Account/Login
+       
         public ActionResult Login()
         {
             return View();

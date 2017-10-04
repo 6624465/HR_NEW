@@ -30,6 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\HR.Data\bin\Debug\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="HR.Service">
       <HintPath>\\DESKTOP-LG80B96\Meena Share\Chaitanya\New folder\HR_NEW\HR.Service\bin\Debug\HR.Service.dll</HintPath>
     </Reference>
@@ -49,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Account\AccountService\LogInLogOutService.cs" />
     <Compile Include="Account\IAccountService\ILogInLogOutService.cs" />
+    <Compile Include="BaseService.cs" />
     <Compile Include="CompanyDetails\CompanyServiceDetails\CompanyService.cs" />
     <Compile Include="CompanyDetails\ICompany\ICompanyService.cs" />
     <Compile Include="EmployeeProfile\EmployeeProfileService\EmployeeProfileService.cs" />

@@ -40,25 +40,25 @@
                             <input type="password" class="form-control" placeholder="Password" ng-model="User.Password" ng-required="true">
                         </div>
                     </div>
-                    <div class="checkbox">
+                    @*<div class="checkbox">
                         <label>
                             <input type="checkbox" value="">
                             <i class="input-helper"></i>
                             Keep me signed in
                         </label>
-                    </div>
+                    </div>*@
                     <button type="submit" class="btn btn-login btn-success btn-float" ng-click="login()" ng-disabled="IsEnable"><i class="zmdi zmdi-arrow-forward"></i></button>
                 </div>
-                <div class="lcb-navigation">
+                @*<div class="lcb-navigation">
                     <a href="" data-ma-action="login-switch" data-ma-block="#l-register"><i class="zmdi zmdi-plus"></i> <span>Register</span></a>
                     <a href="" data-ma-action="login-switch" data-ma-block="#l-forget-password"><i>?</i> <span>Forgot Password</span></a>
-                </div>
+                </div>*@
             </div>
             <div ng-if="showLoading" style="position: absolute;width: 100%;left: 0px;top: 15%;">
                 <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="color:#fff;"></i>
                 <span class="sr-only">Loading...</span>
             </div>
-            <!-- Register -->
+            @*<!-- Register -->
             <div class="lc-block" id="l-register">
                 <div class="lcb-form">
                     <div class="input-group m-b-20">
@@ -102,7 +102,7 @@
                     <a data-ma-action="login-switch" data-ma-block="#l-login"><i class="zmdi zmdi-long-arrow-right"></i> <span>Sign in</span></a>
                     <a href="" data-ma-action="login-switch" data-ma-block="#l-register"><i class="zmdi zmdi-plus"></i> <span>Register</span></a>
                 </div>
-            </div>
+            </div>*@
         </div>
     </form>
 

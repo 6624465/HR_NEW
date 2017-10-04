@@ -53,7 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\SessionObject.cs" />
+    <Compile Include="BaseRepositories\EfUnitOfWork.cs" />
     <Compile Include="BaseRepositories\IRepository.cs" />
+    <Compile Include="BaseRepositories\IUnitOfWork.cs" />
     <Compile Include="BaseRepositories\Repository.cs" />
     <Compile Include="HRDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

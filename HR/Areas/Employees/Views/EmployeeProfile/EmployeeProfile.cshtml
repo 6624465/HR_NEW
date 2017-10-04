@@ -92,7 +92,7 @@
                                             <div class="col-xs-12 col-md-4">
                                                 <div class="form-group ">
                                                     <label>Employee Number</label>
-                                                    <input class="form-control " type="text" autocomplete="off" ng-model="EmployeeHeader.IDNumber" ng-disabled="true">
+                                                    <input class="form-control " type="text" ng-model="EmployeeHeader.IDNumber" ng-disabled="true" style="font-weight:bold">
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-md-4">
@@ -231,47 +231,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                      
                                         <div class="row">
-
                                             <div class="col-xs-12 col-md-4">
                                                 <div class="form-group ">
-                                                    <label>Confirmation Date</label>
-                                                    <div class="dropdown">
-                                                        <a class="dropdown-toggle" id="ConfirmationDate" role="button" data-toggle="dropdown">
-                                                            <div class="input-group">
-                                                                <input type="text" class="form-control input-sm datepicker valid"
-                                                                       ng-model="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
-                                                                       name="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
-                                                                       ng-required="true"
-                                                                       ng-change="onChageText(EmployeeHeader.EmployeeWorkDetail.ConfirmationDate)"
-                                                                       date-time-input="{{dateFormat}}">
-                                                                <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-                                                            </div>
-                                                        </a>
-                                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                            <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
-                                                                            data-datetimepicker-config="{ dropdownSelector: '#ConfirmationDate', startView:'day', minView:'day' }" />
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-md-4">
-                                                <div class="form-group ">
-                                                    <label>
-                                                        Nationality
-                                                    </label>
-                                                    <select name="Nationality" ng-options="s.CountryCode as s.CountryName for s in Countries"
-                                                            ng-model="EmployeeHeader.Nationality" class="form-control"
-                                                            ng-required="true" ng-change="onChangeText(EmployeeHeader.Nationality)">
-                                                        <option value="">--Select Nationality--</option>
-                                                    </select>
-                                                    <!--<input class="form-control valid" type="text" ng-model="EmployeeHeader.Nationality" ng-required="true" ng-change="onChangeText(EmployeeHeader.Nationality)">-->
-                                                </div>
-                                            </div>
-
-                                            <div class="col-xs-12 col-md-4">
-                                                <div class="form-group ">
-                                                    <label>MaritalStatus</label>
+                                                    <label>Marital Status</label>
                                                     <select name="MaritalStatus"
                                                             ng-options="s.LookUpID as s.LookUpCode for s in MaritalStatus"
                                                             ng-model="EmployeeHeader.EmployeePersonalInfo.MaritalStatus"
@@ -281,12 +245,10 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-md-4">
+                                            <div class="col-xs-12 col-md-4" ng-if="EmployeeHeader.EmployeePersonalInfo.MaritalStatus == 1067">
                                                 <div class="form-group">
                                                     <label>
-                                                        MarriageDate
+                                                        Marriage Date
                                                     </label>
                                                     <div class="dropdown">
                                                         <a class="dropdown-toggle" id="MarriageDate" role="button" data-toggle="dropdown">
@@ -306,7 +268,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-xs-12 col-md-4">
+                                            <div class="col-xs-12 col-md-4" ng-if="EmployeeHeader.EmployeePersonalInfo.MaritalStatus == 1067">
                                                 <div class="form-group ">
                                                     <label>
                                                         Spouse Name
@@ -331,6 +293,19 @@
                                                 <div class="form-group ">
                                                     <label>Emergency Contact Number</label>
                                                     <input type="text" class="form-control" ng-model="EmployeeHeader.EmployeePersonalInfo.EmergencyContactNumber" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="form-group ">
+                                                    <label>
+                                                        Nationality
+                                                    </label>
+                                                    <select name="Nationality" ng-options="s.CountryCode as s.CountryName for s in Countries"
+                                                            ng-model="EmployeeHeader.Nationality" class="form-control"
+                                                            ng-required="true" ng-change="onChangeText(EmployeeHeader.Nationality)">
+                                                        <option value="">--Select Nationality--</option>
+                                                    </select>
+                                                    <!--<input class="form-control valid" type="text" ng-model="EmployeeHeader.Nationality" ng-required="true" ng-change="onChangeText(EmployeeHeader.Nationality)">-->
                                                 </div>
                                             </div>
 
@@ -397,6 +372,28 @@
                                             </div>-->
                                         </div>
                                         <div class="row">
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="form-group ">
+                                                    <label>Confirmation Date</label>
+                                                    <div class="dropdown">
+                                                        <a class="dropdown-toggle" id="ConfirmationDate" role="button" data-toggle="dropdown">
+                                                            <div class="input-group">
+                                                                <input type="text" class="form-control input-sm datepicker valid"
+                                                                       ng-model="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
+                                                                       name="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
+                                                                       ng-required="true"
+                                                                       ng-change="onChageText(EmployeeHeader.EmployeeWorkDetail.ConfirmationDate)"
+                                                                       date-time-input="{{dateFormat}}">
+                                                                <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                            </div>
+                                                        </a>
+                                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                            <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.ConfirmationDate"
+                                                                            data-datetimepicker-config="{ dropdownSelector: '#ConfirmationDate', startView:'day', minView:'day' }" />
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-xs-12 col-md-4">
                                                 <div class="form-group ">
                                                     <label>

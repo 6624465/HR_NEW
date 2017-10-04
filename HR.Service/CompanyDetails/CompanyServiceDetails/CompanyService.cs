@@ -85,7 +85,7 @@ namespace HR.Service.CompanyDetails.CompanyServiceDetails
                 BranchRepository.Update(branch);
 
             if (autoCommit)
-                CompanyRepository.Commit();
+                BranchRepository.Commit();
         }
         #endregion
 

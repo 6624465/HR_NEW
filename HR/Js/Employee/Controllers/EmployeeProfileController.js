@@ -317,6 +317,12 @@
                     else {
                         $scope.EmployeeHeader.EmployeeWorkDetail.ConfirmationDate = undefined;
                     }
+                    if ($scope.EmployeeHeader.EmployeeWorkDetail.ResignationDate && $scope.EmployeeHeader.EmployeeWorkDetail.ResignationDate != null) {
+                        $scope.EmployeeHeader.EmployeeWorkDetail.ResignationDate = moment($scope.EmployeeHeader.EmployeeWorkDetail.ResignationDate);
+                    }
+                    else {
+                        $scope.EmployeeHeader.EmployeeWorkDetail.ResignationDate = undefined;
+                    }
                 }
             })
         }

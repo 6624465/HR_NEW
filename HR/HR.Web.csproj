@@ -150,7 +150,10 @@
   <ItemGroup>
     <Content Include="Areas\Account\Views\Securable\RolerRights.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeProfile.cshtml" />
+    <Content Include="Areas\Employees\Views\EmployeeProfile\Index.cshtml" />
     <Content Include="Areas\Employees\Views\web.config" />
+    <Content Include="Areas\PayRoll\Views\Salary\PayRoll.cshtml" />
+    <Content Include="Areas\PayRoll\Views\Salary\Salary.cshtml" />
     <Content Include="bower_components\bootstrap-colorpicker\.bower.json" />
     <Content Include="bower_components\bootstrap-colorpicker\bower.json" />
     <Content Include="bower_components\bootstrap-colorpicker\CONTRIBUTING.md" />
@@ -6829,6 +6832,7 @@
     <Content Include="Js\Master\MasterController\EmployeeDepartmentController.js" />
     <Content Include="Js\Master\MasterController\EmployeeTypeController.js" />
     <Content Include="Js\Master\MasterService\LookUp.js" />
+    <Content Include="Js\PayRoll\Controllers\SalaryController.js" />
     <Content Include="scripts\angular-animate.js" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />
@@ -7613,8 +7617,8 @@
     <Content Include="Areas\Account\Views\RoleRights\Roles.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeInfo.cshtml" />
     <Content Include="Areas\Account\Views\Login\Index.cshtml" />
-    <Content Include="Areas\Employees\Views\EmployeeProfile\Index.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\EmployeeDepartment.cshtml" />
+    <Content Include="Areas\PayRoll\Views\Salary\web.config" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7643,10 +7647,13 @@
     <Compile Include="Areas\Leave\Controllers\AppliedLeaveListController.cs" />
     <Compile Include="Areas\Leave\Controllers\EmployeeLeaveController.cs" />
     <Compile Include="Areas\Leave\Controllers\SetUpController.cs" />
+    <Compile Include="Areas\PayRoll\Controllers\SalaryController.cs" />
+    <Compile Include="Areas\PayRoll\PayRollAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Controllers\LookUpController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SessionExpireFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -7690,6 +7697,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="Js\Account\Views\" />
+    <Folder Include="Js\PayRoll\Services\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HR.Core\HR.Core.csproj">

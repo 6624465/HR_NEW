@@ -18,6 +18,8 @@ namespace HR.Service.EmployeeProfile.IEmployeeProfile
 
         IQueryable<T> GetEmployeeDocuments<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeDocument;
         void SaveEmployeeDocuments(EmployeeDocument employeeDocument, bool autoCommit = true);
+        //string GetNewEmployeeNumber(Int64 BranchID, string DocumentId, string UserName);
+
         #endregion
     }
 }

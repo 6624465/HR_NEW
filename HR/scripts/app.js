@@ -391,6 +391,38 @@ app.config(
                 }
             })
 
+            .state('Salary', {
+                url: '/Salary',
+                templateUrl: baseUrl + 'PayRoll/Salary/Salary',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [baseUrl + 'Js/PayRoll/Controllers/SalaryController.js',
+                                  
+                                ]
+                            }
+                        ]);
+                    }
+                }
+               
+            })
+            .state('PayRoll', {
+                url: '/PayRoll',
+                templateUrl: baseUrl + 'PayRoll/Salary/PayRoll',
+                //resolve: {
+                //    loadPlugin: function ($ocLazyLoad) {
+                //        return $ocLazyLoad.load([
+                //            {
+                //                name: 'ngHR',
+                //                files: [baseUrl + 'Js/Home/Controllers/ActivitySummaryCntrl.js']
+                //            }
+                //        ]);
+                //    }
+                //}
+            })
+
             .state('ActivitySummary', {
                 url: '/ActivitySummary',
                 templateUrl: baseUrl + 'Js/Home/Views/activitysummary.html',

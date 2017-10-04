@@ -27,21 +27,28 @@ namespace HR.Areas.Employees.Controllers
             JsonResult jsonResult = new JsonResult();
             try
             {
-                IQueryable<EmployeeViewModel> employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
+                List<EmployeeHeader> employeeHeader =  EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
+                List<EmployeeViewModel> employeeViewModelList = new List<EmployeeViewModel>();
+                foreach (var item in employeeHeader)
+                {
+                    EmployeeViewModel employeeViewModel = new EmployeeViewModel()
+                    {
+                        Id = item.Id,
+                        EmployeeName = item.FirstName,
+                        JoiningDate = item.EmployeeWorkDetail != null ? item.EmployeeWorkDetail.JoiningDate.Value : DateTime.Now,
+                        MobileNo = item.Address.MobileNo,
+                        Email = item.Address.Email,
+                        EmployeeId = item.IDNumber,
+                        CountryCode = item.Address.CountryCode,
+                        Designation = item.EmployeeWorkDetail != null ? item.EmployeeWorkDetail.DesignationId : 0,
+                        DesignationName = (LookUpCodeService.GetLookUpType(item.EmployeeWorkDetail.DesignationId)).LookUpDescription,
+                        EmployeeType = item.IDType
+                    };
+                    employeeViewModelList.Add(employeeViewModel);
+                }
 
-                                                           select new EmployeeViewModel
-                                                           {
-                                                               Id = employee.Id,
-                                                               EmployeeName = employee.FirstName,
-                                                               JoiningDate = employee.EmployeeWorkDetail != null ? employee.EmployeeWorkDetail.JoiningDate.Value : DateTime.Now,
-                                                               MobileNo = employee.Address.MobileNo,
-                                                               Email = employee.Address.Email,
-                                                               EmployeeId = employee.IDNumber,
-                                                               CountryCode = employee.Address.CountryCode,
-                                                               Designation = employee.EmployeeWorkDetail != null ?  employee.EmployeeWorkDetail.DesignationId:0 ,
-                                                             //  DesignationName = employee.EmployeeWorkDetail != null ? LookUpCodeService.GetLookUpType(Convert.ToInt32(employee.EmployeeWorkDetail.DesignationId)).LookUpCode : string.Empty,
-                                                               EmployeeType = employee.IDType
-                                                           }).ToList().AsQueryable();
+
+                var employees = employeeViewModelList.AsQueryable();
 
                 if (searchViewModel.FilterViewModel != null)
                 {
@@ -285,27 +292,30 @@ namespace HR.Areas.Employees.Controllers
             {
                 if (employeeTypeId > 0)
                 {
-                    EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().Where(x => x.IDType == employeeTypeId).OrderByDescending(o => o.Id).FirstOrDefault();
-                    if (employeeHeader != null)
+                    //string employeeNumber = GetNewEmployeeNumber(entities, entity.BranchID, k1DocKey);
                     {
-                        existingemployeeNumber = employeeHeader.IDNumber;
-                    }
+                        EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().Where(x => x.IDType == employeeTypeId).OrderByDescending(o => o.Id).FirstOrDefault();
+                        if (employeeHeader != null)
+                        {
+                            existingemployeeNumber = employeeHeader.IDNumber;
+                        }
 
-                    if (!string.IsNullOrWhiteSpace(existingemployeeNumber))
-                    {
-                        string existingNumber = existingemployeeNumber.Substring(1);
-                        char type = employeeTypeId == 2 ? 'P' : 'T';
-                        int number = Convert.ToInt32(existingNumber);
-                        newEmployeeNumber = type + (number + 1).ToString();
-                        result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
-                    }
-                    else
-                    {
-                        if (employeeTypeId == 2)
-                            newEmployeeNumber = "P1000";
-                        else if (employeeTypeId == 3)
-                            newEmployeeNumber = "T1000";
-                        result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
+                        if (!string.IsNullOrWhiteSpace(existingemployeeNumber))
+                        {
+                            string existingNumber = existingemployeeNumber.Substring(1);
+                            char type = employeeTypeId == 2 ? 'P' : 'T';
+                            int number = Convert.ToInt32(existingNumber);
+                            newEmployeeNumber = type + (number + 1).ToString();
+                            result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            if (employeeTypeId == 2)
+                                newEmployeeNumber = "P1000";
+                            else if (employeeTypeId == 3)
+                                newEmployeeNumber = "T1000";
+                            result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
+                        }
                     }
                 }
             }

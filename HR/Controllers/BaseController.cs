@@ -21,6 +21,7 @@ using HR.Service.Securables.ISecurableService;
 
 namespace HR.Controllers
 {
+    //[SessionExpireFilter]
     public class BaseController : Controller
     {
         #region Properties
