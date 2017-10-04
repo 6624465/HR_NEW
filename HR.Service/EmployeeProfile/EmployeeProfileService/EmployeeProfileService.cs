@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace HR.Service.EmployeeProfile.EmployeeProfileService
 {
-    public class EmployeeProfileService : BaseService, IEmployeeProfileService
+    public class EmployeeProfileService : IEmployeeProfileService
     {
         #region Properties
         [Inject]
