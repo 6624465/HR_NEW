@@ -18,7 +18,7 @@ namespace HR.ViewModels
         public DateTime? ModifiedOn { get; set; }
         public byte[] Logo { get; set; }
         public string RegNo { get; set; }
-
+        public DateTime InCorporationDate { get; set; }
         public AddressViewModel Address { get; set; }
         public List<BranchViewModel> Branches { get; set; }
     }

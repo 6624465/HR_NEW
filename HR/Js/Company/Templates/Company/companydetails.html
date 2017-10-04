@@ -53,6 +53,25 @@
                         <input id="RegistrationNo" class="form-control" type="text" ng-model="CompanyDetails.RegNo" ng-required="true" />
 
                     </div>
+                    <div class="col-xs-12 col-md-6 form-group">
+
+                        <label>InCorporation Date</label>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" id="InCorporationDate" role="button" data-toggle="dropdown">
+                                <div class="input-group">
+                                    <input type="text" class="form-control input-sm datepicker"
+                                           ng-model="CompanyDetails.InCorporationDate"
+                                           name="CompanyDetails.InCorporationDate"
+                                           date-time-input="{{dateFormat}}">
+                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker ng-model="CompanyDetails.InCorporationDate"
+                                                data-datetimepicker-config="{ dropdownSelector: '#InCorporationDate', startView:'day', minView:'day' }" />
+                            </ul>
+                        </div>
+                    </div>
                     <!--<div class="col-xs-12 col-md-6 form-group">
 
                         <label for="CustomsMailMailNo">Customs Mail Mail No.</label>

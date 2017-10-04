@@ -1,9 +1,10 @@
-﻿angular.module('ngHR').controller('CompanyListController', ['$scope', '$http', 'CompanyService', '$timeout', 'growl', '$filter', 'growlService','$state','LookUp',
-    function ($scope, $http, CompanyService, $timeout, growl, $filter, growlService, $state, LookUp) {
+﻿angular.module('ngHR').controller('CompanyListController', ['$scope', '$http', 'CompanyService', '$timeout', 'growl', '$filter', 'growlService','$state','LookUp','UtilityFunc',
+    function ($scope, $http, CompanyService, $timeout, growl, $filter, growlService, $state, LookUp, UtilityFunc) {
 
         $scope.isSelected = true;
         $scope.showLoading = false;
         $scope.iscompany = true;
+        $scope.dateFormat = UtilityFunc.DateFormat();
         $scope.init = function () {
             $scope.Companies = {},
             $scope.CompanyList = {},

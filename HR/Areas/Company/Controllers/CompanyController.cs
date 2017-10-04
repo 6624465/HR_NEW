@@ -37,6 +37,7 @@ namespace HR.Areas.Company.Controllers
                     companyViewModel.Logo = company.Logo;
                     companyViewModel.IsActive = company.IsActive;
                     companyViewModel.RegNo = company.RegNo;
+                    companyViewModel.InCorporationDate = company.InCorporationDate.HasValue ? company.InCorporationDate.Value : DateTime.Now ;
                     companyViewModel.Address = BindAddressViewModel(company.Address, country);
                     companyViewModel.Branches = new List<BranchViewModel>();
                     foreach (var branch in company.Branches)
@@ -94,7 +95,7 @@ namespace HR.Areas.Company.Controllers
                     company.RegNo = companyViewModel.RegNo;
                     company.Address = companyViewModel.Address.AddressID == 0 ? new Address() : company.Address;
                     company.Address = GetAddress(companyViewModel.Address, company.Address, true);
-
+                   company.InCorporationDate = DateTimeConverter.SingaporeDateTimeConversion(companyViewModel.InCorporationDate);
                     CompanyService.SaveCompanyDetails(company);
 
                     result = Json(new { success = true, message = "Saved Successfully.", JsonRequestBehavior.AllowGet });
