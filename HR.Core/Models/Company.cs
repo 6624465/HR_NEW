@@ -24,7 +24,7 @@ namespace HR.Core.Models
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime? ModifiedOn { get; set; }
-        public DateTime InCorporationDate { get; set; }
+        public System.DateTime? InCorporationDate { get; set; }
         public virtual Address Address { get; set; }
         [ScriptIgnore(ApplyToOverrides = true)]
         public virtual ICollection<Branch> Branches { get; set; }
