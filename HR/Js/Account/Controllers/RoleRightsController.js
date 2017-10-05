@@ -8,15 +8,53 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
         });
     };
     $scope.GetSecure();
-
+    $scope.role = {
+        IsActive: true,
+       
+    },
     $scope.roleChanged = function () {
         RoleService.GetSecurablebyId($scope.rr.role).then(function (d) {
             $scope.GetRolesList(d.data);
         });
     };
+    $scope.addEmployeeRoles = function () {
+        $('#addEmployeeRolesdialog').modal('show');
+        $scope.role= "";
+    };
+    $scope.SaveEmployeeRoles = function () {
+        debugger;
+        RoleService.SaveEmployeeRoles($scope.role).then(function (res) {
+            debugger;
+            if (res.data&& res.data.message == "Saved successfully.") {
+              
+            }
+            else
+            {
+                growlService.growl("Saved Successfully..", 'success');
+                $('#addEmployeeRolesdialog').modal('hide');
+                $scope.List();
+            }
+        });
+    }
+    $scope.onClickClose = function () {
+        $('#addEmployeeRolesdialog').modal('hide');
+    };
 
+    $scope.List = function () {
+        RoleService.GetRoles().then(function (response) {
+            $scope.roles = response.data.Roles;
+            $scope.onEditRoles();
+        });
+    }
 
-
+    $scope.List();
+    $scope.onEditRoles = function (employeeRoles) {
+        var RoleCode = employeeRoles.RoleCode;
+        $scope.role.RoleCode = RoleCode;
+        var RoleDescription = employeeRoles.RoleDescription;
+        $scope.role.RoleDescription = RoleDescription
+        $('#addEmployeeRolesdialog').modal('show');
+    };
     function GetPageArr(data, parentIndex) {
         var arr = new Array();
         if (typeof data != 'undefined') {

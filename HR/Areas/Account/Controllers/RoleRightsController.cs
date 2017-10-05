@@ -48,7 +48,7 @@ namespace HR.Areas.Account.Controllers
                     _role.RoleDescription = role.RoleDescription;
                     _role.IsActive = role.IsActive;
                     RoleRightService.Save(_role);
-                    result = Json(new { sucess = true, message = "Sent successfully" }, JsonRequestBehavior.AllowGet);
+                    result = Json(new { sucess = true, message = "Saved successfully" }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {

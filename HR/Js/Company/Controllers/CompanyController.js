@@ -47,6 +47,12 @@
                 $scope.isbranch = true;
                 $scope.detailsUrl = '/Js/Company/Templates/Company/companydetails.html';
                 $scope.CompanyDetails = $scope.Companies[sel.i];
+                if ($scope.CompanyDetails.InCorporationDate && $scope.CompanyDetails.InCorporationDate != null) {
+                    $scope.CompanyDetails.InCorporationDate = moment($scope.CompanyDetails.InCorporationDate);
+                }
+                else {
+                    $scope.CompanyDetails.InCorporationDate = undefined;
+                }
             }
             else if (sel.type == "branch") {
                 $scope.isbranch = false;

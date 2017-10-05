@@ -292,30 +292,31 @@ namespace HR.Areas.Employees.Controllers
             {
                 if (employeeTypeId > 0)
                 {
-                    //string employeeNumber = GetNewEmployeeNumber(entities, entity.BranchID, k1DocKey);
+                    string employeeNumber = EmployeeProfileService.GetNewEmployeeNumber(USER_OBJECT.BranchId, "Employee", USER_OBJECT.UserID);
                     {
-                        EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().Where(x => x.IDType == employeeTypeId).OrderByDescending(o => o.Id).FirstOrDefault();
-                        if (employeeHeader != null)
-                        {
-                            existingemployeeNumber = employeeHeader.IDNumber;
-                        }
+                        //    EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().Where(x => x.IDType == employeeTypeId).OrderByDescending(o => o.Id).FirstOrDefault();
+                        //    if (employeeHeader != null)
+                        //    {
+                        //        existingemployeeNumber = employeeHeader.IDNumber;
+                        //    }
 
-                        if (!string.IsNullOrWhiteSpace(existingemployeeNumber))
-                        {
-                            string existingNumber = existingemployeeNumber.Substring(1);
-                            char type = employeeTypeId == 2 ? 'P' : 'T';
-                            int number = Convert.ToInt32(existingNumber);
-                            newEmployeeNumber = type + (number + 1).ToString();
-                            result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
-                        }
-                        else
-                        {
-                            if (employeeTypeId == 2)
-                                newEmployeeNumber = "P1000";
-                            else if (employeeTypeId == 3)
-                                newEmployeeNumber = "T1000";
-                            result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
-                        }
+                        //    if (!string.IsNullOrWhiteSpace(existingemployeeNumber))
+                        //    {
+                        //        string existingNumber = existingemployeeNumber.Substring(1);
+                        //        char type = employeeTypeId == 2 ? 'P' : 'T';
+                        //        int number = Convert.ToInt32(existingNumber);
+                        //        newEmployeeNumber = type + (number + 1).ToString();
+                        //        result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
+                        //    }
+                        //    else
+                        //    {
+                        //        if (employeeTypeId == 2)
+                        //            newEmployeeNumber = "P1000";
+                        //        else if (employeeTypeId == 3)
+                        //            newEmployeeNumber = "T1000";
+                        //        result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
+                        //    }
+                        //}
                     }
                 }
             }

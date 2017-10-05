@@ -373,6 +373,7 @@ app.config(
                 url: '/Administration',
                 templateUrl: baseUrl + 'Home/AdministrationData',
             })
+
             .state('EmployeeProfileInfo', {
                 url: '/EmployeeProfileInfo',
                 templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeInfo',

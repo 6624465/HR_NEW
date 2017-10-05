@@ -67,19 +67,19 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
                 EmployeeDocumentRepository.Commit();
 
         }
-        //public string GetNewDocumentNo(Int64 BranchID, string DocumentId)
-        //{
-        //    using (HRDataContext entities = new HRDataContext())
-        //    {
-        //        entities.Database.Exists();
-           
-        //    return entities.Database.SqlQuery<string>("Exec [Utility].[usp_GenerateDocumentNumber2] @BranchID, @DocumentId, @TrxDate, @UserId",
-        //        new SqlParameter("BranchID", BranchID),
-        //        new SqlParameter("DocumentId", DocumentId),
-        //        new SqlParameter("TrxDate", DateTime.Now.Date),
-        //        new SqlParameter("UserId", "SYSTEM")).FirstOrDefault<string>();
-        //        }
-        //}
+        public string GetNewEmployeeNumber(int BranchID, string DocumentId, string UserName)
+        {
+            using (HRDataContext entities = new HRDataContext())
+            {
+                entities.Database.Exists();
+
+                return entities.Database.SqlQuery<string>("Exec [Utility].[usp_GenerateDocumentNumber] @BranchID, @DocumentId, @TrxDate, @UserId",
+                    new SqlParameter("BranchID", BranchID),
+                    new SqlParameter("DocumentId", DocumentId),
+                    new SqlParameter("TrxDate", DateTime.Now.Date),
+                    new SqlParameter("UserId", UserName)).FirstOrDefault<string>();
+            }
+        }
         //public string GetNewEmployeeNumber(Int64 BranchID, string DocumentId, string UserName)
         //{
         //    IDictionary<string, object> parameters = new Dictionary<string, object>();
