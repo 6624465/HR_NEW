@@ -103,8 +103,8 @@ app.config(
                  }
              })
 
-            .state('EmployeeDesgination', {
-                url: '/EmployeeDesgination',
+            .state('Employee', {
+                url: '/Employee',
                 templateUrl: baseUrl + 'Settings/LookUp/EmployeeDesignation',
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
@@ -113,6 +113,9 @@ app.config(
                                 name: 'ngHR',
                                 files: [
                                     baseUrl + 'Js/Master/MasterController/EmployeeDesignationController.js',
+                                    baseUrl + 'Js/Master/MasterController/EmployeeTypeController.js',
+                                    baseUrl + 'Js/Master/MasterController/EmployeeStatusController.js',
+                                    baseUrl + 'Js/Master/MasterController/EmployeeDepartmentController.js',
                                     baseUrl + 'Js/Master/MasterService/LookUp.js'
                                 ]
                             }
@@ -364,10 +367,10 @@ app.config(
                    templateUrl: baseUrl + 'Home/MasterList',
                })
 
-            .state('Employees', {
-                url: '/Employees',
-                templateUrl: baseUrl + 'Home/MasterData',
-            })
+            //.state('Employees', {
+            //    url: '/Employees',
+            //    templateUrl: baseUrl + 'Home/MasterData',
+            //})
 
             .state('Administration', {
                 url: '/Administration',
