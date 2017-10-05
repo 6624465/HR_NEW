@@ -29,8 +29,8 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
     };
 
     $scope.EmployeeSelected = function (obj) {
-        $scope.EmployeeLeaveForm.EmployeeId = obj.id;
-        $scope.EmployeeLeaveForm.EmployeeName = obj.EmployeeName;
+        $scope.EmployeeLeaveForm.EmployeeId = obj.Id;
+        $scope.EmployeeLeaveForm.EmployeeName = obj.FirstName;
     }
     $scope.difference = function () {
         var diffDate = (Math.round(Math.abs((new Date($scope.EmployeeLeaveForm.FromDate).getTime() -new Date($scope.EmployeeLeaveForm.ToDate).getTime()) / (24 * 60 * 60 * 1000))));

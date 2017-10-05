@@ -107,5 +107,10 @@ namespace HR.Areas.Leave.Controllers
         {
             return View();
         }
+
+        public ActionResult Leave()
+        {
+            return View();
+        }
     }
 }

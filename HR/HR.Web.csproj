@@ -7619,6 +7619,7 @@
     <Content Include="Areas\Account\Views\Login\Index.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\EmployeeDepartment.cshtml" />
     <Content Include="Areas\PayRoll\Views\Salary\web.config" />
+    <Content Include="Areas\Leave\Views\SetUp\Leave.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />

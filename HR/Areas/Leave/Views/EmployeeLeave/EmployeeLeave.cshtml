@@ -18,7 +18,7 @@
                                    class="form-control"
                                    ng-model="EmployeeLeaveForm.EmployeeName" name="EmployeeLeaveForm.EmployeeName"
                                    typeahead-min-length="3"
-                                   uib-typeahead="response.EmployeeName as response.EmployeeName for response in EmployeeList($viewValue,'EmployeeName')"
+                                   uib-typeahead="response.FirstName for response in EmployeeList($viewValue,'EmployeeName')"
                                    typeahead-wait-ms="100"
                                    typeahead-editable="false"
                                    typeahead-on-select="EmployeeSelected($item)"

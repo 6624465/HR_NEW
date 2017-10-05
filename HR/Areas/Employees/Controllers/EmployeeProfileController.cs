@@ -27,7 +27,7 @@ namespace HR.Areas.Employees.Controllers
             JsonResult jsonResult = new JsonResult();
             try
             {
-                List<EmployeeHeader> employeeHeader =  EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
+                List<EmployeeHeader> employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
                 List<EmployeeViewModel> employeeViewModelList = new List<EmployeeViewModel>();
                 foreach (var item in employeeHeader)
                 {
@@ -283,42 +283,13 @@ namespace HR.Areas.Employees.Controllers
         #endregion
 
         #region EmployeeNumber
-        public JsonResult GetEmployeeNumber(int employeeTypeId)
+        public JsonResult GetEmployeeNumber()
         {
             JsonResult result = new JsonResult();
-            string newEmployeeNumber = string.Empty;
-            string existingemployeeNumber = string.Empty;
             try
             {
-                if (employeeTypeId > 0)
-                {
                     string employeeNumber = EmployeeProfileService.GetNewEmployeeNumber(USER_OBJECT.BranchId, "Employee", USER_OBJECT.UserID);
-                    {
-                        //    EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().Where(x => x.IDType == employeeTypeId).OrderByDescending(o => o.Id).FirstOrDefault();
-                        //    if (employeeHeader != null)
-                        //    {
-                        //        existingemployeeNumber = employeeHeader.IDNumber;
-                        //    }
-
-                        //    if (!string.IsNullOrWhiteSpace(existingemployeeNumber))
-                        //    {
-                        //        string existingNumber = existingemployeeNumber.Substring(1);
-                        //        char type = employeeTypeId == 2 ? 'P' : 'T';
-                        //        int number = Convert.ToInt32(existingNumber);
-                        //        newEmployeeNumber = type + (number + 1).ToString();
-                        //        result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
-                        //    }
-                        //    else
-                        //    {
-                        //        if (employeeTypeId == 2)
-                        //            newEmployeeNumber = "P1000";
-                        //        else if (employeeTypeId == 3)
-                        //            newEmployeeNumber = "T1000";
-                        //        result = Json(newEmployeeNumber, JsonRequestBehavior.AllowGet);
-                        //    }
-                        //}
-                    }
-                }
+                    result = Json(employeeNumber, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
