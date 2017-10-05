@@ -22,37 +22,19 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
         $scope.role= "";
     };
     $scope.SaveEmployeeRoles = function () {
-        debugger;
         RoleService.SaveEmployeeRoles($scope.role).then(function (res) {
-            debugger;
-            if (res.data&& res.data.message == "Saved successfully.") {
-              
-            }
-            else
-            {
+            if (res.data && res.data.message == "Saved successfully") {
                 growlService.growl("Saved Successfully..", 'success');
                 $('#addEmployeeRolesdialog').modal('hide');
-                $scope.List();
+                $scope.GetRole();
             }
         });
     }
     $scope.onClickClose = function () {
         $('#addEmployeeRolesdialog').modal('hide');
     };
-
-    $scope.List = function () {
-        RoleService.GetRoles().then(function (response) {
-            $scope.roles = response.data.Roles;
-            $scope.onEditRoles();
-        });
-    }
-
-    $scope.List();
-    $scope.onEditRoles = function (employeeRoles) {
-        var RoleCode = employeeRoles.RoleCode;
-        $scope.role.RoleCode = RoleCode;
-        var RoleDescription = employeeRoles.RoleDescription;
-        $scope.role.RoleDescription = RoleDescription
+    $scope.onEditRoles = function (employeeRole) {
+        $scope.role = employeeRole;
         $('#addEmployeeRolesdialog').modal('show');
     };
     function GetPageArr(data, parentIndex) {

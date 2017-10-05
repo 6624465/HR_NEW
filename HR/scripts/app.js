@@ -68,23 +68,23 @@ app.config(
                     }
                 }
             })
-            .state('RoleRights', {
-                url: '/RoleRights',
-                templateUrl: baseUrl + 'Account/RoleRights/Roles',
-                resolve: {
-                    loadPlugin: function ($ocLazyLoad) {
-                        return $ocLazyLoad.load([
-                            {
-                                name: 'ngHR',
-                                files: [
-                                       baseUrl + 'Js/Account/Controllers/RolesController.js',
-                                       baseUrl + 'Js/Account/Services/RoleService.js'
-                                ]
-                            }
-                        ]);
-                    }
-                }
-            })
+            //.state('RoleRights', {
+            //    url: '/RoleRights',
+            //    templateUrl: baseUrl + 'Account/RoleRights/Roles',
+            //    resolve: {
+            //        loadPlugin: function ($ocLazyLoad) {
+            //            return $ocLazyLoad.load([
+            //                {
+            //                    name: 'ngHR',
+            //                    files: [
+            //                           baseUrl + 'Js/Account/Controllers/RolesController.js',
+            //                           baseUrl + 'Js/Account/Services/RoleService.js'
+            //                    ]
+            //                }
+            //            ]);
+            //        }
+            //    }
+            //})
              .state('Roles', {
                  url: '/Roles',
                  templateUrl: baseUrl + 'Account/Securable/RolerRights',

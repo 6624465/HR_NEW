@@ -23,8 +23,6 @@ namespace HR.Areas.Account.Controllers
             result = Json(new { sucess = true, Roles = Roles }, JsonRequestBehavior.AllowGet);
             return result;
         }
-
-
         public JsonResult SaveEmployeeRoles(Role role)
         {
             JsonResult result = new JsonResult();
@@ -33,14 +31,16 @@ namespace HR.Areas.Account.Controllers
             {
                 try
                 {
-                    Role _role = new Role();
+                    Role _role = null;
                     if (role.Id > 0)
                     {
+                        _role = RoleRightService.GetRole<Role>(r => r.Id == role.Id).FirstOrDefault();
                         _role.ModifiedBy = USER_OBJECT.UserName;
                         _role.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                     }
                     else
                     {
+                        _role = new Role();
                         _role.CreatedBy = USER_OBJECT.UserName;
                         _role.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                     }
