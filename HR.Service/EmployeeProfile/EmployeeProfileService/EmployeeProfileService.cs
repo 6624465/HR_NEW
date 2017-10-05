@@ -32,7 +32,7 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
 
         }
 
-        public void SaveEmployeeProfile(EmployeeHeader employeeHeader, bool autoCommit =true)
+        public void SaveEmployeeProfile(EmployeeHeader employeeHeader, bool autoCommit = true)
         {
             if (employeeHeader.Id == 0)
                 EmployeeRepository.Insert(employeeHeader);
@@ -67,30 +67,14 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
                 EmployeeDocumentRepository.Commit();
 
         }
-        //public string GetNewDocumentNo(Int64 BranchID, string DocumentId)
-        //{
-        //    using (HRDataContext entities = new HRDataContext())
-        //    {
-        //        entities.Database.Exists();
-           
-        //    return entities.Database.SqlQuery<string>("Exec [Utility].[usp_GenerateDocumentNumber2] @BranchID, @DocumentId, @TrxDate, @UserId",
-        //        new SqlParameter("BranchID", BranchID),
-        //        new SqlParameter("DocumentId", DocumentId),
-        //        new SqlParameter("TrxDate", DateTime.Now.Date),
-        //        new SqlParameter("UserId", "SYSTEM")).FirstOrDefault<string>();
-        //        }
-        //}
-        //public string GetNewEmployeeNumber(Int64 BranchID, string DocumentId, string UserName)
-        //{
-        //    IDictionary<string, object> parameters = new Dictionary<string, object>();
-        //    parameters.Add(new KeyValuePair<string, object>("BranchID", BranchID));
-        //    parameters.Add(new KeyValuePair<string, object>("DocumentId", DocumentId));
-        //    parameters.Add(new KeyValuePair<string, object>("TrxDate", DateTime.Now.Date));
-        //    parameters.Add(new KeyValuePair<string, object>("UserId", DateTime.Now.Date));
-        //    var result =  UnitOfWork.ExecuteStoreQuery<int>("[Utility].[usp_GenerateDocumentNumber] @BranchID, @DocumentId, @TrxDate, @UserId", parameters);
-        //    return result.Single();
-        //}
-
-
+        public string GetNewEmployeeNumber(int BranchID, string DocumentId, string UserName)
+        {
+            HRDataContext entities = new HRDataContext();
+                return entities.Database.SqlQuery<string>("Exec [Utility].[usp_GenerateDocumentNumber] @BranchID, @DocumentId, @TrxDate, @UserId",
+                    new SqlParameter("BranchID", BranchID),
+                    new SqlParameter("DocumentId", DocumentId),
+                    new SqlParameter("TrxDate", DateTime.Now.Date),
+                    new SqlParameter("UserId", UserName)).FirstOrDefault<string>();
+        }
     }
 }

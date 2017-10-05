@@ -373,6 +373,11 @@ app.config(
                 url: '/Administration',
                 templateUrl: baseUrl + 'Home/AdministrationData',
             })
+             .state('Leave', {
+                 url: '/Leave',
+                 templateUrl: baseUrl + 'Leave/SetUp/Leave',
+             })
+
             .state('EmployeeProfileInfo', {
                 url: '/EmployeeProfileInfo',
                 templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeInfo',

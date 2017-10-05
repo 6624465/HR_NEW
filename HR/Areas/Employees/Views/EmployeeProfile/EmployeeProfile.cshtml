@@ -83,7 +83,7 @@
                                                     <select name="EmployeeTypeList"
                                                             ng-options="s.LookUpID as s.LookUpCode for s in EmployeeTypeList"
                                                             ng-model="EmployeeHeader.IDType"
-                                                            ng-change="onChangeEmployeeType(EmployeeHeader.IDType)"
+                                                            ng-change="onChangeEmployeeType()"
                                                             class="form-control valid" ng-required="true">
                                                         <option value="">--Select EmployeeType--</option>
                                                     </select>

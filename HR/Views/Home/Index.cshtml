@@ -4,75 +4,89 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="bs-example list-items">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row">
-                    <div class="col-md-3">
+<div class="bs-example">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="row">
+                <div class="col-md-3" has-Right data-rightValue="MasterData.MasterData">
 
-                        <div class="main-section grey ">
-                            <a ui-sref="Master" has-Right data-rightValue="MasterData.MasterData">
+                    <div class="main-section grey ">
+                        <a ui-sref="Master">
 
-                                <div class="menu_section  grey">
+                            <div class="menu_section  grey">
 
-                                    <span><i class="fa fa-database fa-5x" aria-hidden="true"></i></span>
+                                <span><i class="fa fa-database fa-5x" aria-hidden="true"></i></span>
 
-                                </div>
-                                <div class="content-section grey-btm">
-                                    <b> Masters Data</b>
-                                    <p>View the Masters list</p>
-                                    <div class="btn btn-lg btn-danger" ></div>
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                            <div class="content-section grey-btm">
+                                <b> Masters Data</b>
+                                <p>View the Masters list</p>
+                                <div class="btn btn-lg btn-danger"></div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-md-3">
-                        <div class="main-section blue">
-                            <a ui-sref="EmployeeProfile">
-                                <div class="menu_section blue">
-                                    <span> <i class="fa fa-users  fa-5x" aria-hidden="true"></i></span>
-                                </div>
-                                <div class="content-section blue-btm">
-                                    <b> Employees</b>
-                                    <p>View the Employees list</p>
-                                    <div class="btn btn-lg btn-danger"></div>
-                                </div>
-                            </a>
-                        </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="main-section blue">
+                        <a ui-sref="EmployeeProfile">
+                            <div class="menu_section blue">
+                                <span> <i class="fa fa-users  fa-5x" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="content-section blue-btm">
+                                <b> Employees</b>
+                                <p>View the Employees list</p>
+                                <div class="btn btn-lg btn-danger"></div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-md-3">
-                        <div class="main-section green">
-                            <a ui-sref="Administration" has-Right data-rightValue="Administration.Administration">
-                                <div class="menu_section green">
+                </div>
+                <div class="col-md-3" has-Right data-rightValue="Administration.Administration">
+                    <div class="main-section green">
+                        <a ui-sref="Administration">
+                            <div class="menu_section green">
 
-                                    <span> <i class="fa fa-laptop fa-5x" aria-hidden="true"></i>  </span>
+                                <span> <i class="fa fa-laptop fa-5x" aria-hidden="true"></i>  </span>
 
-                                </div>
-                                <div class="content-section green-btm">
-                                    <b> Administration</b>
-                                    <p>View the Administration list </p>
-                                    <div class="btn btn-lg btn-danger"></div>
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                            <div class="content-section green-btm">
+                                <b> Administration</b>
+                                <p>View the Administration list </p>
+                                <div class="btn btn-lg btn-danger"></div>
+                            </div>
+                        </a>
                     </div>
-                    <div class="col-md-3">
-                        <div class="main-section org">
-                            <a ui-sref="PayRoll">
-                                <div class="menu_section org">
+                </div>
+                <div class="col-md-3">
+                    <div class="main-section org">
+                        <a ui-sref="PayRoll">
+                            <div class="menu_section org">
 
-                                    <span> <i class="fa fa-laptop fa-5x" aria-hidden="true"></i>  </span>
+                                <span> <i class="fa fa-laptop fa-5x" aria-hidden="true"></i>  </span>
 
-                                </div>
-                                <div class="content-section org-btm">
-                                    <b> PayRoll</b>
-                                    <p>View the PayRoll list </p>
-                                    <div class="btn btn-lg btn-danger"></div>
-                                </div>
-                            </a>
-                        </div>
+                            </div>
+                            <div class="content-section org-btm">
+                                <b> PayRoll</b>
+                                <p>View the PayRoll list </p>
+                                <div class="btn btn-lg btn-danger"></div>
+                            </div>
+                        </a>
                     </div>
-                    @*<div class="col-md-3">
+                </div>
+                <div class="col-md-3">
+                    <div class="main-section dgreen">
+                        <a ui-sref="Leave">
+                            <div class="menu_section dgreen">
+                                <span> <i class="fa fa-laptop fa-5x" aria-hidden="true"></i>  </span>
+                            </div>
+                            <div class="content-section dgreen-btm">
+                                <b> Leave</b>
+                                <p>View the Leave list </p>
+                                <div class="btn btn-lg btn-danger"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                @*<div class="col-md-3">
                         <div class="main-section org">
                             <a href="/Home/Reports">
                                 <div class="menu_section org">
@@ -89,10 +103,10 @@
                             </a>
                         </div>
                     </div>*@
-                </div>
             </div>
         </div>
     </div>
+</div>
 
 
 
