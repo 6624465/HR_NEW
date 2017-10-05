@@ -30,7 +30,7 @@
 
     .tree-view-wrapper {
         min-height: 300px;
-        margin-top:20px;
+        margin-top: 20px;
     }
 
     .treecheck {
@@ -42,7 +42,12 @@
         <div class="col-md-5">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">RoleRights</h3>
+                    <h3 class="box-title">Roles</h3>
+                    <div class="pull-right">
+                        <button type="button" class="btn btn-primary" ng-click="addEmployeeRoles(table)">
+                            <i class="zmdi zmdi-plus"></i>&nbsp; ADD New Role
+                        </button>
+                    </div>
                 </div>
 
                 <div class="box-body">
@@ -59,23 +64,29 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-md-4">
-                                <div>
-                                    <button type="button" class="btn btn-primary" style="margin-top:28px;" ng-click="addEmployeeRoles(table)">
-                                        <i class="zmdi zmdi-plus"></i>&nbsp; ADD New Role
-                                    </button>
-                                </div>
-                            </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-md-6">
-                                <tree-view checkbox model="nodes" selected-node="SelectedNodeClick()"></tree-view>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12  m-t-15 m-b-10">
-                                <button type="submit" ng-click="submitted = true" class="btn btn-primary pull-left"><i class="fa fa-floppy-o"></i>&nbsp;Save</button>
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>#Action</th>
+                                            <th>Role Code</th>
+                                            <th>Role Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="employeeRoles in roles">
+                                            <td>
+                                                <button type="button" ng-click="onEditRoles(employeeRoles)" class="btn btn-default ng-scope waves-effect" aria-label="button">
+                                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                                </button>
+                                            </td>
+                                            <td>{{employeeRoles.RoleCode}}</td>
+                                            <td>{{employeeRoles.RoleDescription}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </form>
@@ -85,31 +96,18 @@
         <div class="col-md-7">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Roles</h3>
+                    <h3 class="box-title">Rights</h3>
                 </div>
 
-                <div class="box-body">
-                    <div class="table-responsive">
-                        <table class="table table-condensed">
-                            <thead>
-                                <tr>
-                                    <th>#Action</th>
-                                    <th>Role Code</th>
-                                    <th>Role Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="employeeRoles in roles">
-                                    <td>
-                                        <button type="button" ng-click="onEditRoles(employeeRoles)" class="btn btn-default ng-scope waves-effect" aria-label="button">
-                                            <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                                        </button>
-                                    </td>
-                                    <td>{{employeeRoles.RoleCode}}</td>
-                                    <td>{{employeeRoles.RoleDescription}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <tree-view checkbox model="nodes" selected-node="SelectedNodeClick()"></tree-view>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-12  m-t-15 m-b-10">
+                        <button type="submit" ng-click="submitted = true" class="btn btn-primary pull-left"><i class="fa fa-floppy-o"></i>&nbsp;Save Rights</button>
                     </div>
                 </div>
             </div>
