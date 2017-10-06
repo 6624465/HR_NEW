@@ -8,6 +8,10 @@
             $scope.AddressNextButton = false;
             $scope.BasicNextButton = false;
             $scope.PositionNextButton = false;
+            $scope.EducationDocuments = [];
+            $scope.ExperienceLetters = [];
+            $scope.ProjectDocuments = [];
+            $scope.OtherDocuments = [];
             $scope.EmployeeHeader = {
                 BranchId: UtilityFunc.BranchId(),
                 Address: {},
@@ -20,6 +24,7 @@
                     Designation: null,
                     Department: null
                 },
+
                 //EmployeeDocument: [
                 //]
 
@@ -314,7 +319,22 @@
                     else {
                         var DocumentType = { 'DocumentType': documentType };
                         angular.extend(e.files[i], DocumentType);
+
                         $scope.files.push(e.files[i]);
+                        if (documentType == 'UIDCard') {
+                            $scope.UIDCard = e.files[i];
+                        }
+                        if (documentType == 'EducationDocuments')
+                            $scope.EducationDocuments.push(e.files[i]);
+
+                        if (documentType == 'ExperienceLetters')
+                            $scope.ExperienceLetters.push(e.files[i]);
+
+                        if (documentType == 'ProjectDocuments')
+                            $scope.ExperienceLetters.push(e.files[i]);
+
+                        if (documentType == 'OtherDocuments')
+                            $scope.OtherDocuments.push(e.files[i]);
                         //$scope.EmployeeHeader.EmployeeDocument.push(e.files[i]);
                     }
                 }

@@ -1,6 +1,6 @@
-﻿angular.module('ngHR').controller('EmployeeLeaveFormController', ['$scope', '$http','UtilityFunc', 'growlService','limitToFilter','EmployeeLeave','LookUp',
-function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave,LookUp) {
-   
+﻿angular.module('ngHR').controller('EmployeeLeaveFormController', ['$scope', '$http', 'UtilityFunc', 'growlService', 'limitToFilter', 'EmployeeLeave', 'LookUp',
+function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave, LookUp) {
+
     $scope.init = function () {
         $scope.dateFormat = UtilityFunc.DateFormat();
         $scope.EmployeeLeaveForm = {
@@ -11,7 +11,7 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         $scope.LeaveType = {}
         $scope.maxdate = moment();
         datepickerOptions: {
-            minDate: moment();
+                minDate: moment();
         }
     };
 
@@ -21,7 +21,7 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         }
     }, function () {
     })
-  
+
     $scope.EmployeeList = function (text) {
         return EmployeeLeave.GetEmployees(text).then(function (response) {
             return limitToFilter(response.data.employies, 15);
@@ -33,9 +33,18 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         $scope.EmployeeLeaveForm.EmployeeName = obj.FirstName;
     }
     $scope.difference = function () {
-        var diffDate = (Math.round(Math.abs((new Date($scope.EmployeeLeaveForm.FromDate).getTime() -new Date($scope.EmployeeLeaveForm.ToDate).getTime()) / (24 * 60 * 60 * 1000))));
-            $scope.EmployeeLeaveForm.Days = diffDate +1;
-    } 
+        //var diffDate = (Math.round(Math.abs((new Date($scope.EmployeeLeaveForm.FromDate).getTime() -new Date($scope.EmployeeLeaveForm.ToDate).getTime()) / (24  60  60 * 1000))));
+        //    $scope.EmployeeLeaveForm.Days = diffDate +1;
+        var date1 = new Date($scope.EmployeeLeaveForm.FromDate).getDate();
+        var date2 = new Date($scope.EmployeeLeaveForm.ToDate).getDate();
+        $scope.dayDifference = date2 - date1;
+        if (date1 != date2) {
+            $scope.EmployeeLeaveForm.Days = $scope.dayDifference + 1;
+        }
+        else {
+            $scope.EmployeeLeaveForm.Days = 1;
+        }
+    }
     /*Save Section*/
     $scope.IsfrmEmployeeLeaveForm = false;
     $scope.$watch('frmEmployeeLeaveForm.$valid', function (Valid) {
@@ -43,7 +52,7 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
     });
     $scope.onSaveEmployeeLeave = function (employeeLeaveForm) {
         //if (employeeLeaveForm.FromDate != null && employeeLeaveForm.ToDate != "" && employeeLeaveForm.EmployeeName != null && employeeLeaveForm.EmployeeName != "") {
-        if($scope.IsfrmEmployeeLeaveForm){
+        if ($scope.IsfrmEmployeeLeaveForm) {
             employeeLeaveForm.Status = "Applied";
             EmployeeLeave.SaveEmployeeLeave(employeeLeaveForm).then(function (response) {
                 if (response.data && response.data.sucess == true) {
@@ -57,7 +66,7 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
             })
         }
         else {
-            growlService.growl("Please Enter All Mandatory Fields",'danger')
+            growlService.growl("Please Enter All Mandatory Fields", 'danger')
         }
     }
     /*save Section*/
