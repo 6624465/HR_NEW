@@ -125,7 +125,7 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     EmployeeHeader _employeeHeader = new EmployeeHeader();
-                    _employeeHeader = PrepareEmployeeHeader(employeeHeader);
+                    _employeeHeader = PrepareEmployeeHeader(employeeHeader, hfc);
 
                     EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
 
@@ -341,8 +341,8 @@ namespace HR.Areas.Employees.Controllers
             employeeHeader.User = employeeHeader.User == null ? new User() : employeeHeader.User;
             _employeeHeader.User = PrepareUserDetails(employeeHeader.User, _employeeHeader);
 
-            //List<EmployeeDocument> employeeDocument = employeeHeader.EmployeeDocument;
-            //PrepareEmployeeDocuments(hfc, _employeeHeader, employeeDocument);
+            List<EmployeeDocument> employeeDocument = employeeHeader.EmployeeDocument != null ? employeeHeader.EmployeeDocument : new List<EmployeeDocument>();
+            PrepareEmployeeDocuments(hfc, _employeeHeader, employeeDocument);
             return _employeeHeader;
         }
 
@@ -369,9 +369,9 @@ namespace HR.Areas.Employees.Controllers
                     employeeDocument.BranchId = USER_OBJECT.BranchId;
                     //employeeDocument.DocumentType = hfc[i].ContentLength
                     employeeDocuments.Add(employeeDocument);
-
+                    
                 }
-
+                employeeHeader.EmployeeDocument = employeeDocuments;
             }
         }
         private EmployeePersonalInfo PrepareEmployeePersonalInfo(EmployeePersonalInfo employeePersonalInfo, EmployeeHeader employeeHeader)
