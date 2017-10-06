@@ -118,6 +118,8 @@ namespace HR.Areas.Employees.Controllers
         public JsonResult SaveEmlployee()
         {
             EmployeeHeader employeeHeader = JsonConvert.DeserializeObject<EmployeeHeader>(System.Web.HttpContext.Current.Request["EmployeeDetails"]);
+            List<EmployeeDocumentViewModel> employeeDocumentViewModel = JsonConvert.DeserializeObject<List<EmployeeDocumentViewModel>>(System.Web.HttpContext.Current.Request["EmployeeDocument"]);
+
             HttpFileCollection hfc = System.Web.HttpContext.Current.Request.Files;
             JsonResult result = new JsonResult();
             if (employeeHeader != null)
@@ -125,7 +127,7 @@ namespace HR.Areas.Employees.Controllers
                 try
                 {
                     EmployeeHeader _employeeHeader = new EmployeeHeader();
-                    _employeeHeader = PrepareEmployeeHeader(employeeHeader, hfc);
+                    _employeeHeader = PrepareEmployeeHeader(employeeHeader, hfc, employeeDocumentViewModel);
 
                     EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
 
@@ -288,8 +290,8 @@ namespace HR.Areas.Employees.Controllers
             JsonResult result = new JsonResult();
             try
             {
-                    string employeeNumber = EmployeeProfileService.GetNewEmployeeNumber(USER_OBJECT.BranchId, "Employee", USER_OBJECT.UserID);
-                    result = Json(employeeNumber, JsonRequestBehavior.AllowGet);
+                string employeeNumber = EmployeeProfileService.GetNewEmployeeNumber(USER_OBJECT.BranchId, "Employee", USER_OBJECT.UserID);
+                result = Json(employeeNumber, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
@@ -305,7 +307,7 @@ namespace HR.Areas.Employees.Controllers
         #endregion
 
         #region Private Accessors
-        private EmployeeHeader PrepareEmployeeHeader(EmployeeHeader employeeHeader, HttpFileCollection hfc = null)
+        private EmployeeHeader PrepareEmployeeHeader(EmployeeHeader employeeHeader, HttpFileCollection hfc = null, List<EmployeeDocumentViewModel> employeeDocumentViewModel = null)
         {
             EmployeeHeader _employeeHeader = null;
             if (employeeHeader.Id > 0)
@@ -342,36 +344,46 @@ namespace HR.Areas.Employees.Controllers
             _employeeHeader.User = PrepareUserDetails(employeeHeader.User, _employeeHeader);
 
             List<EmployeeDocument> employeeDocument = employeeHeader.EmployeeDocument != null ? employeeHeader.EmployeeDocument : new List<EmployeeDocument>();
-            PrepareEmployeeDocuments(hfc, _employeeHeader, employeeDocument);
+            PrepareEmployeeDocuments(hfc, _employeeHeader, employeeDocument, employeeDocumentViewModel);
             return _employeeHeader;
         }
 
-        private void PrepareEmployeeDocuments(HttpFileCollection hfc, EmployeeHeader employeeHeader, List<EmployeeDocument> employeeDocuments)
+        private void PrepareEmployeeDocuments(HttpFileCollection hfc, EmployeeHeader employeeHeader, List<EmployeeDocument> employeeDocuments, List<EmployeeDocumentViewModel> employeeDocumentViewModel)
         {
             for (var i = 0; i < hfc.Count; i++)
             {
-                if (employeeDocuments != null && employeeDocuments.Any())
+                foreach (var item in employeeDocumentViewModel)
                 {
-                    EmployeeDocument employeeDocument = new EmployeeDocument();
+                    if (item.Name == hfc[i].FileName)
+                    {
+                       
+                        EmployeeDocument employeeDocument = new EmployeeDocument();
+                        LookUp lookUp =  LookUpCodeService.GetLookUp<LookUp>(l => l.LookUpCode == item.DocumentType).FirstOrDefault();
+                        bool employeeHeaders = employeeHeader.EmployeeDocument != null ? employeeHeader.EmployeeDocument.Any(e => e.DocumentType == lookUp.LookUpID && e.FileName == item.Name): false;
+                        if (!employeeHeaders)
+                        {
+                            //if (employeeDocument.Id > 0)
+                            //{
+                            //    employeeDocument = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(e=>e.Id == employeeDocument.Id).FirstOrDefault()
+                            //    employeeDocument.ModifiedBy = USER_OBJECT.UserID;
+                            //    employeeDocument.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                            //}
+                            //else
+                            //{
+                            employeeDocument.CreatedBy = USER_OBJECT.UserID;
+                            employeeDocument.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                            //}
+                            employeeDocument.FileName = hfc[i].FileName;
+                            employeeDocument.BranchId = USER_OBJECT.BranchId;
+                            employeeDocument.DocumentType = lookUp.LookUpID;
+                            employeeDocuments.Add(employeeDocument);
 
-                    //if (employeeDocument.Id > 0)
-                    //{
-                    //    employeeDocument = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(e=>e.Id == employeeDocument.Id).FirstOrDefault()
-                    //    employeeDocument.ModifiedBy = USER_OBJECT.UserID;
-                    //    employeeDocument.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
-                    //}
-                    //else
-                    //{
-                    employeeDocument.CreatedBy = USER_OBJECT.UserID;
-                    employeeDocument.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
-                    //}
-                    employeeDocument.FileName = hfc[i].FileName;
-                    employeeDocument.BranchId = USER_OBJECT.BranchId;
-                    //employeeDocument.DocumentType = hfc[i].ContentLength
-                    employeeDocuments.Add(employeeDocument);
-                    
+                            employeeHeader.EmployeeDocument = employeeDocuments;
+                        }
+                    }
                 }
-                employeeHeader.EmployeeDocument = employeeDocuments;
+
+               
             }
         }
         private EmployeePersonalInfo PrepareEmployeePersonalInfo(EmployeePersonalInfo employeePersonalInfo, EmployeeHeader employeeHeader)
@@ -459,7 +471,7 @@ namespace HR.Areas.Employees.Controllers
             _employeeWorkDetail.ProbationPeriod = employeeWorkDetail.ProbationPeriod;
             _employeeWorkDetail.NoticePeriod = employeeWorkDetail.NoticePeriod;
             _employeeWorkDetail.DesignationId = employeeWorkDetail.DesignationId;
-            _employeeWorkDetail.DepartmentId = employeeWorkDetail.DepartmentId;          
+            _employeeWorkDetail.DepartmentId = employeeWorkDetail.DepartmentId;
             _employeeWorkDetail.ResignationDate = employeeWorkDetail.ResignationDate;
             return _employeeWorkDetail;
         }

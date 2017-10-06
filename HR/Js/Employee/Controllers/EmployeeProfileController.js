@@ -5,6 +5,7 @@
 
 
         $scope.init = function () {
+            debugger;
             $scope.AddressNextButton = false;
             $scope.BasicNextButton = false;
             $scope.PositionNextButton = false;
@@ -23,12 +24,9 @@
                     BranchId: UtilityFunc.BranchId(),
                     Designation: null,
                     Department: null
-                },
-
-                EmployeeDocument: [
-                ]
-
+                }
             };
+            $scope.EmployeeDocument = [];
             $scope.dateFormat = UtilityFunc.DateFormat();
             $scope.IsfrmEmployeeProfile = false;
             $scope.files = [];
@@ -148,12 +146,13 @@
         }
 
         $scope.SaveEmlployee = function (EmployeeHeader) {
+            debugger;
             //$scope.ValidateForm();
             if (EmployeeHeader.Password && EmployeeHeader.ConfirmPassword && EmployeeHeader.Password.trim() != EmployeeHeader.ConfirmPassword.trim()) {
                 growlService.growl("Password and confirm password should be same", 'danger');
             }
             if ($scope.IsfrmEmployeeProfile) {
-                EmployeeProfileService.SaveEmlployee(EmployeeHeader, $scope.files).then(function (response) {
+                EmployeeProfileService.SaveEmlployee(EmployeeHeader, $scope.files, $scope.EmployeeDocument).then(function (response) {
                     if (response == "Success") {
                         $timeout(function () {
                             growlService.growl("Saved Successfully." + "  Employee Crediantials sent to '" + EmployeeHeader.UserEmailId + "' mail", 'success');
@@ -171,12 +170,31 @@
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             }
         }
+        $scope.CancelDocument = function (item, name) {
+            debugger
+            $scope.EducationDocuments.splice(item, 1);
+            var document = $scope.EmployeeDocument.filter(function (item) {
+                return item.Name === name;
+            })[0];
+            var index = $scope.EmployeeDocument.indexOf(document);
+            $scope.EmployeeDocument.splice(index, 1);
+        }
+        $scope.Remove = function () {
+            $scope.UIDCard = null;
+        }
+        $scope.CancelExperienceLetter = function (item) {
+            $scope.ExperienceLetters.splice(item, 1);
 
-      
-
-      
-
+        }
+        $scope.CancelProjectDocuments = function (item) {
+            $scope.ProjectDocuments.splice(item, 1);
+        }
+        $scope.CancelOtherDocuments = function (item) {
+            $scope.OtherDocuments.splice(item, 1);
+        }
+        
         $scope.EmployeeDocumentsUpload = function (e, documentType) {
+            debugger;
             var file = e.files;
             var extensionFileNames = ['jpeg', 'pdf', 'gif', 'jpg'];
             $scope.$apply(function () {
@@ -188,20 +206,17 @@
                     }
                     else {
                         var DocumentType = { 'DocumentType': documentType };
+                        var data = {};
+                        data.Name = e.files[i].name;
+                        data.DocumentType = documentType;
                         angular.extend(e.files[i], DocumentType);
-
-                        //var x = documentType + '/' + e.files[i].name;
-                        //var name = { 'name': x };
-                        //e.files[i].name = x;//documentType + '/' + e.files[i].name;
-                        var x = e.files[i].name.split('.')[0] + '/' + documentType + e.files[i].name.split('.')[1];
-                        //angular.extend(e.files[i], name);
-                        e.files[i].name = x;
                         $scope.files.push(e.files[i]);
-                        //$scope.EmployeeHeader.EmployeeDocument.push(e.files[i]);
-                        if (documentType == 'UIDCard') {
+                        $scope.EmployeeDocument.push(data);
+
+                        if (documentType == 'UID') {
                             $scope.UIDCard = e.files[i];
                         }
-                        if (documentType == 'EducationDocuments')
+                        if (documentType == 'Education')
                             $scope.EducationDocuments.push(e.files[i]);
 
                         if (documentType == 'ExperienceLetters')
@@ -212,7 +227,11 @@
 
                         if (documentType == 'OtherDocuments')
                             $scope.OtherDocuments.push(e.files[i]);
-                        $scope.EmployeeHeader.EmployeeDocument.push(e.files[i]);
+                        debugger;
+                        if ($scope.EmployeeHeader.EmployeeDocument == null) {
+                            $scope.EmployeeHeader.EmployeeDocument = new Array();
+                        }
+                        //$scope.EmployeeHeader.EmployeeDocument.push(e.files[i]);
                     }
                 }
 

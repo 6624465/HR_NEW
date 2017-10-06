@@ -10,7 +10,7 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-xs-12 col-md-4">
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <label for="Location">Location</label>
                             <select name="users" ng-options="s.Id as s.CountryName for s in Locations" ng-model="countryId" class="form-control">
                                 <option value="">--Select Location--</option>
@@ -18,14 +18,14 @@
                         </div>
                         <div class="form-group fg-line">
                             <button type="button" id="btn-SearchHolidays" class="btn " ng-click="SearchByLocation()">Search</button>
-                        </div>
+                        </div>*@
                     </div>
                     <div class="col-xs-12 col-md-8 text-right">
                         <button class="btn " id="btn-add-Holiday" ng-click="addHolidayList(table)">Add an Holiday</button>
                     </div>
                     </div>
                 
-                <div ng-show="IsVisible">
+                <div>
                     <div class="row">
 
                         <div class="col-xs-3 col-xs-offset-1 text-left">

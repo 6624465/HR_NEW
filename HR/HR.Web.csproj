@@ -7662,6 +7662,7 @@
     <Compile Include="Models\BranchViewModel.cs" />
     <Compile Include="Models\CompanyViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
+    <Compile Include="Models\EmployeeDocumentViewModel.cs" />
     <Compile Include="Models\EmployeeLeaveViewModel.cs" />
     <Compile Include="Models\EmployeeViewModel.cs" />
     <Compile Include="Models\LookUpDescriptions.cs" />

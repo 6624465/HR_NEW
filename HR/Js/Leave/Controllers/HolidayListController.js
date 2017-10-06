@@ -61,14 +61,14 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
         }
     }
 
-    $scope.SearchByLocation = function () {
-        var countryId = $scope.countryId;
-        if (countryId == 0 || countryId == null){
-            growlService.growl('Please select location to get holidays.', 'danger');
-            return;
-        }
+    //$scope.SearchByLocation = function () {
+    //    var countryId = $scope.countryId;
+    //    if (countryId == 0 || countryId == null){
+    //        growlService.growl('Please select location to get holidays.', 'danger');
+    //        return;
+    //    }
 
-        HolidayListService.GetHolidayList(countryId).then(function (response) {
+        HolidayListService.GetHolidayList().then(function (response) {
             if (response.data && response.data.success == true) {
                 $scope.events = [];
                 $scope.IsVisible = true;
@@ -93,7 +93,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
         }, function (err) {
             growlService.growl(err, 'danger');
         })
-    }
+    //}
 
     
     $scope.eventClicked = function (event) {
@@ -105,16 +105,16 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
     };
    
 
-    HolidayListService.GetBranchLocations().then(function (response) {
-        if (response.data && response.data.success == true) {
-            $scope.Locations = response.data.BranchLocations;
-        }
-        else
-            growlService.growl("Error Occured.", 'danger');
-    }, function (err) {
-        growlService.growl(err, 'danger');
+    //HolidayListService.GetBranchLocations().then(function (response) {
+    //    if (response.data && response.data.success == true) {
+    //        $scope.Locations = response.data.BranchLocations;
+    //    }
+    //    else
+    //        growlService.growl("Error Occured.", 'danger');
+    //}, function (err) {
+    //    growlService.growl(err, 'danger');
 
-    })
+    //})
 
 
 
