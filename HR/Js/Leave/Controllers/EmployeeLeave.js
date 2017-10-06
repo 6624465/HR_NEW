@@ -13,6 +13,7 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         datepickerOptions: {
                 minDate: moment();
         }
+        $scope.employeeName = UtilityFunc.Employeename();
     };
 
     LookUp.GetActiveLookUpData("LeaveType").then(function (response) {

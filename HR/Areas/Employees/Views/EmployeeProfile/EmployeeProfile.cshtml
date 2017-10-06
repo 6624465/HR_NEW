@@ -483,8 +483,8 @@
                                                                                id="containerFile"
                                                                                name="containerFile"
                                                                                class="form-control"
-                                                                               file-name ng-model="UIDCard= 'UIDCard'"
-                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'UIDCard')">
+                                                                               file-name 
+                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'UID')">
                                                                     </span>
                                                                 </span>
                                                             </td>
@@ -494,7 +494,7 @@
                                                             <td >
                                                                 <ul>
                                                                     <li ng-repeat="file in EducationDocuments" class="documentColor">
-                                                                        <a ng-click="CancelDocument($index)" ng-if="file != null">
+                                                                        <a ng-click="CancelDocument($index,file.name)" ng-if="file != null">
                                                                             <i class="fa fa-remove"></i>
                                                                         </a>{{file.name}}
                                                                     </li>
@@ -508,7 +508,7 @@
                                                                                id="containerFile"
                                                                                name="containerFile"
                                                                                class="form-control"
-                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'EducationDocuments')">
+                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'Education')">
                                                                     </span>
                                                                 </span>
                                                             </td>
@@ -536,7 +536,7 @@
                                                                                id="containerFile"
                                                                                name="containerFile"
                                                                                class="form-control"
-                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'ExperienceLetters')">
+                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this, 'ExperienceLetters')">
                                                                     </span>
 
                                                                 </span>
@@ -565,7 +565,7 @@
                                                                                id="containerFile"
                                                                                name="containerFile"
                                                                                class="form-control"
-                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'ProjectDocuments')">
+                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this, 'ProjectDocuments')">
                                                                     </span>
                                                                 </span>
                                                             </td>

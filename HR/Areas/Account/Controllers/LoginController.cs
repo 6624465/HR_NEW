@@ -47,6 +47,8 @@ namespace HR.Areas.Account.Controllers
                                                         AccessRight = x.AccessRight
                                                     }).ToList();
 
+                        EmployeeHeader employeeHeader =  EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(u => u.UserId == _user.Id).FirstOrDefault();
+
                         SessionObject sessionObject = new SessionObject()
                         {
                             Id = _user.Id,
@@ -57,6 +59,8 @@ namespace HR.Areas.Account.Controllers
                             BranchId = _user.BranchId,
                             BranchName = _user.Branch.BranchName,
                             CompanyId = _user.Branch.CompanyId,
+                            EmployeeId = employeeHeader != null ? employeeHeader.Id :0,
+                            Employeename = employeeHeader != null ?  employeeHeader.FirstName : string.Empty
 
                         };
                         USER_OBJECT = sessionObject;

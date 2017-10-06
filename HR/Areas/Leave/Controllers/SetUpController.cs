@@ -19,14 +19,16 @@ namespace HR.Areas.Leave.Controllers
     public class SetUpController : BaseController
     {
         #region Public Accessors
-        public ActionResult GetHolidayList(int countryId, int branchId)
+        public ActionResult GetHolidayList()
         {
             JsonResult result = new JsonResult();
-            if (countryId > 0 && branchId > 0)
+            if (USER_OBJECT != null)
             {
                 try
                 {
-                    List<HolidayList> holidayList = CompanyService.GetHolidayList<HolidayList>(hl => hl.CountryId == countryId && hl.BranchID == branchId).ToList();
+                    Branch branch = CompanyService.GetBranch(USER_OBJECT.BranchId);
+                    int countryId = branch != null ? CompanyService.GetCountries<Country>(c => c.CountryCode == branch.Address.CountryCode).Select(c => c.Id).FirstOrDefault() : 0;
+                    List<HolidayList> holidayList = CompanyService.GetHolidayList<HolidayList>(hl => hl.CountryId == countryId && hl.BranchID == branch.BranchID).ToList();
                     if (holidayList != null && holidayList.Any())
                         result = Json(new { success = true, holidayList = holidayList }, JsonRequestBehavior.AllowGet);
                     else
@@ -79,17 +81,15 @@ namespace HR.Areas.Leave.Controllers
             }
             return result;
         }
-        public ActionResult GetBranchLocation(int branchId)
+        public ActionResult GetBranchLocation()
         {
             JsonResult result = null;
             try
             {
-                if (branchId > 0)
+                if (USER_OBJECT.BranchId > 0)
                 {
-                    int companyId = CompanyService.GetBranchDetails<Branch>().Where(b => b.BranchID == branchId).
-                                    Select(c => c.CompanyId).FirstOrDefault();
-                    List<string> countryCode = CompanyService.GetBranchDetails<Branch>()
-                                                .Where(b => b.CompanyId == companyId).Select(s => s.Address.CountryCode).ToList();
+                    List<string> countryCode = CompanyService.GetBranchDetails<Branch>(c=>c.BranchID == USER_OBJECT.BranchId)
+                                                .Select(s => s.Address.CountryCode).ToList();
                     List<Country> countries = CompanyService.GetCountries<Country>().Where(c => countryCode.Contains(c.CountryCode)).ToList();
                     result = Json(new { success = true, BranchLocations = countries }, JsonRequestBehavior.AllowGet);
                 }

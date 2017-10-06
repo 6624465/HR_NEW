@@ -490,6 +490,12 @@ app.factory('UtilityFunc', ['$filter', '$q', function ($filter, $q) {
     obj.DateFormat = function () {
         return 'DD/MM/YYYY';
     };
+    obj.EmployeeId = function () {
+        return sessionObject ? sessionObject.EmployeeId : '';
+    }
+    obj.Employeename = function () {
+        return sessionObject ? sessionObject.Employeename : '';
+    }
 
     return obj;
 }])
@@ -531,13 +537,11 @@ app.directive('logiconNumber', function () {
     };
 });
 app.directive('fileName', function ($compile) {
-    debugger
     return {
         scope: {
             fileName: '=UIDCard'
         },
         link: function (scope, el, attrs) {
-            debugger
             el.bind('click', function(event) {
                 var files = event.target.files;
                 var file = files[0];
