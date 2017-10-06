@@ -321,6 +321,7 @@
                         angular.extend(e.files[i], DocumentType);
 
                         $scope.files.push(e.files[i]);
+
                         if (documentType == 'UIDCard') {
                             $scope.UIDCard = e.files[i];
                         }
@@ -331,7 +332,7 @@
                             $scope.ExperienceLetters.push(e.files[i]);
 
                         if (documentType == 'ProjectDocuments')
-                            $scope.ExperienceLetters.push(e.files[i]);
+                            $scope.ProjectDocuments.push(e.files[i]);
 
                         if (documentType == 'OtherDocuments')
                             $scope.OtherDocuments.push(e.files[i]);

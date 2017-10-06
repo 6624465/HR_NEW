@@ -6,7 +6,9 @@
             min-width: 200px;
             text-align: center;
         }
-
+        ul {
+            padding:0;
+        }
         .page-header span {
             display: block;
         }
@@ -395,15 +397,15 @@
                                             </div>
 
                                             <!--<div class="col-xs-12 col-md-6">
-                <div class="form-group fg-line">
-                    <label>
-                        Location
-                    </label>
-                    <select name="users" ng-options="s.Id as s.CountryName for s in Locations" ng-model="countryId" class="form-control">
-                        <option value="">--Select Location--</option>
-                    </select>
-                </div>
-            </div>-->
+                                                <div class="form-group fg-line">
+                                                    <label>
+                                                        Location
+                                                    </label>
+                                                    <select name="users" ng-options="s.Id as s.CountryName for s in Locations" ng-model="countryId" class="form-control">
+                                                        <option value="">--Select Location--</option>
+                                                    </select>
+                                                </div>
+                                            </div>-->
                                         </div>
                                         <div class="row">
                                             <div class="col-xs-12 col-md-4">
@@ -456,232 +458,270 @@
                                         </div>
                                         <h2><i class="zmdi zmdi-folder-star m-r-10"></i>&nbsp; Employee Documents </h2>
                                         <div class="row">
-                                            <div class="col-xs-12 col-md-4">
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-md-12">
-                                                        <div class="form-group fg-line">
-                                                            <label class="col-md-6">
-                                                                UID Card
-                                                            </label>
-                                                            &nbsp;&nbsp;
-                                                            <span class="fileinput fileinput-new" data-provides="fileinput">
-                                                                <span class="btn btn-primary btn-file">
-                                                                    <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
-                                                                    <input type="file"
-                                                                           id="containerFile"
-                                                                           name="containerFile"
-                                                                           class="form-control"
-                                                                           onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'UIDCard')">
+                                            <div class="col-xs-12 col-md-6">
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-vmiddle">
+
+                                                        <tr>
+                                                            <th>Document Name</th>
+                                                            <th>Document Type</th>
+                                                            <th></th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label>UID Card</label></td>
+                                                            <td class="documentColor">
+                                                                <a ng-if="UIDCard != null" >
+                                                                    <i class="fa fa-remove"></i>
+                                                                </a> {{UIDCard.name}}
+                                                            </td>
+                                                            <td>
+                                                                <span class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <span class="btn btn-primary btn-file">
+                                                                        <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
+                                                                        <input type="file"
+                                                                               id="containerFile"
+                                                                               name="containerFile"
+                                                                               class="form-control"
+                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'UIDCard')">
+                                                                    </span>
                                                                 </span>
-                                                                <span class="col-md-6" style="color:red;">{{UIDCard.name}}</span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-md-12">
-                                                        <div class="form-group fg-line">
-                                                            <label class="col-md-6">
-                                                                Education Documents
-                                                            </label>
-                                                            &nbsp;&nbsp;
-                                                            <span class="fileinput fileinput-new" data-provides="fileinput">
-                                                                <span class="btn btn-primary btn-file m-r-10">
-                                                                    <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
-                                                                    <input type="file" multiple
-                                                                           id="containerFile"
-                                                                           name="containerFile"
-                                                                           class="form-control"
-                                                                           onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'EducationDocuments')">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label>Education Documents</label></td>
+                                                            <td >
+                                                                <ul>
+                                                                    <li ng-repeat="file in EducationDocuments" class="documentColor">
+                                                                        <a>
+                                                                            <i class="fa fa-remove"></i>
+                                                                        </a>{{file.name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                            <td>
+                                                                <span class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <span class="btn btn-primary btn-file m-r-10">
+                                                                        <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
+                                                                        <input type="file" multiple
+                                                                               id="containerFile"
+                                                                               name="containerFile"
+                                                                               class="form-control"
+                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'EducationDocuments')">
+                                                                    </span>
                                                                 </span>
-                                                                <span class="fileinput-filename"></span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-md-12">
-                                                        <div class="form-group fg-line">
-                                                            <label class="col-md-6">
-                                                                Experience Letters
-                                                            </label>
-                                                            &nbsp;&nbsp;
-                                                            <span class="fileinput fileinput-new" data-provides="fileinput">
-                                                                <span class="btn btn-primary btn-file m-r-10">
-                                                                    <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
-                                                                    <input type="file" multiple
-                                                                           id="containerFile"
-                                                                           name="containerFile"
-                                                                           class="form-control"
-                                                                           onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'ExperienceLetters')">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label>
+                                                                    Experience Letters
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <ul >
+                                                                    <li ng-repeat="file in ExperienceLetters" class="documentColor">
+                                                                        <a>
+                                                                            <i class="fa fa-remove"></i>
+                                                                        </a>{{file.name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                            <td>
+                                                                <span class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <span class="btn btn-primary btn-file m-r-10">
+                                                                        <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
+                                                                        <input type="file" multiple
+                                                                               id="containerFile"
+                                                                               name="containerFile"
+                                                                               class="form-control"
+                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'ExperienceLetters')">
+                                                                    </span>
+
                                                                 </span>
-                                                                <span class="fileinput-filename"></span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-md-12">
-                                                        <div class="form-group fg-line">
-                                                            <label class="col-md-6">
-                                                                Project Documents
-                                                            </label>
-                                                            &nbsp;&nbsp;
-                                                            <span class="fileinput fileinput-new" data-provides="fileinput">
-                                                                <span class="btn btn-primary btn-file m-r-10">
-                                                                    <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
-                                                                    <input type="file" multiple
-                                                                           id="containerFile"
-                                                                           name="containerFile"
-                                                                           class="form-control"
-                                                                           onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'ProjectDocuments')">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label>
+                                                                    Project Documents
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li ng-repeat="file in ProjectDocuments" class="documentColor"> 
+                                                                        <button>
+                                                                                <i class="fa fa-remove"></i>{{file.name}}
+                                                                        </button>
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                            <td>
+                                                                <span class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <span class="btn btn-primary btn-file m-r-10">
+                                                                        <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
+                                                                        <input type="file" multiple
+                                                                               id="containerFile"
+                                                                               name="containerFile"
+                                                                               class="form-control"
+                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'ProjectDocuments')">
+                                                                    </span>
                                                                 </span>
-                                                                <span class="fileinput-filename"></span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-md-12">
-                                                        <div class="form-group fg-line">
-                                                            <label class="col-md-6">
-                                                                Other Documents
-                                                            </label>
-                                                            &nbsp;&nbsp;
-                                                            <span class="fileinput fileinput-new" data-provides="fileinput">
-                                                                <span class="btn btn-primary btn-file m-r-10">
-                                                                    <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
-                                                                    <input type="file" multiple
-                                                                           id="containerFile"
-                                                                           name="containerFile"
-                                                                           class="form-control"
-                                                                           onchange="angular.element(this).scope().EmployeeDocumentsUpload(this, 'OtherDocuments')">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label>
+                                                                    Other Documents
+                                                                </label>
+                                                            </td>
+                                                            <td>
+                                                                <ul>
+                                                                    <li ng-repeat="file in OtherDocuments" class="documentColor">
+                                                                        <a>
+                                                                            <i class="fa fa-remove"></i>
+                                                                        </a>{{file.name}}
+
+                                                                    </li>
+                                                                </ul>
+                                                            </td>
+                                                            <td>
+                                                                <span class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <span class="btn btn-primary btn-file m-r-10">
+                                                                        <span class="fileinput-new"> <i class="fa fa-upload" aria-hidden="true"></i> Upload File</span>
+                                                                        <input type="file" multiple
+                                                                               id="containerFile"
+                                                                               name="containerFile"
+                                                                               class="form-control"
+                                                                               onchange="angular.element(this).scope().EmployeeDocumentsUpload(this, 'OtherDocuments')">
+                                                                    </span>
+                                                                    <span class="fileinput-filename"></span>
                                                                 </span>
-                                                                <span class="fileinput-filename"></span>
-                                                            </span>
-                                                        </div>
-                                                    </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
                                                 </div>
                                             </div>
                                         </div>
 
-                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h2><i class="zmdi zmdi-pin m-r-10"></i>&nbsp; Employee Address </h2>
+                                    <div class="row">
+                                        <div class="col-xs-12 ">
+                                            <div class="form-group fg-line">
+                                                <label>
+                                                    Address
+                                                </label>
+                                                <input id="Address" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.Address1"
+                                                       ng-required="true" ng-change="onChangeText(EmployeeHeader.Address.Address1)" />
                                             </div>
-                                            <div class="col-md-4">
-                                                <h2><i class="zmdi zmdi-pin m-r-10"></i>&nbsp; Employee Address </h2>
-                                                <div class="row">
-                                                    <div class="col-xs-12 ">
-                                                        <div class="form-group fg-line">
-                                                            <label>
-                                                                Address
-                                                            </label>
-                                                            <input id="Address" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.Address1"
-                                                                   ng-required="true" ng-change="onChangeText(EmployeeHeader.Address.Address1)" />
-                                                        </div>
-                                                        <div class="form-group fg-line">
-                                                            <label>
-                                                                Address2
-                                                            </label>
-                                                            <input id="Address2" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.Address2"
-                                                                   ng-required="true" ng-change="onChangeText(EmployeeHeader.Address.Address2)" />
-                                                        </div>
-                                                        <div class="form-group fg-line">
-                                                            <label>
-                                                                City
-                                                            </label>
-                                                            <input id="City" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.CityName"
-                                                                   ng-required="true" ng-change="onChangeText(EmployeeHeader.Address.CityName)" />
-                                                        </div>
-                                                        <div class="form-group fg-line">
-                                                            <label>
-                                                                State
-                                                            </label>
-                                                            <input id="State" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.StateName"
-                                                                   ng-required="true"
-                                                                   ng-change="onChangeText(EmployeeHeader.Address.StateName)" />
-                                                        </div>
-                                                        <div class="form-group fg-line">
-                                                            <label>
-                                                                Postal Code
-                                                            </label>
-                                                            <input id="PostalCode" class="form-control valid" type="text"
-                                                                   ng-model="EmployeeHeader.Address.ZipCode"
-                                                                   ng-required="true" ng-change="onChangeText(EmployeeHeader.Address.ZipCode)" maxlength="6" logicon-number />
-                                                        </div>
-                                                        <div class="form-group fg-line">
-
-                                                            <label for="Country"> Country</label>
-
-                                                            <select name="Country"
-                                                                    ng-options="s.CountryCode as s.CountryName for s in Countries"
-                                                                    ng-model="EmployeeHeader.Address.CountryCode"
-                                                                    class="form-control valid"
-                                                                    ng-change="onChangeText(EmployeeHeader.Address.CountryCode)">
-                                                                <option value="">--Select Country--</option>
-                                                            </select>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <h2><i class="zmdi zmdi-assignment m-r-10"></i>&nbsp; Employee Login </h2>
-                                                <div class="row">
-                                                    <div class="col-xs-12 col-md-8">
-                                                        <div class="form-group fg-line">
-                                                            <label>
-                                                                Email
-                                                            </label>
-                                                            <input id="Email" class="form-control valid" type="text" ng-model="EmployeeHeader.UserEmailId"
-                                                                   ng-blur="onChageText(EmployeeHeader.UserEmailId);EmailValid();" ng-required="true" />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-12 col-md-4">
-                                                        <div class="switch-container">
-                                                            <label class="switch-label" style="margin-left:10px;margin-right:15px;">Status</label>
-                                                            <label class="switch">
-                                                                <input type="checkbox" ng-model="EmployeeHeader.IsActive">
-                                                                <span class="slider round"></span>
-                                                            </label>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-12 ">
-                                                        <div class="form-group fg-line">
-                                                            <label>
-                                                                Password
-                                                            </label>
-                                                            <input id="Password" class="form-control valid" type="password" ng-model="EmployeeHeader.Password"
-                                                                   ng-required="true" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-xs-12 ">
-                                                        <div class="form-group fg-line">
-                                                            <label>
-                                                                Confirm Password
-                                                            </label>
-                                                            <input id="Password" class="form-control valid" type="password" ng-model="EmployeeHeader.ConfirmPassword"
-                                                                   compare-to="EmployeeHeader.Password" ng-required="true" />
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <div class="form-group fg-line">
+                                                <label>
+                                                    Address2
+                                                </label>
+                                                <input id="Address2" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.Address2"
+                                                       ng-required="true" ng-change="onChangeText(EmployeeHeader.Address.Address2)" />
                                             </div>
-                                        </div>   @*<div id="form-views" ui-view>
-                <div ng-include="detailsUrl"></div>
-            </div>*@
-                                        <div class="row">
-                                            <div class="col-xs-12 text-right">
-                                                <button class="btn  btn-primary" type="submit">
-                                                    <i class="fa fa-floppy-o"></i> &nbsp;Save
-                                                </button>
-                                                <button class="btn  btn-default" type="submit">
-                                                    <i class="fa fa-eraser"></i> &nbsp;Clear
-                                                </button>
+                                            <div class="form-group fg-line">
+                                                <label>
+                                                    City
+                                                </label>
+                                                <input id="City" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.CityName"
+                                                       ng-required="true" ng-change="onChangeText(EmployeeHeader.Address.CityName)" />
+                                            </div>
+                                            <div class="form-group fg-line">
+                                                <label>
+                                                    State
+                                                </label>
+                                                <input id="State" class="form-control valid" type="text" ng-model="EmployeeHeader.Address.StateName"
+                                                       ng-required="true"
+                                                       ng-change="onChangeText(EmployeeHeader.Address.StateName)" />
+                                            </div>
+                                            <div class="form-group fg-line">
+                                                <label>
+                                                    Postal Code
+                                                </label>
+                                                <input id="PostalCode" class="form-control valid" type="text"
+                                                       ng-model="EmployeeHeader.Address.ZipCode"
+                                                       ng-required="true" ng-change="onChangeText(EmployeeHeader.Address.ZipCode)" maxlength="6" logicon-number />
+                                            </div>
+                                            <div class="form-group fg-line">
+
+                                                <label for="Country"> Country</label>
+
+                                                <select name="Country"
+                                                        ng-options="s.CountryCode as s.CountryName for s in Countries"
+                                                        ng-model="EmployeeHeader.Address.CountryCode"
+                                                        class="form-control valid"
+                                                        ng-change="onChangeText(EmployeeHeader.Address.CountryCode)">
+                                                    <option value="">--Select Country--</option>
+                                                </select>
+
                                             </div>
                                         </div>
-</form>
+                                    </div>
+                                    <h2><i class="zmdi zmdi-assignment m-r-10"></i>&nbsp; Employee Login </h2>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-8">
+                                            <div class="form-group fg-line">
+                                                <label>
+                                                    Email
+                                                </label>
+                                                <input id="Email" class="form-control valid" type="text" ng-model="EmployeeHeader.UserEmailId"
+                                                       ng-blur="onChageText(EmployeeHeader.UserEmailId);EmailValid();" ng-required="true" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-4">
+                                            <div class="switch-container">
+                                                <label class="switch-label" style="margin-left:10px;margin-right:15px;">Status</label>
+                                                <label class="switch">
+                                                    <input type="checkbox" ng-model="EmployeeHeader.IsActive">
+                                                    <span class="slider round"></span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 ">
+                                            <div class="form-group fg-line">
+                                                <label>
+                                                    Password
+                                                </label>
+                                                <input id="Password" class="form-control valid" type="password" ng-model="EmployeeHeader.Password"
+                                                       ng-required="true" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 ">
+                                            <div class="form-group fg-line">
+                                                <label>
+                                                    Confirm Password
+                                                </label>
+                                                <input id="Password" class="form-control valid" type="password" ng-model="EmployeeHeader.ConfirmPassword"
+                                                       compare-to="EmployeeHeader.Password" ng-required="true" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   @*<div id="form-views" ui-view>
+                                    <div ng-include="detailsUrl"></div>
+                                </div>*@
+                            <div class="row">
+                                <div class="col-xs-12 text-right">
+                                    <button class="btn  btn-primary" type="submit">
+                                        <i class="fa fa-floppy-o"></i> &nbsp;Save
+                                    </button>
+                                    <button class="btn  btn-default" type="submit">
+                                        <i class="fa fa-eraser"></i> &nbsp;Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

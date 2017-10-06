@@ -1765,3 +1765,8 @@ label.error {
           background: rgb(215,57,37);
    color:#fff;
         }
+  .documentColor a
+  {
+      color:red;
+    
+  }
