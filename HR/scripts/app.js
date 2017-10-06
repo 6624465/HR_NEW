@@ -536,21 +536,7 @@ app.directive('logiconNumber', function () {
         }
     };
 });
-app.directive('fileName', function ($compile) {
-    return {
-        scope: {
-            fileName: '=UIDCard'
-        },
-        link: function (scope, el, attrs) {
-            el.bind('click', function(event) {
-                var files = event.target.files;
-                var file = files[0];
-                scope.file = 'Newname';
-                scope.$apply();
-            });
-        }
-    };
-});
+
 app.directive('logiconLimit', ['$window', function ($window) {
     return {
         restrict: 'A',

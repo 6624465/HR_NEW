@@ -139,6 +139,9 @@
                                            type="password" 
                                            ng-model="ResetPassword.NewPassword" 
                                            ng-required="true"
+                                            ng-minlength="8"
+                                           ng-maxlength="20"
+                                           ng-blur="ComparePassword();ValidatePassword(ResetPassword.NewPassword)"
                                            />
                                 </div>
                             </div>
@@ -155,7 +158,7 @@
                                            ng-required="true"
                                            ng-minlength="8"
                                            ng-maxlength="20"
-                                           ng-blur=""
+                                           ng-blur="ComparePassword();ValidatePassword(ResetPassword.ConfirmPassword)"
                                            />
                                     @*<div ng-if="frmPassword.ResetPassword.ConfirmPassword.$invalid">
                                         <div style="color:red">Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character</div>
@@ -273,7 +276,6 @@
                 $scope.IsfrmEmployeeDepartment = Valid;
             });
             $scope.onClickSavePassword = function (ResetPassword) {
-                debugger
                 $http.get('/Login/ResetPassword', JSON.stringify(ResetPassword)).then(function (res) {
                     if (res.data && res.data.success == true) {
                         growlService.growl(res.data.message, 'success');
@@ -295,9 +297,7 @@
                 //$state.go('Home');
                 //location.href = $scope.HomeUrl;
             }
-            $scope.ComparePassword = function (ResetPassword) {
-                debugger
-                //var Regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@@$!%*?&])[A-Za-z\d$@@$!%*?&]{8,}/;
+            $scope.ComparePassword = function () {
                 if ($scope.ResetPassword.NewPassword != $scope.ResetPassword.ConfirmPassword) {
                     $scope.isPasswordMatched = false;
                     growlService.growl('ConfirmPassword is Mismatch with Password', 'danger');
@@ -308,10 +308,9 @@
                 }
             }
             $scope.isPasswordValidate = true;
-            $scope.ValidatePassword = function (ResetPassword) {
-                debugger;
-                var Regex = '^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@@$!%*#?&])[A-Za-z\d$@@$!%*#?&]{8,}$';
-                if (Regex.test(ResetPassword)) {
+            $scope.ValidatePassword = function (ResetPassword) { 
+                var regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@@$!%*#?&])[A-Za-z\d$@@$!%*#?&]{8,}$/;
+                if (regex.test(ResetPassword)) {
                     $scope.isPasswordValidate = true;
                 } else {
                     growlService.growl('Password must have at least 8 characters and contain the following: uppercase letters, lowercase letters, numbers and symbols', 'danger');
