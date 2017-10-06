@@ -530,6 +530,23 @@ app.directive('logiconNumber', function () {
         }
     };
 });
+app.directive('fileName', function ($compile) {
+    debugger
+    return {
+        scope: {
+            fileName: '=UIDCard'
+        },
+        link: function (scope, el, attrs) {
+            debugger
+            el.bind('click', function(event) {
+                var files = event.target.files;
+                var file = files[0];
+                scope.file = 'Newname';
+                scope.$apply();
+            });
+        }
+    };
+});
 
 //app.directive('hasRight', function () {
 //    debugger;
