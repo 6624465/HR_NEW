@@ -13,6 +13,7 @@ using System.Web.Mvc;
 using HR.Core.Models;
 using Ninject;
 using HR.Models;
+using HR.Core.Utilities;
 
 namespace HR.Areas.Account.Controllers
 {
@@ -73,6 +74,40 @@ namespace HR.Areas.Account.Controllers
             return result;
         }
         #endregion
+        public JsonResult ResetPassword(UserViewModel userViewModel)
+        {
+            JsonResult result = null;
+            if (userViewModel != null)
+            {
+                try
+                {
+                    if (userViewModel.OldPassword != null && userViewModel.NewPassword != null)
+                    {
+                        if (USER_OBJECT != null)
+                        {
+
+                          User user =   LogInLogOutService.GetUser<User>(u => u.UserID == USER_OBJECT.UserID && u.BranchId == USER_OBJECT.BranchId && u.Password == userViewModel.OldPassword).FirstOrDefault();
+                            if (user != null)
+                            {
+                                user.ModifiedBy = USER_OBJECT.UserID;
+                                user.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                                user.Password = userViewModel.NewPassword;
+
+                                LogInLogOutService.Save(user);
+                                result = Json(new { success = true, message = "Password is Changed Sucessfull"}, JsonRequestBehavior.AllowGet);
+
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    
+                    result = Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
+                }    
+            }
+            return result;
+        }
 
         [HttpGet]
         public JsonResult LogOut()

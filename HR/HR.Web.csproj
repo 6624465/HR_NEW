@@ -7667,6 +7667,7 @@
     <Compile Include="Models\LookUpDescriptions.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\SecurableViewModel.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

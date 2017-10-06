@@ -45,6 +45,7 @@
 </head>
 
 <body class="hold-transition skin-blue " ng-controller="layOutController as layOutcntrl">
+   
     @*sidebar-mini*@
     <div class="wrapper" style="background:#fff !important;">
         <header class="main-header">
@@ -72,14 +73,10 @@
 
                                 <li class="user-footer user-other">
 
-                                    <a href="#" class=""> <i class="fa fa-id-badge" aria-hidden="true"></i> &nbsp;Profile</a>
+                                    <a href="#" class=""  ng-click="onChangePassword()"> <i class="fa fa-id-badge" aria-hidden="true" "></i> &nbsp;Change Password</a>
 
                                 </li>
-                                <li class="user-footer user-other">
-
-                                    <a href="#" class=""><i class="zmdi zmdi-settings zmdi-hc-lg"></i> &nbsp; Setting</a>
-
-                                </li>
+                              
                                 <li class="user-footer user-other">
                                     <a href="#" class="" ng-click="onClickLogOut()"> <i class="zmdi zmdi-power zmdi-hc-lg"></i> &nbsp; LogOut</a>
 
@@ -112,65 +109,71 @@
         </div>
     </div>
 
-    <div id="myModalTest" class="modal fade" role="dialog">
-        <div id="myModalTestInnerDiv" class="modal modal-success">
-            <div class="modal-dialog modal-sm dialog-Meassage">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 id="modalHeader" class="modal-title" style="color:white">Modal Header</h4>
-                    </div>
-                    <div class="modal-body dialog-Meassage-body">
-                        <p id="pmodalid">Records saved successfully.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" onclick="BtnOK()" data-dismiss="modal">OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="myModalTest2" class="modal fade" role="dialog">
-        <div id="myModalTestInnerDiv2" class="modal modal-success">
-            <div class="modal-dialog modal-sm dialog-Meassage">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 id="modalHeader2" class="modal-title" style="color:white">Modal Header</h4>
-                    </div>
-                    <div class="modal-body dialog-Meassage-body">
-                        <p id="pmodalid2">Records saved successfully.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="myModalDialog" class="modal fade" role="dialog">
-        <div id="confirmDialog" class="modal modal-warning">
+    <form id="frmPassword" name="frmPassword" ng-submit="onClickSavePassword(ResetPassword)" ng-class="{'submitted':submitted}" novalidate>
+        <div class="modal fade in" id="changePassword" role="dialog">
             <div class="modal-dialog">
+
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button class="close" aria-label="Close" data-dismiss="modal" type="button">&times;</button>
-                        <h4 class="modal-title" style="color:white">ALERT!</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Reset Password</h4>
                     </div>
                     <div class="modal-body">
-                        <p id="pWarning">Do you want to Save the Record?</p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-8">
+                                <div class="form-group fg-line">
+                                    <label>Old Password</label>
+                                    <input class="form-control input-mask"
+                                            type="text" ng-model="ResetPassword.OldPassword"
+                                            ng-required="true" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-8">
+                                <div class="form-group fg-line">
+                                    <label>
+                                        New Password
+                                    </label>
+                                    <input class="form-control input-mask" 
+                                           type="password" 
+                                           ng-model="ResetPassword.NewPassword" 
+                                           ng-required="true"
+                                           />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-8">
+                                <div class="form-group fg-line">
+                                    <label>
+                                        Confirm Password
+                                    </label>
+                                    <input class="form-control input-mask"
+                                            type="password" 
+                                           ng-model="ResetPassword.ConfirmPassword"
+                                           ng-required="true"
+                                           ng-minlength="8"
+                                           ng-maxlength="20"
+                                           ng-blur=""
+                                           />
+                                    @*<div ng-if="frmPassword.ResetPassword.ConfirmPassword.$invalid">
+                                        <div style="color:red">Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character</div>
+                                    </div>*@
+                                    @*ng-minlength="8" ng-maxlength="20"
+                                    ng-blur="ComparePassword()"*@
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" onclick="BtnConfirmOK()" data-dismiss="modal">OK</button>
+                    <div class="modal-footer" style="right: 270px;">
+                        <button class="btn" type="submit" ng-click="submitted = true;">Save</button>
+                        <button type="submit" class="btn btn-default" ng-click="onCanclePassword()">Cancel</button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    </form>
     <!-- script files -->
     <!-- jQuery 3 -->
     <script src="@Url.Content("~/bower_components/jquery/dist/jquery.min.js")"></script>
@@ -241,7 +244,9 @@
         var baseUrl = '@Url.Content("~/")';
         angular.module('ngHR').controller('layOutController', ['$scope', '$http', 'growlService', '$window', '$location', '$state', function ($scope, $http, growlService, $window, $location,$state) {
             $scope.init = function () {
-                $scope.HomeUrl = $location.absUrl();
+                $scope.ResetPassword = {};
+                $scope.pwd = {};
+
                 $scope.iframeHeight = window.innerHeight - 109;
                 $scope.User = JSON.parse(sessionStorage.getItem("authenticatedUser"));
                 var Ismessagedisplayed = sessionStorage.getItem('Ismessagedisplayed') == 'true' ? true : false;
@@ -260,6 +265,29 @@
                     }
                 })
             }
+            $scope.onChangePassword = function () {
+                $('#changePassword').modal('show');
+            }
+            $scope.IsfrmEmployeeDepartment = false;
+            $scope.$watch('frmEmployeeDepartment.$valid', function (Valid) {
+                $scope.IsfrmEmployeeDepartment = Valid;
+            });
+            $scope.onClickSavePassword = function (ResetPassword) {
+                debugger
+                $http.get('/Login/ResetPassword', JSON.stringify(ResetPassword)).then(function (res) {
+                    if (res.data && res.data.success == true) {
+                        growlService.growl(res.data.message, 'success');
+                        angular.forEach(sessionStorage, function (value, key) {
+                            sessionStorage.removeItem(key);
+                        });
+                        window.location.pathname = '';
+                    }
+                })
+            }
+            $scope.onCanclePassword = function () {
+                $scope.Password = {};
+                $('#changePassword').modal('hide');
+            }
 
             $scope.onLogoClick = function () {
                 var baseHomeUrl = location.href.split('/');
@@ -267,19 +295,47 @@
                 //$state.go('Home');
                 //location.href = $scope.HomeUrl;
             }
+            $scope.ComparePassword = function (ResetPassword) {
+                debugger
+                //var Regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@@$!%*?&])[A-Za-z\d$@@$!%*?&]{8,}/;
+                if ($scope.ResetPassword.NewPassword != $scope.ResetPassword.ConfirmPassword) {
+                    $scope.isPasswordMatched = false;
+                    growlService.growl('ConfirmPassword is Mismatch with Password', 'danger');
+                    //growlService.growl.error('Password must have at least 8 characters and contain the following: uppercase letters, lowercase letters, numbers and symbols', {});
+                }
+                else {
+                    $scope.isPasswordMatched = true;
+                }
+            }
+            $scope.isPasswordValidate = true;
+            $scope.ValidatePassword = function (ResetPassword) {
+                debugger;
+                var Regex = '^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@@$!%*#?&])[A-Za-z\d$@@$!%*#?&]{8,}$';
+                if (Regex.test(ResetPassword)) {
+                    $scope.isPasswordValidate = true;
+                } else {
+                    growlService.growl('Password must have at least 8 characters and contain the following: uppercase letters, lowercase letters, numbers and symbols', 'danger');
+                    $scope.isPasswordValidate = false;
+                }
+
+
+            }
+
+
             $scope.init();
 
         }]);
+
         //iCheck for checkbox and radio inputs
         $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-           
+
             checkboxClass: 'icheckbox_minimal-blue',
             radioClass: 'iradio_minimal-blue'
 
         })
         //Red color scheme for iCheck
         $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-            
+
             checkboxClass: 'icheckbox_minimal-red',
             radioClass: 'iradio_minimal-red'
         })

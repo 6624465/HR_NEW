@@ -547,6 +547,31 @@ app.directive('fileName', function ($compile) {
         }
     };
 });
+app.directive('logiconLimit', ['$window', function ($window) {
+    return {
+        restrict: 'A',
+        link: function (scope, elem, attrs) {
+            var limit = parseInt(attrs.ngMaxlength);
+            angular.element(elem).on('keypress', function (e) {
+
+                if (this.value.length == limit) {
+                    //var temp = $window.getSelection().toString();
+                    var isFirefox = typeof InstallTrigger !== 'undefined';
+                    if (isFirefox) {
+                        var Key = e.keyCode;
+                        if (Key != 8 && Key != 37 && Key != 39 && Key != 46) {
+                            e.preventDefault();
+                            this.setSelectionRange(limit, limit);
+                        }
+                    } else {
+                        e.preventDefault();
+                        this.setSelectionRange(limit, limit);
+                    }
+                }
+            });
+        }
+    }
+}]);
 
 //app.directive('hasRight', function () {
 //    debugger;
