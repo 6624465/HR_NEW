@@ -29,4 +29,14 @@
         });
         return deferred.promise;
     }
+    this.GetCasualHolidayListCount = function (fromDate, toDate) {
+        var deferred = $q.defer();
+        $http.get('/EmployeeLeave/GetCasualHolidayListCount?fromDate=' + fromDate + '&&toDate=' + toDate).then(function (response) {
+            deferred.resolve(response);
+        }, function (err) {
+            deferred.reject(err);
+        });
+        return deferred.promise;
+    }
+    
 }]);

@@ -91,5 +91,33 @@ namespace HR.Areas.Leave.Controllers
         {
             return View();
         }
+        public JsonResult GetCasualHolidayListCount(DateTime fromDate, DateTime toDate)
+        {
+            JsonResult result = null;
+            try
+            {
+                if (USER_OBJECT != null)
+                {
+
+                    Branch branch = CompanyService.GetBranch(USER_OBJECT.BranchId);
+                    Country country = branch != null ? CompanyService.GetCountries<Country>(c => c.CountryCode == branch.Address.CountryCode).FirstOrDefault() : null;
+                    var holidayLists = (country != null && branch != null) ? CompanyService.GetHolidayList<HolidayList>(h => h.CountryId == country.Id && h.BranchID == branch.BranchID).AsEnumerable()
+                                        .Select(x => new
+                                        {
+                                            Date = x.Date.ToShortDateString()
+                                        }).ToList() : null;
+                    int holidayListCount = holidayLists != null ? holidayLists.Where(d => string.Compare(d.Date, fromDate.ToShortDateString()) >= 0 && string.Compare(d.Date, toDate.ToShortDateString()) <= 0).Count() : 0;
+
+                    result = Json(holidayListCount, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                    return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+
+            }
+            return result;
+        }
     }
 }
