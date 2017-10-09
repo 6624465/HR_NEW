@@ -64,8 +64,8 @@
                                         <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                     </div>
                                 </a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                    <datetimepicker ng-model="EmployeeLeaveForm.ToDate"
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" >
+                                    <datetimepicker ng-model="EmployeeLeaveForm.ToDate" ng-change="difference(EmployeeLeaveForm.FromDate,EmployeeLeaveForm.ToDate)"
                                                     data-datetimepicker-config="{ dropdownSelector: '#ToDate', startView:'day', minView:'day' }" />
                                 </ul>
                             </div>
@@ -74,7 +74,7 @@
                     <div class="row ">
                         <div class="col-xs-12 col-md-6 form-group">
                             <label for="days">Days</label>
-                            <input id="days" class="form-control" type="text" ng-disabled="true" ng-model="EmployeeLeaveForm.Days" ng-value="difference()" />
+                            <input id="days" class="form-control" type="text" ng-disabled="true" ng-model="EmployeeLeaveForm.Days" />
                         </div>
                     </div>
                     <div class="row">
