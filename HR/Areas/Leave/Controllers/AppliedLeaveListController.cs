@@ -25,7 +25,7 @@ namespace HR.Areas.Leave.Controllers
             {
                 try
                 {
-                    List<EmployeeLeaveList> employeeLeaveList = Leaveservice.GetEmployeeLeaveList<EmployeeLeaveList>(e => e.TeamLeadId == teamLeadId).OrderBy(o => o.EmployeeId).ToList();
+                    List<EmployeeLeaveList> employeeLeaveList = Leaveservice.GetLeaveList<EmployeeLeaveList>(e => e.TeamLeadId == teamLeadId).OrderBy(o => o.EmployeeId).ToList();
                     List<EmployeeLeaveViewModel> employeeLeaveViewModelList = new List<EmployeeLeaveViewModel>();
                     foreach (EmployeeLeaveList employeeLeave in employeeLeaveList)
                     {

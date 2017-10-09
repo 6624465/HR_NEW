@@ -11,9 +11,9 @@ namespace HR.Service.Leave.ILeaveService
     public interface ILeave
     {
         #region EmployeeLeaveList
-        IQueryable<T> GetEmployeeLeaveList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeLeaveList;
-        void SaveEmployeeLeaveList(EmployeeLeaveList employeeLeaveList, bool autoCommit = true);
-        EmployeeLeaveList GetEmployeeLeaveListById(int id);
+        IQueryable<T> GetLeaveList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeLeaveList;
+        void SaveLeaveList(EmployeeLeaveList employeeLeaveList, bool autoCommit = true);
+        EmployeeLeaveList GetLeaveListById(int id);
         #endregion
 
 

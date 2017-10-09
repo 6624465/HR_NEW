@@ -3,32 +3,105 @@
 
     <form id="frmEmployeeLeaveForm" name="frmEmployeeLeaveForm" ng-class="{'submitted':submitted}" ng-submit="onSaveEmployeeLeave(EmployeeLeaveForm)" novalidate>
         <div class="col-xs-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        Employee Leave Details
+                    </h3>
+                </div>
 
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-green"><i class="fa fa-thumbs-up"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Granted Leaves </span>
+                                    <span class="info-box-number">90<small>%</small></span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-blue"><i class="fa fa-check-circle"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Approved Leaves</span>
+                                    <span class="info-box-number">41,410</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <!-- fix for small devices only -->
+                        <div class="clearfix visible-sm-block"></div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-aqua"><i class="fa fa-pencil"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Applied Leaves</span>
+                                    <span class="info-box-number">760</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-yellow"><i class="fa fa-hourglass-start"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Remaining Leaves</span>
+                                    <span class="info-box-number">2,000</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </div>
+            </div>
             <div class="box box-default">
                 <div class="box-header with-border">
                     <h3 class="box-title">
                         Employee Leave Form
                     </h3>
-                </div>
-                <div class="box-body">
-                    <div class="row ">
-                        <div class="col-xs-12 col-md-6 form-group">
-                            <label>Employee Name</label>
-                           <input type="text"
-                                class="form-control" ng-value="employeeName"
-                                  disabled
-                                  />
 
-                                @*ng-model="EmployeeLeaveForm.EmployeeName" name="EmployeeLeaveForm.EmployeeName"
-                                typeahead-min-length="3"
-                                uib-typeahead="response.FirstName for response in EmployeeList($viewValue,'EmployeeName')"*@
-                            @*typeahead-wait-ms="100"
-                                typeahead-editable="false"
-                                typeahead-on-select="EmployeeSelected($item)"
-                                ng-required="true" *@
-                            
+
+                </div>
+
+                <div class="box-body">
+
+                    <div class="row ">
+                        <div class="col-xs-12 col-md-4 ">
+                            <div class="info-box" style="min-width:200px; width:auto; display:inline-block; min-height: 74px;">
+                                <span class="info-box-icon " style="height: 74px;width: 74px;font-size: 37px;">
+                                    <i class="fa fa-user fa-2x">
+                                    </i>
+                                </span>
+
+                                <div class="info-box-content" style="margin-left: 75px;">
+                                    <span class="info-box-text">
+                                        <h4>
+                                            &nbsp;&nbsp;{{employeeName}}
+                                        </h4>
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+
                         </div>
                     </div>
+
                     <div class="row " id="some">
                         <div class="col-xs-12 col-md-6 form-group">
                             <label>From Date</label>

@@ -58,13 +58,13 @@
             background-color: green;
         }
     </style>
-    <div class="box">
+    <div class="box" ng-controller="EmployeeProfileController">
         <div class="box-header with-border">
             <h3 class="box-title">
                 Employee Profile &nbsp;&nbsp; <span style="text-align: right;"> Employee Number [ <b class="label bg-green ng-binding">{{EmployeeHeader.IDNumber}}</b> ]</span>
             </h3>
         </div>
-        <div class="box-body" ng-controller="EmployeeProfileController">
+        <div class="box-body" >
 
 
             <div class="row">
@@ -114,7 +114,7 @@
                                                             </div>
                                                         </a>
                                                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                            <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate" ng-change="CheckJoiningDate(EmployeeHeader.EmployeeWorkDetail.JoiningDate)"
+                                                            <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate" 
                                                                             data-datetimepicker-config="{ dropdownSelector: '#JoiningDate', startView:'day', minView:'day' }" />
                                                         </ul>
                                                     </div>

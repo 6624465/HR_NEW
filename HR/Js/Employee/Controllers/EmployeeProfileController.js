@@ -5,10 +5,6 @@
 
 
         $scope.init = function () {
-            debugger;
-            $scope.AddressNextButton = false;
-            $scope.BasicNextButton = false;
-            $scope.PositionNextButton = false;
             $scope.EducationDocuments = [];
             $scope.ExperienceLetters = [];
             $scope.ProjectDocuments = [];
@@ -30,6 +26,8 @@
             $scope.dateFormat = UtilityFunc.DateFormat();
             $scope.IsfrmEmployeeProfile = false;
             $scope.files = [];
+            $scope.IDNumber = '';
+            
         }
 
         $scope.detailsUrl = baseUrl + 'Js/Employee/Templates/BasicInformation.html';
@@ -64,6 +62,14 @@
                 $scope.EmployeeHeader.Address.CountryId =
                     $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
             }, function (err) {
+            })
+
+            EmployeeProfileService.GetEmployeeNumber().then(function (response) {
+                if (response && response.data) {
+                    if (response.data != null) {
+                        $scope.EmployeeHeader.IDNumber = response.data;
+                    }
+                }
             })
         }
 
@@ -134,19 +140,7 @@
             }
         }
 
-
-        $scope.onChangeEmployeeType = function () {
-            EmployeeProfileService.GetEmployeeNumber().then(function (response) {
-                if (response && response.data) {
-                    if (response.data != null) {
-                        $scope.EmployeeHeader.IDNumber = response.data;
-                    }
-                }
-            })
-        }
-
         $scope.SaveEmlployee = function (EmployeeHeader) {
-            debugger;
             //$scope.ValidateForm();
             if (EmployeeHeader.Password && EmployeeHeader.ConfirmPassword && EmployeeHeader.Password.trim() != EmployeeHeader.ConfirmPassword.trim()) {
                 growlService.growl("Password and confirm password should be same", 'danger');
@@ -171,7 +165,6 @@
             }
         }
         $scope.CancelDocument = function (item, name) {
-            debugger
             $scope.EducationDocuments.splice(item, 1);
             var document = $scope.EmployeeDocument.filter(function (item) {
                 return item.Name === name;
@@ -192,9 +185,8 @@
         $scope.CancelOtherDocuments = function (item) {
             $scope.OtherDocuments.splice(item, 1);
         }
-        
+
         $scope.EmployeeDocumentsUpload = function (e, documentType) {
-            debugger;
             var file = e.files;
             var extensionFileNames = ['jpeg', 'pdf', 'gif', 'jpg'];
             $scope.$apply(function () {
@@ -227,7 +219,6 @@
 
                         if (documentType == 'OtherDocuments')
                             $scope.OtherDocuments.push(e.files[i]);
-                        debugger;
                         if ($scope.EmployeeHeader.EmployeeDocument == null) {
                             $scope.EmployeeHeader.EmployeeDocument = new Array();
                         }

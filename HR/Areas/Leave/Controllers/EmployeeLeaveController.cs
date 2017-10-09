@@ -51,7 +51,7 @@ namespace HR.Areas.Leave.Controllers
                     EmployeeLeaveList _employeeLeaveList = new EmployeeLeaveList();
                     if (employeeLeaveList.Id > 0)
                     {
-                        _employeeLeaveList = Leaveservice.GetEmployeeLeaveListById(employeeLeaveList.Id);
+                        _employeeLeaveList = Leaveservice.GetLeaveListById(employeeLeaveList.Id);
                         //_employeeLeaveList.ModifiedBy = USER_OBJECT.UserName;
                         _employeeLeaveList.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
 
@@ -71,7 +71,7 @@ namespace HR.Areas.Leave.Controllers
                     _employeeLeaveList.LeaveTypeId = employeeLeaveList.LeaveTypeId;
                     _employeeLeaveList.Status = employeeLeaveList.Status;
                     _employeeLeaveList.TeamLeadId = 6674;
-                    Leaveservice.SaveEmployeeLeaveList(_employeeLeaveList);
+                    Leaveservice.SaveLeaveList(_employeeLeaveList);
 
                     result = Json(new { sucess = true, message = "Sent successfully" }, JsonRequestBehavior.AllowGet);
 

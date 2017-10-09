@@ -21,7 +21,7 @@ namespace HR.Service.Leave.LeaveService
 
         #region EmployeeLeaveList
 
-        public IQueryable<T> GetEmployeeLeaveList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeLeaveList
+        public IQueryable<T> GetLeaveList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeLeaveList
         {
             var query = EmployeeLeaveListRepository.FindAll().OfType<T>();
             if (predicate != null)
@@ -29,7 +29,7 @@ namespace HR.Service.Leave.LeaveService
             return query;
         }
 
-        public void SaveEmployeeLeaveList(EmployeeLeaveList employeeLeaveList, bool autoCommit = true)
+        public void SaveLeaveList(EmployeeLeaveList employeeLeaveList, bool autoCommit = true)
         {
             if (employeeLeaveList.Id == 0)
                 EmployeeLeaveListRepository.Insert(employeeLeaveList);
@@ -40,7 +40,7 @@ namespace HR.Service.Leave.LeaveService
                 EmployeeLeaveListRepository.Commit();
         }
 
-        public EmployeeLeaveList GetEmployeeLeaveListById(int id)
+        public EmployeeLeaveList GetLeaveListById(int id)
         {
          return EmployeeLeaveListRepository.GetById(id);
         }

@@ -42,7 +42,8 @@ namespace HR.Areas.Employees.Controllers
                         CountryCode = item.Address.CountryCode,
                         Designation = item.EmployeeWorkDetail != null ? item.EmployeeWorkDetail.DesignationId : 0,
                         DesignationName = (LookUpCodeService.GetLookUpType(item.EmployeeWorkDetail.DesignationId)).LookUpDescription,
-                        EmployeeType = item.IDType
+                        EmployeeType = item.IDType,
+                        DOB = item.EmployeePersonalInfo.DOB
                     };
                     employeeViewModelList.Add(employeeViewModel);
                 }
