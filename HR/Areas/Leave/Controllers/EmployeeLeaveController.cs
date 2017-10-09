@@ -119,5 +119,15 @@ namespace HR.Areas.Leave.Controllers
             }
             return result;
         }
+        public JsonResult GetLeaveStatus()
+        {
+            JsonResult result = null;
+            int appliedStatusCount =  Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "Applied" && s.BranchId == USER_OBJECT.BranchId&&s.EmployeeId==USER_OBJECT.EmployeeId).Count();
+            int GrantedStatusCount = Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "Grant" && s.BranchId == USER_OBJECT.BranchId && s.EmployeeId == USER_OBJECT.EmployeeId).Count();
+            int PendingStatusCount= Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "pending" && s.BranchId == USER_OBJECT.BranchId && s.EmployeeId == USER_OBJECT.EmployeeId).Count();
+            int RemaingStatusCount = Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "Remain" && s.BranchId == USER_OBJECT.BranchId && s.EmployeeId == USER_OBJECT.EmployeeId).Count();
+            result = Json(new { appliedStatusCount= appliedStatusCount, GrantedStatusCount = GrantedStatusCount , PendingStatusCount = PendingStatusCount , RemaingStatusCount = RemaingStatusCount }, JsonRequestBehavior.AllowGet);
+            return result;
+        }
     }
 }

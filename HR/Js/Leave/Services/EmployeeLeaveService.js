@@ -38,5 +38,14 @@
         });
         return deferred.promise;
     }
-    
+    this.GetLeaveStatus = function () {
+        debugger;
+        var deferred = $q.defer();
+        $http.get("/EmployeeLeave/GetLeaveStatus").then(function (response) {
+            deferred.resolve(response);
+        }, function (err) {
+            deferred.reject(err);
+        });
+        return deferred.promise;
+    }
 }]);

@@ -1,6 +1,6 @@
 ﻿angular.module('ngHR').controller('EmployeeLeaveFormController', ['$scope', '$http', 'UtilityFunc', 'growlService', 'limitToFilter', 'EmployeeLeave', 'LookUp',
 function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave, LookUp) {
-
+    debugger;
     $scope.init = function () {
         $scope.dateFormat = UtilityFunc.DateFormat();
         $scope.EmployeeLeaveForm = {
@@ -33,7 +33,17 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
         $scope.EmployeeLeaveForm.EmployeeId = obj.Id;
         $scope.EmployeeLeaveForm.EmployeeName = obj.FirstName;
     }
- 
+    $scope.GetLeaveStatus = function () {
+        debugger;
+        EmployeeLeave.GetLeaveStatus().then(function (res) {
+            debugger;
+            $scope.appliedStatusCount = res.data.appliedStatusCount;
+            $scope.GrantedStatusCount = res.data.GrantedStatusCount;
+            $scope.PendingStatusCount = res.data.PendingStatusCount;
+            $scope.RemaingStatusCount = res.data.RemaingStatusCount;
+        });
+    }
+    $scope.GetLeaveStatus();
     //$scope.difference = function () {
     //    //var diffDate = (Math.round(Math.abs((new Date($scope.EmployeeLeaveForm.FromDate).getTime() -new Date($scope.EmployeeLeaveForm.ToDate).getTime()) / (24  60  60 * 1000))));
     //    //    $scope.EmployeeLeaveForm.Days = diffDate +1;
