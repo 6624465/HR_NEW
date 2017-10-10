@@ -51,7 +51,8 @@
                 </div>
 
                 <div class="box-body">
-                    <form id="frmRoleRight" name="frmRoleRight" ng-submit="SaveEmployeeSecurbles(nodes)" novalidate>
+                    <form id="frmRoleRight" name="frmRoleRight" novalidate>
+                        @*ng-submit="SaveEmployeeSecurbles(nodes)"*@ 
                         <div class="row">
                             <div class="col-xs-12 col-md-8">
 
@@ -107,7 +108,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12  m-t-15 m-b-10">
-                        <button type="submit" ng-click="submitted = true" class="btn btn-primary pull-left"><i class="fa fa-floppy-o"></i>&nbsp;Save Rights</button>
+                        <button type="submit" ng-click="SaveEmployeeSecurbles(nodes)" class="btn btn-primary pull-left"><i class="fa fa-floppy-o"></i>&nbsp;Save Rights</button>
                     </div>
                 </div>
             </div>

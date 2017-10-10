@@ -21,7 +21,7 @@
                         </div>*@
                     </div>
                     <div class="col-xs-12 col-md-8 text-right">
-                        <button class="btn " id="btn-add-Holiday" ng-click="addHolidayList(table)">Add an Holiday</button>
+                        <button class="btn " id="btn-add-Holiday" ng-click="addHolidayList(table)"  has-Right data-rightValue='HolidayList.HolidayList' data-accessRight="2">Add an Holiday</button>
                     </div>
                     </div>
                 
@@ -141,8 +141,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer" style="right: 270px;">
-                                    <button class="btn" type="submit" ng-click="submitted = true;"  has-Right data-rightValue="HolidayList.Save">Save</button>
-                                    <button type="submit" class="btn btn-default" ng-click="onClickCancelHoliDayList()"  has-Right data-rightValue="HolidayList.Cancel">Cancel</button>
+                                    <button class="btn" type="submit" ng-click="submitted = true;"  has-Right data-rightValue='HolidayList.HolidayList'>Save</button>
+                                    <button type="submit" class="btn btn-default" ng-click="onClickCancelHoliDayList()" has-Right data-rightValue='HolidayList.HolidayList'>Cancel</button>
                                 </div>
                             </div>
                         </div>
