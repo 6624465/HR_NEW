@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Script.Serialization;
+
 namespace HR.Core.Models
 {
     public class EmployeeLeaveList
@@ -21,7 +23,7 @@ namespace HR.Core.Models
         public int Days { get; set; }
         public string Reason { get; set; }
         public string Remarks { get; set; }
-        public int TeamLeadId { get; set; }
+        public int ManagerId { get; set; }
         public string Status { get; set; }
         public DateTime ApplyDate { get; set; }
         public string CreatedBy { get; set; }

@@ -27,7 +27,13 @@ namespace HR.Areas.Leave.Controllers
                 try
                 {
 
-                    List<EmployeeHeader> employees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.FirstName.ToLower().Contains(employeeName.ToLower())).ToList();
+                    var employees =  (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.FirstName.ToLower().Contains(employeeName.ToLower()) && e.EmployeeWorkDetail.DesignationId == 1102)
+                                      select new
+                                      {
+                                          Id = employee.Id,
+                                          Name = employee.FirstName + " " + employee.MiddleName + " "+ employee.LastName
+                                      }).ToList();
+                    
                     jsonResult = Json(new { sucess = true, employees = employees }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
@@ -52,17 +58,19 @@ namespace HR.Areas.Leave.Controllers
                     if (employeeLeaveList.Id > 0)
                     {
                         _employeeLeaveList = Leaveservice.GetLeaveListById(employeeLeaveList.Id);
-                        //_employeeLeaveList.ModifiedBy = USER_OBJECT.UserName;
+                        _employeeLeaveList.ModifiedBy = USER_OBJECT.UserName;
                         _employeeLeaveList.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
 
                     }
                     else
                     {
-                        //_employeeLeaveList.CreatedBy = USER_OBJECT.UserName;
+                        _employeeLeaveList.CreatedBy = USER_OBJECT.UserName;
                         _employeeLeaveList.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                         _employeeLeaveList.ApplyDate = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                     }
-                    _employeeLeaveList.EmployeeId = employeeLeaveList.EmployeeId;
+                    EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.Id == employeeLeaveList.EmployeeId).FirstOrDefault();
+                    
+                    _employeeLeaveList.EmployeeId = employeeHeader.Id;
                     _employeeLeaveList.FromDate = employeeLeaveList.FromDate;
                     _employeeLeaveList.ToDate = employeeLeaveList.ToDate;
                     _employeeLeaveList.Days = employeeLeaveList.Days;
@@ -70,7 +78,7 @@ namespace HR.Areas.Leave.Controllers
                     _employeeLeaveList.Remarks = employeeLeaveList.Remarks;
                     _employeeLeaveList.LeaveTypeId = employeeLeaveList.LeaveTypeId;
                     _employeeLeaveList.Status = employeeLeaveList.Status;
-                    _employeeLeaveList.TeamLeadId = 6674;
+                    _employeeLeaveList.ManagerId = employeeHeader.ManagerId.HasValue ? employeeHeader.ManagerId.Value : 0;
                     Leaveservice.SaveLeaveList(_employeeLeaveList);
 
                     result = Json(new { sucess = true, message = "Sent successfully" }, JsonRequestBehavior.AllowGet);

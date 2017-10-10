@@ -20,9 +20,9 @@
         return deferred.promise;
     }
 
-    this.GetEmployeeLeaveListBasedOnTeamLead = function (teamLeadId) {
+    this.GetEmployeeLeaveListBasedOnTeamLead = function () {
         var deferred = $q.defer();
-        $http.get("/AppliedLeaveList/GetAppliedLeaveList?teamLeadId=" + teamLeadId).then(function (response) {
+        $http.get("/AppliedLeaveList/GetAppliedLeaveList").then(function (response) {
             deferred.resolve(response);
         }, function (err) {
             deferred.reject(err);

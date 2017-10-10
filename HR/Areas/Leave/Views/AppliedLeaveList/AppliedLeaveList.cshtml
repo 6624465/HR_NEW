@@ -1,22 +1,12 @@
 ﻿<div class="row" ng-controller="AppliedLeaveListController as Cntrl">
     <div class="col-md-4">
        
-        <div class="box " >
+        <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">Employee leave</h3>
             </div>
             <div class="box-body">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="form-group">
-                            <label>TeamLeadId</label>
-                            <input type="text" ng-model="EmployeeLeaveList.TeamLeadId" class="form-control input-mask" />
-                        </div>
-                        <div class="form-group fg-line">
-                            <button type="button" id="btn-SearchHolidays" class="btn btn-primary btn-xs " ng-click="SearchEmployeeLeaveList(EmployeeLeaveList.TeamLeadId)">Search</button>
-                        </div>
-                    </div>
-                    </div>
+         
                     @*<div class="row">
                 <div class="col-xs-12 ">
                     <h4>
@@ -24,7 +14,15 @@
                     </h4>
                 </div>
             </div>*@
-                <div ng-if="LeaveList">
+                <div>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
+                            <label class=""> Employee Id :</label>
+                        </div>
+                        <div class="col-xs-12 col-md-8">
+                            <label class="content-label">{{AppliedLeaveList.EmployeeNumber}}</label>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-xs-12 col-md-4">
                             <label class=""> Employee Name :</label>
@@ -96,13 +94,13 @@
 
                         </div>
                         <div class="col-xs-12 col-md-8">
-                            <div class="employee-remarks">{{AppliedLeaveList.Remarks}}</div>                           
+                            <div>{{AppliedLeaveList.Remarks}}</div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-md-4">
 
-                            <label class=""> Team Lead Remarks :</label>
+                            <label class=""> Manager Remarks :</label>
 
 
                         </div>
@@ -115,9 +113,9 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12 text-right">
-                            <button type="button" class="btn" ng-click="AcceptOrReject(AppliedLeaveList,'Accept')">Accept Grant</button>
-                            <button type="button" class="btn btn-danger" ng-click="AcceptOrReject(AppliedLeaveList, 'Reject')">Reject</button>
-                            <button type="button" class="btn-default btn">Back</button>
+                            <button type="button" class="btn" ng-click="AcceptOrReject(AppliedLeaveList,'Accepted')" ng-if="AppliedLeaveList.Status !='Accepted' && AppliedLeaveList.EmployeeId != null">Accept Grant</button>
+                            <button type="button" class="btn btn-danger" ng-click="AcceptOrReject(AppliedLeaveList, 'Rejected')" ng-if="AppliedLeaveList.Status !='Rejected' && AppliedLeaveList.EmployeeId != null">Reject</button>
+                            <button type="button" class="btn-default btn" ng-click="Back()">Back</button>
                         </div>
                     </div>
                 </div>
@@ -145,12 +143,14 @@
                     <tbody>
                         <tr ng-repeat="employeeLeave in EmployeeLeaveList">
                            <td ng-if="test">
-                                <button type="button" class="btn btn-default ng-scope waves-effect" ng-click="onEditEmployeeLeave(employeeLeave)" aria-label="button">
+                                <button type="button" class="btn btn-default ng-scope waves-effect" 
+                                        ng-click="onEditEmployeeLeave(employeeLeave)" aria-label="button"
+                                        >
                                     <i class="zmdi zmdi-edit" aria-hidden="true"></i>
                                 </button>
                             </td>
                             <td>{{employeeLeave.SNo}}</td>
-                            <td>{{employeeLeave.EmployeeId}}</td>
+                            <td>{{employeeLeave.EmployeeNumber}}</td>
                             <td>{{employeeLeave.EmployeeName}}</td>
                             <td>{{employeeLeave.ApplyDate}}</td>
                             <td>

@@ -8,6 +8,7 @@ namespace HR.Models
     public class EmployeeLeaveViewModel
     {
         public int Id { get; set; }
+        public string EmployeeNumber { get; set; }
         public int EmployeeId { get; set; }
         public string EmployeeName{ get; set; }
         public int LeaveTypeId { get; set; }

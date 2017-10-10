@@ -96,7 +96,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
     //}
 
     
-    $scope.eventClicked = function (event) {
+        $scope.onEditHoliday = function (event) {
         $scope.HolidayList.Id = event.Id;
         $scope.HolidayList.CountryId = event.LocationId;
         $scope.HolidayList.Date = $scope.formatDate(event.startsAt);

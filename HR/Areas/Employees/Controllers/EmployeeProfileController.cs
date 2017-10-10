@@ -327,6 +327,7 @@ namespace HR.Areas.Employees.Controllers
             EmployeePersonalInfo employeePersonalInfo = employeeHeader.EmployeePersonalInfo;
 
             _employeeHeader.BranchId = employeeHeader.BranchId;
+            _employeeHeader.ManagerId = employeeHeader.ManagerId;
             //_employeeHeader.EmployeeId = employeeHeader.EmployeeId > 0 ? employeeHeader.EmployeeId : 0;
             _employeeHeader.FirstName = !string.IsNullOrWhiteSpace(employeeHeader.FirstName) ? employeeHeader.FirstName : string.Empty;
             _employeeHeader.MiddleName = !string.IsNullOrWhiteSpace(employeeHeader.MiddleName) ? employeeHeader.MiddleName : string.Empty;

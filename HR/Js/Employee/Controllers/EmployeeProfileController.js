@@ -1,6 +1,6 @@
-﻿angular.module('ngHR').controller('EmployeeProfileController', ['$scope', '$http', 'growl', '$filter',
+﻿angular.module('ngHR').controller('EmployeeProfileController', ['$scope', '$http', 'growl', '$filter','limitToFilter',
     'UtilityFunc', 'Employee', 'LookUp', 'HolidayListService', 'growlService', 'EmployeeProfileService', '$timeout', '$stateParams',
-    '$state', function ($scope, $http, growl, $filter, UtilityFunc, Employee, LookUp, HolidayListService,
+    '$state', function ($scope, $http, growl, $filter,limitToFilter, UtilityFunc, Employee, LookUp, HolidayListService,
         growlService, EmployeeProfileService, $timeout, $stateParams, $state) {
 
 
@@ -117,6 +117,7 @@
                 }
             }
         }
+
         $scope.CheckJoiningDate = function (JoiningDate) {
             if (JoiningDate !== "Invalid Date") {
                 var userDate = new Date(JoiningDate);
@@ -164,6 +165,7 @@
                 growlService.growl('Please Enter All Mandtory Fields', 'danger');
             }
         }
+
         $scope.CancelDocument = function (item, name) {
             $scope.EducationDocuments.splice(item, 1);
             var document = $scope.EmployeeDocument.filter(function (item) {
@@ -172,6 +174,7 @@
             var index = $scope.EmployeeDocument.indexOf(document);
             $scope.EmployeeDocument.splice(index, 1);
         }
+
         $scope.Remove = function () {
             $scope.UIDCard = null;
         }
@@ -280,6 +283,17 @@
                     }
                 }
             })
+        }
+
+        $scope.EmployeeList = function (text) {
+            return EmployeeProfileService.GetEmployees(text).then(function (response) {
+                return limitToFilter(response.data.employees, 15);
+            }, function (err) { });
+        };
+
+        $scope.EmployeeSelected = function (obj) {
+            $scope.EmployeeHeader.ManagerId = obj.Id;
+            $scope.EmployeeHeader.ManagerName = obj.Name;
         }
 
         $scope.LookUpData();

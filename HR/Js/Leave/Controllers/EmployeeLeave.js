@@ -6,6 +6,7 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
             BranchID: UtilityFunc.BranchId(),
             FromDate: moment(),
             ToDate: moment(),
+            EmployeeId: UtilityFunc.EmployeeId(),
         }
         $scope.LeaveType = {}
         $scope.maxdate = moment();
@@ -118,6 +119,6 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
     $scope.OnClearEmployeeLeave = function (employeeLeaveForm) {
         $scope.EmployeeLeaveForm = "";
     };
-    /*Clear Section*/
+    debugger
     $scope.init();
 }]);

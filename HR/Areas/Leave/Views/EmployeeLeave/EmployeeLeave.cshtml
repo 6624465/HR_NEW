@@ -2,17 +2,14 @@
 <div class="row" ng-controller="EmployeeLeaveFormController">
 
     <form id="frmEmployeeLeaveForm" name="frmEmployeeLeaveForm" ng-class="{'submitted':submitted}" ng-submit="onSaveEmployeeLeave(EmployeeLeaveForm)" novalidate>
-        <div class="col-xs-12">
-            <div class="box box-default">
+        <div class="col-md-4">
+            <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">
-                        Employee Leave Details
-                    </h3>
+                    <h3 class="box-title">Employee Leave Details</h3>
                 </div>
-
                 <div class="box-body">
                     <div class="row">
-                        <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-md-12 ">
                             <div class="info-box">
                                 <span class="info-box-icon bg-green"><i class="fa fa-thumbs-up"></i></span>
 
@@ -22,24 +19,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /.col -->
-                        @*<div class="col-md-3 col-sm-6 col-xs-12">
-                            <div class="info-box">
-                                <span class="info-box-icon bg-blue"><i class="fa fa-check-circle"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Approved Leaves</span>
-                                    <span class="info-box-number">41,410</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>*@
-                        <!-- /.col -->
-                        <!-- fix for small devices only -->
                         <div class="clearfix visible-sm-block"></div>
 
-                        <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-md-12">
                             <div class="info-box">
                                 <span class="info-box-icon bg-aqua"><i class="fa fa-pencil"></i></span>
 
@@ -49,7 +31,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-md-12">
                             <div class="info-box">
                                 <span class="info-box-icon bg-blue"><i class="fa fa-clock-o"></i></span>
 
@@ -59,7 +41,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="col-md-12">
                             <div class="info-box">
                                 <span class="info-box-icon bg-yellow"><i class="fa fa-hourglass-start"></i></span>
 
@@ -72,15 +54,12 @@
                     </div>
                 </div>
             </div>
-            <div class="box box-default">
+        </div>
+        <div class="col-md-8">
+            <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">
-                        Employee Leave Form
-                    </h3>
-
-
+                    <h3 class="box-title">Employee Leave Form</h3>
                 </div>
-
                 <div class="box-body">
 
                     <div class="row ">
@@ -139,7 +118,7 @@
                                         <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
                                     </div>
                                 </a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" >
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                     <datetimepicker ng-model="EmployeeLeaveForm.ToDate" ng-change="difference(EmployeeLeaveForm.FromDate,EmployeeLeaveForm.ToDate)"
                                                     data-datetimepicker-config="{ dropdownSelector: '#ToDate', startView:'day', minView:'day' }" />
                                 </ul>
@@ -165,7 +144,7 @@
                     <div class="row ">
                         <div class="col-xs-12 col-md-6 form-group">
                             <label for="reason">Reason</label>
-                            <input id="reason" class="form-control" type="text" ng-model="EmployeeLeaveForm.ReasonForLeave" />
+                            <input id="reason" class="form-control" type="text" ng-model="EmployeeLeaveForm.Reason" />
                         </div>
 
                     </div>
@@ -185,7 +164,7 @@
                     </div>
                 </div>
             </div>
-
         </div>
+       
     </form>
 </div>

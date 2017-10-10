@@ -64,9 +64,7 @@
                 Employee Profile &nbsp;&nbsp; <span style="text-align: right;"> Employee Number [ <b class="label bg-green ng-binding">{{EmployeeHeader.IDNumber}}</b> ]</span>
             </h3>
         </div>
-        <div class="box-body" >
-
-
+        <div class="box-body">
             <div class="row">
                 <div class="col-sm-12">
                     <div id="form-container">
@@ -92,11 +90,11 @@
                                                 </div>
                                             </div>
                                             @*<div class="col-xs-12 col-md-4">
-                                                <div class="form-group ">
-                                                    <label>Employee Number</label>
-                                                    <input class="form-control " type="text" ng-model="EmployeeHeader.IDNumber" ng-disabled="true" style="font-weight:bold">
-                                                </div>
-                                            </div>*@
+                                                    <div class="form-group ">
+                                                        <label>Employee Number</label>
+                                                        <input class="form-control " type="text" ng-model="EmployeeHeader.IDNumber" ng-disabled="true" style="font-weight:bold">
+                                                    </div>
+                                                </div>*@
                                             <div class="col-xs-12 col-md-4">
                                                 <div class="form-group ">
                                                     <label>
@@ -114,7 +112,7 @@
                                                             </div>
                                                         </a>
                                                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                                            <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate" 
+                                                            <datetimepicker ng-model="EmployeeHeader.EmployeeWorkDetail.JoiningDate"
                                                                             data-datetimepicker-config="{ dropdownSelector: '#JoiningDate', startView:'day', minView:'day' }" />
                                                         </ul>
                                                     </div>
@@ -197,10 +195,7 @@
                                                                name="gender" value="2" ng-model="EmployeeHeader.EmployeePersonalInfo.Gender">
                                                         Other
                                                     </label>
-
-
                                                 </div>
-
                                             </div>
                                         </div>
                                         <div class="row">
@@ -315,16 +310,12 @@
                                         </div>
 
                                         <div class="row">
-
                                             <div class="col-xs-12 col-md-4">
                                                 <div class="form-group ">
                                                     <label>Emergency Contact Name</label>
                                                     <input type="text" class="form-control" ng-model="EmployeeHeader.EmployeePersonalInfo.EmergencyContactName" />
                                                 </div>
                                             </div>
-
-
-
                                             <div class="col-xs-12 col-md-4">
                                                 <div class="form-group ">
                                                     <label>Emergency Contact Number</label>
@@ -456,6 +447,29 @@
                                             </div>
 
                                         </div>
+                                        <h2><i class="fa fa-user-secret m-r-10"></i>&nbsp; Assign Manager</h2>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-md-4">
+                                                <div class="form-group ">
+                                                    <label>Manager</label>
+                                                    <div class="input-group">
+                                                           
+                                                        <input type="text"
+                                                               class="form-control" ng-value="EmployeeHeader.ManagerName"
+                                                               ng-model="EmployeeHeader.ManagerName" name="EmployeeHeader.ManagerName"
+                                                               typeahead-min-length="3"
+                                                               uib-typeahead="response.Name for response in EmployeeList($viewValue,'EmployeeHeader.ManagerName')"
+                                                               typeahead-wait-ms="100"
+                                                               typeahead-editable="false"
+                                                               typeahead-on-select="EmployeeSelected($item)"/>
+                                                    <span class="input-group-addon">
+                                                        <i class="fa fa-search"></i>
+                                                    </span>
+                                                    </div>
+</div>
+                                            </div>
+                                        </div>
+
                                         <h2><i class="zmdi zmdi-folder-star m-r-10"></i>&nbsp; Employee Documents </h2>
                                         <div class="row">
                                             <div class="col-xs-12 col-md-6">
@@ -471,8 +485,8 @@
                                                         <tr>
                                                             <td><label>UID Card</label></td>
                                                             <td class="documentColor">
-                                                                <a ng-if="UIDCard != null"  ng-click="Remove()">
-                                                                    <i class="fa fa-remove" ></i>
+                                                                <a ng-if="UIDCard != null" ng-click="Remove()">
+                                                                    <i class="fa fa-remove"></i>
                                                                 </a> {{UIDCard.name}}
                                                             </td>
                                                             <td>
@@ -483,7 +497,7 @@
                                                                                id="containerFile"
                                                                                name="containerFile"
                                                                                class="form-control"
-                                                                               file-name 
+                                                                               file-name
                                                                                onchange="angular.element(this).scope().EmployeeDocumentsUpload(this,'UID')">
                                                                     </span>
                                                                 </span>
@@ -491,7 +505,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td><label>Education Documents</label></td>
-                                                            <td >
+                                                            <td>
                                                                 <ul>
                                                                     <li ng-repeat="file in EducationDocuments" class="documentColor">
                                                                         <a ng-click="CancelDocument($index,file.name)" ng-if="file != null">
@@ -520,10 +534,10 @@
                                                                 </label>
                                                             </td>
                                                             <td>
-                                                                <ul >
+                                                                <ul>
                                                                     <li ng-repeat="file in ExperienceLetters" class="documentColor">
                                                                         <a ng-click="CancelExperienceLetter($index)" ng-if="file != null">
-                                                                            <i class="fa fa-remove" ></i>
+                                                                            <i class="fa fa-remove"></i>
                                                                         </a>{{file.name}}
                                                                     </li>
                                                                 </ul>
@@ -550,7 +564,7 @@
                                                             </td>
                                                             <td>
                                                                 <ul>
-                                                                    <li ng-repeat="file in ProjectDocuments" class="documentColor"> 
+                                                                    <li ng-repeat="file in ProjectDocuments" class="documentColor">
                                                                         <a ng-click="CancelProjectDocuments($index)" ng-if="file != null">
                                                                             <i class="fa fa-remove"></i>
                                                                         </a>{{file.name}}
