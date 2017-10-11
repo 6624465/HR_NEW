@@ -87,7 +87,9 @@ namespace HR.Areas.Employees.Controllers
                 string imagePathName = string.Empty;
                 LookUpDescriptions lookUpDescriptions = null;
                 if (!IsfromIndividualEmployee)
+                {
                     employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
+                }
                 else if (employeeId == 0)
                 {
                     employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.UserId == USER_OBJECT.Id).FirstOrDefault();
@@ -103,6 +105,10 @@ namespace HR.Areas.Employees.Controllers
                         Department = LookUpCodeService.GetLookUpType(employeeHeader.EmployeeWorkDetail.DepartmentId).LookUpCode,
                     };
                 }
+
+                List<EmployeeDocument> employeeDocuments = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(e => e.EmployeeHeaderId == employeeHeader.Id).ToList();
+                employeeHeader.EmployeeDocument = employeeDocuments != null ? employeeDocuments : null;
+
                 result = Json(new { employeeHeader = employeeHeader, imagePathName = imagePathName, LookUpDescriptions = lookUpDescriptions }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
@@ -212,8 +218,6 @@ namespace HR.Areas.Employees.Controllers
                     if (EmployeeUser.Id > 0)
                     {
                         User _user = EmployeeUser;
-
-
                         EmployeeHeader _employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeId);
                         _user.ModifiedOn = _employeeHeader.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                         _user.ModifiedBy = _employeeHeader.ModifiedBy = USER_OBJECT.UserID;
@@ -244,42 +248,35 @@ namespace HR.Areas.Employees.Controllers
             try
             {
                 EmployeeDocument employeeDocument = null;
-                for (int i = 0; i <= hfc.Count; i++)
+                HttpPostedFile file = hfc[0];
+                employeeDocument = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(ed => ed.EmployeeHeaderId == employeeId).FirstOrDefault();
+
+                //EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeDocuments(Convert.ToInt16(employeeId));
+                if (employeeDocument != null)
                 {
-                    if (hfc[1] != null)
-                    {
-
-                        employeeDocument = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(ed => ed.EmployeeHeaderId == employeeId).FirstOrDefault();
-
-                        //EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeDocuments(Convert.ToInt16(employeeId));
-                        if (employeeDocument != null)
-                        {
-                            employeeDocument.ModifiedBy = USER_OBJECT.UserID;
-                            employeeDocument.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
-                        }
-                        else
-                        {
-                            employeeDocument = new EmployeeDocument();
-                            employeeDocument.CreatedBy = USER_OBJECT.UserID;
-                            employeeDocument.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
-                        }
-                        EmployeeHeader EmployeeHeader = employeeDocument.EmployeeHeader;
-                        employeeDocument.FileName = System.IO.Path.GetFileName(hfc[i].FileName);
-                        employeeDocument.BranchId = USER_OBJECT.BranchId;
-                        employeeDocument.EmployeeHeaderId = Convert.ToInt32(employeeId);
-
-                        SaveFile(System.Web.HttpContext.Current.Request.Files);
-                        EmployeeHeader.EmployeeDocument.Add(employeeDocument);
-
-
-                    }
+                    employeeDocument.ModifiedBy = USER_OBJECT.UserID;
+                    employeeDocument.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                 }
-                EmployeeProfileService.SaveEmployeeDocuments(employeeDocument);
+                else
+                {
+                    employeeDocument = new EmployeeDocument();
+                    employeeDocument.CreatedBy = USER_OBJECT.UserID;
+                    employeeDocument.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
+                }
+                EmployeeHeader EmployeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(s=>s.Id == employeeId).FirstOrDefault();
+                employeeDocument.FileName = System.IO.Path.GetFileName(file.FileName);
+                employeeDocument.BranchId = USER_OBJECT.BranchId;
+                employeeDocument.EmployeeHeaderId = Convert.ToInt32(employeeId);
+                employeeDocument.DocumentType = LookUpCodeService.GetLookUp<LookUp>(l => l.LookUpCode == "ProfilePic").Select(s => s.LookUpID).FirstOrDefault();
+                SaveFile(file);
+                EmployeeHeader.EmployeeDocument.Add(employeeDocument);
+                if (employeeDocument != null)
+                    EmployeeProfileService.SaveEmployeeDocuments(employeeDocument);
             }
             catch (Exception ex)
             {
-
-                throw;
+                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                    return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
             }
             return result;
         }
@@ -313,7 +310,6 @@ namespace HR.Areas.Employees.Controllers
             EmployeeHeader _employeeHeader = null;
             if (employeeHeader.Id > 0)
             {
-
                 _employeeHeader = EmployeeProfileService.GetEmployeeProfileDetailsById(employeeHeader.Id);
                 _employeeHeader.ModifiedBy = USER_OBJECT.UserName;
                 _employeeHeader.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
@@ -328,7 +324,6 @@ namespace HR.Areas.Employees.Controllers
 
             _employeeHeader.BranchId = employeeHeader.BranchId;
             _employeeHeader.ManagerId = employeeHeader.ManagerId;
-            //_employeeHeader.EmployeeId = employeeHeader.EmployeeId > 0 ? employeeHeader.EmployeeId : 0;
             _employeeHeader.FirstName = !string.IsNullOrWhiteSpace(employeeHeader.FirstName) ? employeeHeader.FirstName : string.Empty;
             _employeeHeader.MiddleName = !string.IsNullOrWhiteSpace(employeeHeader.MiddleName) ? employeeHeader.MiddleName : string.Empty;
             _employeeHeader.LastName = !string.IsNullOrWhiteSpace(employeeHeader.LastName) ? employeeHeader.LastName : string.Empty;
@@ -354,38 +349,29 @@ namespace HR.Areas.Employees.Controllers
         {
             for (var i = 0; i < hfc.Count; i++)
             {
+                HttpPostedFile httpPostedFileBase = hfc[i];
                 foreach (var item in employeeDocumentViewModel)
                 {
-                    if (item.Name == hfc[i].FileName)
+                    if (item.Name == httpPostedFileBase.FileName)
                     {
-                       
                         EmployeeDocument employeeDocument = new EmployeeDocument();
-                        LookUp lookUp =  LookUpCodeService.GetLookUp<LookUp>(l => l.LookUpCode == item.DocumentType).FirstOrDefault();
-                        bool employeeHeaders = employeeHeader.EmployeeDocument != null ? employeeHeader.EmployeeDocument.Any(e => e.DocumentType == lookUp.LookUpID && e.FileName == item.Name): false;
+                        LookUp lookUp = LookUpCodeService.GetLookUp<LookUp>(l => l.LookUpCode == item.DocumentType).FirstOrDefault();
+                        bool employeeHeaders = employeeHeader.EmployeeDocument != null ? employeeHeader.EmployeeDocument.Any(e => e.DocumentType == lookUp.LookUpID && e.FileName == item.Name) : false;
                         if (!employeeHeaders)
                         {
-                            //if (employeeDocument.Id > 0)
-                            //{
-                            //    employeeDocument = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(e=>e.Id == employeeDocument.Id).FirstOrDefault()
-                            //    employeeDocument.ModifiedBy = USER_OBJECT.UserID;
-                            //    employeeDocument.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
-                            //}
-                            //else
-                            //{
                             employeeDocument.CreatedBy = USER_OBJECT.UserID;
                             employeeDocument.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
-                            //}
-                            employeeDocument.FileName = hfc[i].FileName;
+                            employeeDocument.FileName = httpPostedFileBase.FileName;
                             employeeDocument.BranchId = USER_OBJECT.BranchId;
-                            employeeDocument.DocumentType = lookUp.LookUpID;
-                            employeeDocuments.Add(employeeDocument);
-
-                            employeeHeader.EmployeeDocument = employeeDocuments;
+                            employeeDocument.DocumentType = LookUpCodeService.GetLookUp<LookUp>(l => l.LookUpCode == item.DocumentType).Select(s => s.LookUpID).FirstOrDefault(); ;
+                           // employeeDocuments.Add(employeeDocument);
+                            SaveFile(httpPostedFileBase);
+                            employeeHeader.EmployeeDocument  = employeeHeader.EmployeeDocument == null ? new List<EmployeeDocument>(): employeeHeader.EmployeeDocument;
+                            employeeHeader.EmployeeDocument.Add(employeeDocument);
                         }
                     }
                 }
 
-               
             }
         }
         private EmployeePersonalInfo PrepareEmployeePersonalInfo(EmployeePersonalInfo employeePersonalInfo, EmployeeHeader employeeHeader)
@@ -526,11 +512,7 @@ namespace HR.Areas.Employees.Controllers
             {
                 if (!string.IsNullOrEmpty(employeeFileName))
                 {
-
                     string employeeFilePathToSave = Path.Combine(Server.MapPath("~/img/profile-pics"), employeeFileName);
-                    //var buffer = System.IO.File.ReadAllBytes(employeeFilePathToSave);
-                    //var stream = new MemoryStream(buffer);
-                    //return File(stream.ToArray(), "text/html", employeeFileName);
                 }
             }
             catch (Exception ex)

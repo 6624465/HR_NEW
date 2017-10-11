@@ -92,32 +92,29 @@ namespace HR.Controllers
         }
 
 
-        public string SaveFile(HttpFileCollection httpFileCollection)
+        public void SaveFile(HttpPostedFile httpPostedFileBase)
         {
-
-            HttpPostedFile hpf = httpFileCollection[0];
-            /*Geting the file name*/
-            string filename = System.IO.Path.GetFileName(hpf.FileName);
-            string mapPath = Server.MapPath("~/img/profile-pics/");
-
-            var dirInfo = new System.IO.DirectoryInfo(mapPath);
-            if (!dirInfo.Exists)
-            {
-                dirInfo.Create();
-            }
-
-            string filepathtosave = mapPath + filename;
-
+            string filename = string.Empty;
             try
             {
-                hpf.SaveAs(filepathtosave);
+                /*Geting the file name*/
+                
+                    filename = System.IO.Path.GetFileName(httpPostedFileBase.FileName);
+                    string mapPath = Server.MapPath("~/Documents/");
+
+                    var dirInfo = new System.IO.DirectoryInfo(mapPath);
+                    if (!dirInfo.Exists)
+                    {
+                        dirInfo.Create();
+                    }
+                    string filepathtosave = mapPath + filename;
+
+                httpPostedFileBase.SaveAs(filepathtosave);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
-            return filename;
         }
     }
 }

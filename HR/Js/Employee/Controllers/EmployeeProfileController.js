@@ -1,6 +1,6 @@
-﻿angular.module('ngHR').controller('EmployeeProfileController', ['$scope', '$http', 'growl', '$filter','limitToFilter',
+﻿angular.module('ngHR').controller('EmployeeProfileController', ['$scope', '$http', 'growl', '$filter', 'limitToFilter',
     'UtilityFunc', 'Employee', 'LookUp', 'HolidayListService', 'growlService', 'EmployeeProfileService', '$timeout', '$stateParams',
-    '$state', function ($scope, $http, growl, $filter,limitToFilter, UtilityFunc, Employee, LookUp, HolidayListService,
+    '$state', function ($scope, $http, growl, $filter, limitToFilter, UtilityFunc, Employee, LookUp, HolidayListService,
         growlService, EmployeeProfileService, $timeout, $stateParams, $state) {
 
 
@@ -27,7 +27,17 @@
             $scope.IsfrmEmployeeProfile = false;
             $scope.files = [];
             $scope.IDNumber = '';
-            
+            $scope.FilePath = baseUrl + 'Documents/';
+
+            if ($scope.employeeId == "new") {
+                EmployeeProfileService.GetEmployeeNumber().then(function (response) {
+                    if (response && response.data) {
+                        if (response.data != null) {
+                            $scope.EmployeeHeader.IDNumber = response.data;
+                        }
+                    }
+                })
+            }
         }
 
         $scope.detailsUrl = baseUrl + 'Js/Employee/Templates/BasicInformation.html';
@@ -57,20 +67,16 @@
             LookUp.GetActiveLookUpData("NoticePeriod").then(function (response) {
                 $scope.NoticePeriod = response.data.lookUpLists;
             })
+            LookUp.GetActiveLookUpData("DocumentType").then(function (response) {
+                $scope.DocumentType = response.data.lookUpLists;
+            })
             LookUp.GetCountries().then(function (res) {
                 $scope.Countries = res.data.countries;
                 $scope.EmployeeHeader.Address.CountryId =
                     $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
             }, function (err) {
             })
-
-            EmployeeProfileService.GetEmployeeNumber().then(function (response) {
-                if (response && response.data) {
-                    if (response.data != null) {
-                        $scope.EmployeeHeader.IDNumber = response.data;
-                    }
-                }
-            })
+           
         }
 
         $scope.BranchLocations = function () {
@@ -246,8 +252,25 @@
             }
         }
 
+     
+
+        $scope.EmployeeList = function (text) {
+            return EmployeeProfileService.GetEmployees(text).then(function (response) {
+                return limitToFilter(response.data.employees, 15);
+            }, function (err) { });
+        };
+
+        $scope.EmployeeSelected = function (obj) {
+            $scope.EmployeeHeader.ManagerId = obj.Id;
+            $scope.EmployeeHeader.ManagerName = obj.Name;
+        }
+
+        $scope.LookUpData();
+        $scope.BranchLocations();
+        
+
         $scope.employeeId = $stateParams.id;
-        if ($scope.employeeId != null && $scope.employeeId != "") {
+        if ($scope.employeeId != "new") {
             EmployeeProfileService.GetEmployeeById($scope.employeeId, false).then(function (response) {
                 if (response && response.data) {
                     $scope.EmployeeHeader = response.data.employeeHeader;
@@ -281,23 +304,36 @@
                     else {
                         $scope.EmployeeHeader.EmployeeWorkDetail.ResignationDate = undefined;
                     }
+                    if ($scope.EmployeeHeader.EmployeeDocument != null) {
+                        angular.forEach($scope.EmployeeHeader.EmployeeDocument, function (val, id) {
+                            var document = $scope.DocumentType.filter(function (item) {
+                                return item.LookUpID === val.DocumentType;
+                            })[0];
+                            if (document.LookUpCode == "Education") {
+                                $scope.EducationDocuments.push(val);
+                            }
+                            if (document.LookUpCode == "ExperienceLetters") {
+                                $scope.ExperienceLetters.push(val);
+                                $scope.ExperienceLetters[id].name = val.FileName;
+                            }
+                            if (document.LookUpCode == "ProjectDocuments") {
+                                $scope.ProjectDocuments.push(val);
+                                $scope.ProjectDocuments[id].name = val.FileName;
+                            }
+                            if (document.LookUpCode == "OtherDocuments") {
+                                $scope.OtherDocuments.push(val);
+                                $scope.OtherDocuments[id].name = val.FileName;
+                            }
+                            if (document.LookUpCode == "UID") {
+                                $scope.UIDCard = val;
+                                $scope.UIDCard.name = val.FileName;
+                            }
+                        })
+                    }
                 }
             })
         }
 
-        $scope.EmployeeList = function (text) {
-            return EmployeeProfileService.GetEmployees(text).then(function (response) {
-                return limitToFilter(response.data.employees, 15);
-            }, function (err) { });
-        };
-
-        $scope.EmployeeSelected = function (obj) {
-            $scope.EmployeeHeader.ManagerId = obj.Id;
-            $scope.EmployeeHeader.ManagerName = obj.Name;
-        }
-
-        $scope.LookUpData();
-        $scope.BranchLocations();
         $scope.init();
     }])
 

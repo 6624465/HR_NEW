@@ -453,7 +453,7 @@
                                                 <div class="form-group ">
                                                     <label>Manager</label>
                                                     <div class="input-group">
-                                                           
+
                                                         <input type="text"
                                                                class="form-control" ng-value="EmployeeHeader.ManagerName"
                                                                ng-model="EmployeeHeader.ManagerName" name="EmployeeHeader.ManagerName"
@@ -461,12 +461,12 @@
                                                                uib-typeahead="response.Name for response in EmployeeList($viewValue,'EmployeeHeader.ManagerName')"
                                                                typeahead-wait-ms="100"
                                                                typeahead-editable="false"
-                                                               typeahead-on-select="EmployeeSelected($item)"/>
-                                                    <span class="input-group-addon">
-                                                        <i class="fa fa-search"></i>
-                                                    </span>
+                                                               typeahead-on-select="EmployeeSelected($item)" />
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-search"></i>
+                                                        </span>
                                                     </div>
-</div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -484,10 +484,14 @@
                                                         </tr>
                                                         <tr>
                                                             <td><label>UID Card</label></td>
-                                                            <td class="documentColor">
+                                                            <td >
                                                                 <a ng-if="UIDCard != null" ng-click="Remove()">
-                                                                    <i class="fa fa-remove"></i>
+                                                                    <i class="fa fa-remove" style="color:red;"></i>
                                                                 </a> {{UIDCard.name}}
+                                                                &nbsp;&nbsp;
+                                                                <a href="{{FilePath}}{{UIDCard.name}}" ng-if="UIDCard != null && UIDCard.Id > 0" download>
+                                                                    <i class="fa fa-download"  style="color:green;"></i>
+                                                                </a>
                                                             </td>
                                                             <td>
                                                                 <span class="fileinput fileinput-new" data-provides="fileinput">
@@ -510,7 +514,13 @@
                                                                     <li ng-repeat="file in EducationDocuments" class="documentColor">
                                                                         <a ng-click="CancelDocument($index,file.name)" ng-if="file != null">
                                                                             <i class="fa fa-remove"></i>
-                                                                        </a>{{file.name}}
+                                                                        </a>
+                                                                        <label ng-if="file.name != ''">{{file.name}}</label>
+                                                                        <label ng-if="file.FileName != ''">{{file.FileName}}</label>
+                                                                        &nbsp;&nbsp;
+                                                                        <a href="{{FilePath}}{{file.name}}" ng-if="file.Id > 0" download>
+                                                                            <i class="fa fa-download" style="color:green;"></i>
+                                                                        </a>
                                                                     </li>
                                                                 </ul>
                                                             </td>
@@ -539,6 +549,9 @@
                                                                         <a ng-click="CancelExperienceLetter($index)" ng-if="file != null">
                                                                             <i class="fa fa-remove"></i>
                                                                         </a>{{file.name}}
+                                                                        <a href="{{FilePath}}{{file.name}}" ng-if="file.Id > 0" download>
+                                                                            <i class="fa fa-download" style="color:green;"></i>
+                                                                        </a>
                                                                     </li>
                                                                 </ul>
                                                             </td>
@@ -568,6 +581,9 @@
                                                                         <a ng-click="CancelProjectDocuments($index)" ng-if="file != null">
                                                                             <i class="fa fa-remove"></i>
                                                                         </a>{{file.name}}
+                                                                        <a href="{{FilePath}}{{file.name}}" ng-if="file.Id > 0" download>
+                                                                            <i class="fa fa-download" style="color:green;"></i>
+                                                                        </a>
                                                                     </li>
                                                                 </ul>
                                                             </td>
@@ -596,7 +612,9 @@
                                                                         <a ng-click="CancelOtherDocuments($index)" ng-if="file != null">
                                                                             <i class="fa fa-remove"></i>
                                                                         </a>{{file.name}}
-
+                                                                        <a href="{{FilePath}}{{file.name}}" ng-if="file.Id > 0" download>
+                                                                            <i class="fa fa-download" style="color:green;"></i>
+                                                                        </a>
                                                                     </li>
                                                                 </ul>
                                                             </td>

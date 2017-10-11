@@ -21,7 +21,12 @@ function ($scope, $http, growlService, $filter, UtilityFunc, LookUp, EmployeePro
             $scope.EmployeeWorkDetails = {},
             $scope.EmployeeAddress = {}
             $scope.dateFormat = UtilityFunc.DateFormat();
-            $scope.ImageFile = baseUrl + 'img/profile-pics/';
+            $scope.FilePath = baseUrl + 'Documents/';
+
+            $scope.EducationDocuments = [];
+            $scope.ExperienceLetters = [];
+            $scope.ProjectDocuments = [];
+            $scope.OtherDocuments = [];
         }
 
         $scope.formatDate = function (date) {
@@ -30,6 +35,11 @@ function ($scope, $http, growlService, $filter, UtilityFunc, LookUp, EmployeePro
             else
                 return null;
         }
+
+        LookUp.GetActiveLookUpData("DocumentType").then(function (response) {
+            $scope.DocumentType = response.data.lookUpLists;
+        })
+
 
         $scope.employeeId = 0;
 
@@ -66,6 +76,33 @@ function ($scope, $http, growlService, $filter, UtilityFunc, LookUp, EmployeePro
                     }
                     else {
                         $scope.EmployeeWorkDetail.ConfirmationDate = undefined;
+                    }
+
+                    if ($scope.EmployeeHeader.EmployeeDocument != null) {
+                        angular.forEach($scope.EmployeeHeader.EmployeeDocument, function (val, id) {
+                            var document = $scope.DocumentType.filter(function (item) {
+                                return item.LookUpID === val.DocumentType;
+                            })[0];
+                            if (document.LookUpCode == "Education") {
+                                $scope.EducationDocuments.push(val);
+                            }
+                            if (document.LookUpCode == "ExperienceLetters") {
+                                $scope.ExperienceLetters.push(val);
+                                $scope.ExperienceLetters[id].name = val.FileName;
+                            }
+                            if (document.LookUpCode == "ProjectDocuments") {
+                                $scope.ProjectDocuments.push(val);
+                                $scope.ProjectDocuments[id].name = val.FileName;
+                            }
+                            if (document.LookUpCode == "OtherDocuments") {
+                                $scope.OtherDocuments.push(val);
+                                $scope.OtherDocuments[id].name = val.FileName;
+                            }
+                            if (document.LookUpCode == "UID") {
+                                $scope.UIDCard = val;
+                                $scope.UIDCard.name = val.FileName;
+                            }
+                        })
                     }
                 }
             })
@@ -132,7 +169,7 @@ function ($scope, $http, growlService, $filter, UtilityFunc, LookUp, EmployeePro
             $scope.IsfrmUserInfo = Valid;
         });
         $scope.SaveEmployeeUser = function (EmployeeUser) {
-            $scope.ValidateForm();
+            //$scope.ValidateForm();
             if (EmployeeUser.Password.trim() != EmployeeUser.ConfirmPassword.trim()) {
                 growlService.growl("Password and Confirm password should be same", 'danger');
                 $scope.IsfrmUserInfo = false;
@@ -182,24 +219,9 @@ function ($scope, $http, growlService, $filter, UtilityFunc, LookUp, EmployeePro
                 $scope.IsfrmAddressInfo = true;
                 $scope.IsfrmUserInfo = true;
             }
-            //var basic = angular.element('.basic');
-            //if (errorCount >= 1) {
-            //    if ((mandtoryFields[0].parentElement.innerText).trim() == "Employee First Name") {
-            //        basic[0].style.backgroundColor = "red";
-            //        basic[0].style.color = "white";
-            //    }
-            //}
-            //else {
-            //    if ((mandtoryFields[0].parentElement.innerText).trim() == "Employee First Name") {
-            //        basic[0].style.backgroundColor = "#008d4c";
-            //        basic[0].style.color = "white";
-            //    }
-            //}
+           
         }
-        //$scope.nextOrPreviousButtonClick = function () {
-        //    debugger
-        //    angular.element('.tab-pane fade').addClass('tab-pane fade active in');
-        //}
+    
         $scope.GetEmployeeById();
         $scope.init();
     }])

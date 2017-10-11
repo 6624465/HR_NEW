@@ -9,7 +9,6 @@ namespace HR.Core.Models
 {
     public class EmployeeHeader
     {
-        //public int Id { get; set; }
         [Key]
         public int Id { get; set; }
         public int BranchId { get; set; }

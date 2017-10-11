@@ -89,12 +89,10 @@
     }
 
     this.SaveEmployeeDocuments = function (file, employeeId) {
+        debugger
         var deferred = $q.defer();
         var form = new FormData();
-
-        for (var i in file) {
-            form.append("file", file[i]);
-        }
+            form.append("file", file);
         //form.append('file', file);
         form.append('employeeId', employeeId);
 
