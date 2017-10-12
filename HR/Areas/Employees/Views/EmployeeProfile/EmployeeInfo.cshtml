@@ -498,7 +498,7 @@
                                                                     <ul>
                                                                         <li ng-repeat="file in EducationDocuments" class="documentColor">
                                                                             {{file.FileName}}
-                                                                            <a href="{{ImageFile}}{{file.FileName}}" ng-if="file.Id > 0" download>
+                                                                            <a href="{{FilePath}}{{file.FileName}}" ng-if="file.Id > 0" download>
                                                                                 <i class="fa fa-download" style="color:green;"></i>
                                                                             </a>
                                                                         </li>

@@ -6771,6 +6771,8 @@
     <Content Include="dist\js\pages\dashboard.js" />
     <Content Include="dist\js\pages\dashboard2.js" />
     <Content Include="dist\style.css" />
+    <Content Include="Documents\angelina.jpg" />
+    <Content Include="Documents\meena.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\Material-Design-Iconic-Font.svg" />
     <Content Include="fonts\roboto\Roboto-Bold-webfont.svg" />
@@ -7620,6 +7622,8 @@
     <Content Include="Areas\Account\Views\Login\Index.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\EmployeeDepartment.cshtml" />
     <Content Include="Areas\PayRoll\Views\Salary\web.config" />
+    <Content Include="Documents\1413901585save_pdf_files_as_word_documents.pdf" />
+    <Content Include="Documents\test.pdf" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
