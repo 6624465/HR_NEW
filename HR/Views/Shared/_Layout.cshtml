@@ -241,6 +241,7 @@
     <script src="@Url.Content("~/plugins/input-mask/jquery.inputmask.date.extensions.js")"></script>
     <script src="@Url.Content("~/plugins/input-mask/jquery.inputmask.extensions.js")"></script>
     <script src="@Url.Content("~/plugins/iCheck/icheck.min.js")"></script>
+    <script src="@Url.Content("~/scripts/highcharts.js")"></script>
    
     <!-- End Script files -->
     <script type="text/javascript">
@@ -316,10 +317,7 @@
                     growlService.growl('Password must have at least 8 characters and contain the following: uppercase letters, lowercase letters, numbers and symbols', 'danger');
                     $scope.isPasswordValidate = false;
                 }
-
-
             }
-
 
             $scope.init();
 

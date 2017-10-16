@@ -77,6 +77,10 @@ function ($scope, $http, growlService, $filter, UtilityFunc, LookUp, EmployeePro
                     else {
                         $scope.EmployeeWorkDetail.ConfirmationDate = undefined;
                     }
+                    if ($scope.EmployeeHeader.EmployeePersonalInfo.Gender == 0)
+                        $scope.gender = 'Male';
+                    else
+                        $scope.gender = 'FeMale';
 
                     if ($scope.EmployeeHeader.EmployeeDocument != null) {
                         angular.forEach($scope.EmployeeHeader.EmployeeDocument, function (val, id) {

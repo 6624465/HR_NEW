@@ -27,14 +27,14 @@ namespace HR.Areas.Employees.Controllers
             JsonResult jsonResult = new JsonResult();
             try
             {
-                List<EmployeeHeader> employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
+                List<EmployeeHeader> employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e=>e.Address.CountryCode == USER_OBJECT.CountryCode).ToList();
                 List<EmployeeViewModel> employeeViewModelList = new List<EmployeeViewModel>();
                 foreach (var item in employeeHeader)
                 {
                     EmployeeViewModel employeeViewModel = new EmployeeViewModel()
                     {
                         Id = item.Id,
-                        EmployeeName = item.FirstName,
+                        EmployeeName = item.FirstName +" "+ item.MiddleName+" "+ item.LastName,
                         JoiningDate = item.EmployeeWorkDetail != null ? item.EmployeeWorkDetail.JoiningDate.Value : DateTime.Now,
                         MobileNo = item.Address.MobileNo,
                         Email = item.Address.Email,
@@ -50,7 +50,7 @@ namespace HR.Areas.Employees.Controllers
 
 
                 var employees = employeeViewModelList.AsQueryable();
-
+                int totalCount = employees.Count();
                 if (searchViewModel.FilterViewModel != null)
                 {
                     foreach (FilterViewModel item in searchViewModel.FilterViewModel)
@@ -66,9 +66,9 @@ namespace HR.Areas.Employees.Controllers
                         employees = OrderBy(employees, searchViewModel.sortColumn, false, false);
                 }
 
-                employees = employees.Take(searchViewModel.limit);
+                employees = employees.Skip(searchViewModel.offset).Take(searchViewModel.limit);
 
-                jsonResult = Json(new { sucess = true, employees = employees, total_count = employees.Count() }, JsonRequestBehavior.AllowGet);
+                jsonResult = Json(new { sucess = true, employees = employees, total_count = totalCount }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {

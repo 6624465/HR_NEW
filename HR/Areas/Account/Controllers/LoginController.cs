@@ -60,6 +60,7 @@ namespace HR.Areas.Account.Controllers
                             BranchId = _user.BranchId,
                             BranchName = _user.Branch.BranchName,
                             CompanyId = _user.Branch.CompanyId,
+                            CountryCode = _user.Branch.Address.CountryCode,
                             EmployeeId = employeeHeader != null ? employeeHeader.Id :0,
                             Employeename = employeeHeader != null ?  employeeHeader.FirstName : string.Empty
 

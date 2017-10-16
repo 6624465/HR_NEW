@@ -88,7 +88,7 @@
                                                     </dl>
                                                     <dl class="dl-horizontal">
                                                         <dt>Gender</dt>
-                                                        <dd ng-bind="EmployeeHeader.EmployeePersonalInfo.Gender == 0 ? 'Male' : 'Female'"></dd>
+                                                        <dd>{{gender}}</dd>
                                                     </dl>
                                                     <dl class="dl-horizontal">
                                                         <dt>Birthday</dt>
@@ -180,11 +180,11 @@
                                                                            name="gender" value="1" ng-model="EmployeeHeader.EmployeePersonalInfo.Gender">
                                                                     <label>Female</label>
                                                                 </div>
-                                                                <div>
+                                                                @*<div>
                                                                     <input type="radio" id="genderChoice3"
                                                                            name="gender" value="2" ng-model="EmployeeHeader.EmployeePersonalInfo.Gender">
                                                                     <label>Other</label>
-                                                                </div>
+                                                                </div>*@
                                                             </div>
                                                         </div>
                                                         <div class="form-group fg-line">

@@ -416,6 +416,24 @@ app.config(
                 }
                
             })
+            .state('DashBoard', {
+                url: '/DashBoard',
+                templateUrl: baseUrl + 'Home/DashBoard',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [baseUrl + 'Js/Home/Controllers/DashBoardController.js',
+
+                                    baseUrl + 'Js/Home/Services/DashBoardService.js',
+                                ]
+                            }
+                        ]);
+                    }
+                }
+
+            })
             .state('PayRoll', {
                 url: '/PayRoll',
                 templateUrl: baseUrl + 'PayRoll/Salary/PayRoll',

@@ -16,6 +16,7 @@ namespace HR.Data.Account
         public int BranchId { get; set; }
         public string BranchName { get; set; }
         public int CompanyId { get; set; }
+        public string CountryCode { get; set; }
         public string Employeename { get; set; }
         public int EmployeeId { get; set; }
     }

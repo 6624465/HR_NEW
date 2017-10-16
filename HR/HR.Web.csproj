@@ -6820,7 +6820,9 @@
     <Content Include="Js\Employee\Templates\EmployeePosition.html" />
     <Content Include="Js\Employee\Templates\LoginDetails.html" />
     <Content Include="Js\Home\Controllers\ActivitySummaryCntrl.js" />
+    <Content Include="Js\Home\Controllers\DashBoardController.js" />
     <Content Include="Js\Home\Controllers\HomeController.js" />
+    <Content Include="Js\Home\Services\DashBoardService.js" />
     <Content Include="Js\Home\Views\activitysummary.html" />
     <Content Include="Js\Home\Views\index.html" />
     <Content Include="Js\Leave\Controllers\AppliedLeaveListController.js" />
@@ -7581,6 +7583,7 @@
     <Content Include="scripts\calendar.js" />
     <Content Include="scripts\dateTimeInput.js" />
     <Content Include="scripts\datetimepicker.js" />
+    <Content Include="scripts\highcharts.js" />
     <Content Include="scripts\loading-bar.js" />
     <Content Include="Css\ng-table.min.css" />
     <Content Include="scripts\ng-table.min.js" />
@@ -7693,6 +7696,7 @@
     <Content Include="Views\Home\MasterList.cshtml" />
     <Content Include="Views\Home\AdministrationData.cshtml" />
     <Content Include="Views\Home\EmployeeDepartment.cshtml" />
+    <Content Include="Views\Home\DashBoard.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

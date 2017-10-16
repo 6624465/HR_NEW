@@ -58,7 +58,7 @@
             LookUp.GetActiveLookUpData("PaymentType").then(function (response) {
                 $scope.PaymentType = response.data.lookUpLists;
             })
-            LookUp.GetActiveLookUpData("MaritalStatus").then(function (response) {
+            LookUp.GetActiveLookUpData("MartialSatus").then(function (response) {
                 $scope.MaritalStatus = response.data.lookUpLists;
             })
             LookUp.GetActiveLookUpData("ProbabtonPeriod").then(function (response) {
