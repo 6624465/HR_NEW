@@ -23,7 +23,9 @@ namespace HR.Areas.Leave.Controllers
             JsonResult result = null;
             try
             {
-                EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.Id == USER_OBJECT.EmployeeId && e.EmployeeWorkDetail.DesignationId == 1102).FirstOrDefault();
+                LookUp employeeDepartment = LookUpCodeService.GetLookUp<LookUp>(s => s.LookUpCategory == "EmployeeDesignation" && s.LookUpCode == "Manager").FirstOrDefault();
+
+                EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.Id == USER_OBJECT.EmployeeId && e.EmployeeWorkDetail.DesignationId == employeeDepartment.LookUpID).FirstOrDefault();
 
                 List<EmployeeLeaveList> employeeLeaveList = Leaveservice.GetLeaveList<EmployeeLeaveList>(e => e.ManagerId == employeeHeader.Id).OrderBy(o => o.EmployeeId).ToList();
                 List<EmployeeLeaveViewModel> employeeLeaveViewModelList = new List<EmployeeLeaveViewModel>();

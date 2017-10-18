@@ -7627,6 +7627,7 @@
     <Content Include="Areas\PayRoll\Views\Salary\web.config" />
     <Content Include="Documents\1413901585save_pdf_files_as_word_documents.pdf" />
     <Content Include="Documents\test.pdf" />
+    <Content Include="Areas\Leave\Views\GrantLeave\GrantLeave.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7651,6 +7652,7 @@
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Employees\Controllers\EmployeeProfileController.cs" />
     <Compile Include="Areas\Employees\EmployeesAreaRegistration.cs" />
+    <Compile Include="Areas\Leave\Controllers\GrantLeaveController.cs" />
     <Compile Include="Areas\Leave\LeaveAreaRegistration.cs" />
     <Compile Include="Areas\Leave\Controllers\AppliedLeaveListController.cs" />
     <Compile Include="Areas\Leave\Controllers\EmployeeLeaveController.cs" />
@@ -7670,8 +7672,11 @@
     <Compile Include="Models\CompanyViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
     <Compile Include="Models\EmployeeDocumentViewModel.cs" />
+    <Compile Include="Models\EmployeeLeaveDetails.cs" />
     <Compile Include="Models\EmployeeLeaveViewModel.cs" />
     <Compile Include="Models\EmployeeViewModel.cs" />
+    <Compile Include="Models\LeaveDetailViewModel.cs" />
+    <Compile Include="Models\LeaveHeaderViewModel.cs" />
     <Compile Include="Models\LookUpDescriptions.cs" />
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\SecurableViewModel.cs" />

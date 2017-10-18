@@ -1,9 +1,24 @@
-﻿var app = angular.module('loginApp', ['angular-growl'])
+﻿var app = angular.module('loginApp', ['ui.bootstrap', 'angular-growl', 'ui.router', 'oc.lazyLoad'])
 
-
-app.config(function (growlProvider) {
+app.config(function ($stateProvider, growlProvider, $urlRouterProvider, $httpProvider, $ocLazyLoadProvider) {
     growlProvider.onlyUniqueMessages(false);
     growlProvider.globalTimeToLive({ success: 4000, error: 2000, warning: 3000, info: 4000 });
+
+    $stateProvider
+           .state('Home', {
+               url: '/Home',
+               templateUrl: 'Js/Home/Views/index.html',
+               //resolve: {
+               //    loadPlugin: function ($ocLazyLoad) {
+               //        return $ocLazyLoad.load([
+               //            {
+               //                name: 'ngHR',
+               //                files: [baseUrl + 'Js/Home/Controllers/HomeController.js']
+               //            }
+               //        ]);
+               //    }
+               //}
+           })
 })
 
 app.directive('focusOn', function () {
@@ -23,8 +38,8 @@ app.factory('focus', function ($rootScope, $timeout) {
         });
     }
 });
-app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', 'growlService', '$timeout', 'focus',
-    function ($scope, $http, LoginService, growl, growlService, $timeout, focus) {
+app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', 'growlService', '$timeout', 'focus','$state',
+    function ($scope, $http, LoginService, growl, growlService, $timeout, focus, $state) {
         focus('UserName');
     $scope.init = function () {
         $scope.IsEnable = false;
@@ -37,6 +52,7 @@ app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', '
             LoginService.LogIn($scope.User).then(function (response) {
                 if (response && response.data && response.data.success == true) {
                     $scope.showLoading = false;
+                    debugger
                     sessionStorage.setItem('authenticatedUser', JSON.stringify(response.data.SessionObject));
                     sessionStorage.setItem('SECURABLES', JSON.stringify(response.data.securables));
                     location.href = "Home/index/";
@@ -48,7 +64,7 @@ app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', '
                     $scope.User = {};
                     focus('UserName');
                 }
-            })
+            }, function (err) { });
         }
     }
     $scope.init();

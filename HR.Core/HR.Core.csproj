@@ -56,6 +56,8 @@
     <Compile Include="Models\EmployeePersonalInfo.cs" />
     <Compile Include="Models\EmployeeWorkDetail.cs" />
     <Compile Include="Models\HolidayList.cs" />
+    <Compile Include="Models\LeaveDetail.cs" />
+    <Compile Include="Models\LeaveHeader.cs" />
     <Compile Include="Models\LeaveType.cs" />
     <Compile Include="Models\LookUp.cs" />
     <Compile Include="Models\Role.cs" />

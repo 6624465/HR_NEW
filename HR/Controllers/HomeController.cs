@@ -36,7 +36,7 @@ namespace HR.Controllers
                        .Select(n => new
                        {
                            y = n.Count(),
-                           name = n.Key == 0 ? "Male" : n.Key == 1 ? "FeMale" : "Other"
+                           name = n.Key == 0 ? "Male" : n.Key == 1 ? "FeMale" : ""
                        });
                 result = Json(new { sucess = true, regionWiseEmployees = regionWiseEmployees , designationWiseEmployees  = designationWiseEmployees , genderWiseEmployees = genderWiseEmployees }, JsonRequestBehavior.AllowGet);
 

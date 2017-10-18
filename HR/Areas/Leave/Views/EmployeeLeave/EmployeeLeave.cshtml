@@ -15,7 +15,13 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Granted Leaves </span>
-                                    <span class="info-box-number">{{GrantedStatusCount}}</span>
+                                    <table ng-repeat="leave in GrantedLeave">
+                                        <tr>
+                                            <td><span class="info-box-number" style="font-size:12px;">{{leave.name}}:</span></td>
+                                            <td></td>
+                                            <td><span class="info-box-number">{{leave.count}}</span></td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -28,16 +34,6 @@
                                 <div class="info-box-content">
                                     <span class="info-box-text">Applied Leaves</span>
                                     <span class="info-box-number">{{appliedStatusCount}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="info-box">
-                                <span class="info-box-icon bg-blue"><i class="fa fa-clock-o"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">Pending Approval</span>
-                                    <span class="info-box-number">{{PendingStatusCount}}</span>
                                 </div>
                             </div>
                         </div>

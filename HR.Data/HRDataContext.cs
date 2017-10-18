@@ -34,6 +34,8 @@ namespace HR.Data
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Securable> Securable { get; set; }
         public virtual DbSet<RoleRight> RoleRights { get; set; }
+        public virtual DbSet<LeaveHeader> LeaveHeader { get; set; }
+        public virtual DbSet<LeaveDetail> LeaveDetail { get; set; }
         #endregion
 
         #region OnModelCreating

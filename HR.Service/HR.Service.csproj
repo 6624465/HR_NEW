@@ -60,6 +60,8 @@
     <Compile Include="CompanyDetails\ICompany\ICompanyService.cs" />
     <Compile Include="EmployeeProfile\EmployeeProfileService\EmployeeProfileService.cs" />
     <Compile Include="EmployeeProfile\IEmployeeProfile\IEmployeeProfileService.cs" />
+    <Compile Include="GrantLeave\GrantLeaveService\GrantLeaveService.cs" />
+    <Compile Include="GrantLeave\IGrantLeaveService\IGrantLeave.cs" />
     <Compile Include="Leave\ILeaveService\ILeave.cs" />
     <Compile Include="Leave\LeaveService\Leave.cs" />
     <Compile Include="Master\IMasterService\ILookUpCodeService.cs" />

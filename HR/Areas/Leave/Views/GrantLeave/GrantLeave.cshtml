@@ -1,0 +1,157 @@
+﻿<div class="row" ng-controller="GrantLeaveController">
+    <style>
+        .box-style {
+            width: 40%;
+        }
+        /*.box {
+            border-top: 3px solid #D73925;
+            box-shadow: 0 1px 1px #D73925;
+        }*/
+    </style>
+    <div class="col-md-4">
+        <div class="col-xs-12">
+            <div class="box box-default">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        Leave Granter
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <div class="row pull-Left">
+                        <div>
+                            <div class="form-group col-md-6">
+                                <label>Leave Granter</label>
+                                <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in Year" class="form-control" ng-model="LeaveHeder.LeaveYear">
+                                    <option value="">--Select Leave Granter--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group fg-line">
+                                <label>
+                                    Periodicity:
+                                </label>
+                                <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in PeriodicityType" class="form-control" ng-model="LeaveHeder.PeriodicityType" ng-change="ShowPeriod()">
+                                    <option value="">--Select Periodicity--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group fg-line" ng-if="Periodicity != 1107">
+                                <label>
+                                    Period:
+                                </label>
+                                <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in PeriodType" class="form-control" ng-model="LeaveHeder.PeriodType">
+                                    <option value="">--Select Period--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group fg-line">
+                                <label>
+                                    Leave Scheme:
+                                </label>
+                                <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in LeaveSchemeType" class="form-control" ng-model="LeaveHeder.LeaveSchemeType" ng-change="ShowLeaveTypes(LeaveScheme)">
+                                    <option value="">--Select Scheme--</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="box" style="width:500px;border-top: 3px solid #808080;box-shadow: 0 1px 1px #808080;">
+                            <div class="box-body">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div class="checkbox m-b-15">
+                                                <label>
+                                                    <input value="" ng-click="toggleCostSheet()"
+                                                           aria-label="Priority" type="checkbox">
+                                                    <i class="input-helper"></i>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            LeaveType
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="s in LeaveHeder.LeaveDetail track by $index" >
+                                        <td>
+                                            <div class="checkbox m-b-15">
+                                                <label>
+                                                    <input ng-model="s.IsChecked"
+                                                           aria-label="Priority" type="checkbox" id="IsChecked" ng-click="ShowTextBox(s.IsChecked)">
+                                                    <i class="input-helper"></i>
+                                                </label>
+                                            </div>
+                                        </td>
+                                        <td for="IsChecked">{{s.LeaveTypeDescription}}</td>
+                                        <td>
+                                            <div class="form-group fg-line" ng-if="Isshow">
+                                                <input class="form-control input-mask"
+                                                       type="text"
+                                                       ng-model="s.TotalLeaves"
+                                                       ng-show="s.IsChecked"
+                                                       ng-required="true">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row m-t-25">
+                        <div class="col-xs-12  text-left">
+                            <button class="btn" type="submit" ng-click="Save()">&nbsp;Grant</button>
+                            <button class="btn btn-default" type="button">&nbsp;Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-md-8">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title"> Grant Leave List</h3>
+            </div>
+            <div class="box-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>Leave Granter</th>
+                            <th>Periodicity</th>
+                            <th>Period</th>
+                            <th>Leave Scheme</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="grantLeave in GrantLeaveDetails">
+                            <td>
+                                <button type="button" class="btn btn-default ng-scope waves-effect" ng-click="onEditGrantLeave(grantLeave)" aria-label="button">
+                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                </button>
+                            </td>
+                            <td>{{grantLeave.LeaveYearType}}</td>
+                            <td>{{grantLeave.PeriodicityTypeDescription}}</td>
+                            <td>{{grantLeave.PeriodTypeDescription}}</td>
+                            <td>{{grantLeave.LeaveSchemeTypeDescription}}</td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

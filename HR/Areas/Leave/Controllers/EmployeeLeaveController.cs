@@ -2,6 +2,7 @@
 using HR.Core;
 using HR.Core.Models;
 using HR.Core.Utilities;
+using HR.Models;
 using HR.Service.Account.IAccountService;
 using HR.Service.CompanyDetails.ICompany;
 using HR.Service.Leave.ILeaveService;
@@ -26,8 +27,8 @@ namespace HR.Areas.Leave.Controllers
             {
                 try
                 {
-
-                    var employees =  (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.FirstName.ToLower().Contains(employeeName.ToLower()) && e.EmployeeWorkDetail.DesignationId == 1102)
+                    LookUp employeeDepartment =  LookUpCodeService.GetLookUp<LookUp>(s => s.LookUpCategory == "EmployeeDesignation" && s.LookUpCode == "Manager").FirstOrDefault();
+                    var employees =  (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.FirstName.ToLower().Contains(employeeName.ToLower()) && e.EmployeeWorkDetail.DesignationId == employeeDepartment.LookUpID && e.BranchId ==USER_OBJECT.BranchId)
                                       select new
                                       {
                                           Id = employee.Id,
@@ -130,11 +131,29 @@ namespace HR.Areas.Leave.Controllers
         public JsonResult GetLeaveStatus()
         {
             JsonResult result = null;
-            int appliedStatusCount =  Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "Applied" && s.BranchId == USER_OBJECT.BranchId&&s.EmployeeId==USER_OBJECT.EmployeeId).Count();
-            int GrantedStatusCount = Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "Grant" && s.BranchId == USER_OBJECT.BranchId && s.EmployeeId == USER_OBJECT.EmployeeId).Count();
-            int PendingStatusCount= Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "pending" && s.BranchId == USER_OBJECT.BranchId && s.EmployeeId == USER_OBJECT.EmployeeId).Count();
-            int RemaingStatusCount = Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "Remain" && s.BranchId == USER_OBJECT.BranchId && s.EmployeeId == USER_OBJECT.EmployeeId).Count();
-            result = Json(new { appliedStatusCount= appliedStatusCount, GrantedStatusCount = GrantedStatusCount , PendingStatusCount = PendingStatusCount , RemaingStatusCount = RemaingStatusCount }, JsonRequestBehavior.AllowGet);
+            try
+            {
+                EmployeeLeaveDetails employeeLeaveDetails = new EmployeeLeaveDetails();
+                employeeLeaveDetails.AppliedStatusCount = Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "Applied" && s.BranchId == USER_OBJECT.BranchId && s.EmployeeId == USER_OBJECT.EmployeeId).Count();
+                var GrantedLeavesList = Leaveservice.GetLeaveList<EmployeeLeaveList>
+                                        ()
+                                        .GroupBy(g => g.LeaveTypeId).ToList().Select(s => new
+                                        {
+                                            count = s.Count(),
+                                            name = LookUpCodeService.GetLookUpType(s.Key).LookUpCode
+                                        });
+                employeeLeaveDetails.GrantedLeaves = Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "Grant" && s.BranchId == USER_OBJECT.BranchId && s.EmployeeId == USER_OBJECT.EmployeeId).Count();
+                List<LeaveHeader> LeaveHeaders = GrantLeaveService.GetAll<LeaveHeader>(l => l.BranchID == USER_OBJECT.BranchId).ToList();
+                var TotalLeaves = LeaveHeaders.Select(l => l.LeaveDetail.Sum(s => s.TotalLeaves)).Count();
+                employeeLeaveDetails.RemaingStatusCount = Math.Abs(employeeLeaveDetails.GrantedLeaves - TotalLeaves);
+                result = Json(new { employeeLeaveDetails = employeeLeaveDetails, GrantedLeavesList = GrantedLeavesList }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null && !string.IsNullOrEmpty(ex.InnerException.Message))
+                    return Json(new { success = false, message = ex.InnerException.Message }, JsonRequestBehavior.DenyGet);
+            }
             return result;
         }
     }

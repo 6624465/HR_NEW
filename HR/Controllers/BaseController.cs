@@ -18,6 +18,7 @@ using Ninject;
 using HR.Service.EmployeeProfile.IEmployeeProfile;
 using HR.Service.Roles.IRoleService;
 using HR.Service.Securables.ISecurableService;
+using HR.Service.GrantLeave.IGrantLeaveService;
 
 namespace HR.Controllers
 {
@@ -39,6 +40,8 @@ namespace HR.Controllers
         public IRoleRightService RoleRightService { get; set; }
         [Inject]
         public ISecurableServices SecurableServices { get; set; }
+        [Inject]
+        public IGrantLeave GrantLeaveService { get; set; }
         #endregion
 
         public SessionObject USER_OBJECT

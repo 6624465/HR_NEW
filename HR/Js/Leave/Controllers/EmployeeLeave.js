@@ -35,10 +35,11 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
     }
     $scope.GetLeaveStatus = function () {
         EmployeeLeave.GetLeaveStatus().then(function (res) {
-            $scope.appliedStatusCount = res.data.appliedStatusCount;
-            $scope.GrantedStatusCount = res.data.GrantedStatusCount;
-            $scope.PendingStatusCount = res.data.PendingStatusCount;
-            $scope.RemaingStatusCount = res.data.RemaingStatusCount;
+            $scope.appliedStatusCount = res.data.employeeLeaveDetails.AppliedStatusCount;
+            $scope.GrantedStatusCount = res.data.employeeLeaveDetails.GrantedStatusCount;
+            //$scope.PendingStatusCount = res.data.employeeLeaveDetails.PendingStatusCount;
+            $scope.RemaingStatusCount = res.data.employeeLeaveDetails.RemaingStatusCount;
+            $scope.GrantedLeave = res.data.GrantedLeavesList;
         });
     }
     $scope.GetLeaveStatus();

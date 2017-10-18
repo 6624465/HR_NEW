@@ -25,6 +25,8 @@ namespace HR.App_Start
     using Service.Roles.IRoleService;
     using Service.Securables.ISecurableService;
     using Service.Securables.SecurableService;
+    using Service.GrantLeave.IGrantLeaveService;
+    using Service.GrantLeave.GrantLeaveService;
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -83,6 +85,7 @@ namespace HR.App_Start
             kernel.Bind<IEmployeeProfileService>().To<EmployeeProfileService>();
             kernel.Bind<IRoleRightService>().To<RoleRightService>();
             kernel.Bind<ISecurableServices>().To<SecurableServices>();
+            kernel.Bind<IGrantLeave>().To<GrantLeaveService>();
         }
     }
 }

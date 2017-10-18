@@ -246,11 +246,13 @@
     <!-- End Script files -->
     <script type="text/javascript">
         var baseUrl = '@Url.Content("~/")';
-        angular.module('ngHR').controller('layOutController', ['$scope', '$http', 'growlService', '$window', '$location', '$state', function ($scope, $http, growlService, $window, $location,$state) {
+
+        angular.module('ngHR').controller('layOutController', ['$scope', '$http', 'growlService', '$window', '$location', '$state', function ($scope, $http, growlService, $window, $location, $state) {
+            debugger;
             $scope.init = function () {
                 $scope.ResetPassword = {};
                 $scope.pwd = {};
-
+                
                 $scope.iframeHeight = window.innerHeight - 109;
                 $scope.User = JSON.parse(sessionStorage.getItem("authenticatedUser"));
                 var Ismessagedisplayed = sessionStorage.getItem('Ismessagedisplayed') == 'true' ? true : false;

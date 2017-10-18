@@ -7,29 +7,30 @@ function ($scope, $http, DashBoardService) {
         DashBoardService.GetRegionWiseEmployees().then(function (res) {
             if (res.data.sucess == true) {
                 $scope.regionWiseEmployees = res.data.regionWiseEmployees;
-                $scope.GetBarGraphDashboard('country', 'Country', $scope.regionWiseEmployees);
+                $scope.GetBarGraphDashboard('country', 'Country', res.data.regionWiseEmployees);
                 $scope.GetBarGraphDashboard('gender', 'Gender', res.data.genderWiseEmployees);
                 $scope.GetBarGraphDashboard('designation', 'Designation', res.data.designationWiseEmployees);
             }
         })
     }
 
-    $scope.GetGenderWiseEmployees = function () {
-        DashBoardService.GetGenderWiseEmployees().then(function (res) {
-            if (res.data.sucess == true) {
-                $scope.GenderWiseEmployees = res.data.regionWiseEmployees;
-                $scope.GetBarGraphDashboard('gender', 'Gender', $scope.GenderWiseEmployees);
-            }
-        })
-    }
-    $scope.GetDesignationWiseEmployees = function () {
-        DashBoardService.GetDesignationWiseEmployees().then(function (res) {
-            if (res.data.sucess == true) {
-                $scope.GetDesignationWiseEmployees = res.data.regionWiseEmployees;
-                $scope.GetBarGraphDashboard('designation', 'Designation', $scope.GetDesignationWiseEmployees);
-            }
-        })
-    }
+    //$scope.GetGenderWiseEmployees = function () {
+    //    DashBoardService.GetGenderWiseEmployees().then(function (res) {
+    //        if (res.data.sucess == true) {
+    //            $scope.GenderWiseEmployees = res.data.regionWiseEmployees;
+    //            $scope.GetBarGraphDashboard('gender', 'Gender', $scope.GenderWiseEmployees);
+    //        }
+
+    //    })
+    //}
+    //$scope.GetDesignationWiseEmployees = function () {
+    //    DashBoardService.GetDesignationWiseEmployees().then(function (res) {
+    //        if (res.data.sucess == true) {
+    //            $scope.GetDesignationWiseEmployees = res.data.regionWiseEmployees;
+    //            $scope.GetBarGraphDashboard('designation', 'Designation', $scope.GetDesignationWiseEmployees);
+    //        }
+    //    })
+    //}
 
     $scope.GetBarGraphDashboard = function (id, type, result) {
 
@@ -151,6 +152,5 @@ function ($scope, $http, DashBoardService) {
     }
 
     $scope.GetRegionWiseEmployees();
-    //$scope.GetGenderWiseEmployees();
-    //$scope.GetDesignationWiseEmployees();
+    
 }])

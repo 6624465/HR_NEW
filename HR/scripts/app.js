@@ -20,7 +20,7 @@ app.config(
         $stateProvider
             .state('Home', {
                 url: '/Home',
-                templateUrl: baseUrl + 'Home/index',
+                templateUrl: baseUrl + 'Home/Index',
                 //resolve: {
                 //    loadPlugin: function ($ocLazyLoad) {
                 //        return $ocLazyLoad.load([
@@ -414,7 +414,24 @@ app.config(
                         ]);
                     }
                 }
-               
+            })
+            .state('GrantLeave', {
+                url: '/GrantLeave',
+                templateUrl: baseUrl + 'Leave/GrantLeave/GrantLeave',
+                resolve: {
+                    loadPlugin: function ($ocLazyLoad) {
+                        return $ocLazyLoad.load([
+                            {
+                                name: 'ngHR',
+                                files: [
+                                    baseUrl + 'Js/Leave/Controllers/GrantLeaveController.js',
+                                    baseUrl + 'Js/Leave/Services/GrantLeaveService.js',
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js'
+                                ]
+                            }
+                        ]);
+                    }
+                }
             })
             .state('DashBoard', {
                 url: '/DashBoard',
@@ -471,13 +488,15 @@ app.config(
             $urlRouterProvider.otherwise('/');
 
         growlProvider.onlyUniqueMessages(false);
-        cfpLoadingBarProvider.includeSpinner = false;//includeBar
+        cfpLoadingBarProvider.includeSpinner = true;//includeBar
         cfpLoadingBarProvider.includeBar = true;
         growlProvider.globalTimeToLive({ success: 4000, error: 2000, warning: 3000, info: 4000 });
     });
 
 app.run(function ($rootScope) {
+debugger
     $rootScope.$on('$stateChangeStart', function (e) {
+debugger
         var sessionObject = JSON.parse(sessionStorage.getItem("authenticatedUser"));
         if (sessionObject == null || (sessionObject.UserID == null || sessionObject.UserID == '')) {
             window.location.pathname = '';
