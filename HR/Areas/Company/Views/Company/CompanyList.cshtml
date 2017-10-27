@@ -22,46 +22,61 @@
    
 </style>
 <div class="row" ng-controller="CompanyListController as Cntrl">
-    <div class="col-md-4">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">Other Profiles</h3>
-            </div>
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-xs-12 ">
+  
+        <div class="col-md-4">
+            <div class="css">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Other Profiles</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-xs-12 ">
 
 
-                        <h4>
-                            Companies
-                        </h4>
-                        <div class="tree-light" style="max-height: 500px;overflow-y:auto;min-height:500px;">
-                            <treecontrol class="tree-light" tree-model="CompanyList" expanded-nodes="expandedNodes" on-selection="showSelected(node)">
-                                <a tabindex="0" class="ellipsisCss">{{node.label}}</a><!-- uib-tooltip="{{node.label}}" -->
-                            </treecontrol>
-                        </div>
+                                <h4>
+                                    Companies
+                                </h4>
+                                <div class="tree-light" style="max-height: 500px;overflow-y:auto;min-height:500px;">
+                                    <treecontrol class="tree-light" tree-model="CompanyList" expanded-nodes="expandedNodes" on-selection="showSelected(node)">
+                                        <a tabindex="0" class="ellipsisCss">{{node.label}}</a><!-- uib-tooltip="{{node.label}}" -->
 
-                        @*<treecontrol class="tree-light" tree-model="CompanyList" expanded-nodes="expandedNodes" on-selection="showSelected(node)">
+                                    </treecontrol>
+                                </div>
+
+                                @*<treecontrol class="tree-light" tree-model="CompanyList" expanded-nodes="expandedNodes" on-selection="showSelected(node)">
                                 <a tabindex="0" class="ellipsisCss">{{node.CompanyName}}</a>
                             </treecontrol>*@
 
 
+                            </div>
+
+                        </div>
                     </div>
 
                 </div>
+                </div>
             </div>
-
-        </div>
-    </div>
-    <div class="col-md-8">
-     
+  
+        <div class="col-md-8">
+            <div class="css">
                 <div ng-show="isSelected">
                     <div ng-show="detailsUrl == '/Js/Company/Templates/Company/branchdetails.html'" ng-include="detailsUrl"></div>
                     <div ng-show="detailsUrl == '/Js/Company/Templates/Company/companydetails.html'" ng-include="detailsUrl"></div>
                 </div>
             </div>
-        </div>
-  
+    </div>
+    </div>
 
 
 
+<style>
+    .css {
+        border: 3px solid grey;
+        border-radius: 3em;
+        padding-top: 30px;
+        padding-right: 30px;
+        padding-bottom: 20px;
+        padding-left: 30px;
+    }
+</style>
