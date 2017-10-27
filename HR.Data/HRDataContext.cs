@@ -12,7 +12,7 @@ namespace HR.Data
         public HRDataContext()
             : base("name=HRDataContext")
         {
-
+            //this.Configuration.LazyLoadingEnabled = false;
         }
         #endregion
 

@@ -494,9 +494,7 @@ app.config(
     });
 
 app.run(function ($rootScope) {
-debugger
     $rootScope.$on('$stateChangeStart', function (e) {
-debugger
         var sessionObject = JSON.parse(sessionStorage.getItem("authenticatedUser"));
         if (sessionObject == null || (sessionObject.UserID == null || sessionObject.UserID == '')) {
             window.location.pathname = '';

@@ -48,7 +48,7 @@ namespace HR.Areas.Account.Controllers
                                                         AccessRight = x.AccessRight
                                                     }).ToList();
 
-                        EmployeeHeader employeeHeader =  EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(u => u.UserId == _user.Id).FirstOrDefault();
+                        EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(u => u.UserId == _user.Id).FirstOrDefault();
 
                         SessionObject sessionObject = new SessionObject()
                         {
@@ -61,8 +61,8 @@ namespace HR.Areas.Account.Controllers
                             BranchName = _user.Branch.BranchName,
                             CompanyId = _user.Branch.CompanyId,
                             CountryCode = _user.Branch.Address.CountryCode,
-                            EmployeeId = employeeHeader != null ? employeeHeader.Id :0,
-                            Employeename = employeeHeader != null ?  employeeHeader.FirstName : string.Empty
+                            EmployeeId = employeeHeader != null ? employeeHeader.Id : 0,
+                            Employeename = employeeHeader != null ? employeeHeader.FirstName : string.Empty
 
                         };
                         USER_OBJECT = sessionObject;
@@ -91,7 +91,7 @@ namespace HR.Areas.Account.Controllers
                         if (USER_OBJECT != null)
                         {
 
-                          User user =   LogInLogOutService.GetUser<User>(u => u.UserID == USER_OBJECT.UserID && u.BranchId == USER_OBJECT.BranchId && u.Password == userViewModel.OldPassword).FirstOrDefault();
+                            User user = LogInLogOutService.GetUser<User>(u => u.UserID == USER_OBJECT.UserID && u.BranchId == USER_OBJECT.BranchId && u.Password == userViewModel.OldPassword).FirstOrDefault();
                             if (user != null)
                             {
                                 user.ModifiedBy = USER_OBJECT.UserID;
@@ -99,7 +99,7 @@ namespace HR.Areas.Account.Controllers
                                 user.Password = userViewModel.NewPassword;
 
                                 LogInLogOutService.Save(user);
-                                result = Json(new { success = true, message = "Password is Changed Sucessfull"}, JsonRequestBehavior.AllowGet);
+                                result = Json(new { success = true, message = "Password is Changed Sucessfull" }, JsonRequestBehavior.AllowGet);
 
                             }
                         }
@@ -107,9 +107,9 @@ namespace HR.Areas.Account.Controllers
                 }
                 catch (Exception ex)
                 {
-                    
+
                     result = Json(new { success = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-                }    
+                }
             }
             return result;
         }
@@ -148,7 +148,7 @@ namespace HR.Areas.Account.Controllers
 
         #region Action Result
         // GET: Account/Login
-       
+
         public ActionResult Login()
         {
             return View();

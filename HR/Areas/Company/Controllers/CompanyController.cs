@@ -190,7 +190,7 @@ namespace HR.Areas.Company.Controllers
             addressViewModel.Address3 = address.Address3;
             addressViewModel.Address4 = address.Address4;
             addressViewModel.AddressID = address.AddressId;
-            addressViewModel.AddressLinkID = address.AddressLinkID;
+            //addressViewModel.AddressLinkID = address.AddressLinkID;
             addressViewModel.AddressType = address.AddressType;
             addressViewModel.CityName = address.CityName;
             addressViewModel.StateName = address.StateName;

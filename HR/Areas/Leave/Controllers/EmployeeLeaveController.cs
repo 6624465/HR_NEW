@@ -28,14 +28,17 @@ namespace HR.Areas.Leave.Controllers
                 try
                 {
                     LookUp employeeDepartment =  LookUpCodeService.GetLookUp<LookUp>(s => s.LookUpCategory == "EmployeeDesignation" && s.LookUpCode == "Manager").FirstOrDefault();
-                    var employees =  (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.FirstName.ToLower().Contains(employeeName.ToLower()) && e.EmployeeWorkDetail.DesignationId == employeeDepartment.LookUpID && e.BranchId ==USER_OBJECT.BranchId)
-                                      select new
-                                      {
-                                          Id = employee.Id,
-                                          Name = employee.FirstName + " " + employee.MiddleName + " "+ employee.LastName
-                                      }).ToList();
-                    
-                    jsonResult = Json(new { sucess = true, employees = employees }, JsonRequestBehavior.AllowGet);
+                    var employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.FirstName.ToLower().
+                                                    Contains(employeeName.ToLower())
+                                                    && (e.EmployeeWorkDetail.Any() &&  e.EmployeeWorkDetail.FirstOrDefault().DepartmentId == employeeDepartment.LookUpID )
+                                                    && e.BranchId == USER_OBJECT.BranchId)
+                                     select new
+                                     {
+                                         Id = employee.Id,
+                                         Name = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName
+                                     }).ToList();
+
+                jsonResult = Json(new { sucess = true }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {
@@ -136,7 +139,7 @@ namespace HR.Areas.Leave.Controllers
                 EmployeeLeaveDetails employeeLeaveDetails = new EmployeeLeaveDetails();
                 employeeLeaveDetails.AppliedStatusCount = Leaveservice.GetLeaveList<EmployeeLeaveList>(s => s.Status == "Applied" && s.BranchId == USER_OBJECT.BranchId && s.EmployeeId == USER_OBJECT.EmployeeId).Count();
                 var GrantedLeavesList = Leaveservice.GetLeaveList<EmployeeLeaveList>
-                                        ()
+                                        (s => s.EmployeeId == USER_OBJECT.EmployeeId && s.BranchId == USER_OBJECT.BranchId)
                                         .GroupBy(g => g.LeaveTypeId).ToList().Select(s => new
                                         {
                                             count = s.Count(),

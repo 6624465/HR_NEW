@@ -9,8 +9,8 @@ namespace HR.Core.Models
     public partial class Address
     {
         public int AddressId { get; set; }
-        public string AddressLinkID { get; set; }
-        
+        public int? EmployeeHeaderId { get; set; }
+        //public virtual EmployeeHeader EmployeeHeader { get; set; }
         public short SeqNo { get; set; }
         public string AddressType { get; set; }
         public string Address1 { get; set; }
@@ -29,10 +29,8 @@ namespace HR.Core.Models
         public string WebSite { get; set; }
         public bool IsActive { get; set; }
         public string CreatedBy { get; set; }
-
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
-
         public DateTime? ModifiedOn { get; set; }
     }
 }

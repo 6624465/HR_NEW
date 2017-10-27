@@ -2,7 +2,7 @@
     this.SaveEmlployee = function (EmployeeDetails, files, EmployeeDocument) {
         var deferred = $q.defer();
         var form = new FormData();
-
+        debugger
         angular.forEach(files, function (val) {
             form.append("file", val);
         });

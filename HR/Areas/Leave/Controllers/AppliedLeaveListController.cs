@@ -25,7 +25,7 @@ namespace HR.Areas.Leave.Controllers
             {
                 LookUp employeeDepartment = LookUpCodeService.GetLookUp<LookUp>(s => s.LookUpCategory == "EmployeeDesignation" && s.LookUpCode == "Manager").FirstOrDefault();
 
-                EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.Id == USER_OBJECT.EmployeeId && e.EmployeeWorkDetail.DesignationId == employeeDepartment.LookUpID).FirstOrDefault();
+                EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.Id == USER_OBJECT.EmployeeId && e.EmployeeWorkDetail.FirstOrDefault().DesignationId == employeeDepartment.LookUpID).FirstOrDefault();
 
                 List<EmployeeLeaveList> employeeLeaveList = Leaveservice.GetLeaveList<EmployeeLeaveList>(e => e.ManagerId == employeeHeader.Id).OrderBy(o => o.EmployeeId).ToList();
                 List<EmployeeLeaveViewModel> employeeLeaveViewModelList = new List<EmployeeLeaveViewModel>();
@@ -34,7 +34,7 @@ namespace HR.Areas.Leave.Controllers
                     LookUp leaveType = LookUpCodeService.GetLookUpType(employeeLeave.LeaveTypeId);
                     EmployeeLeaveViewModel employeeLeaveViewModel = new EmployeeLeaveViewModel();
                     employeeLeaveViewModel.Id = employeeLeave.Id;
-                    employeeLeaveViewModel.EmployeeName = employeeLeave.Employee.FirstName +" "+ employeeLeave.Employee.LastName;
+                    employeeLeaveViewModel.EmployeeName = employeeLeave.Employee.FirstName + " " + employeeLeave.Employee.LastName;
                     employeeLeaveViewModel.EmployeeId = employeeLeave.Employee.Id;
                     employeeLeaveViewModel.EmployeeNumber = employeeLeave.Employee.IDNumber;
                     employeeLeaveViewModel.LeaveType = leaveType.LookUpCode;

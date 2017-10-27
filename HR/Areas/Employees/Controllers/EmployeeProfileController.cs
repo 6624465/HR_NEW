@@ -14,6 +14,7 @@ using HR.Core;
 using System.IO;
 using Newtonsoft.Json;
 using System.Web.Hosting;
+using HR.Data;
 
 namespace HR.Areas.Employees.Controllers
 {
@@ -27,24 +28,33 @@ namespace HR.Areas.Employees.Controllers
             JsonResult jsonResult = new JsonResult();
             try
             {
-                List<EmployeeHeader> employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e=>e.Address.CountryCode == USER_OBJECT.CountryCode).ToList();
+                
+                List<EmployeeHeader> employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.Address.Select(s=>s.CountryCode == USER_OBJECT.CountryCode).FirstOrDefault()).ToList();
                 List<EmployeeViewModel> employeeViewModelList = new List<EmployeeViewModel>();
                 foreach (var item in employeeHeader)
                 {
-                    EmployeeViewModel employeeViewModel = new EmployeeViewModel()
+                    EmployeeViewModel employeeViewModel = new EmployeeViewModel();
+                    employeeViewModel.Id = item.Id;
+                    employeeViewModel.EmployeeName = item.FirstName + " " + item.MiddleName + " " + item.LastName;
+                    foreach (var employeeWorkDetail in item.EmployeeWorkDetail)
                     {
-                        Id = item.Id,
-                        EmployeeName = item.FirstName +" "+ item.MiddleName+" "+ item.LastName,
-                        JoiningDate = item.EmployeeWorkDetail != null ? item.EmployeeWorkDetail.JoiningDate.Value : DateTime.Now,
-                        MobileNo = item.Address.MobileNo,
-                        Email = item.Address.Email,
-                        EmployeeId = item.IDNumber,
-                        CountryCode = item.Address.CountryCode,
-                        Designation = item.EmployeeWorkDetail != null ? item.EmployeeWorkDetail.DesignationId : 0,
-                        DesignationName = (LookUpCodeService.GetLookUpType(item.EmployeeWorkDetail.DesignationId)).LookUpDescription,
-                        EmployeeType = item.IDType,
-                        DOB = item.EmployeePersonalInfo.DOB
-                    };
+                        employeeViewModel.JoiningDate = item.EmployeeWorkDetail != null ? employeeWorkDetail.JoiningDate.Value : DateTime.Now;
+                        employeeViewModel.Designation = item.EmployeeWorkDetail != null && employeeWorkDetail.DesignationId.HasValue ? employeeWorkDetail.DesignationId.Value : 0;
+                        employeeViewModel.DesignationName = item.EmployeeWorkDetail != null && employeeWorkDetail.DesignationId.HasValue ? 
+                            (LookUpCodeService.GetLookUpType(employeeWorkDetail.DesignationId.Value)).LookUpDescription : string.Empty;
+                    }
+                    foreach (var employeePersonalInfo in item.EmployeePersonalInfo)
+                    {
+                        employeeViewModel.DOB = employeePersonalInfo.DOB;
+                    }
+                    foreach (var address in item.Address)
+                    {
+                        employeeViewModel.MobileNo = address.MobileNo;
+                        employeeViewModel.Email = address.Email;
+                        employeeViewModel.CountryCode = address.CountryCode;
+                    }
+                    employeeViewModel.EmployeeId = item.IDNumber;
+                    employeeViewModel.EmployeeType = item.IDType;
                     employeeViewModelList.Add(employeeViewModel);
                 }
 
@@ -96,14 +106,20 @@ namespace HR.Areas.Employees.Controllers
                     EmployeeDocument employeeDocument = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(ed => ed.EmployeeHeaderId == employeeHeader.Id).FirstOrDefault();
                     if (employeeDocument != null)
                         imagePathName = employeeDocument.FileName;
-                    lookUpDescriptions = new LookUpDescriptions()
+                    lookUpDescriptions = new LookUpDescriptions();
+                    foreach (var employeePersonalInfo in employeeHeader.EmployeePersonalInfo)
                     {
-                        MarriedStatus = LookUpCodeService.GetLookUpType(employeeHeader.EmployeePersonalInfo.MaritalStatus).LookUpCode,
-                        Country = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Address.CountryCode).FirstOrDefault().CountryName,
-                        Nationality = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Nationality).FirstOrDefault().CountryName,
-                        Designation = LookUpCodeService.GetLookUpType(employeeHeader.EmployeeWorkDetail.DesignationId).LookUpCode,
-                        Department = LookUpCodeService.GetLookUpType(employeeHeader.EmployeeWorkDetail.DepartmentId).LookUpCode,
-                    };
+                        lookUpDescriptions.MarriedStatus = LookUpCodeService.GetLookUpType(employeePersonalInfo.MaritalStatus).LookUpCode;
+                    }
+                    foreach (var employeeWorkDetail in employeeHeader.EmployeeWorkDetail)
+                    {
+                        lookUpDescriptions.Designation = LookUpCodeService.GetLookUpType(employeeWorkDetail.DesignationId.Value).LookUpCode;
+                        lookUpDescriptions.Department = LookUpCodeService.GetLookUpType(employeeWorkDetail.DepartmentId.Value).LookUpCode;
+                    }
+
+                    lookUpDescriptions.Country = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Address.FirstOrDefault().CountryCode).FirstOrDefault().CountryName;
+                    lookUpDescriptions.Nationality = CompanyService.GetCountries<Country>(c => c.CountryCode == employeeHeader.Nationality).FirstOrDefault().CountryName;
+
                 }
 
                 List<EmployeeDocument> employeeDocuments = EmployeeProfileService.GetEmployeeDocuments<EmployeeDocument>(e => e.EmployeeHeaderId == employeeHeader.Id).ToList();
@@ -169,7 +185,7 @@ namespace HR.Areas.Employees.Controllers
                         _employeeHeader.FirstName = employeeHeader.FirstName;
                         _employeeHeader.MiddleName = employeeHeader.MiddleName;
                         _employeeHeader.LastName = employeeHeader.LastName;
-                        _employeeHeader.EmployeePersonalInfo = PrepareEmployeePersonalInfo(employeeHeader.EmployeePersonalInfo, employeeHeader);
+                        _employeeHeader.EmployeePersonalInfo.Add(PrepareEmployeePersonalInfo(employeeHeader.EmployeePersonalInfo.FirstOrDefault(), employeeHeader));
 
                         _employeeHeader.Nationality = employeeHeader.Nationality;
                         EmployeeProfileService.SaveEmployeeProfile(_employeeHeader);
@@ -195,7 +211,7 @@ namespace HR.Areas.Employees.Controllers
                     if (address.AddressId > 0)
                     {
                         Address _address = PrepareEmployeeAddress(address, null);
-                        LookUpCodeService.Save(address);
+                        LookUpCodeService.Save(_address);
                         result = Json(new { sucess = true, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
                     }
                 }
@@ -263,7 +279,7 @@ namespace HR.Areas.Employees.Controllers
                     employeeDocument.CreatedBy = USER_OBJECT.UserID;
                     employeeDocument.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
                 }
-                EmployeeHeader EmployeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(s=>s.Id == employeeId).FirstOrDefault();
+                EmployeeHeader EmployeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(s => s.Id == employeeId).FirstOrDefault();
                 employeeDocument.FileName = System.IO.Path.GetFileName(file.FileName);
                 employeeDocument.BranchId = USER_OBJECT.BranchId;
                 employeeDocument.EmployeeHeaderId = Convert.ToInt32(employeeId);
@@ -320,13 +336,13 @@ namespace HR.Areas.Employees.Controllers
                 _employeeHeader.CreatedBy = USER_OBJECT.UserName;
                 _employeeHeader.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
-            EmployeePersonalInfo employeePersonalInfo = employeeHeader.EmployeePersonalInfo;
+            EmployeePersonalInfo employeePersonalInfo = employeeHeader.EmployeePersonalInfo.FirstOrDefault() ;
 
             _employeeHeader.BranchId = employeeHeader.BranchId;
             _employeeHeader.ManagerId = employeeHeader.ManagerId;
-            _employeeHeader.FirstName = !string.IsNullOrWhiteSpace(employeeHeader.FirstName) ? employeeHeader.FirstName : string.Empty;
-            _employeeHeader.MiddleName = !string.IsNullOrWhiteSpace(employeeHeader.MiddleName) ? employeeHeader.MiddleName : string.Empty;
-            _employeeHeader.LastName = !string.IsNullOrWhiteSpace(employeeHeader.LastName) ? employeeHeader.LastName : string.Empty;
+            _employeeHeader.FirstName = !string.IsNullOrWhiteSpace(employeeHeader.FirstName) ? employeeHeader.FirstName.ToUpper() : string.Empty;
+            _employeeHeader.MiddleName = !string.IsNullOrWhiteSpace(employeeHeader.MiddleName) ? employeeHeader.MiddleName.ToUpper() : string.Empty;
+            _employeeHeader.LastName = !string.IsNullOrWhiteSpace(employeeHeader.LastName) ? employeeHeader.LastName.ToUpper() : string.Empty;
             _employeeHeader.Nationality = !string.IsNullOrWhiteSpace(employeeHeader.Nationality) ? employeeHeader.Nationality : string.Empty;
             _employeeHeader.IDNumber = !string.IsNullOrWhiteSpace(employeeHeader.IDNumber) ? employeeHeader.IDNumber : string.Empty;
             _employeeHeader.IDType = employeeHeader.IDType;
@@ -334,9 +350,9 @@ namespace HR.Areas.Employees.Controllers
             _employeeHeader.Password = employeeHeader.Password;
             _employeeHeader.IsActive = employeeHeader.IsActive;
             _employeeHeader.ConfirmPassword = employeeHeader.ConfirmPassword;
-            _employeeHeader.EmployeePersonalInfo = PrepareEmployeePersonalInfo(employeePersonalInfo, _employeeHeader);
-            _employeeHeader.Address = PrepareEmployeeAddress(employeeHeader.Address, _employeeHeader);
-            _employeeHeader.EmployeeWorkDetail = PrepareEmployeeWorkDetail(employeeHeader.EmployeeWorkDetail, _employeeHeader);
+            _employeeHeader.EmployeePersonalInfo.Add(PrepareEmployeePersonalInfo(employeePersonalInfo, _employeeHeader));
+            _employeeHeader.Address.Add(PrepareEmployeeAddress(employeeHeader.Address.FirstOrDefault(), _employeeHeader));
+            _employeeHeader.EmployeeWorkDetail.Add(PrepareEmployeeWorkDetail(employeeHeader.EmployeeWorkDetail.FirstOrDefault(), _employeeHeader));
             employeeHeader.User = employeeHeader.User == null ? new User() : employeeHeader.User;
             _employeeHeader.User = PrepareUserDetails(employeeHeader.User, _employeeHeader);
 
@@ -364,9 +380,9 @@ namespace HR.Areas.Employees.Controllers
                             employeeDocument.FileName = httpPostedFileBase.FileName;
                             employeeDocument.BranchId = USER_OBJECT.BranchId;
                             employeeDocument.DocumentType = LookUpCodeService.GetLookUp<LookUp>(l => l.LookUpCode == item.DocumentType).Select(s => s.LookUpID).FirstOrDefault(); ;
-                           // employeeDocuments.Add(employeeDocument);
+                            // employeeDocuments.Add(employeeDocument);
                             SaveFile(httpPostedFileBase);
-                            employeeHeader.EmployeeDocument  = employeeHeader.EmployeeDocument == null ? new List<EmployeeDocument>(): employeeHeader.EmployeeDocument;
+                            employeeHeader.EmployeeDocument = employeeHeader.EmployeeDocument == null ? new List<EmployeeDocument>() : employeeHeader.EmployeeDocument;
                             employeeHeader.EmployeeDocument.Add(employeeDocument);
                         }
                     }
@@ -379,7 +395,7 @@ namespace HR.Areas.Employees.Controllers
             EmployeePersonalInfo _employeePersonalInfo = null;
             if (employeePersonalInfo.Id > 0)
             {
-                _employeePersonalInfo = employeeHeader.EmployeePersonalInfo;
+                _employeePersonalInfo = employeeHeader.EmployeePersonalInfo.FirstOrDefault();
                 _employeePersonalInfo.ModifiedBy = USER_OBJECT.UserID;
                 _employeePersonalInfo.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -390,7 +406,7 @@ namespace HR.Areas.Employees.Controllers
                 _employeePersonalInfo.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
             _employeePersonalInfo.BranchId = employeePersonalInfo.BranchId;
-            _employeePersonalInfo.EmployeeId = employeeHeader.Id;
+            //_employeePersonalInfo.EmployeeId = employeeHeader.Id;
             _employeePersonalInfo.DOB = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.DOB);
             _employeePersonalInfo.Gender = employeePersonalInfo.Gender;
             _employeePersonalInfo.FatherName = employeePersonalInfo.FatherName;
@@ -412,7 +428,7 @@ namespace HR.Areas.Employees.Controllers
             Address _address = null;
             if (address.AddressId > 0)
             {
-                _address = employeeHeader != null ? employeeHeader.Address : address;
+                _address = employeeHeader != null ? employeeHeader.Address.FirstOrDefault() : address;
                 _address.ModifiedBy = USER_OBJECT.UserName;
                 _address.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -422,18 +438,18 @@ namespace HR.Areas.Employees.Controllers
                 _address.CreatedBy = USER_OBJECT.UserName;
                 _address.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
-            _address.Address1 = address.Address1;
-            _address.Address2 = !string.IsNullOrWhiteSpace(address.Address2) ? address.Address2 : string.Empty;
-            _address.AddressLinkID = !string.IsNullOrWhiteSpace(address.AddressLinkID) ? address.AddressLinkID : string.Empty;
+            _address.Address1 = address.Address1.ToUpper();
+            _address.Address2 = !string.IsNullOrWhiteSpace(address.Address2) ? address.Address2.ToUpper() : string.Empty;
+            //_address.AddressLinkID = !string.IsNullOrWhiteSpace(address.AddressLinkID) ? address.AddressLinkID : string.Empty;
             _address.SeqNo = 0;
-            _address.CityName = address.CityName;
-            _address.StateName = address.StateName;
+            _address.CityName = address.CityName.ToUpper();
+            _address.StateName = !string.IsNullOrWhiteSpace(address.StateName) ? address.StateName.ToUpper() : string .Empty;
             _address.ZipCode = address.ZipCode;
             _address.MobileNo = address.MobileNo;
             _address.CountryCode = address.CountryCode;
             _address.AddressType = "Employee";
             _address.Contact = address.MobileNo;
-            _address.Email = address.Email;
+            _address.Email = !string.IsNullOrWhiteSpace(address.Email) ? address.Email : string.Empty;
             _address.IsActive = true;
             return _address;
         }
@@ -442,7 +458,7 @@ namespace HR.Areas.Employees.Controllers
             EmployeeWorkDetail _employeeWorkDetail = null;
             if (employeeWorkDetail.Id > 0)
             {
-                _employeeWorkDetail = employeeHeader.EmployeeWorkDetail;
+                _employeeWorkDetail = employeeHeader.EmployeeWorkDetail.FirstOrDefault();
                 _employeeWorkDetail.ModifiedBy = USER_OBJECT.UserName;
                 _employeeWorkDetail.ModifiedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
@@ -453,7 +469,7 @@ namespace HR.Areas.Employees.Controllers
                 _employeeWorkDetail.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
             _employeeWorkDetail.BranchId = employeeWorkDetail.BranchId;
-            _employeeWorkDetail.EmployeeId = employeeHeader.Id;
+            //_employeeWorkDetail.EmployeeId = employeeHeader.Id;
             _employeeWorkDetail.JoiningDate = employeeWorkDetail.JoiningDate.HasValue ? DateTimeConverter.SingaporeDateTimeConversion(employeeWorkDetail.JoiningDate.Value) : DateTime.Now;
             _employeeWorkDetail.ConfirmationDate = employeeWorkDetail.ConfirmationDate.HasValue ? DateTimeConverter.SingaporeDateTimeConversion(employeeWorkDetail.ConfirmationDate.Value) : DateTime.Now;
             _employeeWorkDetail.ProbationPeriod = employeeWorkDetail.ProbationPeriod;
@@ -482,8 +498,8 @@ namespace HR.Areas.Employees.Controllers
             user.UserName = employeeHeader.UserEmailId;
             user.Password = employeeHeader.Password;
             user.IsActive = employeeHeader.IsActive;
-            user.Email = employeeHeader.Address.Email;
-            user.MobileNumber = employeeHeader.Address.MobileNo;
+            user.Email = employeeHeader.Address.FirstOrDefault().Email;
+            user.MobileNumber = employeeHeader.Address.FirstOrDefault().MobileNo;
             user.RoleCode = "Employee";
             user.CreatedBy = USER_OBJECT.UserName;
             user.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
