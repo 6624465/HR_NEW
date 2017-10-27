@@ -15,30 +15,40 @@ namespace HR.Controllers
             JsonResult result = null;
             try
             {
-                var regionWiseEmployees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
-                        .GroupBy(g => g.Address.CountryCode).ToList()
-                        .Select(n => new
-                        {
-                            y = n.Count(),
-                            name = CompanyService.GetCountries<Country>(c => c.CountryCode == n.Key).Select(c => c.CountryName).FirstOrDefault()
-                        });
+                List<EmployeeHeader> EmployeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>().ToList();
 
-                var designationWiseEmployees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
-                      .GroupBy(g => g.EmployeeWorkDetail.DesignationId).ToList()
-                      .Select(n => new
-                      {
-                          y = n.Count(),
-                          name = LookUpCodeService.GetLookUpType(n.Key).LookUpCode
-                      });
+                var regionWiseEmployees = EmployeeHeader.GroupBy(g => g.Address.Select(s => s.CountryCode).FirstOrDefault()).ToList()
+                                         .Select(n => new
+                                         {
+                                             y = n.Count(),
+                                             name = CompanyService.GetCountries<Country>(c => c.CountryCode == n.Key).Select(c => c.CountryName).FirstOrDefault()
+                                         });
 
-                var genderWiseEmployees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
-                       .GroupBy(g => g.EmployeePersonalInfo.Gender).ToList()
-                       .Select(n => new
-                       {
-                           y = n.Count(),
-                           name = n.Key == 0 ? "Male" : n.Key == 1 ? "FeMale" : ""
-                       });
-                result = Json(new { sucess = true, regionWiseEmployees = regionWiseEmployees , designationWiseEmployees  = designationWiseEmployees , genderWiseEmployees = genderWiseEmployees }, JsonRequestBehavior.AllowGet);
+                //var designationWiseEmployees = EmployeeHeader.Select(g => g.EmployeeWorkDetail).GroupBy(g => g.Select(s => s.DesignationId.Value).FirstOrDefault()).ToList()
+                //                                .Select(n => new
+                //                                {
+                //                                    y = n.Count(),
+                //                                    name = n.Key > 0? LookUpCodeService.GetLookUpType(n.Key).LookUpCode:string.Empty
+                //                                });
+
+                var genderWiseEmployees = EmployeeHeader.GroupBy(g => g.EmployeePersonalInfo.Select(s=>s.Gender).FirstOrDefault()).ToList()
+                                          .Select(n => new
+                                          {
+                                              y = n.Count(),
+                                              name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
+                                          });
+                //var countryWiseGender = (from t in EmployeeHeader
+                //                         group t by new { t.Address.CountryCode, t.EmployeePersonalInfo.Gender } into grp
+                //                         select new
+                //                         {
+
+                //                             Male = grp.Key.Gender == 0 ? "Male" : "",
+                //                             FeMale = grp.Key.Gender == 1 ? "FeMale" : "",
+                //                             Country = grp.Key.CountryCode,
+                //                         }).ToList();
+                //var countryWiseGender = EmployeeHeader.GroupBy(g => g.Address.CountryCode && g.EmployeePersonalInfo.Gender).ToList();
+
+                result = Json(new { sucess = true, regionWiseEmployees = regionWiseEmployees, genderWiseEmployees= genderWiseEmployees }, JsonRequestBehavior.AllowGet);
 
             }
             catch (Exception ex)
@@ -47,51 +57,6 @@ namespace HR.Controllers
             }
             return result;
         }
-
-        //public JsonResult GetGenderWiseEmployees()
-        //{
-        //    JsonResult result = null;
-        //    try
-        //    {
-        //        var regionWiseEmployees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
-        //                .GroupBy(g => g.EmployeePersonalInfo.Gender).ToList()
-        //                .Select(n => new
-        //                {
-        //                    y = n.Count(),
-        //                    name = n.Key == 0 ? "Male" : n.Key == 1 ? "FeMale" : "Other"
-        //                });
-        //        result = Json(new { sucess = true, regionWiseEmployees = regionWiseEmployees }, JsonRequestBehavior.AllowGet);
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result = Json(new { sucess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    return result;
-        //}
-        //public JsonResult GetDesignationWiseEmployees()
-        //{
-        //    JsonResult result = null;
-        //    try
-        //    {
-        //        var regionWiseEmployees = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>()
-        //                .GroupBy(g => g.EmployeeWorkDetail.DesignationId).ToList()
-        //                .Select(n => new
-        //                {
-        //                    y = n.Count(),
-        //                    name = LookUpCodeService.GetLookUpType(n.Key)
-        //                });
-        //        result = Json(new { sucess = true, regionWiseEmployees = regionWiseEmployees }, JsonRequestBehavior.AllowGet);
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result = Json(new { sucess = false, message = ex.Message }, JsonRequestBehavior.AllowGet);
-        //    }
-        //    return result;
-        //}
-
-
         #endregion
         public ActionResult Index()
         {

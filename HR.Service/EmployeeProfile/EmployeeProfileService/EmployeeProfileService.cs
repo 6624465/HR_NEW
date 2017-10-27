@@ -23,13 +23,21 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
 
         #endregion
 
+        HRDataContext hrDataContext = new HRDataContext();
+
         public IQueryable<T> GetEmployeeProfileList<T>(Expression<Func<T, bool>> predicate = null) where T : EmployeeHeader
         {
-            var query = EmployeeRepository.FindAll().OfType<T>();
-            if (predicate != null)
-                query = query.Where(predicate);
-            return query;
+           
+                var query = hrDataContext.EmployeeHeaders
+                                   .Include("EmployeePersonalInfo")
+                                   .Include("EmployeeWorkDetail")
+                                   .Include("Address")
+                                   .ToList().OfType<T>();
+                //var query = EmployeeRepository.FindAll().OfType<T>();
+                if (predicate != null)
+                    query = query.AsQueryable<T>().Where(predicate);
 
+                return query.AsQueryable();
         }
 
         public void SaveEmployeeProfile(EmployeeHeader employeeHeader, bool autoCommit = true)
@@ -70,11 +78,11 @@ namespace HR.Service.EmployeeProfile.EmployeeProfileService
         public string GetNewEmployeeNumber(int BranchID, string DocumentId, string UserName)
         {
             HRDataContext entities = new HRDataContext();
-                return entities.Database.SqlQuery<string>("Exec [Utility].[usp_GenerateDocumentNumber] @BranchID, @DocumentId, @TrxDate, @UserId",
-                    new SqlParameter("BranchID", BranchID),
-                    new SqlParameter("DocumentId", DocumentId),
-                    new SqlParameter("TrxDate", DateTime.Now.Date),
-                    new SqlParameter("UserId", UserName)).FirstOrDefault<string>();
+            return entities.Database.SqlQuery<string>("Exec [Utility].[usp_GenerateDocumentNumber] @BranchID, @DocumentId, @TrxDate, @UserId",
+                new SqlParameter("BranchID", BranchID),
+                new SqlParameter("DocumentId", DocumentId),
+                new SqlParameter("TrxDate", DateTime.Now.Date),
+                new SqlParameter("UserId", UserName)).FirstOrDefault<string>();
         }
     }
 }

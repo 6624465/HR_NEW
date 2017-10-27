@@ -76,7 +76,7 @@
                     $filter('filter')($scope.Countries, { 'CountryCode': 'SG' })[0].Id;
             }, function (err) {
             })
-           
+
         }
 
         $scope.BranchLocations = function () {
@@ -153,6 +153,16 @@
                 growlService.growl("Password and confirm password should be same", 'danger');
             }
             if ($scope.IsfrmEmployeeProfile) {
+                var employeeAddress = EmployeeHeader.Address;
+                var employeePersonalInfo = EmployeeHeader.EmployeePersonalInfo;
+                var employeeWorkDetail = EmployeeHeader.EmployeeWorkDetail;
+                EmployeeHeader.EmployeePersonalInfo = new Array();
+                EmployeeHeader.EmployeeWorkDetail = new Array();
+                EmployeeHeader.Address = new Array();
+                EmployeeHeader.EmployeePersonalInfo.push(employeePersonalInfo);
+                EmployeeHeader.EmployeeWorkDetail.push(employeeWorkDetail);
+                EmployeeHeader.Address.push(employeeAddress);
+
                 EmployeeProfileService.SaveEmlployee(EmployeeHeader, $scope.files, $scope.EmployeeDocument).then(function (response) {
                     if (response == "Success") {
                         $timeout(function () {
@@ -252,7 +262,7 @@
             }
         }
 
-     
+
 
         $scope.EmployeeList = function (text) {
             return EmployeeProfileService.GetEmployees(text).then(function (response) {
@@ -267,13 +277,18 @@
 
         $scope.LookUpData();
         $scope.BranchLocations();
-        
+
 
         $scope.employeeId = $stateParams.id;
         if ($scope.employeeId != "new") {
             EmployeeProfileService.GetEmployeeById($scope.employeeId, false).then(function (response) {
                 if (response && response.data) {
+                    debugger
                     $scope.EmployeeHeader = response.data.employeeHeader;
+                    $scope.EmployeeHeader.EmployeePersonalInfo = $scope.EmployeeHeader.EmployeePersonalInfo[0];
+                    $scope.EmployeeHeader.EmployeeWorkDetail = $scope.EmployeeHeader.EmployeeWorkDetail[0];
+                    $scope.EmployeeHeader.Address = $scope.EmployeeHeader.Address[0];
+
                     if ($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate && $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate != null) {
                         $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate);
                     }

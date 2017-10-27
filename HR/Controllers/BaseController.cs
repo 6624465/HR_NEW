@@ -65,7 +65,7 @@ namespace HR.Controllers
             address.Address2 = !string.IsNullOrWhiteSpace(addressViewModel.Address2) ? addressViewModel.Address2 : string.Empty;
             address.Address3 = !string.IsNullOrWhiteSpace(addressViewModel.Address3) ? addressViewModel.Address3 : string.Empty;
             address.Address4 = !string.IsNullOrWhiteSpace(addressViewModel.Address4) ? addressViewModel.Address4 : string.Empty;
-            address.AddressLinkID = !string.IsNullOrWhiteSpace(addressViewModel.AddressLinkID) ? addressViewModel.AddressLinkID : string.Empty;
+            //address.AddressLinkID = !string.IsNullOrWhiteSpace(addressViewModel.AddressLinkID) ? addressViewModel.AddressLinkID : string.Empty;
             address.SeqNo = 0;
             address.CityName = !string.IsNullOrWhiteSpace(addressViewModel.CityName) ? addressViewModel.CityName : string.Empty;
             address.StateName = !string.IsNullOrWhiteSpace(addressViewModel.StateName) ? addressViewModel.StateName : string.Empty;
