@@ -31,24 +31,91 @@ namespace HR.Controllers
                 //                                    name = n.Key > 0? LookUpCodeService.GetLookUpType(n.Key).LookUpCode:string.Empty
                 //                                });
 
-                var genderWiseEmployees = EmployeeHeader.GroupBy(g => g.EmployeePersonalInfo.Select(s=>s.Gender).FirstOrDefault()).ToList()
+                var genderWiseEmployees = EmployeeHeader.GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender).FirstOrDefault()).ToList()
                                           .Select(n => new
                                           {
                                               y = n.Count(),
                                               name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
                                           });
-                //var countryWiseGender = (from t in EmployeeHeader
-                //                         group t by new { t.Address.CountryCode, t.EmployeePersonalInfo.Gender } into grp
-                //                         select new
-                //                         {
 
-                //                             Male = grp.Key.Gender == 0 ? "Male" : "",
-                //                             FeMale = grp.Key.Gender == 1 ? "FeMale" : "",
-                //                             Country = grp.Key.CountryCode,
-                //                         }).ToList();
+                var indiawiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "IN"))
+                           .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
+                           .FirstOrDefault()).ToList()
+                            .Select(n => new
+                            {
+                                y = n.Count(),
+                                name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
+                            });
+                var singaporewiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "SG"))
+                         .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
+                         .FirstOrDefault()).ToList()
+                          .Select(n => new
+                          {
+                              y = n.Count(),
+                              name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
+                          });
+                var hongkongwiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "HK"))
+                         .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
+                         .FirstOrDefault()).ToList()
+                          .Select(n => new
+                          {
+                              y = n.Count(),
+                              name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
+                          });
+                var mayanmarwiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "MM"))
+                         .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
+                         .FirstOrDefault()).ToList()
+                          .Select(n => new
+                          {
+                              y = n.Count(),
+                              name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
+                          });
+                var pakistanwiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "PK"))
+                         .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
+                         .FirstOrDefault()).ToList()
+                          .Select(n => new
+                          {
+                              y = n.Count(),
+                              name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
+                          });
+                var srilankawiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "LK"))
+                         .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
+                         .FirstOrDefault()).ToList()
+                          .Select(n => new
+                          {
+                              y = n.Count(),
+                              name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
+                          });
+                var cambodiawiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "KH"))
+                         .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
+                         .FirstOrDefault()).ToList()
+                          .Select(n => new
+                          {
+                              y = n.Count(),
+                              name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
+                          });
+                var bangladeshwiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "BD"))
+                         .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
+                         .FirstOrDefault()).ToList()
+                          .Select(n => new
+                          {
+                              y = n.Count(),
+                              name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
+                          });
+
+
                 //var countryWiseGender = EmployeeHeader.GroupBy(g => g.Address.CountryCode && g.EmployeePersonalInfo.Gender).ToList();
 
-                result = Json(new { sucess = true, regionWiseEmployees = regionWiseEmployees, genderWiseEmployees= genderWiseEmployees }, JsonRequestBehavior.AllowGet);
+                result = Json(new { sucess = true, regionWiseEmployees = regionWiseEmployees,
+                    genderWiseEmployees = genderWiseEmployees , indiawiseGenders = indiawiseGenders,
+                    bangladeshwiseGenders = bangladeshwiseGenders,
+                    cambodiawiseGenders  = cambodiawiseGenders,
+                    srilankawiseGenders  = srilankawiseGenders,
+                    pakistanwiseGenders  = pakistanwiseGenders,
+                    mayanmarwiseGenders  = mayanmarwiseGenders,
+                    hongkongwiseGenders  = hongkongwiseGenders,
+                    singaporewiseGenders = singaporewiseGenders
+                }, JsonRequestBehavior.AllowGet);
 
             }
             catch (Exception ex)

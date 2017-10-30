@@ -9,7 +9,15 @@ function ($scope, $http, DashBoardService) {
                 $scope.regionWiseEmployees = res.data.regionWiseEmployees;
                 $scope.GetBarGraphDashboard('country', 'Country', res.data.regionWiseEmployees);
                 $scope.GetBarGraphDashboard('gender', 'Gender', res.data.genderWiseEmployees);
-                $scope.GetBarGraphDashboard('designation', 'Designation', res.data.designationWiseEmployees);
+                //$scope.GetBarGraphDashboard('designation', 'Designation', res.data.designationWiseEmployees);
+                $scope.GetPieGraphDashboard(res.data.indiawiseGenders, 'INDIA', "INDIA", '#0000FF', '#FF1493');//'#7798BF'
+                $scope.GetPieGraphDashboard(res.data.bangladeshwiseGenders, 'BANGLADESH', "BANGLADESH", '#0000FF', '#FF1493');
+                $scope.GetPieGraphDashboard(res.data.cambodiawiseGenders, 'CAMBODIA', "CAMBODIA", '#0000FF', '#FF1493');
+                $scope.GetPieGraphDashboard(res.data.srilankawiseGenders, 'SRILANKA', "SRILANKA", '#0000FF', '#FF1493');
+                $scope.GetPieGraphDashboard(res.data.pakistanwiseGenders, 'PAKISTAN', "PAKISTAN", '#0000FF', '#FF1493');
+                $scope.GetPieGraphDashboard(res.data.mayanmarwiseGenders, 'MAYANMAR', "MAYANMAR", '#0000FF', '#FF1493');
+                $scope.GetPieGraphDashboard(res.data.hongkongwiseGenders, 'HONGKONG', "HONGKONG", '#0000FF', '#FF1493');
+                $scope.GetPieGraphDashboard(res.data.singaporewiseGenders, 'SINGAPORE', "SINGAPORE", '#0000FF', '#FF1493');
             }
         })
     }
@@ -31,7 +39,125 @@ function ($scope, $http, DashBoardService) {
     //        }
     //    })
     //}
+    $scope.GetPieGraphDashboard = function(CountryWiseGenders, type, id, c1,c2){
+        Highcharts.chart(id, {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            title: {
+                text: type +" " + "Employees based on Gender"
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.2f}',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'Countries',
+                colorByPoint: true,
+                data: CountryWiseGenders
+                }]
+        });
 
+        Highcharts.theme = {
+            colors: [c1, c2],
+            chart: {
+                backgroundColor: null,
+                style: {
+                    fontFamily: 'Signika, serif'
+                }
+            },
+            title: {
+                style: {
+                    color: 'black',
+                    fontSize: '16px',
+                    fontWeight: 'bold'
+                }
+            },
+            subtitle: {
+                style: {
+                    color: 'black'
+                }
+            },
+            tooltip: {
+                borderWidth: 0
+            },
+            legend: {
+                itemStyle: {
+                    fontWeight: 'bold',
+                    fontSize: '13px'
+                }
+            },
+            xAxis: {
+                labels: {
+                    style: {
+                        color: '#6e6e70'
+                    }
+                }
+            },
+            yAxis: {
+                labels: {
+                    style: {
+                        color: '#6e6e70'
+                    }
+                }
+            },
+            plotOptions: {
+                series: {
+                    shadow: true
+                },
+                candlestick: {
+                    lineColor: '#404048'
+                },
+                map: {
+                    shadow: false
+                }
+            },
+
+            // Highstock specific
+            navigator: {
+                xAxis: {
+                    gridLineColor: '#D0D0D8'
+                }
+            },
+            rangeSelector: {
+                buttonTheme: {
+                    fill: 'white',
+                    stroke: '#C0C0C8',
+                    'stroke-width': 1,
+                    states: {
+                        select: {
+                            fill: '#D0D0D8'
+                        }
+                    }
+                }
+            },
+            scrollbar: {
+                trackBorderColor: '#C0C0C8'
+            },
+
+            // General
+            background2: '#E0E0E8'
+
+        };
+
+        // Apply the theme
+        Highcharts.setOptions(Highcharts.theme);
+    }
     $scope.GetBarGraphDashboard = function (id, type, result) {
 
         Highcharts.chart(id, {
@@ -59,14 +185,14 @@ function ($scope, $http, DashBoardService) {
                     borderWidth: 0,
                     dataLabels: {
                         enabled: true,
-                        format: '{point.y:.1f}'
+                        format: '{point.y}'
                     }
                 }
             },
 
             tooltip: {
                 headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}</b> of total<br/>'
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of total<br/>'
             },
 
             series: [{
