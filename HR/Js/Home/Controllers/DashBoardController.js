@@ -2,7 +2,9 @@
 
 angular.module('ngHR').controller('dashBoardController', ['$scope', '$http', 'DashBoardService',
 function ($scope, $http, DashBoardService) {
-
+    $scope.init = function () {
+        $scope.IsBangladesh = true;
+    }
     $scope.GetRegionWiseEmployees = function () {
         DashBoardService.GetRegionWiseEmployees().then(function (res) {
             if (res.data.sucess == true) {
@@ -10,36 +12,21 @@ function ($scope, $http, DashBoardService) {
                 $scope.GetBarGraphDashboard('country', 'Country', res.data.regionWiseEmployees);
                 $scope.GetBarGraphDashboard('gender', 'Gender', res.data.genderWiseEmployees);
                 //$scope.GetBarGraphDashboard('designation', 'Designation', res.data.designationWiseEmployees);
-                $scope.GetPieGraphDashboard(res.data.indiawiseGenders, 'INDIA', "INDIA", '#0000FF', '#FF1493');//'#7798BF'
-                $scope.GetPieGraphDashboard(res.data.bangladeshwiseGenders, 'BANGLADESH', "BANGLADESH", '#0000FF', '#FF1493');
-                $scope.GetPieGraphDashboard(res.data.cambodiawiseGenders, 'CAMBODIA', "CAMBODIA", '#0000FF', '#FF1493');
-                $scope.GetPieGraphDashboard(res.data.srilankawiseGenders, 'SRILANKA', "SRILANKA", '#0000FF', '#FF1493');
-                $scope.GetPieGraphDashboard(res.data.pakistanwiseGenders, 'PAKISTAN', "PAKISTAN", '#0000FF', '#FF1493');
-                $scope.GetPieGraphDashboard(res.data.mayanmarwiseGenders, 'MAYANMAR', "MAYANMAR", '#0000FF', '#FF1493');
-                $scope.GetPieGraphDashboard(res.data.hongkongwiseGenders, 'HONGKONG', "HONGKONG", '#0000FF', '#FF1493');
-                $scope.GetPieGraphDashboard(res.data.singaporewiseGenders, 'SINGAPORE', "SINGAPORE", '#0000FF', '#FF1493');
+                $scope.GetPieGraphDashboard(res.data.indiawiseGenders, 'INDIA', 'INDIA');
+                if (res.data.bangladeshwiseGenders != null) {
+
+                }
+                res.data.bangladeshwiseGenders != null ? $scope.GetPieGraphDashboard(res.data.bangladeshwiseGenders, 'BANGLADESH', "BANGLADESH") : $scope.IsBangladesh = false;
+                $scope.GetPieGraphDashboard(res.data.cambodiawiseGenders, 'CAMBODIA', "CAMBODIA");
+                $scope.GetPieGraphDashboard(res.data.srilankawiseGenders, 'SRILANKA', "SRILANKA");
+                $scope.GetPieGraphDashboard(res.data.pakistanwiseGenders, 'PAKISTAN', "PAKISTAN");
+                $scope.GetPieGraphDashboard(res.data.mayanmarwiseGenders, 'MAYANMAR', "MAYANMAR");
+                $scope.GetPieGraphDashboard(res.data.hongkongwiseGenders, 'HONGKONG', "HONGKONG");
+                $scope.GetPieGraphDashboard(res.data.singaporewiseGenders, 'SINGAPORE', "SINGAPORE");
             }
         })
     }
-
-    //$scope.GetGenderWiseEmployees = function () {
-    //    DashBoardService.GetGenderWiseEmployees().then(function (res) {
-    //        if (res.data.sucess == true) {
-    //            $scope.GenderWiseEmployees = res.data.regionWiseEmployees;
-    //            $scope.GetBarGraphDashboard('gender', 'Gender', $scope.GenderWiseEmployees);
-    //        }
-
-    //    })
-    //}
-    //$scope.GetDesignationWiseEmployees = function () {
-    //    DashBoardService.GetDesignationWiseEmployees().then(function (res) {
-    //        if (res.data.sucess == true) {
-    //            $scope.GetDesignationWiseEmployees = res.data.regionWiseEmployees;
-    //            $scope.GetBarGraphDashboard('designation', 'Designation', $scope.GetDesignationWiseEmployees);
-    //        }
-    //    })
-    //}
-    $scope.GetPieGraphDashboard = function(CountryWiseGenders, type, id, c1,c2){
+    $scope.GetPieGraphDashboard = function(CountryWiseGenders, type, id){
         Highcharts.chart(id, {
             chart: {
                 plotBackgroundColor: null,
@@ -48,10 +35,10 @@ function ($scope, $http, DashBoardService) {
                 type: 'pie'
             },
             title: {
-                text: type +" " + "Employees based on Gender"
+                text: type
             },
             tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}</b>'
+                pointFormat: '<b>{point.percentage:.1f}</b>'
             },
             plotOptions: {
                 pie: {
@@ -69,95 +56,14 @@ function ($scope, $http, DashBoardService) {
             series: [{
                 name: 'Countries',
                 colorByPoint: true,
-                data: CountryWiseGenders
+                data: CountryWiseGenders,
+                colors: ['#337ef7', '#f458f4'],
                 }]
         });
 
-        Highcharts.theme = {
-            colors: [c1, c2],
-            chart: {
-                backgroundColor: null,
-                style: {
-                    fontFamily: 'Signika, serif'
-                }
-            },
-            title: {
-                style: {
-                    color: 'black',
-                    fontSize: '16px',
-                    fontWeight: 'bold'
-                }
-            },
-            subtitle: {
-                style: {
-                    color: 'black'
-                }
-            },
-            tooltip: {
-                borderWidth: 0
-            },
-            legend: {
-                itemStyle: {
-                    fontWeight: 'bold',
-                    fontSize: '13px'
-                }
-            },
-            xAxis: {
-                labels: {
-                    style: {
-                        color: '#6e6e70'
-                    }
-                }
-            },
-            yAxis: {
-                labels: {
-                    style: {
-                        color: '#6e6e70'
-                    }
-                }
-            },
-            plotOptions: {
-                series: {
-                    shadow: true
-                },
-                candlestick: {
-                    lineColor: '#404048'
-                },
-                map: {
-                    shadow: false
-                }
-            },
-
-            // Highstock specific
-            navigator: {
-                xAxis: {
-                    gridLineColor: '#D0D0D8'
-                }
-            },
-            rangeSelector: {
-                buttonTheme: {
-                    fill: 'white',
-                    stroke: '#C0C0C8',
-                    'stroke-width': 1,
-                    states: {
-                        select: {
-                            fill: '#D0D0D8'
-                        }
-                    }
-                }
-            },
-            scrollbar: {
-                trackBorderColor: '#C0C0C8'
-            },
-
-            // General
-            background2: '#E0E0E8'
-
-        };
-
-        // Apply the theme
-        Highcharts.setOptions(Highcharts.theme);
+       
     }
+
     $scope.GetBarGraphDashboard = function (id, type, result) {
 
         Highcharts.chart(id, {
@@ -198,84 +104,54 @@ function ($scope, $http, DashBoardService) {
             series: [{
                 name: type,
                 colorByPoint: true,
-                data: result
+                data: result,
+                colors: ['#0000FF', '#8A2BE2', '#1E90FF', '#DC143C', '#B8860B',
+               '#FF0000', '#00FF7F'],
             }],
         });
 
-        //Highcharts.createElement('link', {
-        //    href: 'https://fonts.googleapis.com/css?family=Dosis:400,600',
-        //    rel: 'stylesheet',
-        //    type: 'text/css'
-        //}, null, document.getElementsByTagName('head')[0]);
-
-        //Highcharts.theme = {
-        //    colors: ['#0000FF', '#8A2BE2', '#1E90FF', '#DC143C', '#B8860B',
-        //       '#FF0000', '#FFFF00', '#00FF7F'],
-        //    chart: {
-        //        backgroundColor: null,
-        //        style: {
-        //            fontFamily: 'Dosis, sans-serif'
-        //        }
-        //    },
-        //    title: {
-        //        style: {
-        //            fontSize: '16px',
-        //            fontWeight: 'bold',
-        //            textTransform: 'uppercase'
-        //        }
-        //    },
-        //    tooltip: {
-        //        borderWidth: 0,
-        //        shadow: true,
-        //        backgroundColor: '#FFFFFF',
-        //        style: {
-        //            fontSize: '16px',
-        //            fontWeight: 'bold'
-        //        }
-
-        //    },
-        //    legend: {
-        //        itemStyle: {
-        //            fontWeight: 'bold',
-        //            fontSize: '13px'
-        //        }
-        //    },
-        //    xAxis: {
-        //        labels: {
-        //            style: {
-        //                fontSize: '15px',
-        //                fontWeight: 'bold'
-        //            }
-        //        }
-        //    },
-        //    yAxis: {
-        //        title: {
-        //            style: {
-        //                fontSize: '18px',
-        //                fontWeight: 'bold',
-        //            }
-        //        },
-        //        labels: {
-        //            style: {
-        //                fontSize: '13px',
-        //                fontWeight: 'bold'
-        //            }
-        //        }
-        //    },
-        //    plotOptions: {
-        //        candlestick: {
-        //            lineColor: '#404048'
-        //        }
-        //    },
-
-
-        //    // General
-        //    background2: '#F0F0EA'
-
-        //};
-
-        //Highcharts.setOptions(Highcharts.theme);
     }
+
+    //$scope.GetgenderGraphDashboard = function (id, type, result) {
+    //    Highcharts.chart(id, {
+    //        chart: {
+    //            type: 'column'
+    //        },
+    //        title: {
+    //            text: type
+    //        },
+    //        subtitle: {
+    //            text: ''
+    //        },
+    //        xAxis: {
+    //            categories: [
+    //               '{series.name}'
+    //            ],
+    //            crosshair: true
+    //        },
+    //        yAxis: {
+    //            min: 0,
+    //            title: {
+    //                text: 'Rainfall (mm)'
+    //            }
+    //        },
+    //        tooltip: {
+    //            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    //            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+    //                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+    //            footerFormat: '</table>',
+    //            shared: true,
+    //            useHTML: true
+    //        },
+    //        plotOptions: {
+    //            column: {
+    //                pointPadding: 0.2,
+    //                borderWidth: 0
+    //            }
+    //        },
+    //        series: result
+    //    });
+    //}
 
     $scope.GetRegionWiseEmployees();
     
