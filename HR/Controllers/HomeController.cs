@@ -30,21 +30,22 @@ namespace HR.Controllers
                 //                                    y = n.Count(),
                 //                                    name = n.Key > 0? LookUpCodeService.GetLookUpType(n.Key).LookUpCode:string.Empty
                 //                                });
-                var genderWiseEmployees = EmployeeHeader.GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender).FirstOrDefault()).ToList()
+                var genderWiseEmployees1 = EmployeeHeader.GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender).FirstOrDefault()).ToList()
                                           .Select(n => new
                                           {
                                               y = n.Count(),
                                               name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
                                           });
-                //var genderWiseEmployees = EmployeeHeader.GroupBy(g => new { BranchName= g.Branch.BranchName, Gender= g.EmployeePersonalInfo.Select(s => s.Gender).FirstOrDefault()}).ToList()
-                //                          .Select(n => new
-                //                          {
-                //                              y = n.Count(),
-                //                              name = n.Select(s => s.Branch.BranchName).FirstOrDefault(),
-                //                              gender = n.Select(s => s.EmployeePersonalInfo.FirstOrDefault().Gender).FirstOrDefault() == 0 ? "Male" : "Female" 
-                //                          });
+                var genderWiseEmployees = EmployeeHeader.
+                                          GroupBy(g => g.Branch.BranchName).ToList()
+                                                                .Select(n => new
+                                                                {
+                                                                    name = n.Key,
+                                                                    male = n.Where(s => s.EmployeePersonalInfo.FirstOrDefault().Gender == 0).Count(),
+                                                                    female = n.Where(s => s.EmployeePersonalInfo.FirstOrDefault().Gender == 1).Count()
+                                                                }).OrderBy(o=>o.name);
 
-                var indiawiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "IN"))
+                var indiawiseGenders = EmployeeHeader.Where(s => s.Branch.BranchName == "INDIA")
                            .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
                            .FirstOrDefault()).ToList()
                             .Select(n => new
@@ -52,7 +53,8 @@ namespace HR.Controllers
                                 y = n.Count(),
                                 name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
                             }).OrderByDescending(n => n.name);
-                var singaporewiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "SG"))
+
+                var singaporewiseGenders = EmployeeHeader.Where(s => s.Branch.BranchName == "SINGAPORE")
                          .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
                          .FirstOrDefault()).ToList()
                           .Select(n => new
@@ -60,7 +62,8 @@ namespace HR.Controllers
                               y = n.Count(),
                               name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
                           }).OrderByDescending(n => n.name);
-                var hongkongwiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "HK"))
+
+                var hongkongwiseGenders = EmployeeHeader.Where(s => s.Branch.BranchName == "HONGKONG")
                          .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
                          .FirstOrDefault()).ToList()
                           .Select(n => new
@@ -68,7 +71,8 @@ namespace HR.Controllers
                               y = n.Count(),
                               name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
                           }).OrderByDescending(n => n.name);
-                var mayanmarwiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "MM"))
+
+                var mayanmarwiseGenders = EmployeeHeader.Where(s => s.Branch.BranchName == "MAYANMAR")
                          .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
                          .FirstOrDefault()).ToList()
                           .Select(n => new
@@ -76,7 +80,8 @@ namespace HR.Controllers
                               y = n.Count(),
                               name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
                           }).OrderByDescending(n => n.name);
-                var pakistanwiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "PK"))
+
+                var pakistanwiseGenders = EmployeeHeader.Where(s => s.Branch.BranchName == "PAKISTAN")
                          .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
                          .FirstOrDefault()).ToList()
                           .Select(n => new
@@ -84,7 +89,8 @@ namespace HR.Controllers
                               y = n.Count(),
                               name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
                           }).OrderByDescending(n => n.name);
-                var srilankawiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "LK"))
+
+                var srilankawiseGenders = EmployeeHeader.Where(s => s.Branch.BranchName == "SRILANKA")
                          .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
                          .FirstOrDefault()).ToList()
                           .Select(n => new
@@ -92,15 +98,17 @@ namespace HR.Controllers
                               y = n.Count(),
                               name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
                           }).OrderByDescending(n => n.name);
-                var cambodiawiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "KH"))
+
+                var cambodiawiseGenders = EmployeeHeader.Where(s => s.Branch.BranchName == "CAMBODIA")
                          .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
                          .FirstOrDefault()).ToList()
                           .Select(n => new
                           {
                               y = n.Count(),
                               name = n.Key == 0 ? "Male" : n.Key == 1 ? "Female" : ""
-                          }).OrderByDescending(n=>n.name);
-                var bangladeshwiseGenders = EmployeeHeader.Where(s => s.Address.Any(c => c.CountryCode == "BD"))
+                          }).OrderByDescending(n => n.name);
+
+                var bangladeshwiseGenders = EmployeeHeader.Where(s => s.Branch.BranchName == "BANGLADESH")
                          .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
                          .FirstOrDefault()).ToList()
                           .Select(n => new

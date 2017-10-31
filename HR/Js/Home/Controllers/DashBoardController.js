@@ -4,25 +4,33 @@ angular.module('ngHR').controller('dashBoardController', ['$scope', '$http', 'Da
 function ($scope, $http, DashBoardService) {
     $scope.init = function () {
         $scope.IsBangladesh = true;
+        $scope.IsCambodia = true;
+        $scope.IsSrilanka = true;
+        $scope.IsPakistan = true;
+        $scope.IsMayanmar = true;
+        $scope.IsIndia = true;
+        $scope.IsHongkong = true;
+        $scope.IsSingapore = true;
+        $scope.genderWiseEmployees = '';
     }
     $scope.GetRegionWiseEmployees = function () {
         DashBoardService.GetRegionWiseEmployees().then(function (res) {
             if (res.data.sucess == true) {
                 $scope.regionWiseEmployees = res.data.regionWiseEmployees;
                 $scope.GetBarGraphDashboard('country', 'Country', res.data.regionWiseEmployees);
-                $scope.GetBarGraphDashboard('gender', 'Gender', res.data.genderWiseEmployees);
+                $scope.genderWiseEmployees = res.data.genderWiseEmployees;
+                $scope.genderWiseGraph();
+                //$scope.GetBarGraphDashboard('gender', 'Gender', res.data.genderWiseEmployees);
                 //$scope.GetBarGraphDashboard('designation', 'Designation', res.data.designationWiseEmployees);
-                $scope.GetPieGraphDashboard(res.data.indiawiseGenders, 'INDIA', 'INDIA');
-                if (res.data.bangladeshwiseGenders != null) {
-
-                }
-                res.data.bangladeshwiseGenders != null ? $scope.GetPieGraphDashboard(res.data.bangladeshwiseGenders, 'BANGLADESH', "BANGLADESH") : $scope.IsBangladesh = false;
-                $scope.GetPieGraphDashboard(res.data.cambodiawiseGenders, 'CAMBODIA', "CAMBODIA");
-                $scope.GetPieGraphDashboard(res.data.srilankawiseGenders, 'SRILANKA', "SRILANKA");
-                $scope.GetPieGraphDashboard(res.data.pakistanwiseGenders, 'PAKISTAN', "PAKISTAN");
-                $scope.GetPieGraphDashboard(res.data.mayanmarwiseGenders, 'MAYANMAR', "MAYANMAR");
-                $scope.GetPieGraphDashboard(res.data.hongkongwiseGenders, 'HONGKONG', "HONGKONG");
-                $scope.GetPieGraphDashboard(res.data.singaporewiseGenders, 'SINGAPORE', "SINGAPORE");
+                res.data.indiawiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.indiawiseGenders, 'INDIA', 'INDIA') : $scope.IsIndia = false;
+                res.data.bangladeshwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.bangladeshwiseGenders, 'BANGLADESH', "BANGLADESH") : $scope.IsBangladesh = false;
+                res.data.cambodiawiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.cambodiawiseGenders, 'CAMBODIA', "CAMBODIA") : $scope.IsCambodia = false;
+                res.data.srilankawiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.srilankawiseGenders, 'SRILANKA', "SRILANKA") : $scope.IsSrilanka = false;
+                res.data.pakistanwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.pakistanwiseGenders, 'PAKISTAN', "PAKISTAN") : $scope.IsPakistan = false;
+                res.data.mayanmarwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.mayanmarwiseGenders, 'MAYANMAR', "MAYANMAR") : $scope.IsMayanmar = false;
+                res.data.hongkongwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.hongkongwiseGenders, 'HONGKONG', "HONGKONG") : $scope.IsHongkong = false;
+                res.data.singaporewiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.singaporewiseGenders, 'SINGAPORE', "SINGAPORE") : $scope.IsSingapore = false;
+                
             }
         })
     }
@@ -111,48 +119,41 @@ function ($scope, $http, DashBoardService) {
         });
 
     }
-
-    //$scope.GetgenderGraphDashboard = function (id, type, result) {
-    //    Highcharts.chart(id, {
-    //        chart: {
-    //            type: 'column'
-    //        },
-    //        title: {
-    //            text: type
-    //        },
-    //        subtitle: {
-    //            text: ''
-    //        },
-    //        xAxis: {
-    //            categories: [
-    //               '{series.name}'
-    //            ],
-    //            crosshair: true
-    //        },
-    //        yAxis: {
-    //            min: 0,
-    //            title: {
-    //                text: 'Rainfall (mm)'
-    //            }
-    //        },
-    //        tooltip: {
-    //            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-    //            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-    //                '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
-    //            footerFormat: '</table>',
-    //            shared: true,
-    //            useHTML: true
-    //        },
-    //        plotOptions: {
-    //            column: {
-    //                pointPadding: 0.2,
-    //                borderWidth: 0
-    //            }
-    //        },
-    //        series: result
-    //    });
-    //}
-
+    $scope.genderWiseGraph = function () {
+        var html = '';
+        angular.forEach($scope.genderWiseEmployees, function (item) {
+            html += ' <tr><td>' + item.name + '</td><td>' + item.male + '</td><td>' + item.female + '</td></tr>';
+        });
+        $('#tableID').html(html);
+        Highcharts.setOptions({
+            colors: ['#337ef7', '#f458f4']
+        });
+        Highcharts.chart('genderWiseEmployees', {
+            
+            data: {
+                table: 'datatable'
+            },
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: "Total Employees Based on gender"
+            },
+            yAxis: {
+                allowDecimals: false,
+                title: {
+                    text: 'Values'
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        this.point.y + ' ' + this.point.name.toLowerCase();
+                }
+            }
+        });
+    }
+    $scope.init();
     $scope.GetRegionWiseEmployees();
     
 }])
