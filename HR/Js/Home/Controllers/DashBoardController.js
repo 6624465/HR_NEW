@@ -30,7 +30,6 @@ function ($scope, $http, DashBoardService) {
                 res.data.mayanmarwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.mayanmarwiseGenders, 'MAYANMAR', "MAYANMAR") : $scope.IsMayanmar = false;
                 res.data.hongkongwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.hongkongwiseGenders, 'HONGKONG', "HONGKONG") : $scope.IsHongkong = false;
                 res.data.singaporewiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.singaporewiseGenders, 'SINGAPORE', "SINGAPORE") : $scope.IsSingapore = false;
-                
             }
         })
     }
@@ -46,7 +45,8 @@ function ($scope, $http, DashBoardService) {
                 text: type
             },
             tooltip: {
-                pointFormat: '<b>{point.percentage:.1f}</b>'
+                headerFormat: '<span style="font-size:11px">{series.name}</span><br/>',
+                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.f}</b><br />'
             },
             plotOptions: {
                 pie: {
@@ -54,7 +54,7 @@ function ($scope, $http, DashBoardService) {
                     cursor: 'pointer',
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.2f}',
+                        format: '<b>{point.name}</b>: {point.y:.f}',
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
@@ -68,8 +68,6 @@ function ($scope, $http, DashBoardService) {
                 colors: ['#337ef7', '#f458f4'],
                 }]
         });
-
-       
     }
 
     $scope.GetBarGraphDashboard = function (id, type, result) {
@@ -99,7 +97,7 @@ function ($scope, $http, DashBoardService) {
                     borderWidth: 0,
                     dataLabels: {
                         enabled: true,
-                        format: '{point.y}'
+                        //format: '{point.y}'
                     }
                 }
             },

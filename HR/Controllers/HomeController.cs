@@ -40,10 +40,11 @@ namespace HR.Controllers
                                           GroupBy(g => g.Branch.BranchName).ToList()
                                                                 .Select(n => new
                                                                 {
+                                                                    y= n.Count(),
                                                                     name = n.Key,
                                                                     male = n.Where(s => s.EmployeePersonalInfo.FirstOrDefault().Gender == 0).Count(),
                                                                     female = n.Where(s => s.EmployeePersonalInfo.FirstOrDefault().Gender == 1).Count()
-                                                                }).OrderBy(o=>o.name);
+                                                                }).OrderByDescending(o=>o.y);
 
                 var indiawiseGenders = EmployeeHeader.Where(s => s.Branch.BranchName == "INDIA")
                            .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
