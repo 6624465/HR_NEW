@@ -41,6 +41,7 @@ namespace HR.Data
         #region OnModelCreating
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //Schemas
             modelBuilder.Entity<EmployeeLeaveList>().ToTable("EmployeeLeaveLists", "Leave");
             modelBuilder.Entity<RoleRight>().ToTable("RoleRights", "Security");
             //modelBuilder.Entity<LookUp>().Map<LeaveType>(m => { m.Requires("DiscriminatorTypeId").HasValue(4); });

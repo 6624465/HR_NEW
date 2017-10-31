@@ -20,7 +20,7 @@ app.config(
         $stateProvider
             .state('Home', {
                 url: '/Home',
-                templateUrl: baseUrl + 'Home/Index',
+                templateUrl: baseUrl + 'Home/Index?v='+version,
                 //resolve: {
                 //    loadPlugin: function ($ocLazyLoad) {
                 //        return $ocLazyLoad.load([
@@ -34,16 +34,16 @@ app.config(
             })
             .state('Company', {
                 url: '/Company',
-                templateUrl: baseUrl + 'Company/Company/CompanyList',
+                templateUrl: baseUrl + 'Company/Company/CompanyList?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
                                 files: [
-                                    baseUrl + 'Js/Company/Controllers/CompanyController.js',
-                                    baseUrl + 'Js/Company/Services/CompanyService.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
+                                    baseUrl + 'Js/Company/Controllers/CompanyController.js?v=' + version,
+                                    baseUrl + 'Js/Company/Services/CompanyService.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
                                 ]
                             }
                         ]);
@@ -53,16 +53,16 @@ app.config(
 
             .state('EmployeeType', {
                 url: '/EmployeeType',
-                templateUrl: baseUrl + 'Settings/LookUp/EmployeeType',
+                templateUrl: baseUrl + 'Settings/LookUp/EmployeeType?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
                                 files: [
-                                    baseUrl + 'Js/Master/MasterController/EmployeeTypeController.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
-                                     baseUrl + 'Js/Master/MasterController/maincontroller.js'
+                                    baseUrl + 'Js/Master/MasterController/EmployeeTypeController.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                     baseUrl + 'Js/Master/MasterController/maincontroller.js?v=' + version
                                 ]
                             }
                         ]);
@@ -88,15 +88,15 @@ app.config(
             //})
              .state('Roles', {
                  url: '/Roles',
-                 templateUrl: baseUrl + 'Account/Securable/RolerRights',
+                 templateUrl: baseUrl + 'Account/Securable/RolerRights?v=' + version,
                  resolve: {
                      loadPlugin: function ($ocLazyLoad) {
                          return $ocLazyLoad.load([
                              {
                                  name: 'ngHR',
                                  files: [
-                                        baseUrl + 'Js/Account/Controllers/RoleRightsController.js',
-                                        baseUrl + 'Js/Account/Services/RoleService.js'
+                                        baseUrl + 'Js/Account/Controllers/RoleRightsController.js?v=' + version,
+                                        baseUrl + 'Js/Account/Services/RoleService.js?v=' + version
                                  ]
                              }
                          ]);
@@ -106,19 +106,19 @@ app.config(
 
             .state('Employee', {
                 url: '/Employee',
-                templateUrl: baseUrl + 'Settings/LookUp/EmployeeDesignation',
+                templateUrl: baseUrl + 'Settings/LookUp/EmployeeDesignation?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
                                 files: [
-                                    baseUrl + 'Js/Master/MasterController/EmployeeDesignationController.js',
-                                    baseUrl + 'Js/Master/MasterController/EmployeeTypeController.js',
-                                    baseUrl + 'Js/Master/MasterController/EmployeeStatusController.js',
-                                    baseUrl + 'Js/Master/MasterController/EmployeeDepartmentController.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
-                                    baseUrl + 'Js/Master/MasterController/maincontroller.js'
+                                    baseUrl + 'Js/Master/MasterController/EmployeeDesignationController.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterController/EmployeeTypeController.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterController/EmployeeStatusController.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterController/EmployeeDepartmentController.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterController/maincontroller.js?v=' + version
                                 ]
                             }
                         ]);
@@ -127,16 +127,16 @@ app.config(
             })
             .state('EmployeeDepartment', {
                 url: '/EmployeeDepartment',
-                templateUrl: baseUrl + 'Home/EmployeeDepartment',
+                templateUrl: baseUrl + 'Home/EmployeeDepartment?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
                                 files: [
-                                    baseUrl + 'Js/Master/MasterController/EmployeeDepartmentController.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
-                                    baseUrl + 'Js/Master/MasterController/maincontroller.js'
+                                    baseUrl + 'Js/Master/MasterController/EmployeeDepartmentController.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterController/maincontroller.js?v=' + version
                                 ]
                             }
                         ]);
@@ -146,16 +146,16 @@ app.config(
 
             .state('EmployeeStatus', {
                 url: '/EmployeeStatus',
-                templateUrl: baseUrl + 'Settings/LookUp/EmployeeStatus',
+                templateUrl: baseUrl + 'Settings/LookUp/EmployeeStatus?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
                                 files: [
-                                    baseUrl + 'Js/Master/MasterController/EmployeeStatusController.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
-                                     baseUrl + 'Js/Master/MasterController/maincontroller.js'
+                                    baseUrl + 'Js/Master/MasterController/EmployeeStatusController.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                     baseUrl + 'Js/Master/MasterController/maincontroller.js?v=' + version
                                 ]
                             }
                         ]);
@@ -165,15 +165,15 @@ app.config(
 
             .state('PaymentType', {
                 url: '/PaymentType',
-                templateUrl: baseUrl + 'Settings/LookUp/PaymentType',
+                templateUrl: baseUrl + 'Settings/LookUp/PaymentType?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
                                 files: [
-                                    baseUrl + 'Js/Master/MasterController/PaymentTypeController.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js'
+                                    baseUrl + 'Js/Master/MasterController/PaymentTypeController.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version
                                 ]
                             }
                         ]);
@@ -183,15 +183,15 @@ app.config(
 
             .state('HolidayList', {
                 url: '/HolidayList',
-                templateUrl: baseUrl + 'Leave/SetUp/HolidayList',
+                templateUrl: baseUrl + 'Leave/SetUp/HolidayList?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
                                 files: [
-                                    baseUrl + 'Js/Leave/Controllers/HolidayListController.js',
-                                    baseUrl + 'Js/Leave/Services/HolidayListService.js'
+                                    baseUrl + 'Js/Leave/Controllers/HolidayListController.js?v=' + version,
+                                    baseUrl + 'Js/Leave/Services/HolidayListService.js?v=' + version
                                 ]
                             }
                         ]);
@@ -201,15 +201,15 @@ app.config(
 
             .state('LeaveType', {
                 url: '/LeaveType',
-                templateUrl: baseUrl + 'Settings/LookUp/LeaveType',
+                templateUrl: baseUrl + 'Settings/LookUp/LeaveType?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
                                 files: [
-                                    baseUrl + 'Js/Master/MasterController/LeaveTypeController.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js'
+                                    baseUrl + 'Js/Master/MasterController/LeaveTypeController.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version
                                 ]
                             }
                         ]);
@@ -219,15 +219,15 @@ app.config(
 
             .state('EmployeeLeave', {
                 url: '/EmployeeLeave',
-                templateUrl: baseUrl + 'Leave/EmployeeLeave/EmployeeLeave',
+                templateUrl: baseUrl + 'Leave/EmployeeLeave/EmployeeLeave?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
                             name: 'ngHR',
                             files: [
-                                baseUrl + 'Js/Leave/Controllers/EmployeeLeave.js',
-                                baseUrl + 'Js/Leave/Services/EmployeeLeaveService.js',
-                                 baseUrl + 'Js/Master/MasterService/LookUp.js'
+                                baseUrl + 'Js/Leave/Controllers/EmployeeLeave.js?v=' + version,
+                                baseUrl + 'Js/Leave/Services/EmployeeLeaveService.js?v=' + version,
+                                 baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version
                             ]
                         })
                     }
@@ -235,14 +235,14 @@ app.config(
             })
            .state('AppliedLeaveList', {
                url: '/AppliedLeaveList',
-               templateUrl: baseUrl + 'Leave/AppliedLeaveList/AppliedLeaveList',
+               templateUrl: baseUrl + 'Leave/AppliedLeaveList/AppliedLeaveList?v=' + version,
                resolve: {
                    loadPlugin: function ($ocLazyLoad) {
                        return $ocLazyLoad.load({
                            name: 'ngHR',
                            files: [
-                               baseUrl + 'Js/Leave/Controllers/AppliedLeaveListController.js',
-                                baseUrl + 'Js/Leave/Services/EmployeeLeaveService.js',
+                               baseUrl + 'Js/Leave/Controllers/AppliedLeaveListController.js?v=' + version,
+                                baseUrl + 'Js/Leave/Services/EmployeeLeaveService.js?v=' + version,
                            ]
                        })
                    }
@@ -251,16 +251,16 @@ app.config(
 
            .state('EmployeeHeader', {
                url: '/EmployeeHeader/:id',
-               templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeProfile',
+               templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeProfile?v=' + version,
                resolve: {
                    loadPlugin: function ($ocLazyLoad) {
                        return $ocLazyLoad.load([
                            {
                                name: 'ngHR',
-                               files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js',
-                                       baseUrl + 'Js/Master/MasterService/LookUp.js',
-                                       baseUrl + 'Js/Leave/Services/HolidayListService.js',
-                                       baseUrl + 'Js/Employee/Services/EmployeeProfileService.js', ]
+                               files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js?v=' + version,
+                                       baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                       baseUrl + 'Js/Leave/Services/HolidayListService.js?v=' + version,
+                                       baseUrl + 'Js/Employee/Services/EmployeeProfileService.js?v=' + version]
 
                            }
                        ]);
@@ -270,13 +270,13 @@ app.config(
 
              .state('EmployeeHeader.EmployeeBasicInformation', {
                  url: '/EmployeeBasicInformation',
-                 templateUrl: baseUrl + 'Js/Employee/Templates/BasicInformation.html',
+                 templateUrl: baseUrl + 'Js/Employee/Templates/BasicInformation.html?v=' + version,
                  resolve: {
                      loadPlugin: function ($ocLazyLoad) {
                          return $ocLazyLoad.load([
                              {
                                  name: 'ngHR',
-                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js',
+                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js?v=' + version,
                                  ]
                              }
                          ]);
@@ -286,13 +286,13 @@ app.config(
 
              .state('EmployeeHeader.EmployeePosition', {
                  url: '/EmployeePosition',
-                 templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePosition.html',
+                 templateUrl: baseUrl + 'Js/Employee/Templates/EmployeePosition.html?v=' + version,
                  resolve: {
                      loadPlugin: function ($ocLazyLoad) {
                          return $ocLazyLoad.load([
                              {
                                  name: 'ngHR',
-                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js?v=' + version]
                              }
                          ]);
                      }
@@ -300,13 +300,13 @@ app.config(
              })
              .state('EmployeeHeader.EmployeeAddress', {
                  url: '/EmployeeAddress',
-                 templateUrl: baseUrl + 'Js/Employee/Templates/EmployeeAddressDetails.html',
+                 templateUrl: baseUrl + 'Js/Employee/Templates/EmployeeAddressDetails.html?v=' + version,
                  resolve: {
                      loadPlugin: function ($ocLazyLoad) {
                          return $ocLazyLoad.load([
                              {
                                  name: 'ngHR',
-                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                                 files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js?v=' + version]
                              }
                          ]);
                      }
@@ -315,13 +315,13 @@ app.config(
 
             .state('EmployeeHeader.EmployeeLogin', {
                 url: '/EmployeeLogin',
-                templateUrl: baseUrl + 'Js/Employee/Templates/LoginDetails.html',
+                templateUrl: baseUrl + 'Js/Employee/Templates/LoginDetails.html?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
-                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js?v=' + version]
                             }
                         ]);
                     }
@@ -330,13 +330,13 @@ app.config(
 
             .state('EmployeeHeader.EmployeeDocuments', {
                 url: '/EmployeeDocuments',
-                templateUrl: baseUrl + 'Js/Employee/Templates/EmployeeDocuments.html',
+                templateUrl: baseUrl + 'Js/Employee/Templates/EmployeeDocuments.html?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
-                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js']
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeProfileController.js?v=' + version]
                             }
                         ]);
                     }
@@ -344,16 +344,16 @@ app.config(
             })
             .state('EmployeeDirectory', {
                 url: '/EmployeeDirectory',
-                templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeDirectory',
+                templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeDirectory?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
-                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeDirectoryController.js',
-                                       baseUrl + 'Js/Employee/Services/EmployeeProfileService.js',
-                                       baseUrl + 'Js/Master/MasterService/LookUp.js',
-                                       baseUrl + 'Js/Leave/Services/HolidayListService.js'
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeDirectoryController.js?v=' + version,
+                                       baseUrl + 'Js/Employee/Services/EmployeeProfileService.js?v=' + version,
+                                       baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                       baseUrl + 'Js/Leave/Services/HolidayListService.js?v=' + version
                                 ]
                             }
                         ]);
@@ -363,12 +363,12 @@ app.config(
 
              .state('EmployeeProfile', {
                  url: '/EmployeeProfile',
-                 templateUrl: baseUrl + 'Employees/EmployeeProfile/Index',
+                 templateUrl: baseUrl + 'Employees/EmployeeProfile/Index?v=' + version,
              })
 
                .state('Master', {
                    url: '/Master',
-                   templateUrl: baseUrl + 'Home/MasterList',
+                   templateUrl: baseUrl + 'Home/MasterList?v=' + version,
                })
 
             //.state('Employees', {
@@ -378,24 +378,24 @@ app.config(
 
             .state('Administration', {
                 url: '/Administration',
-                templateUrl: baseUrl + 'Home/AdministrationData',
+                templateUrl: baseUrl + 'Home/AdministrationData?v=' + version,
             })
              .state('Leave', {
                  url: '/Leave',
-                 templateUrl: baseUrl + 'Leave/SetUp/Leave',
+                 templateUrl: baseUrl + 'Leave/SetUp/Leave?v=' + version,
              })
 
             .state('EmployeeProfileInfo', {
                 url: '/EmployeeProfileInfo',
-                templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeInfo',
+                templateUrl: baseUrl + 'Employees/EmployeeProfile/EmployeeInfo?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
-                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeInfo.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
-                                    baseUrl + 'Js/Employee/Services/EmployeeProfileService.js',
+                                files: [baseUrl + 'Js/Employee/Controllers/EmployeeInfo.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                    baseUrl + 'Js/Employee/Services/EmployeeProfileService.js?v=' + version
                                 ]
                             }
                         ]);
@@ -405,13 +405,13 @@ app.config(
 
             .state('Salary', {
                 url: '/Salary',
-                templateUrl: baseUrl + 'PayRoll/Salary/Salary',
+                templateUrl: baseUrl + 'PayRoll/Salary/Salary?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
-                                files: [baseUrl + 'Js/PayRoll/Controllers/SalaryController.js',
+                                files: [baseUrl + 'Js/PayRoll/Controllers/SalaryController.js?v=' + version,
                                   
                                 ]
                             }
@@ -421,16 +421,16 @@ app.config(
             })
             .state('GrantLeave', {
                 url: '/GrantLeave',
-                templateUrl: baseUrl + 'Leave/GrantLeave/GrantLeave',
+                templateUrl: baseUrl + 'Leave/GrantLeave/GrantLeave?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
                                 files: [
-                                    baseUrl + 'Js/Leave/Controllers/GrantLeaveController.js',
-                                    baseUrl + 'Js/Leave/Services/GrantLeaveService.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js'
+                                    baseUrl + 'Js/Leave/Controllers/GrantLeaveController.js?v=' + version,
+                                    baseUrl + 'Js/Leave/Services/GrantLeaveService.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version
                                 ]
                             }
                         ]);
@@ -439,15 +439,15 @@ app.config(
             })
             .state('DashBoard', {
                 url: '/DashBoard',
-                templateUrl: baseUrl + 'Home/DashBoard',
+                templateUrl: baseUrl + 'Home/DashBoard?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
-                                files: [baseUrl + 'Js/Home/Controllers/DashBoardController.js',
+                                files: [baseUrl + 'Js/Home/Controllers/DashBoardController.js?v=' + version,
 
-                                    baseUrl + 'Js/Home/Services/DashBoardService.js',
+                                    baseUrl + 'Js/Home/Services/DashBoardService.js?v=' + version,
                                 ]
                             }
                         ]);
@@ -457,7 +457,7 @@ app.config(
             })
             .state('PayRoll', {
                 url: '/PayRoll',
-                templateUrl: baseUrl + 'PayRoll/Salary/PayRoll',
+                templateUrl: baseUrl + 'PayRoll/Salary/PayRoll?v=' + version,
                 //resolve: {
                 //    loadPlugin: function ($ocLazyLoad) {
                 //        return $ocLazyLoad.load([
@@ -472,13 +472,13 @@ app.config(
 
             .state('ActivitySummary', {
                 url: '/ActivitySummary',
-                templateUrl: baseUrl + 'Js/Home/Views/activitysummary.html',
+                templateUrl: baseUrl + 'Js/Home/Views/activitysummary.html?v=' + version,
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
                             {
                                 name: 'ngHR',
-                                files: [baseUrl + 'Js/Home/Controllers/ActivitySummaryCntrl.js']
+                                files: [baseUrl + 'Js/Home/Controllers/ActivitySummaryCntrl.js?v=' + version]
                             }
                         ]);
                     }
