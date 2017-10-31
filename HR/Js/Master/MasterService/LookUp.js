@@ -9,9 +9,9 @@
         return deferred.promise;
     }
 
-    this.GetLookUpData = function (lookUpCode) {
+    this.GetLookUpData = function (lookupcode) {
         var deferred = $q.defer();
-        $http.get("/Settings/LookUp/GetLookUp?LookUpCategory=" + lookUpCode).then(function (res) {
+        $http.get("/Settings/LookUp/GetLookUp?LookUpCategory=" + lookupcode).then(function (res) {
             deferred.resolve(res);
         }, function (err) {
             deferred.reject(err);
@@ -36,6 +36,16 @@
         }, function (err) {
             deferred.reject(err);
         })
+        return deferred.promise;
+    }
+
+    this.GetTableData = function (obj) {
+        var deferred = $q.defer();
+        $http.post("/Settings/LookUp/GetTableData", JSON.stringify(obj)).then(function (res) {
+            deferred.resolve(res);
+        }, function (err) {
+            deferred.reject(err);
+        });
         return deferred.promise;
     }
 

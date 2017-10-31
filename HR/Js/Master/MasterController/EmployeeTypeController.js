@@ -1,5 +1,5 @@
-﻿angular.module('ngHR').controller('EmployeeTypeController', ['$scope', '$http', 'LookUp', 'growl', 'growlService',
-function ($scope, $http, LookUp, growl, growlService) {
+﻿angular.module('ngHR').controller('EmployeeTypeController', ['$scope', '$http', 'LookUp', 'growl', 'growlService','NgTableParams',
+function ($scope, $http, LookUp, growl, growlService, NgTableParams) {
     var config = {};
     growl.success(" a success message and not unique", config);
     $scope.init = function () {
@@ -10,21 +10,49 @@ function ($scope, $http, LookUp, growl, growlService) {
             IsActive: null,
             LookUpCategory: "EmployeeType"
         },
-        $scope.EmployeeTypes = {}
-    }
+        $scope.EmployeeTypes = {},
+        $scope.GetTableData(true);
+        $scope.defaultLookUpCategory = "EmployeeType";
+    };
 
     angular.element('.skin-blue').addClass("sidebar-collapse");
 
-    $scope.GetLookUpData = function () {
-        LookUp.GetLookUpData("EmployeeType").then(function (response) {
-            if (response.data && response.data.message == "Saved Successfully.") {
-                $scope.EmployeeTypes = response.data.lookUpLists;
-                var config = {};
-                growl.success(" a success message and not unique", config);
+    //$scope.GetLookUpData = function () {
+    //    LookUp.GetLookUpData("EmployeeType").then(function (response) {
+    //        if (response.data && response.data.message == "Saved Successfully.") {
+    //            $scope.EmployeeTypes = response.data.lookUpLists;
+    //            var config = {};
+    //            growl.success(" a success message and not unique", config);
+    //        }
+    //    })
+    //}
+
+    var search = {};
+    $scope.GetTableData = function (issearch, LookUpCategory) {
+        $scope.ngTblTypeData = new NgTableParams({
+            page: 0,
+            count: 10,
+        }, {
+            counts: [10, 20, 30],
+            getData: function ($defer, params) {
+                search.LookUpCategory = LookUpCategory == null ? $scope.defaultLookUpCategory : LookUpCategory;
+                search.offset = params.page() == 0 ? 0 : (params.count() * (params.page() - 1));
+                search.limit = params.count();
+                if (params.sorting()) {
+                    var orderBy = params.orderBy()[0];
+
+                    search.sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
+                    search.sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
+                }
+                debugger;
+                LookUp.GetTableData(search).then(function (res) {
+                    debugger;
+                    params.total(res.data.total_count);
+                    $defer.resolve(res.data.lookUpLists);
+                }, function (err) { });
             }
-        })
+        });
     }
-    $scope.GetLookUpData();
 
     $scope.IsfrmEmployeeType = false;
     $scope.$watch('frmEmployeeType .$valid', function (Valid) {
@@ -33,11 +61,12 @@ function ($scope, $http, LookUp, growl, growlService) {
 
     $scope.onClickSaveEmployeeType = function (employeeType) {
         if ($scope.EmployeeType.LookUpCode != null) {
+            debugger
         if ($scope.IsfrmEmployeeType) {
             LookUp.SaveLookUpData(employeeType).then(function (response) {
                 growlService.growl("Saved Successfully..", 'success');
                 $('#AddEmployeeTypeDialog').modal('hide');
-                $scope.GetLookUpData();
+                $scope.GetTableData(true, "EmployeeType");
             })
         }
         else {

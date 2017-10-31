@@ -1,5 +1,5 @@
-﻿angular.module('ngHR').controller('EmployeeDepartmentController', ['$scope', '$http', 'LookUp', 'growl', 'growlService',
-function ($scope, $http, LookUp, growl, growlService) {
+﻿angular.module('ngHR').controller('EmployeeDepartmentController', ['$scope', '$http', 'LookUp', 'growl', 'growlService','NgTableParams',
+function ($scope, $http, LookUp, growl, growlService, NgTableParams) {
     var config = {};
     growl.success(" a success message and not unique", config);
     $scope.init = function () {
@@ -7,23 +7,51 @@ function ($scope, $http, LookUp, growl, growlService) {
             IsActive: true,
             LookUpCategory: "EmployeeDepartment"
         },
-        $scope.EmployeeDepartments = {}
+        $scope.EmployeeDepartments = {};
+        $scope.GetTableData(true);
+        $scope.defaultLookupCategory = "EmployeeDepartment";
     }
 
     angular.element('.skin-blue').addClass("sidebar-collapse");
 
-    $scope.GetLookUpData = function () {
-        LookUp.GetLookUpData("EmployeeDepartment").then(function (response) {
-            if (response.data && response.data.message == "Saved Successfully.") {
-                $scope.EmployeeDepartments = response.data.lookUpLists;
-                var config = {};
-                growl.success(" a success message and not unique", config);
+    //$scope.GetLookUpData = function () {
+    //    LookUp.GetLookUpData("EmployeeDepartment").then(function (response) {
+    //        if (response.data && response.data.message == "Saved Successfully.") {
+    //            $scope.EmployeeDepartments = response.data.lookUpLists;
+    //            var config = {};
+    //            growl.success(" a success message and not unique", config);
+    //        }
+    //    })
+
+    //}
+    //$scope.GetLookUpData();
+
+    var search = {};
+    $scope.GetTableData = function (issearch, lookupcategory) {
+        $scope.ngTblDepartmentData = new NgTableParams({
+            page: 0,
+            count: 10,
+        }, {
+            counts: [10, 20, 30],
+            getData: function ($defer, params) {
+                search.LookUpCategory = lookupcategory == null ? $scope.defaultLookupCategory : lookupcategory;
+                search.offset = params.page() == 0 ? 0 : (params.count() * (params.page() - 1));
+                search.limit = params.count();
+                if (params.sorting()) {
+                    var orderBy = params.orderBy()[0];
+
+                    search.sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
+                    search.sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
+                }
+                debugger;
+                LookUp.GetTableData(search).then(function (res) {
+                    debugger;
+                    params.total(res.data.total_count);
+                    $defer.resolve(res.data.lookUpLists);
+                }, function (err) { });
             }
-        })
-
-    }
-    $scope.GetLookUpData();
-
+        });
+    };
     $scope.IsfrmEmployeeDepartment = false;
     $scope.$watch('frmEmployeeDepartment.$valid', function (Valid) {
         $scope.IsfrmEmployeeDepartment = Valid;
@@ -31,7 +59,7 @@ function ($scope, $http, LookUp, growl, growlService) {
 
 
     $scope.onEditEmployeeDepartment = function (employeeDepartment) {
-        $scope.EmployeeDepartment = employeeDepartment;
+        $scope.EmployeeDepartment = angular.copy(employeeDepartment);
         //$scope.EmployeeDepartment.LookUpCode = employeeDepartment.LookUpCode;
         //$scope.EmployeeDepartment.LookUpDescription = employeeDepartment.LookUpDescription;
         //$scope.EmployeeDepartment.IsActive = employeeDepartment.IsActive;
@@ -63,7 +91,7 @@ function ($scope, $http, LookUp, growl, growlService) {
                 LookUp.SaveLookUpData(employeeDepartment).then(function (response) {
                     growlService.growl("Saved Successfully..", 'success');
                     $('#AddEmployeeDepartmentDialog').modal('hide');
-                    $scope.GetLookUpData();
+                    $scope.GetTableData(true,"EmployeeDepartment");
                 })
 
             }

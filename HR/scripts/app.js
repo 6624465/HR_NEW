@@ -61,7 +61,8 @@ app.config(
                                 name: 'ngHR',
                                 files: [
                                     baseUrl + 'Js/Master/MasterController/EmployeeTypeController.js?v=' + version,
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                     baseUrl + 'Js/Master/MasterController/maincontroller.js?v=' + version
                                 ]
                             }
                         ]);
@@ -116,7 +117,8 @@ app.config(
                                     baseUrl + 'Js/Master/MasterController/EmployeeTypeController.js?v=' + version,
                                     baseUrl + 'Js/Master/MasterController/EmployeeStatusController.js?v=' + version,
                                     baseUrl + 'Js/Master/MasterController/EmployeeDepartmentController.js?v=' + version,
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterController/maincontroller.js?v=' + version
                                 ]
                             }
                         ]);
@@ -133,7 +135,8 @@ app.config(
                                 name: 'ngHR',
                                 files: [
                                     baseUrl + 'Js/Master/MasterController/EmployeeDepartmentController.js?v=' + version,
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterController/maincontroller.js?v=' + version
                                 ]
                             }
                         ]);
@@ -151,7 +154,8 @@ app.config(
                                 name: 'ngHR',
                                 files: [
                                     baseUrl + 'Js/Master/MasterController/EmployeeStatusController.js?v=' + version,
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
+                                     baseUrl + 'Js/Master/MasterController/maincontroller.js?v=' + version
                                 ]
                             }
                         ]);

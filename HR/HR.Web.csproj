@@ -6832,6 +6832,7 @@
     <Content Include="Js\Leave\Services\HolidayListService.js" />
     <Content Include="Js\Master\MasterController\EmployeeStatusController.js" />
     <Content Include="Js\Master\MasterController\LeaveTypeController.js" />
+    <Content Include="Js\Master\MasterController\maincontroller.js" />
     <Content Include="Js\Master\MasterController\PaymentTypeController.js" />
     <Content Include="Js\Master\MasterController\EmployeeDesignationController.js" />
     <Content Include="Js\Master\MasterController\EmployeeDepartmentController.js" />
@@ -7613,7 +7614,6 @@
     <Content Include="Areas\Leave\Views\web.config" />
     <Content Include="Areas\Leave\Views\AppliedLeaveList\AppliedLeaveList.cshtml" />
     <Content Include="Areas\Leave\Views\EmployeeLeave\EmployeeLeave.cshtml" />
-    <Content Include="Areas\Settings\Views\LookUp\EmployeeDesignation.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\EmployeeType.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\LeaveType.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\PaymentType.cshtml" />
@@ -7628,6 +7628,7 @@
     <Content Include="Documents\1413901585save_pdf_files_as_word_documents.pdf" />
     <Content Include="Documents\test.pdf" />
     <Content Include="Areas\Leave\Views\GrantLeave\GrantLeave.cshtml" />
+    <Content Include="Areas\Settings\Views\LookUp\EmployeeDesignation.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7671,6 +7672,7 @@
     <Compile Include="Models\BranchViewModel.cs" />
     <Compile Include="Models\CompanyViewModel.cs" />
     <Compile Include="Models\CountryViewModel.cs" />
+    <Compile Include="Models\DTwithlimit.cs" />
     <Compile Include="Models\EmployeeDocumentViewModel.cs" />
     <Compile Include="Models\EmployeeLeaveDetails.cs" />
     <Compile Include="Models\EmployeeLeaveViewModel.cs" />
