@@ -16,7 +16,6 @@ namespace HR.Data.BaseRepositories
         void Remove(T entity);
         IQueryable<T> FindAll(bool disableProxies = false);
         IQueryable<T> Table { get; }
-
         ObjectResult<T> ExecuteStoreQuery<T>(string procedureName, IDictionary<string, object> values);
     }
 }

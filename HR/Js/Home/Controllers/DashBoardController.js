@@ -18,9 +18,9 @@ function ($scope, $http, DashBoardService) {
             if (res.data.sucess == true) {
                 $scope.regionWiseEmployees = res.data.regionWiseEmployees;
                 $scope.GetBarGraphDashboard('country', 'Country', res.data.regionWiseEmployees);
-                $scope.genderWiseEmployees = res.data.genderWiseEmployees;
-                $scope.genderWiseGraph();
-                //$scope.GetBarGraphDashboard('gender', 'Gender', res.data.genderWiseEmployees);
+                //$scope.genderWiseEmployees = res.data.genderWiseEmployees;
+                //$scope.genderWiseGraph();
+                $scope.GetBarGraphDashboard('gender', 'Gender', res.data.genderWiseEmployees);
                 //$scope.GetBarGraphDashboard('designation', 'Designation', res.data.designationWiseEmployees);
                 res.data.indiawiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.indiawiseGenders, 'INDIA', 'INDIA') : $scope.IsIndia = false;
                 res.data.bangladeshwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.bangladeshwiseGenders, 'BANGLADESH', "BANGLADESH") : $scope.IsBangladesh = false;
@@ -58,7 +58,8 @@ function ($scope, $http, DashBoardService) {
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
-                    }
+                    },
+                    size: 250
                 }
             },
             series: [{
@@ -93,6 +94,8 @@ function ($scope, $http, DashBoardService) {
                 enabled: false
             },
             plotOptions: {
+                allowPointSelect: true,
+                cursor: 'pointer',
                 series: {
                     borderWidth: 0,
                     dataLabels: {
