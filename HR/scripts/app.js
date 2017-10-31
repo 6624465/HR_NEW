@@ -61,7 +61,8 @@ app.config(
                                 name: 'ngHR',
                                 files: [
                                     baseUrl + 'Js/Master/MasterController/EmployeeTypeController.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js'
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
+                                     baseUrl + 'Js/Master/MasterController/maincontroller.js'
                                 ]
                             }
                         ]);
@@ -116,7 +117,8 @@ app.config(
                                     baseUrl + 'Js/Master/MasterController/EmployeeTypeController.js',
                                     baseUrl + 'Js/Master/MasterController/EmployeeStatusController.js',
                                     baseUrl + 'Js/Master/MasterController/EmployeeDepartmentController.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js'
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
+                                    baseUrl + 'Js/Master/MasterController/maincontroller.js'
                                 ]
                             }
                         ]);
@@ -133,7 +135,8 @@ app.config(
                                 name: 'ngHR',
                                 files: [
                                     baseUrl + 'Js/Master/MasterController/EmployeeDepartmentController.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js'
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
+                                    baseUrl + 'Js/Master/MasterController/maincontroller.js'
                                 ]
                             }
                         ]);
@@ -151,7 +154,8 @@ app.config(
                                 name: 'ngHR',
                                 files: [
                                     baseUrl + 'Js/Master/MasterController/EmployeeStatusController.js',
-                                    baseUrl + 'Js/Master/MasterService/LookUp.js'
+                                    baseUrl + 'Js/Master/MasterService/LookUp.js',
+                                     baseUrl + 'Js/Master/MasterController/maincontroller.js'
                                 ]
                             }
                         ]);
