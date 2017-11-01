@@ -2,7 +2,6 @@
     this.SaveEmlployee = function (EmployeeDetails, files, EmployeeDocument) {
         var deferred = $q.defer();
         var form = new FormData();
-        debugger
         angular.forEach(files, function (val) {
             form.append("file", val);
         });
@@ -89,7 +88,6 @@
     }
 
     this.SaveEmployeeDocuments = function (file, employeeId) {
-        debugger
         var deferred = $q.defer();
         var form = new FormData();
             form.append("file", file);

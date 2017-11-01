@@ -120,6 +120,5 @@ function ($scope, $http, UtilityFunc, growlService, limitToFilter, EmployeeLeave
     $scope.OnClearEmployeeLeave = function (employeeLeaveForm) {
         $scope.EmployeeLeaveForm = "";
     };
-    debugger
     $scope.init();
 }]);

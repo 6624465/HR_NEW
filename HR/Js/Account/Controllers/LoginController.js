@@ -52,7 +52,6 @@ app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', '
             LoginService.LogIn($scope.User).then(function (response) {
                 if (response && response.data && response.data.success == true) {
                     $scope.showLoading = false;
-                    debugger
                     sessionStorage.setItem('authenticatedUser', JSON.stringify(response.data.SessionObject));
                     sessionStorage.setItem('SECURABLES', JSON.stringify(response.data.securables));
                     location.href = "Home/index/";
