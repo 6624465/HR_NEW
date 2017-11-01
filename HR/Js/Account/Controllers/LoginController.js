@@ -1,24 +1,10 @@
-﻿var app = angular.module('loginApp', ['ui.bootstrap', 'angular-growl', 'ui.router', 'oc.lazyLoad'])
+﻿var app = angular.module('loginApp', ['ui.bootstrap', 'angular-growl'])
 
-app.config(function ($stateProvider, growlProvider, $urlRouterProvider, $httpProvider, $ocLazyLoadProvider) {
+app.config(function ( growlProvider) {
     growlProvider.onlyUniqueMessages(false);
     growlProvider.globalTimeToLive({ success: 4000, error: 2000, warning: 3000, info: 4000 });
 
-    $stateProvider
-           .state('Home', {
-               url: '/Home',
-               templateUrl: 'Js/Home/Views/index.html',
-               //resolve: {
-               //    loadPlugin: function ($ocLazyLoad) {
-               //        return $ocLazyLoad.load([
-               //            {
-               //                name: 'ngHR',
-               //                files: [baseUrl + 'Js/Home/Controllers/HomeController.js']
-               //            }
-               //        ]);
-               //    }
-               //}
-           })
+    
 })
 
 app.directive('focusOn', function () {
@@ -38,8 +24,8 @@ app.factory('focus', function ($rootScope, $timeout) {
         });
     }
 });
-app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', 'growlService', '$timeout', 'focus','$state',
-    function ($scope, $http, LoginService, growl, growlService, $timeout, focus, $state) {
+app.controller('loginController', ['$scope', '$http', 'LoginService', 'growl', 'growlService', '$timeout', 'focus',
+    function ($scope, $http, LoginService, growl, growlService, $timeout, focus) {
         focus('UserName');
     $scope.init = function () {
         $scope.IsEnable = false;

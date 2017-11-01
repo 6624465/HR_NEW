@@ -40,13 +40,6 @@ namespace HR.Areas.Account.Controllers
                                                         AccessRight = x.AccessRight
                                                     }).ToList();
 
-                        var sec = RoleRightService.GetRoleRights<RoleRight>(x => x.CompanyId == _user.Branch.CompanyId && x.RoleCode == _user.RoleCode)
-                                                    .Select(x => new
-                                                    {
-                                                        securableitem = x.SecurableID,
-                                                        OperationID = x.Securable.OperationID,
-                                                        AccessRight = x.AccessRight
-                                                    }).ToList();
 
                         EmployeeHeader employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(u => u.UserId == _user.Id).FirstOrDefault();
 

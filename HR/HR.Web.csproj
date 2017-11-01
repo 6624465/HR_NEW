@@ -6995,7 +6995,7 @@
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\adminLTEApp.js" />
     <Content Include="scripts\angularjs-datetime-picker.js" />
-    <Content Include="scripts\app.js" />
+    <Content Include="Js\app.js" />
     <Content Include="scripts\bootstrap-growl.js" />
     <Content Include="scripts\bootstrap-growl.min.js" />
     <Content Include="scripts\bootstrap-material-datetimepicker.js" />
@@ -7615,10 +7615,8 @@
     <Content Include="Areas\Leave\Views\web.config" />
     <Content Include="Areas\Leave\Views\AppliedLeaveList\AppliedLeaveList.cshtml" />
     <Content Include="Areas\Leave\Views\EmployeeLeave\EmployeeLeave.cshtml" />
-    <Content Include="Areas\Settings\Views\LookUp\EmployeeType.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\LeaveType.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\PaymentType.cshtml" />
-    <Content Include="Areas\Settings\Views\LookUp\EmployeeStatus.cshtml" />
     <Content Include="Areas\Leave\Views\SetUp\HolidayList.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeDirectory.cshtml" />
     <Content Include="Areas\Account\Views\RoleRights\Roles.cshtml" />
