@@ -1,7 +1,7 @@
 ﻿app.service('LookUp', ['$http', '$q', function ($http, $q) {
     this.SaveLookUpData = function (lookUpTypeObj) {
         var deferred = $q.defer();
-        $http.post("/Settings/LookUp/SaveLookUp", lookUpTypeObj).then(function (res) {
+        $http.post("/Settings/LookUp/SaveLookUp", JSON.stringify(lookUpTypeObj)).then(function (res) {
             deferred.resolve(res);
         }, function (err) {
             deferred.reject(err);
