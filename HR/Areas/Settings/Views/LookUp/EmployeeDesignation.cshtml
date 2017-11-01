@@ -21,7 +21,24 @@
 </style>
 
 <div ng-controller="mainController">
-    <div class="col-xs-12 col-md-4" style="overflow-y: scroll; height:850px;">
+    <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6" style="float:left">
+                    <div class="col-xs-12 col-md-6 col-md-offset-1">
+                        <div class="form-group fg-line" ng-init='emps=[{LookUpCategory:"EmployeeDepartment"},{LookUpCategory:"EmployeeType"},
+                     {LookUpCategory:"EmployeeStatus"},{LookUpCategory:"EmployeeDesignation"},{LookUpCategory:"MaritalStatus"}]'>
+                            <label>
+                                Select LookUp Category
+                            </label>
+                            <select name="users" ng-options="e.LookUpCategory  for e in emps" ng-model="e.LookUpCategory" class="form-control" ng-required="true" ng-change="selectChanged(e.LookUpCategory)">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    @*ng-options="s.RoleCode as s.RoleDescription for s in roles"*@
+    @*<div class="col-xs-12 col-md-4" style="overflow-y: scroll; height:850px;">
             <div class="row">
                 <div class="designcss">
                 <div ng-click="onClickDesignation();">
@@ -110,9 +127,9 @@
 
             </div>
         </div>
-    </div>
+    </div>*@
 
-        <div class="col-xs-12 col-md-8">
+        @*<div class="col-xs-12 col-md-8">*@
             <div class="row">
                 <div class="designcss" ng-if="designation" ng-controller="EmployeeDesignationController">
                     <form id="frmEmployeeDesignation" name="frmEmployeeDesignation" ng-submit="onClickSaveEmployeeDesignation(EmployeeDesignation)" ng-class="{'submitted':submitted}" novalidate>
