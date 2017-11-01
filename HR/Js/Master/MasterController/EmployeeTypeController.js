@@ -44,9 +44,7 @@ function ($scope, $http, LookUp, growl, growlService, NgTableParams) {
                     search.sortColumn = orderBy != undefined ? orderBy.substring(1) : "";
                     search.sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
                 }
-                debugger;
                 LookUp.GetTableData(search).then(function (res) {
-                    debugger;
                     params.total(res.data.total_count);
                     $defer.resolve(res.data.lookUpLists);
                 }, function (err) { });
@@ -61,7 +59,6 @@ function ($scope, $http, LookUp, growl, growlService, NgTableParams) {
 
     $scope.onClickSaveEmployeeType = function (employeeType) {
         if ($scope.EmployeeType.LookUpCode != null) {
-            debugger
         if ($scope.IsfrmEmployeeType) {
             LookUp.SaveLookUpData(employeeType).then(function (response) {
                 growlService.growl("Saved Successfully..", 'success');

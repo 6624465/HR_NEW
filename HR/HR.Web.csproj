@@ -6833,6 +6833,7 @@
     <Content Include="Js\Master\MasterController\EmployeeStatusController.js" />
     <Content Include="Js\Master\MasterController\LeaveTypeController.js" />
     <Content Include="Js\Master\MasterController\maincontroller.js" />
+    <Content Include="Js\Master\MasterController\MarriageStatusController.js" />
     <Content Include="Js\Master\MasterController\PaymentTypeController.js" />
     <Content Include="Js\Master\MasterController\EmployeeDesignationController.js" />
     <Content Include="Js\Master\MasterController\EmployeeDepartmentController.js" />

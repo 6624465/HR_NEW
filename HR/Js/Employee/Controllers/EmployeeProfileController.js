@@ -283,7 +283,6 @@
         if ($scope.employeeId != "new") {
             EmployeeProfileService.GetEmployeeById($scope.employeeId, false).then(function (response) {
                 if (response && response.data) {
-                    debugger
                     $scope.EmployeeHeader = response.data.employeeHeader;
                     $scope.EmployeeHeader.EmployeePersonalInfo = $scope.EmployeeHeader.EmployeePersonalInfo[0];
                     $scope.EmployeeHeader.EmployeeWorkDetail = $scope.EmployeeHeader.EmployeeWorkDetail[0];
