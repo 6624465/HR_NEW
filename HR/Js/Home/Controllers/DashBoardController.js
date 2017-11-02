@@ -33,28 +33,32 @@ function ($scope, $http, DashBoardService) {
             }
         })
     }
-    $scope.GetPieGraphDashboard = function(CountryWiseGenders, type, id){
+    $scope.GetPieGraphDashboard = function (CountryWiseGenders, type, id) {
+        var c1 = '#337ef7', c2 = type == 'SINGAPORE' ? '#ff66b3' : '#f458f4'
         Highcharts.chart(id, {
             chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
+                type: 'pie',
+                options3d: {
+                    enabled: true,
+                    alpha: 45,
+                    beta: 0
+                }
             },
             title: {
                 text: type
             },
             tooltip: {
-                headerFormat: '<span style="font-size:11px">{series.name}</span><br/>',
-                pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.f}</b><br />'
+                //headerFormat: '<span style="font-size:11px">{series.name}</span><br/>',
+                pointFormat: '<b>{point.percentage:.0f}%</b>'
             },
             plotOptions: {
                 pie: {
                     allowPointSelect: true,
                     cursor: 'pointer',
+                    depth: 50,
                     dataLabels: {
                         enabled: true,
-                        format: '<b>{point.name}</b>: {point.y:.f}',
+                        format: '',
                         style: {
                             color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
@@ -62,11 +66,12 @@ function ($scope, $http, DashBoardService) {
                     size: 250
                 }
             },
+            
             series: [{
                 name: 'Countries',
                 colorByPoint: true,
                 data: CountryWiseGenders,
-                colors: ['#337ef7', '#f458f4'],
+                colors: [c1, c2],
                 }]
         });
     }
@@ -75,8 +80,18 @@ function ($scope, $http, DashBoardService) {
 
         Highcharts.chart(id, {
             chart: {
-                type: 'column'
+                type: 'column',
+                options3d: {
+                    enabled: true,
+                    alpha: 15,
+                    beta: 15,
+                    depth: 50,
+                    viewDistance: 25
+                }
             },
+            //chart: {
+            //    type: 'column'
+            //},
             title: {
                 text: "Total Employees Based on " + type + ""
             },

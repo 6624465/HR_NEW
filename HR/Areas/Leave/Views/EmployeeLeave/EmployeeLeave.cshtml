@@ -1,9 +1,31 @@
-﻿
+﻿<style>
+    .spanboxNumber {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        padding: 11px;
+        background: #fff;
+        border: 2px solid rgba(102, 102, 102, 0.93);
+        color: #666;
+        text-align: center;
+        padding-left: 8px;
+    }
+      .designcss {
+        border: 3px solid grey;
+        border-radius: 2em;
+        padding-top: 20px;
+        padding-right: 30px;
+        padding-bottom: 20px;
+        padding-left: 30px;
+        margin-bottom: 30px;
+        margin-left: 30px;
+    }
+</style>
 <div class="row" ng-controller="EmployeeLeaveFormController">
 
     <form id="frmEmployeeLeaveForm" name="frmEmployeeLeaveForm" ng-class="{'submitted':submitted}" ng-submit="onSaveEmployeeLeave(EmployeeLeaveForm)" novalidate>
         <div class="col-md-8">
-            <div class="box">
+            <div class="box designcss">
                 <div class="box-header with-border">
                     <h3 class="box-title">Employee Leave Details</h3>
                 </div>
@@ -19,7 +41,7 @@
                                         <tr>
                                             <td><span class="info-box-number" style="font-size:12px;">{{leave.name}}:</span></td>
                                             <td></td>
-                                            <td><span class="info-box-number">{{leave.count}}</span></td>
+                                            <td><span class="info-box-number spanboxNumber"></span>{{leave.count}}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -33,7 +55,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Applied Leaves</span>
-                                    <span class="info-box-number">{{appliedStatusCount}}</span>
+                                    <span class="info-box-number spanboxNumber">{{appliedStatusCount}}</span>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +65,7 @@
 
                                 <div class="info-box-content">
                                     <span class="info-box-text">Remaining Leaves</span>
-                                    <span class="info-box-number">{{RemaingStatusCount}}</span>
+                                    <span class="info-box-number spanboxNumber">{{RemaingStatusCount}}</span>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +74,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="box">
+            <div class="box designcss">
                 <div class="box-header with-border">
                     <h3 class="box-title">Employee Leave Form</h3>
                 </div>
@@ -80,7 +102,7 @@
                     </div>
 
                     <div class="row " id="some">
-                        <div class="col-xs-12 col-md-6 form-group">
+                        <div class="col-xs-6 col-md-4 form-group">
                             <label>From Date</label>
                             <div class="dropdown">
                                 <a class="dropdown-toggle" id="FromDate" role="button" data-toggle="dropdown">
@@ -99,9 +121,8 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6 form-group">
+
+                        <div class="col-xs-6 col-md-4 form-group">
                             <label>To Date</label>
                             <div class="dropdown">
                                 <a class="dropdown-toggle" id="ToDate" role="button" data-toggle="dropdown">
@@ -120,15 +141,13 @@
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div class="row ">
-                        <div class="col-xs-12 col-md-6 form-group">
+                        <div class="col-xs-6 col-md-4 form-group">
                             <label for="days">Days</label>
                             <input id="days" class="form-control" type="text" ng-disabled="true" ng-model="EmployeeLeaveForm.Days" />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 col-md-6 form-group">
+                        <div class="col-xs-12 col-md-4 form-group">
                             <div class="form-group">
                                 <label for="Location">Leave Type</label>
                                 <select name="users" ng-options="s.LookUpID as s.LookUpDescription for s in LeaveType" ng-model="EmployeeLeaveForm.LeaveTypeId" class="form-control" ng-required="true">
@@ -154,13 +173,13 @@
                         <div class="col-xs-12 text-right">
 
                             <!--has-permission data-securable="Save" data-linkid="Company"-->
-                            <button class="btn" type="submit" ng-click="submitted = true;" has-Right data-rightValue="EmployeeLeaveForm.Save"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
+                            <button class="btn btn-info" type="submit" ng-click="submitted = true;" has-Right data-rightValue="EmployeeLeaveForm.Save"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save</button>
                             <button class="btn btn-default" type="button" ng-click="OnClearEmployeeLeave(EmployeeLeaveFrom)" has-Right data-rightValue="EmployeeLeaveForm.Clear"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;Clear</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-       
+
     </form>
 </div>

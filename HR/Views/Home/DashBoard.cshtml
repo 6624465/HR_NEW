@@ -5,10 +5,40 @@
     .highcharts-credits {
         display: none;
     }
+
+    .highcharts-data-label-connector {
+        display: none;
+    }
+
+    .spanboxNumber {
+        position: absolute;
+        right: 205px;
+        width: 3px;
+        border: 5px solid #337ef7;
+        padding: 3px;
+        border-radius: 50%;
+        background-color: #337ef7;
+    }
+
+    .spanboxNumber2 {
+        position: absolute;
+        right: 105px;
+        width: 3px;
+        border: 5px solid #ff66b3;
+        padding: 3px;
+        border-radius: 50%;
+        background-color: #ff66b3;
+    }
+
+    .spanClass {
+        position: absolute;
+        padding-left: 20px;
+        line-height: 2px;
+    }
 </style>
 <section>
     <div ng-controller="dashBoardController">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title"></h3>
@@ -18,94 +48,24 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title"></h3>
                 </div>
                 <div class="box-body">
                     @*<div id="genderWiseEmployees" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-                    <table id="datatable" border="1" style="display:none">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Male</th>
-                                <th>Female</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableID"></tbody>
-                    </table>*@
-                     <div id="gender" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" ng-if="IsIndia">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title"></h3>
-                </div>
-                <div class="box-body">
-                    <div id="INDIA" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" ng-if="IsBangladesh">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title"></h3>
-                </div>
-                <div class="box-body">
-                    <div id="BANGLADESH" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" ng-if="IsCambodia">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title"></h3>
-                </div>
-                <div class="box-body">
-                    <div id="CAMBODIA" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" ng-if="IsSrilanka">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title"></h3>
-                </div>
-                <div class="box-body">
-                    <div id="SRILANKA" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" ng-if="IsPakistan">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title"></h3>
-                </div>
-                <div class="box-body">
-                    <div id="PAKISTAN" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" ng-if="IsMayanmar">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title"></h3>
-                </div>
-                <div class="box-body">
-                    <div id="MAYANMAR" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4" ng-if="IsHongkong">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title"></h3>
-                </div>
-                <div class="box-body">
-                    <div id="HONGKONG" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                        <table id="datatable" border="1" style="display:none">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Male</th>
+                                    <th>Female</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableID"></tbody>
+                        </table>*@
+                    <div id="gender" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
                 </div>
             </div>
         </div>
@@ -114,7 +74,9 @@
                 <div class="box-header with-border">
                     <h3 class="box-title"></h3>
                     <div class="box-body">
-                        <div id="SINGAPORE" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+                        <div class="spanboxNumber"><span class="spanClass">Male</span></div>
+                        <div class="spanboxNumber2"><span class="spanClass">Female</span></div>
+                        <div id="SINGAPORE" style="min-width: 310px; height: 400px; max-width: 600px; padding-top:50px;"></div>
                     </div>
                 </div>
             </div>
@@ -130,5 +92,96 @@
                     </div>
                 </div>*@
         </div>
+        <div class="col-md-4" ng-if="IsIndia">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                </div>
+                <div class="box-body">
+                    <div class="spanboxNumber"><span class="spanClass">Male</span></div>
+                    <div class="spanboxNumber2"><span class="spanClass">Female</span></div>
+                    <div id="INDIA" style="min-width: 310px; height: 400px; max-width: 600px; padding-top:50px;"></div>
+
+                </div>
+                <div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" ng-if="IsBangladesh">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                </div>
+                <div class="box-body">
+                    <div class="spanboxNumber"><span class="spanClass">Male</span></div>
+                    <div class="spanboxNumber2"><span class="spanClass">Female</span></div>
+                    <div id="BANGLADESH" style="min-width: 310px; height: 400px; max-width: 600px;padding-top:50px;"></div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-4" ng-if="IsCambodia">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                </div>
+                <div class="box-body">
+                    <div class="spanboxNumber"><span class="spanClass">Male</span></div>
+                    <div class="spanboxNumber2"><span class="spanClass">Female</span></div>
+                    <div id="CAMBODIA" style="min-width: 310px; height: 400px; max-width: 600px; padding-top:50px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" ng-if="IsSrilanka">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                </div>
+                <div class="box-body">
+                    <div class="spanboxNumber"><span class="spanClass">Male</span></div>
+                    <div class="spanboxNumber2"><span class="spanClass">Female</span></div>
+                    <div id="SRILANKA" style="min-width: 310px; height: 400px; max-width: 600px; padding-top:50px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" ng-if="IsPakistan">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                </div>
+                <div class="box-body">
+                    <div class="spanboxNumber"><span class="spanClass">Male</span></div>
+                    <div class="spanboxNumber2"><span class="spanClass">Female</span></div>
+                    <div id="PAKISTAN" style="min-width: 310px; height: 400px; max-width: 600px; padding-top:50px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" ng-if="IsMayanmar">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                </div>
+                <div class="box-body">
+                    <div class="spanboxNumber"><span class="spanClass">Male</span></div>
+                    <div class="spanboxNumber2"><span class="spanClass">Female</span></div>
+                    <div id="MAYANMAR" style="min-width: 310px; height: 400px; max-width: 600px; padding-top:50px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" ng-if="IsHongkong">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title"></h3>
+                </div>
+                <div class="box-body">
+                    <div class="spanboxNumber"><span class="spanClass">Male</span></div>
+                    <div class="spanboxNumber2"><span class="spanClass">Female</span></div>
+                    <div id="HONGKONG" style="min-width: 310px; height: 400px; max-width: 600px; padding-top:50px;"></div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>

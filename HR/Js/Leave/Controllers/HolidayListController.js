@@ -105,16 +105,16 @@ function ($scope, $http, growl, $filter, UtilityFunc, HolidayListService, growlS
     };
    
 
-    //HolidayListService.GetBranchLocations().then(function (response) {
-    //    if (response.data && response.data.success == true) {
-    //        $scope.Locations = response.data.BranchLocations;
-    //    }
-    //    else
-    //        growlService.growl("Error Occured.", 'danger');
-    //}, function (err) {
-    //    growlService.growl(err, 'danger');
+    HolidayListService.GetBranchLocations().then(function (response) {
+        if (response.data && response.data.success == true) {
+            $scope.Locations = response.data.BranchLocations;
+        }
+        else
+            growlService.growl("Error Occured.", 'danger');
+    }, function (err) {
+        growlService.growl(err, 'danger');
 
-    //})
+    })
 
 
 
