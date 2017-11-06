@@ -49,18 +49,11 @@
                             </div>
 
                             <div class="col-xs-12 col-md-2">
-                                <div class="form-group ">
+                                <div class="form-group">
                                     <label>Employee Number</label>
                                     <input class="form-control " type="text" autocomplete="off" ng-model="EmployeeDirectory.EmployeeId">
                                 </div>
                             </div>
-
-                            <div class="col-xs-12 col-md-2 pull-right">
-                                <button type="submit" ng-click="submitted = true;" id="btn-Search" class="btn btn-primary">Search</button>
-                                <button type="button" id="btn-clear" class="btn btn-primary" ng-click="Clear();">Clear</button>
-                            </div>
-                        </div>
-                        <div class="row">
 
                             <div class="col-xs-12 col-md-2">
                                 <div class="form-group fg-line">
@@ -71,7 +64,7 @@
                                             ng-options="s.CountryCode as s.CountryName for s in Locations"
                                             ng-model="EmployeeDirectory.CountryCode"
                                             class="form-control">
-                                        <option value="">--Select Country--</option>
+                                        <option value="">Country </option>
                                     </select>
 
                                 </div>
@@ -83,7 +76,7 @@
                                     </label>
                                     <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeDesignations"
                                             ng-model="EmployeeDirectory.Designation" class="form-control">
-                                        <option value="">--Select Designation--</option>
+                                        <option value="">  Designation </option>
                                     </select>
                                 </div>
                             </div>
@@ -94,9 +87,16 @@
                                     </label>
                                     <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeTypes"
                                             ng-model="EmployeeDirectory.EmployeeType" class="form-control">
-                                        <option value="">--Select EmployeeType--</option>
+                                        <option value=""> EmployeeType </option>
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-md-2 pull-right" >
+                                <button type="submit" ng-click="submitted = true;" id="btn-Search" class="btn btn-primary col-md-offset-2">Search</button>
+                                <button type="button" id="btn-clear" class="btn btn-primary" ng-click="Clear();">Clear</button>
                             </div>
                         </div>
                     </div>
@@ -121,14 +121,7 @@
                             <div class="table-responsive">
                                 <table ng-table="EmployeeDetailParams" class="table table-vmiddle">
                                     <tr ng-repeat="employeeDetails in $data">
-                                        <td data-title="'#Action'" align="center">
-                                            <button class="btn btn-default ng-scope waves-effect"
-                                                    type="button"
-                                                    ui-sref="EmployeeHeader({id:employeeDetails.Id})"
-                                                    aria-label="button" uib-tooltip="Edit" tooltip-placement="top">
-                                                <i class="zmdi zmdi-edit"></i>
-                                            </button>
-                                        </td>
+                                       
                                         <td sortable="'EmployeeId'" data-title="'Employee No'">
                                             {{employeeDetails.EmployeeId}}
                                         </td>
@@ -153,6 +146,14 @@
                                         <td sortable="'DOB'" data-title="'Date Of Birth'">
                                             {{formatDate(employeeDetails.DOB)}}
                                         </td>
+                                        <td data-title="'#Action'" align="center">
+                                            <button class="btn btn-default ng-scope waves-effect"
+                                                    type="button"
+                                                    ui-sref="EmployeeHeader({id:employeeDetails.Id})"
+                                                    aria-label="button" uib-tooltip="Edit" tooltip-placement="top">
+                                                <i class="zmdi zmdi-edit"></i>
+                                            </button>
+                                        </td>
                                     </tr>
                                 </table>
                             </div>
@@ -160,5 +161,6 @@
                     </div>
                 </div>
             </div>
+        </div>
     </form>
 </div>

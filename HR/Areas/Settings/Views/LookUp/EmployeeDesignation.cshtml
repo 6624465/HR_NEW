@@ -118,11 +118,11 @@
                             
                                 <div class="form-group fg-line" ng-init='emps=[{LookUpCategory:"Employee Department"},{LookUpCategory:"Employee Type"},
                      {LookUpCategory:"Employee Status"},{LookUpCategory:"Employee Designation"},{LookUpCategory:"Marital Status"}]'>
-                                    <label>
-                                        Select Employee LookUp Category
-                                    </label>
+                                    @*<label>
+                                         Employee LookUp Category
+                                    </label>*@
                                     <select name="users" ng-options="e.LookUpCategory  for e in emps" ng-model="e.LookUpCategory" class="form-control" ng-required="true" ng-change="selectChanged(e.LookUpCategory)">
-                                        <option value=""></option>
+                                        <option value="">LookUp Category</option>
                                     </select>
                                 </div>
                          
@@ -149,11 +149,6 @@
                                 <div class="table-responsive">
                                     <table class="table table-vmiddle" ng-table="ngTblData">
                                         <tr ng-repeat="w in $data">
-                                            <td data-title="'#Actions'">
-                                                <button type="button" ng-click="onEditEmployeeDesignation(w)" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="EmployeeDesignation.Edit">
-                                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
                                             <td data-title="'employee Designation'"><a ng-click="onEditEmployeeDesignation(w)">{{w.LookUpCode}}</a></td>
                                             <td data-title="'employee Description'">{{w.LookUpDescription}}</td>
                                             @*<td><input type="checkbox" ng-model="employeeDesignation.IsActive" disabled="true" /></td>*@
@@ -164,6 +159,11 @@
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </div>
+                                            </td>
+                                            <td data-title="'#Actions'">
+                                                <button type="button" ng-click="onEditEmployeeDesignation(w)" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="EmployeeDesignation.Edit">
+                                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     </table>
@@ -238,11 +238,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-vmiddle" ng-table="ngTblTypeData">
                                             <tr ng-repeat="w in $data">
-                                            <td data-title="'#Actions'">
-                                                    <button type="button" ng-click="onEditEmployeeType(w);" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="EmployeeType.Edit">
-                                                        <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                                                    </button>
-                                                </td>
+                                            
                                             <td data-title="'Employee Type Name'"><a ng-click="onEditEmployeeType(w)">{{w.LookUpCode}}</a></td>
                                             <td data-title="'Employee Type Description'">{{w.LookUpDescription}}</td>
                                                 @*<td><input type="checkbox" ng-model="employeeType.IsActive" disabled="true" /></td>*@
@@ -253,6 +249,11 @@
                                                             <span class="slider round"></span>
                                                         </label>
                                                     </div>
+                                                </td>
+                                                <td data-title="'#Actions'">
+                                                    <button type="button" ng-click="onEditEmployeeType(w);" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="EmployeeType.Edit">
+                                                        <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                     </table>
@@ -323,11 +324,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-vmiddle" ng-table="ngTblDepartmentData">
                                         <tr ng-repeat="w in $data">
-                                            <td data-title="'#Actions'">
-                                                <button type="button" ng-click="onEditEmployeeDepartment(w)" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="EmployeeDepartment.Edit">
-                                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
+                                           
                                             <td data-title="'Employee Department Name'">
                                                 <a ng-click="onEditEmployeeDepartment(w)">
                                                     {{w.LookUpCode}}
@@ -342,6 +339,11 @@
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </div>
+                                            </td>
+                                            <td data-title="'#Actions'">
+                                                <button type="button" ng-click="onEditEmployeeDepartment(w)" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="EmployeeDepartment.Edit">
+                                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     </table>
@@ -412,11 +414,7 @@
                                 <div class="table-responsive">
                                     <table class="table table-vmiddle" ng-table="ngTblStatusData">
                                         <tr ng-repeat="w in $data">
-                                            <td data-title="'#Actions'">
-                                                <button type="button" ng-click="onEditEmployeeStatus(w);" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="EmployeeStatus.Edit">
-                                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                                                </button>
-                                            </td>
+                                           
                                             <td data-title="'Employee Status Name'"><a ng-click="onEditEmployeeStatus(w)">{{w.LookUpCode}}</a></td>
                                             <td data-title="'Employee Status Description'">{{w.LookUpDescription}}</td>
                                             @*<td><input type="checkbox" ng-model="employeeDepartment.IsActive" disabled /></td>*@
@@ -427,6 +425,11 @@
                                                         <span class="slider round"></span>
                                                     </label>
                                                 </div>
+                                            </td>
+                                            <td data-title="'#Actions'">
+                                                <button type="button" ng-click="onEditEmployeeStatus(w);" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="EmployeeStatus.Edit">
+                                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     </table>
@@ -488,7 +491,7 @@
                 <form id="frmMarriageStatus" name="frmMarriageStatus" ng-submit="onClickSaveMarriageStatus(MarriageStatus)" novalidate ng-class="{'submitted':submitted}">
                             @*<label><h4> MARITAL STATUS</h4></label>*@
                     <div class="lv-header-alt clearfix m-b-5">
-                            <button type="button" class="btn btn-info pull-right " ng-click="addMarriageStatus(table)"
+                            <button type="button" class="btn btn-info pull-right "   style="margin-right:15px;margin-bottom:10px;" ng-click="addMarriageStatus(table)"
                                     has-Right data-rightValue="MarriageStatus.Add">
                             <i class="zmdi zmdi-plus"></i>&nbsp; ADD
                         </button>
@@ -498,11 +501,7 @@
                             <div class="table-responsive">
                                 <table class="table table-vmiddle" ng-table="ngTblMarriageStatusData">
                                     <tr ng-repeat="w in $data">
-                                                <td data-title="'#Actions'">
-                                            <button type="button" ng-click="onEditMarriageStatus(w);" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="MarriageStatus.Edit">
-                                                <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                                            </button>
-                                        </td>
+                                               
                                                 <td data-title="'Marriage Status Name'"><a ng-click="onEditMarriageStatus(w)">{{w.LookUpCode}}</a></td>
                                                 <td data-title="'Marriage Status Description'">{{w.LookUpDescription}}</td>
                                         @*<td><input type="checkbox" ng-model="employeeDepartment.IsActive" disabled /></td>*@
@@ -513,6 +512,11 @@
                                                     <span class="slider round"></span>
                                                 </label>
                                             </div>
+                                        </td>
+                                        <td data-title="'#Actions'">
+                                            <button type="button" ng-click="onEditMarriageStatus(w);" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="MarriageStatus.Edit">
+                                                <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 </table>

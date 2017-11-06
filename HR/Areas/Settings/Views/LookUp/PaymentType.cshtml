@@ -1,100 +1,102 @@
 ﻿<div ng-controller="PaymentTypeController" >
     <form id="frmPaymentType" name="frmPaymentType" ng-submit="onClickSavePaymentType(PaymentType)" novalidate ng-class="{'submitted':submitted}" >
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Payment Type</h3>
-                    <div class="pull-right">
-                        <button type="button" class="btn" ng-click="addPaymentType(table)" has-Right data-rightValue="PaymentType.Add">
-                            <i class="zmdi zmdi-plus"></i>&nbsp; ADD
-                        </button>
-                    </div>
-                </div>
-                <div>
-                    <div class="modal fade in" id="AddPaymentTypeDialog" role="dialog">
-                        <div class="modal-dialog">
-
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Add Payment Type</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-8">
-                                            <div class="form-group fg-line">
-                                                <label>Payment Type Name</label>
-                                                <input class="form-control input-mask" type="text" ng-model="PaymentType.LookUpCode" ng-required="true">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-8">
-                                            <div class="form-group fg-line">
-                                                <label>
-                                                    Payment Type Description
-                                                </label>
-                                                <input class="form-control input-mask" type="text" ng-model="PaymentType.LookUpDescription" ng-required="true">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-3">
-                                            <div class="switch-container">
-                                                <label class="switch-label">
-                                                    IsActive
-                                                </label>
-                                                <label class="switch pull-right">
-                                                    <input type="checkbox" ng-model="PaymentType.IsActive">
-                                                    <span class="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer" style="right: 270px;">
-                                    <button class="btn" type="submit" ng-click="submitted = true;" has-Right data-rightValue="PaymentType.Save">Save</button>
-                                    <button type="submit" class="btn btn-default" ng-click="onClickCancelPaymentType()" has-Right data-rightValue="PaymentType.Cancel">Cancel</button>
-                                </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Payment Type</h3>
+                            <div class="pull-right">
+                                <button type="button" class="btn" ng-click="addPaymentType(table)" has-Right data-rightValue="PaymentType.Add">
+                                    <i class="zmdi zmdi-plus"></i>&nbsp; ADD
+                                </button>
                             </div>
                         </div>
-                    </div>
-                    <div class="table-responsive">
-                        <table class="table table-condensed">
-                            <thead>
-                                <tr>
-                                    <th>#Action</th>
-                                    <th>Payment Type Name</th>
-                                    <th>Payment Type Description</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="paymentType in PaymentTypes">
-                                    <td>
-                                        <button type="button" ng-click="onEditPaymentType(paymentType)" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="PaymentType.Edit">
-                                            <i class="zmdi zmdi-edit" aria-hidden="true"></i>
-                                        </button>
-                                    </td>
-                                    <td><a ng-click="onEditPaymentType(paymentType)">{{paymentType.LookUpCode}}</a></td>
-                                    <td>{{paymentType.LookUpDescription}}</td>
-                                    @*<td><input type="checkbox" ng-model="paymentType.IsActive" disabled /></td>*@
-                                    <td>
-                                        <div class="switch-container">
-                                            <label class="switch">
-                                                <input type="checkbox" ng-model="paymentType.IsActive" disabled>
-                                                <span class="slider round"></span>
-                                            </label>
+                        <div>
+                            <div class="modal fade in" id="AddPaymentTypeDialog" role="dialog">
+                                <div class="modal-dialog">
+
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Add Payment Type</h4>
                                         </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-8">
+                                                    <div class="form-group fg-line">
+                                                        <label>Payment Type Name</label>
+                                                        <input class="form-control input-mask" type="text" ng-model="PaymentType.LookUpCode" ng-required="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-8">
+                                                    <div class="form-group fg-line">
+                                                        <label>
+                                                            Payment Type Description
+                                                        </label>
+                                                        <input class="form-control input-mask" type="text" ng-model="PaymentType.LookUpDescription" ng-required="true">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 col-md-3">
+                                                    <div class="switch-container">
+                                                        <label class="switch-label">
+                                                            IsActive
+                                                        </label>
+                                                        <label class="switch pull-right">
+                                                            <input type="checkbox" ng-model="PaymentType.IsActive">
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer" style="right: 270px;">
+                                            <button class="btn" type="submit" ng-click="submitted = true;" has-Right data-rightValue="PaymentType.Save">Save</button>
+                                            <button type="submit" class="btn btn-default" ng-click="onClickCancelPaymentType()" has-Right data-rightValue="PaymentType.Cancel">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-vmiddle">
+                                    <thead>
+                                        <tr>
+                                            <th>#Action</th>
+                                            <th>Payment Type Name</th>
+                                            <th>Payment Type Description</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="paymentType in PaymentTypes">
+                                            <td>
+                                                <button type="button" ng-click="onEditPaymentType(paymentType)" class="btn btn-default ng-scope waves-effect" aria-label="button" has-Right data-rightValue="PaymentType.Edit">
+                                                    <i class="zmdi zmdi-edit" aria-hidden="true"></i>
+                                                </button>
+                                            </td>
+                                            <td><a ng-click="onEditPaymentType(paymentType)">{{paymentType.LookUpCode}}</a></td>
+                                            <td>{{paymentType.LookUpDescription}}</td>
+                                            @*<td><input type="checkbox" ng-model="paymentType.IsActive" disabled /></td>*@
+                                            <td>
+                                                <div class="switch-container">
+                                                    <label class="switch">
+                                                        <input type="checkbox" ng-model="paymentType.IsActive" disabled>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
         </form>
 </div>

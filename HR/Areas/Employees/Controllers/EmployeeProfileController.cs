@@ -541,7 +541,7 @@ namespace HR.Areas.Employees.Controllers
         private IQueryable<EmployeeViewModel> ApplyWhere(FilterViewModel filterViewModel, IQueryable<EmployeeViewModel> employeeHeader)
 
         {
-
+            
             switch (filterViewModel.Field)
             {
                 case "EmployeeId":
@@ -551,17 +551,21 @@ namespace HR.Areas.Employees.Controllers
                     break;
                 case "FirstName":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader = employeeHeader.Where(e => e.EmployeeName.ToLower() == filterViewModel.Value.ToLower());
-
+                        if (!String.IsNullOrEmpty(filterViewModel.Value))
+                        {
+                            employeeHeader = employeeHeader.Where(e => e.EmployeeName.Contains(filterViewModel.Value));
+                            return employeeHeader;
+                        }
+                 
                     break;
                 case "JoiningDate":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader = employeeHeader.Where(e => e.JoiningDate == Convert.ToDateTime(filterViewModel.Value));
+                        employeeHeader = employeeHeader.Where(e => e.JoiningDate==Convert.ToDateTime(filterViewModel.Value));
                     break;
 
                 case "MobileNo":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader = employeeHeader = employeeHeader.Where(e => e.MobileNo.ToLower() == filterViewModel.Value.ToLower());
+                        employeeHeader = employeeHeader.Where(e => e.MobileNo.ToLower() == filterViewModel.Value.ToLower());
                     break;
                 case "CountryCode":
                     employeeHeader = employeeHeader.Where(e => e.CountryCode == filterViewModel.Value);
