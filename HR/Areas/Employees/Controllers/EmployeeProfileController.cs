@@ -61,7 +61,7 @@ namespace HR.Areas.Employees.Controllers
 
                 var employees = employeeViewModelList.AsQueryable();
                 int totalCount = employees.Count();
-                if (searchViewModel.FilterViewModel != null)
+               if (searchViewModel.FilterViewModel != null) 
                 {
                     foreach (FilterViewModel item in searchViewModel.FilterViewModel)
                     {
@@ -76,9 +76,17 @@ namespace HR.Areas.Employees.Controllers
                         employees = OrderBy(employees, searchViewModel.sortColumn, false, false);
                 }
 
-                employees = employees.Skip(searchViewModel.offset).Take(searchViewModel.limit);
+                employees = employees.Skip(searchViewModel.offset).Take(searchViewModel.limit).AsQueryable();
 
-                jsonResult = Json(new { sucess = true, employees = employees, total_count = totalCount }, JsonRequestBehavior.AllowGet);
+                if (searchViewModel.FilterViewModel == null)
+                {
+                    jsonResult = Json(new { sucess = true, employees = employees, total_count = totalCount }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    jsonResult = Json(new { sucess = true, employees = employees, total_count = employees.Count() }, JsonRequestBehavior.AllowGet);
+                }
+
             }
             catch (Exception ex)
             {
@@ -551,12 +559,11 @@ namespace HR.Areas.Employees.Controllers
                     break;
                 case "FirstName":
                     if (filterViewModel.Type == "Where")
-                        if (!String.IsNullOrEmpty(filterViewModel.Value))
+                        if (!String.IsNullOrWhiteSpace(filterViewModel.Value))
                         {
-                            employeeHeader = employeeHeader.Where(e => e.EmployeeName.Contains(filterViewModel.Value));
-                            return employeeHeader;
+                            employeeHeader = employeeHeader.Where(e => e.EmployeeName.Contains(filterViewModel.Value)).AsQueryable();
+                          //  return employeeHeader;
                         }
-                 
                     break;
                 case "JoiningDate":
                     if (filterViewModel.Type == "Where")

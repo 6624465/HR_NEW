@@ -1,5 +1,5 @@
-﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams', 'LookUp', 'HolidayListService',
-    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams, LookUp, HolidayListService) {
+﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams', 'LookUp', 'HolidayListService','$state','$stateParams',
+    'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams, LookUp, HolidayListService, $state, $stateParams) {
 
 
         $scope.init = function () {
@@ -21,6 +21,7 @@
             $scope.EmployeeDetailParams = new NgTableParams({
                 page: 0,
                 count: 10,
+                //count: res.length
             },
             {
                 counts: [10, 20, 30],
@@ -45,7 +46,7 @@
                             params.total(res.data.total_count);
                             $defer.resolve(res.data.employees);
                         }, function (err) {
-                            $defer.reject();
+                            //$defer.reject();
                         })
                 }
             });
@@ -117,6 +118,12 @@
 
         })
 
-
+        $scope.Clear = function () {
+                $state.transitionTo($state.current, $stateParams, {
+                    reload: true,
+                    inherit: false,
+                    notify: true
+                });
+        }
         $scope.init();
     }]);
