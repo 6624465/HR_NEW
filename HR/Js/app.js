@@ -11,10 +11,6 @@
     'ui.bootstrap.datetimepicker',
     'ui.dateTimeInput']);
 
-//app.controller('MainCtrl', function ($scope) {
-//    $scope.iframeHeight = window.innerHeight - 109;
-//});
-
 
 app.config(
     function ($stateProvider, $urlRouterProvider, $httpProvider, cfpLoadingBarProvider, $ocLazyLoadProvider, growlProvider) {
