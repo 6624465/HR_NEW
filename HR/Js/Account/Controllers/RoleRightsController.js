@@ -31,6 +31,7 @@ function ($scope, $http, growl, $filter, UtilityFunc, RoleService, growlService)
         });
     }
     $scope.onClickClose = function () {
+
         $('#addEmployeeRolesdialog').modal('hide');
     };
     $scope.onEditRoles = function (employeeRole) {
