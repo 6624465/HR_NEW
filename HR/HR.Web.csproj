@@ -6822,7 +6822,6 @@
     <Content Include="Js\Home\Controllers\ActivitySummaryCntrl.js" />
     <Content Include="Js\Home\Controllers\DashBoardController.js" />
     <Content Include="Js\Home\Controllers\HomeController.js" />
-    <Content Include="Js\Home\Services\DashBoardService.js" />
     <Content Include="Js\Home\Views\activitysummary.html" />
     <Content Include="Js\Home\Views\index.html" />
     <Content Include="Js\Leave\Controllers\AppliedLeaveListController.js" />
@@ -6830,7 +6829,6 @@
     <Content Include="Js\Leave\Controllers\HolidayListController.js" />
     <Content Include="Js\Leave\Services\EmployeeLeaveService.js" />
     <Content Include="Js\Leave\Services\HolidayListService.js" />
-    <Content Include="Js\Master\MasterController\EmployeeStatusController.js" />
     <Content Include="Js\Master\MasterController\LeaveTypeController.js" />
     <Content Include="Js\Master\MasterController\maincontroller.js" />
     <Content Include="Js\Master\MasterController\MarriageStatusController.js" />
@@ -6839,7 +6837,6 @@
     <Content Include="Js\Master\MasterController\EmployeeDepartmentController.js" />
     <Content Include="Js\Master\MasterController\EmployeeTypeController.js" />
     <Content Include="Js\Master\MasterService\LookUp.js" />
-    <Content Include="Js\PayRoll\Controllers\SalaryController.js" />
     <Content Include="scripts\angular-animate.js" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />
@@ -7592,11 +7589,6 @@
     <Content Include="scripts\services.js" />
     <Content Include="scripts\ui-bootstrap-tpls.min.js" />
     <Content Include="scripts\ui-bootstrap.js" />
-    <Content Include="scripts\wizard\bootstrap.min.js" />
-    <Content Include="scripts\wizard\jquery-2.2.4.min.js" />
-    <Content Include="scripts\wizard\jquery.bootstrap.wizard.js" />
-    <Content Include="scripts\wizard\jquery.validate.min.js" />
-    <Content Include="scripts\wizard\paper-bootstrap-wizard.js" />
     <Content Include="template\date-picker.html" />
     <Content Include="template\tooltip\tooltip-html-popup.html" />
     <Content Include="template\time-picker.html" />
@@ -7647,7 +7639,6 @@
     <Compile Include="Areas\Account\Controllers\LoginController.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
     <Compile Include="Areas\Account\Controllers\RoleRightsController.cs" />
-    <Compile Include="Areas\Account\Controllers\SecurableController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Employees\Controllers\EmployeeProfileController.cs" />
@@ -7658,12 +7649,9 @@
     <Compile Include="Areas\Leave\Controllers\EmployeeLeaveController.cs" />
     <Compile Include="Areas\Leave\Controllers\SetUpController.cs" />
     <Compile Include="Areas\PayRoll\Controllers\SalaryController.cs" />
-    <Compile Include="Areas\PayRoll\PayRollAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Controllers\LookUpController.cs" />
-    <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\SessionExpireFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -7714,6 +7702,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
     <Folder Include="Js\Account\Views\" />
+    <Folder Include="Js\Home\Services\" />
+    <Folder Include="Js\PayRoll\Controllers\" />
     <Folder Include="Js\PayRoll\Services\" />
   </ItemGroup>
   <ItemGroup>
