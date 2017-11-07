@@ -31,6 +31,7 @@ app.config(
                 //}
             })
             .state('Company', {
+
                 url: '/Company',
                 templateUrl: baseUrl + 'Company/Company/CompanyList?v=' + version,
                 resolve: {
