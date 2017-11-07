@@ -20,7 +20,8 @@ app.config(
         $stateProvider
             .state('Home', {
                 url: '/Home',
-                templateUrl: baseUrl + 'Home/Index?v='+version,
+                templateUrl: baseUrl + 'Home/Index?v=' + version,
+
                 //resolve: {
                 //    loadPlugin: function ($ocLazyLoad) {
                 //        return $ocLazyLoad.load([
