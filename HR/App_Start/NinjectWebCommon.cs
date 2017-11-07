@@ -27,6 +27,8 @@ namespace HR.App_Start
     using Service.Securables.SecurableService;
     using Service.GrantLeave.IGrantLeaveService;
     using Service.GrantLeave.GrantLeaveService;
+    using Ninject.Web.Common.WebHost;
+
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
