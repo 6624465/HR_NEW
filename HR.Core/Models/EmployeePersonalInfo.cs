@@ -19,7 +19,7 @@ namespace HR.Core.Models
         public int EmployeeHeaderId { get; set; }
         //public virtual EmployeeHeader EmployeeHeader { get; set; }
 
-        public DateTime DOB { get; set; }
+        public DateTime? DOB { get; set; }
         public Int16 Gender { get; set; }
         public string BirthCountry { get; set; }
         public string CitizenshipCountry { get; set; }

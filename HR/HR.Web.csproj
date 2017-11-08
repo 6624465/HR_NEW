@@ -150,7 +150,65 @@
     <Content Include="Areas\Employees\Views\web.config" />
     <Content Include="Areas\Leave\Views\SetUp\Leave.cshtml" />
     <Content Include="Areas\PayRoll\Views\Salary\PayRoll.cshtml" />
-    <Content Include="Areas\PayRoll\Views\Salary\Salary.cshtml" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\HR.Core.dll" />
+    <Content Include="bin\HR.Core.pdb" />
+    <Content Include="bin\HR.Data.dll" />
+    <Content Include="bin\HR.Data.pdb" />
+    <Content Include="bin\HR.dll" />
+    <Content Include="bin\HR.pdb" />
+    <Content Include="bin\HR.Service.dll" />
+    <Content Include="bin\HR.Service.pdb" />
+    <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
+    <Content Include="bin\Microsoft.AI.DependencyCollector.xml" />
+    <Content Include="bin\Microsoft.AI.PerfCounterCollector.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.dll" />
+    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.xml" />
+    <Content Include="bin\Microsoft.AI.Web.dll" />
+    <Content Include="bin\Microsoft.AI.Web.xml" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.dll" />
+    <Content Include="bin\Microsoft.AI.WindowsServer.xml" />
+    <Content Include="bin\Microsoft.ApplicationInsights.dll" />
+    <Content Include="bin\Microsoft.ApplicationInsights.xml" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\Ninject.dll" />
+    <Content Include="bin\Ninject.Web.Common.dll" />
+    <Content Include="bin\Ninject.Web.Common.WebHost.dll" />
+    <Content Include="bin\Ninject.Web.Common.WebHost.xml" />
+    <Content Include="bin\Ninject.Web.Common.xml" />
+    <Content Include="bin\Ninject.Web.Mvc.dll" />
+    <Content Include="bin\Ninject.Web.Mvc.xml" />
+    <Content Include="bin\Ninject.xml" />
+    <Content Include="bin\roslyn\csc.exe" />
+    <Content Include="bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="bin\roslyn\vbc.exe" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.Webpages.Deployment.dll" />
+    <Content Include="bin\System.Web.Webpages.Deployment.xml" />
+    <Content Include="bin\System.Web.Webpages.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.dll" />
+    <Content Include="bin\System.Web.Webpages.Razor.xml" />
+    <Content Include="bin\System.Web.Webpages.xml" />
+    <Content Include="bin\WebActivatorEx.dll" />
     <Content Include="bower_components\bootstrap-colorpicker\.bower.json" />
     <Content Include="bower_components\bootstrap-colorpicker\bower.json" />
     <Content Include="bower_components\bootstrap-colorpicker\CONTRIBUTING.md" />
@@ -6822,8 +6880,10 @@
     <Content Include="Js\Home\Views\index.html" />
     <Content Include="Js\Leave\Controllers\AppliedLeaveListController.js" />
     <Content Include="Js\Leave\Controllers\EmployeeLeave.js" />
+    <Content Include="Js\Leave\Controllers\GrantLeaveController.js" />
     <Content Include="Js\Leave\Controllers\HolidayListController.js" />
     <Content Include="Js\Leave\Services\EmployeeLeaveService.js" />
+    <Content Include="Js\Leave\Services\GrantLeaveService.js" />
     <Content Include="Js\Leave\Services\HolidayListService.js" />
     <Content Include="Js\Master\MasterController\LeaveTypeController.js" />
     <Content Include="Js\Master\MasterController\maincontroller.js" />
@@ -6833,6 +6893,10 @@
     <Content Include="Js\Master\MasterController\EmployeeDepartmentController.js" />
     <Content Include="Js\Master\MasterController\EmployeeTypeController.js" />
     <Content Include="Js\Master\MasterService\LookUp.js" />
+    <Content Include="Js\PayRoll\Controllers\SalaryController.js" />
+    <Content Include="obj\Debug\HR.dll" />
+    <Content Include="obj\Debug\HR.pdb" />
+    <Content Include="obj\Debug\HR.Web.csproj.FileListAbsolute.txt" />
     <Content Include="scripts\angular-animate.js" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />
@@ -7600,7 +7664,6 @@
     <Content Include="Areas\Account\Views\web.config" />
     <Content Include="Areas\Company\Views\Company\CompanyList.cshtml" />
     <Content Include="Areas\Company\Views\web.config" />
-    <Content Include="Areas\Leave\Views\web.config" />
     <Content Include="Areas\Leave\Views\AppliedLeaveList\AppliedLeaveList.cshtml" />
     <Content Include="Areas\Leave\Views\EmployeeLeave\EmployeeLeave.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\LeaveType.cshtml" />
@@ -7611,12 +7674,22 @@
     <Content Include="Areas\Employees\Views\EmployeeProfile\EmployeeInfo.cshtml" />
     <Content Include="Areas\Account\Views\Login\Index.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\EmployeeDepartment.cshtml" />
-    <Content Include="Areas\PayRoll\Views\Salary\web.config" />
     <Content Include="Documents\1413901585save_pdf_files_as_word_documents.pdf" />
     <Content Include="Documents\test.pdf" />
     <Content Include="Areas\Leave\Views\GrantLeave\GrantLeave.cshtml" />
     <Content Include="Areas\Settings\Views\LookUp\EmployeeDesignation.cshtml" />
     <Content Include="Areas\Employees\Views\EmployeeProfile\Index.cshtml" />
+    <Content Include="Areas\Settings\Views\EmployeeType\Index.cshtml" />
+    <Content Include="bin\ApplicationInsights.config" />
+    <Content Include="bin\HR.dll.config" />
+    <Content Include="bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\HR.Web.csprojResolveAssemblyReference.cache" />
+    <Content Include="Areas\PayRoll\Views\Salary\web.config" />
+    <Content Include="Areas\Leave\Views\web.config" />
+    <Content Include="Areas\PayRoll\Views\Salary\Salary.cshtml" />
     <None Include="Properties\PublishProfiles\HR New.pubxml" />
     <None Include="Properties\PublishProfiles\HR.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
@@ -7647,10 +7720,12 @@
     <Compile Include="Areas\Leave\Controllers\EmployeeLeaveController.cs" />
     <Compile Include="Areas\Leave\Controllers\SetUpController.cs" />
     <Compile Include="Areas\PayRoll\Controllers\SalaryController.cs" />
+    <Compile Include="Areas\PayRoll\PayRollAreaRegistration.cs" />
     <Compile Include="Areas\Settings\Controllers\LookUpController.cs" />
     <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SessionExpireFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -7669,6 +7744,9 @@
     <Compile Include="Models\SearchViewModel.cs" />
     <Compile Include="Models\SecurableViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -7702,8 +7780,8 @@
     <Folder Include="Content\" />
     <Folder Include="Js\Account\Views\" />
     <Folder Include="Js\Home\Services\" />
-    <Folder Include="Js\PayRoll\Controllers\" />
     <Folder Include="Js\PayRoll\Services\" />
+    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HR.Core\HR.Core.csproj">
@@ -7741,7 +7819,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53366</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:53366/</IISUrl>
+          <IISUrl>http://localhost:53367/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

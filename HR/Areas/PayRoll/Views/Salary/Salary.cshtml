@@ -1,0 +1,180 @@
+﻿
+<style>
+    td, th {
+        padding: 10px;
+        border: 1px solid #dddddd;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+</style>
+<div class="row" ng-controller="SalaryController">
+    <div class="col-md-4">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Employee Information</h3>
+            </div>
+            <div class="box-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <dl class="dl-horizontal">
+                            <dt>Join Date:</dt>
+                            <dd> 05 Sep 2017</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Designation:</dt>
+                            <dd>Business Development Executive</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Experience:</dt>
+                            <dd>0.1 Years</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Department:</dt>
+                            <dd>Development</dd>
+                        </dl>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-8">
+        <form id="EmployeeSalary" name="EmployeeSalary" enctype="multipart/form-data" ng-class="{'submitted':submitted}" novalidate>
+
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Salary</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-xs-12 ">
+                            <table>
+
+                                <tr class="pmbb-header">
+                                    <th style="width:70%">Salary Item</th>
+                                    <th>Current Salary</th>
+                                </tr>
+                                <tr>
+                                    <td class="ng-binding">
+                                        FULL Basic
+                                    </td>
+                                    <td class="text-right"><i class="fa fa-rupee"></i> 0</td>
+                                </tr>
+                                <tr>
+                                    <td>FULL HRA</td>
+                                    <td class="text-right"> <i class="fa fa-rupee"></i> 0</td>
+                                </tr>
+                                <tr>
+                                    <td>FULL CONVEYANCE</td>
+                                    <td class="text-right"><i class="fa fa-rupee"></i> 0</td>
+                                </tr>
+                                <tr>
+                                    <td>FULL DA</td>
+                                    <td class="text-right"><i class="fa fa-rupee"></i> 0</td>
+                                </tr>
+                                <tr>
+                                    <td>FULL SPECIAL ALLOWANCE</td>
+                                    <td class="text-right"><i class="fa fa-rupee"></i> 0</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        MONTHLY CTC
+                                    </td>
+                                    <td class="text-right"><i class="fa fa-rupee"></i> 0</td>
+                                </tr>
+                                <tr>
+                                    <td>ANNUAL CTC</td>
+                                    <td>
+                                        <input type="text" ng-model="AnnualSalary" class="form-control" />
+                                    </td>
+                                </tr>
+                                <tr><td >MEDICAL MONTHLY ENTITLEMENT</td><td class="text-right"><i class="fa fa-rupee"></i> 0</td></tr>
+                            </table>
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-xs-12 col-md-10 col-md-offset-1">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group ">
+                                        <label>
+                                            Effective From
+                                        </label>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" id="EffectiveFrom" role="button" data-toggle="dropdown">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control input-sm datepicker"
+                                                           ng-model="EffectiveFrom"
+                                                           name="EffectiveFrom"
+                                                           ng-required="true"
+                                                           date-time-input="{{dateFormat}}">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                </div>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                <datetimepicker ng-model="EffectiveFrom"
+                                                                data-datetimepicker-config="{ dropdownSelector: '#EffectiveFrom', startView:'day', minView:'day' }" />
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <div class="form-group ">
+                                        <label>
+                                            Payout Month
+                                        </label>
+                                        <div class="dropdown">
+                                            <a class="dropdown-toggle" id="Payout" role="button" data-toggle="dropdown">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control input-sm datepicker"
+                                                           ng-model="Payout"
+                                                           name="Payout"
+                                                           ng-required="true"
+                                                           date-time-input="{{dateFormat}}">
+                                                    <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                </div>
+                                            </a>
+                                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                <datetimepicker ng-model="Payout"
+                                                                data-datetimepicker-config="{ dropdownSelector: '#Payout', startView:'year', minView:'day' }" />
+                                            </ul>
+                                        </div>
+                                        <!--<input class="form-control valid" type="text" ng-model="EmployeeHeader.Nationality" ng-required="true" ng-change="onChangeText(EmployeeHeader.Nationality)">-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-12">
+                                    <div class="form-group">
+                                        <label>
+                                            Remarks
+                                        </label>
+                                        <textarea class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <button class="btn  btn-primary" type="submit">
+                                        <i class="fa fa-floppy-o"></i> &nbsp;Save
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>

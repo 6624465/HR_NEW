@@ -45,7 +45,7 @@ namespace HR.Areas.Employees.Controllers
                     }
                     foreach (var employeePersonalInfo in item.EmployeePersonalInfo)
                     {
-                        employeeViewModel.DOB = employeePersonalInfo.DOB;
+                        employeeViewModel.DOB = Convert.ToDateTime(employeePersonalInfo.DOB);
                     }
                     foreach (var address in item.Address)
                     {
@@ -415,7 +415,7 @@ namespace HR.Areas.Employees.Controllers
             }
             _employeePersonalInfo.BranchId = employeePersonalInfo.BranchId;
             //_employeePersonalInfo.EmployeeId = employeeHeader.Id;
-            _employeePersonalInfo.DOB = DateTimeConverter.SingaporeDateTimeConversion(employeePersonalInfo.DOB);
+            _employeePersonalInfo.DOB = DateTimeConverter.SingaporeDateTimeConversion(Convert.ToDateTime(employeePersonalInfo.DOB));
             _employeePersonalInfo.Gender = employeePersonalInfo.Gender;
             _employeePersonalInfo.FatherName = employeePersonalInfo.FatherName;
             _employeePersonalInfo.BirthCountry = employeePersonalInfo.BirthCountry;
