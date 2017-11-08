@@ -23,6 +23,7 @@ function ($scope, $http, growlService, $filter, UtilityFunc, LookUp, EmployeePro
             $scope.dateFormat = UtilityFunc.DateFormat();
             $scope.FilePath = baseUrl + 'Documents/';
 
+
             $scope.EducationDocuments = [];
             $scope.ExperienceLetters = [];
             $scope.ProjectDocuments = [];

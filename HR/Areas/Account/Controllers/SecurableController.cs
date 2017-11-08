@@ -18,11 +18,11 @@ namespace HR.Areas.Account.Controllers
 {
     public class SecurableController : BaseController
     {
-        // GET: Account/Securable
+        // GET:  Account/Securable
         public ActionResult RolerRights()
         {
             return View();
-        }
+        } 
         public JsonResult GetSecurables()
         {
             JsonResult result = new JsonResult();

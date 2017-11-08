@@ -65,7 +65,7 @@ namespace HR.Controllers
                           }).OrderByDescending(n => n.name);
 
                 var hongkongwiseGenders = EmployeeHeader.Where(s => s.Branch.BranchName == "HONGKONG")
-                         .GroupBy(g => g.EmployeePersonalInfo.Select(s => s.Gender)
+                         .GroupBy(x=>x.EmployeePersonalInfo.Select(s=>s.Gender)
                          .FirstOrDefault()).ToList()
                           .Select(n => new
                           {
