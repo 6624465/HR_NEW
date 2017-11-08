@@ -105,7 +105,10 @@ app.config(
 
             .state('Employee', {
                 url: '/Employee',
-                templateUrl: baseUrl + 'Settings/LookUp/EmployeeDesignation?v=' + version,
+                templateUrl: function () {
+                    debugger;
+                    return baseUrl + 'Settings/LookUp/EmployeeDesignation?v=' + version;
+                },
                 resolve: {
                     loadPlugin: function ($ocLazyLoad) {
                         return $ocLazyLoad.load([
@@ -118,7 +121,7 @@ app.config(
                                     baseUrl + 'Js/Master/MasterController/EmployeeDepartmentController.js?v=' + version,
                                     baseUrl + 'Js/Master/MasterService/LookUp.js?v=' + version,
                                     baseUrl + 'Js/Master/MasterController/maincontroller.js?v=' + version,
-                                     baseUrl + 'Js/Master/MasterController/MarriageStatusController.js?v=' + version,
+                                    baseUrl + 'Js/Master/MasterController/MarriageStatusController.js?v=' + version,
                                 ]
                             }
                         ]);

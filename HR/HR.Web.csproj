@@ -7647,6 +7647,7 @@
     <Compile Include="Areas\Leave\Controllers\SetUpController.cs" />
     <Compile Include="Areas\PayRoll\Controllers\SalaryController.cs" />
     <Compile Include="Areas\Settings\Controllers\LookUpController.cs" />
+    <Compile Include="Areas\Settings\SettingsAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
