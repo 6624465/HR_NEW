@@ -7636,6 +7636,7 @@
     <Compile Include="Areas\Account\Controllers\LoginController.cs" />
     <Compile Include="Areas\Account\AccountAreaRegistration.cs" />
     <Compile Include="Areas\Account\Controllers\RoleRightsController.cs" />
+    <Compile Include="Areas\Account\Controllers\SecurableController.cs" />
     <Compile Include="Areas\Company\CompanyAreaRegistration.cs" />
     <Compile Include="Areas\Company\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Employees\Controllers\EmployeeProfileController.cs" />
