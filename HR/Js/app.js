@@ -648,11 +648,13 @@ app.directive('treeView', function ($compile) {
             var hasCheckBox = (angular.isUndefined(tAttrs.checkbox)) ? false : true;
             scope.showItems = [];
 
-            scope.showHide = function (ulId) {
-                //
+            scope.showHide = function (ulId) {                
                 var hideThis = document.getElementById(ulId);
                 var showHide = angular.element(hideThis).attr('class');
                 angular.element(hideThis).attr('class', (showHide === 'show' ? 'hide' : 'show'));
+                console.log($('#icon_' + ulId).attr('class'));
+                var resultClass = $('#icon_' + ulId).attr('class') == 'fa fa-plus-square' ? 'fa fa-minus-square' : 'fa fa-plus-square';
+                $('#icon_' + ulId).attr('class', resultClass);
             }
 
             scope.showIcon = function (node) {
@@ -714,7 +716,7 @@ app.directive('treeView', function ($compile) {
                 var text = '';
 
                 text += '<li ng-repeat="n in ' + collection + '" >';
-                text += '<span ng-show=showIcon(n) class="show-hide" ng-click=showHide(n.id)><i class="fa fa-plus-square"></i></span>';
+                text += '<span ng-show=showIcon(n) class="show-hide" ng-click=showHide(n.id)><i id="icon_{{ n.id}}" class="fa fa-plus-square"></i></span>';
                 text += '<span ng-show=!showIcon(n) style="padding-right: 13px"></span>';
 
                 if (hasCheckBox) {
