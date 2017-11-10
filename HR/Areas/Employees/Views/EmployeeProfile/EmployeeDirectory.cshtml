@@ -13,161 +13,168 @@
 
 
 <div ng-controller="EmployeeDirectoryController" ng-init="GetEmployeeDetails()">
-    <form id="frmEmployeeDirectory" name="frmEmployeeDirectory" ng-class="{'submitted':submitted}" ng-submit="EmployeeDetails(true)" novalidate>
+    <div>
+        <uib-accordion close-others="oneAtATime">
+            <div uib-accordion-group class="panel-default" heading="" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
+                <uib-accordion-heading>
+                    <i class="pull-left zmdi zmdi-hc-fw" ng-class="{'zmdi-minus': status.isFirstOpen, 'zmdi-plus': !status.isFirstOpen}"></i>&nbsp;Advanced Search
+                </uib-accordion-heading>
 
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
+                <form id="frmEmployeeDirectory" name="frmEmployeeDirectory" ng-class="{'submitted':submitted}" ng-submit="EmployeeDetails(true)" novalidate>
 
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Search</h3>
-                    </div>
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-2">
-                                <div class="form-group">
-                                    <label>
-                                        Employee Name
-                                    </label>
-                                    <input class="form-control" type="text" ng-model="EmployeeDirectory.FirstName">
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-2">
-                                <div class="form-group ">
-                                    <label>
-                                        Date Of Joining
-                                    </label>
-                                    <div class="dropdown">
-                                        <a class="dropdown-toggle" id="JoiningDate" role="button" data-toggle="dropdown">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control input-sm datepicker valid"
-                                                       ng-model="EmployeeDirectory.JoiningDate"
-                                                       name="EmployeeDirectory.JoiningDate"
-                                                       date-time-input="{{dateFormat}}">
-                                                <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group">
+                                            <label>
+                                                Employee Name
+                                            </label>
+                                            <input class="form-control" type="text" ng-model="EmployeeDirectory.FirstName">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group ">
+                                            <label>
+                                                Date Of Joining
+                                            </label>
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle" id="JoiningDate" role="button" data-toggle="dropdown">
+                                                    <div class="input-group" style="margin-top:4px;">
+                                                        <input type="text" class="form-control input-sm datepicker valid"
+                                                               ng-model="EmployeeDirectory.JoiningDate"
+                                                               name="EmployeeDirectory.JoiningDate"
+                                                               date-time-input="{{dateFormat}}">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                    </div>
+                                                </a>
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                                    <datetimepicker ng-model="EmployeeDirectory.JoiningDate"
+                                                                    data-datetimepicker-config="{ dropdownSelector: '#JoiningDate', startView:'day', minView:'day' }" />
+                                                </ul>
                                             </div>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                            <datetimepicker ng-model="EmployeeDirectory.JoiningDate"
-                                                            data-datetimepicker-config="{ dropdownSelector: '#JoiningDate', startView:'day', minView:'day' }" />
-                                        </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group">
+                                            <label>Employee Number</label>
+                                            <input class="form-control " type="text" autocomplete="off" ng-model="EmployeeDirectory.EmployeeId">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group fg-line">
+
+                                            <label for="Country"> Country</label>
+
+                                            <select name="Country"
+                                                    ng-options="s.CountryCode as s.CountryName for s in Locations"
+                                                    ng-model="EmployeeDirectory.CountryCode"
+                                                    class="form-control">
+                                                <option value="">Country </option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group fg-line">
+                                            <label>
+                                                Designation
+                                            </label>
+                                            <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeDesignations"
+                                                    ng-model="EmployeeDirectory.Designation" class="form-control">
+                                                <option value="">  Designation </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-2">
+                                        <div class="form-group fg-line">
+                                            <label>
+                                                Employee Type
+                                            </label>
+                                            <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeTypes"
+                                                    ng-model="EmployeeDirectory.EmployeeType" class="form-control">
+                                                <option value=""> EmployeeType </option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="col-xs-12 col-md-2">
-                                <div class="form-group">
-                                    <label>Employee Number</label>
-                                    <input class="form-control " type="text" autocomplete="off" ng-model="EmployeeDirectory.EmployeeId">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-2 pull-right">
+                                        <button type="submit" ng-click="submitted = true;" id="btn-Search" class="btn btn-primary col-md-offset-2">Search</button>
+                                        <button type="button" id="btn-clear" class="btn btn-primary" ng-click="Clear();">Clear</button>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="col-xs-12 col-md-2">
-                                <div class="form-group fg-line">
-
-                                    <label for="Country"> Country</label>
-
-                                    <select name="Country"
-                                            ng-options="s.CountryCode as s.CountryName for s in Locations"
-                                            ng-model="EmployeeDirectory.CountryCode"
-                                            class="form-control">
-                                        <option value="">Country </option>
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-2">
-                                <div class="form-group fg-line">
-                                    <label>
-                                        Designation
-                                    </label>
-                                    <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeDesignations"
-                                            ng-model="EmployeeDirectory.Designation" class="form-control">
-                                        <option value="">  Designation </option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-2">
-                                <div class="form-group fg-line">
-                                    <label>
-                                        Employee Type
-                                    </label>
-                                    <select name="users" ng-options="s.LookUpID as s.LookUpCode for s in EmployeeTypes"
-                                            ng-model="EmployeeDirectory.EmployeeType" class="form-control">
-                                        <option value=""> EmployeeType </option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
+                    </div>
+                </form>
+            </div>
+        </uib-accordion>
+    </div>
 
-                        <div class="row">
-                            <div class="col-xs-12 col-md-2 pull-right" >
-                                <button type="submit" ng-click="submitted = true;" id="btn-Search" class="btn btn-primary col-md-offset-2">Search</button>
-                                <button type="button" id="btn-clear" class="btn btn-primary" ng-click="Clear();">Clear</button>
-                            </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Employee Directory</h3>
+                    <div class="pull-right">
+                        <button type="button" class="btn" ui-sref="EmployeeHeader({id:'new'})">
+                            <i class="zmdi zmdi-plus"></i>&nbsp; Add Employee
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="" style="min-height: 250px;">
+
+                        <div class="table-responsive">
+                            <table ng-table="EmployeeDetailParams" class="table table-vmiddle">
+                                <tr ng-repeat="employeeDetails in $data">
+
+                                    <td sortable="'EmployeeId'" data-title="'Employee No'">
+                                        {{employeeDetails.EmployeeId}}
+                                    </td>
+                                    <td sortable="'EmployeeName'" data-title="'Employee Name'">
+                                        {{employeeDetails.EmployeeName}}
+                                    </td>
+                                    <td sortable="'JoiningDate'" data-title="'Joining Date'">
+                                        {{formatDate(employeeDetails.JoiningDate)}}
+                                    </td>
+                                    <td sortable="'JoiningDate'" data-title="'Job Title'">
+                                        {{employeeDetails.DesignationName}}
+                                    </td>
+                                    <td sortable="'MobileNo'" data-title="'Contact No.'">
+                                        {{employeeDetails.MobileNo|filter:number}}
+                                    </td>
+                                    <td sortable="'Email'" data-title="'Personal Email Id'">
+                                        {{employeeDetails.Email}}
+                                    </td>
+                                    <td sortable="'Official Email'" data-title="'Official Email'">
+                                        {{employeeDetails.Email}}
+                                    </td>
+                                    <td sortable="'DOB'" data-title="'Date Of Birth'">
+                                        {{formatDate(employeeDetails.DOB)}}
+                                    </td>
+                                    <td data-title="'#Action'" align="center">
+                                        <button class="btn btn-default ng-scope waves-effect"
+                                                type="button"
+                                                ui-sref="EmployeeHeader({id:employeeDetails.Id})"
+                                                aria-label="button" uib-tooltip="Edit" tooltip-placement="top">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Employee Directory</h3>
-                        <div class="pull-right">
-                            <button type="button" class="btn" ui-sref="EmployeeHeader({id:'new'})">
-                                <i class="zmdi zmdi-plus"></i>&nbsp; Add Employee
-                            </button>
-                        </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="" style="min-height: 250px;">
-
-                            <div class="table-responsive">
-                                <table ng-table="EmployeeDetailParams" class="table table-vmiddle">
-                                    <tr ng-repeat="employeeDetails in $data">
-                                       
-                                        <td sortable="'EmployeeId'" data-title="'Employee No'">
-                                            {{employeeDetails.EmployeeId}}
-                                        </td>
-                                        <td sortable="'EmployeeName'" data-title="'Employee Name'">
-                                            {{employeeDetails.EmployeeName}}
-                                        </td>
-                                        <td sortable="'JoiningDate'" data-title="'Joining Date'">
-                                            {{formatDate(employeeDetails.JoiningDate)}}
-                                        </td>
-                                        <td sortable="'JoiningDate'" data-title="'Job Title'">
-                                            {{employeeDetails.DesignationName}}
-                                        </td>
-                                        <td sortable="'MobileNo'" data-title="'Contact No.'">
-                                            {{employeeDetails.MobileNo}}
-                                        </td>
-                                        <td sortable="'Email'" data-title="'Personal Email Id'">
-                                            {{employeeDetails.Email}}
-                                        </td>
-                                        <td sortable="'Official Email'" data-title="'Official Email'">
-                                            {{employeeDetails.Email}}
-                                        </td>
-                                        <td sortable="'DOB'" data-title="'Date Of Birth'">
-                                            {{formatDate(employeeDetails.DOB)}}
-                                        </td>
-                                        <td data-title="'#Action'" align="center">
-                                            <button class="btn btn-default ng-scope waves-effect"
-                                                    type="button"
-                                                    ui-sref="EmployeeHeader({id:employeeDetails.Id})"
-                                                    aria-label="button" uib-tooltip="Edit" tooltip-placement="top">
-                                                <i class="zmdi zmdi-edit"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
     </form>
 </div>

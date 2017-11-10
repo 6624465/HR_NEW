@@ -6754,4 +6754,11 @@ button.close {
     display: none !important;
   }
 }
+
+/*@media (min-width: 992px) {
+  .col-md-25 {
+        width: 20%;
+    }
+}*/
 /*# sourceMappingURL=bootstrap.css.map */
+
