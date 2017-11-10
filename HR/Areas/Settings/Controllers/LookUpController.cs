@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using C = HR.Core.Constants;
 using Newtonsoft.Json;
 using System.Web.Script.Serialization;
+using System.Linq.Expressions;
 
 namespace HR.Areas.Settings.Controllers
 {
@@ -162,18 +163,36 @@ namespace HR.Areas.Settings.Controllers
                 if (!string.IsNullOrWhiteSpace(dt.LookUpCategory))
                 {
 
-                    var lookUp = from eType in LookUpCodeService.GetLookUp<LookUp>(et => et.LookUpCategory ==dt.LookUpCategory)
-                                 select new
-                                 {
-                                     LookUpID = eType.LookUpID,
-                                     LookUpCode = eType.LookUpCode,
-                                     LookUpDescription = eType.LookUpDescription,
-                                     IsActive = eType.IsActive
-                                 };
-                    int totalCount = lookUp.Count();
-                    var lookups = lookUp.OrderByDescending(x=>x.LookUpID).Skip(dt.offset).Take(dt.limit);
-                    if (lookUp.Any() && lookUp != null)
-                        result = Json(new { success = true, lookUpLists = lookups,total_count= totalCount, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
+                    var dataList = from eType in LookUpCodeService.GetLookUp<LookUp>(et => et.LookUpCategory == dt.LookUpCategory)
+                                   select new
+                                   {
+                                       LookUpID = eType.LookUpID,
+                                       LookUpCode = eType.LookUpCode,
+                                       LookUpDescription = eType.LookUpDescription,
+                                       IsActive = eType.IsActive
+                                   };
+                    //var data = dataList.Select(x => new SortingViewModel()
+                    //{
+                    //    employeeDescription = x.LookUpDescription,
+                    //    employeeDesignation = x.LookUpCode
+                    //}).AsQueryable();
+
+                    //if (obj.sortType.ToLower() == "asc")
+                    //    results = OrderingHelper(results, dt.sortColumn, false, false);
+                    //else
+                    //    results = OrderingHelper(results, dt.sortColumn, true, false);
+                    int totalCount = dataList.Count();
+
+                    //dt.sortType = dt.sortType ?? "asc";
+                    //dt.sortColumn = dt.sortColumn ?? "employeeDescription";
+
+                    //if (dt.sortType.ToLower() == "asc")
+                    //    data = OrderBy(data, dt.sortColumn, false, false);
+                    //else
+                    //    data = OrderBy(data, dt.sortColumn, false, false);
+                    var lookups = dataList.Skip(dt.offset).Take(dt.limit);
+                    if (dataList.Any() && dataList != null)
+                        result = Json(new { success = true, lookUpLists = dataList, total_count= totalCount, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
                     else
                         result = Json(new { success = false, message = C.NO_DATA_FOUND }, JsonRequestBehavior.AllowGet);
                 }
@@ -187,6 +206,27 @@ namespace HR.Areas.Settings.Controllers
             }
             return result;
         }
-        #endregion 
+        #endregion
+        public IOrderedQueryable<SortingViewModel> OrderBy(IQueryable<SortingViewModel> source, string propertyName, bool descending, bool anotherLevel)
+        {
+            try
+            {
+                ParameterExpression param = Expression.Parameter(typeof(SortingViewModel), string.Empty);
+                MemberExpression property = Expression.PropertyOrField(param, propertyName);
+                LambdaExpression sort = Expression.Lambda(property, param);
+                MethodCallExpression call = Expression.Call(
+                    typeof(Queryable),
+                    (!anotherLevel ? "OrderBy" : "ThenBy") + (descending ? "Descending" : string.Empty),
+                    new[] { typeof(SortingViewModel), property.Type },
+                    source.Expression,
+                    Expression.Quote(sort));
+                return (IOrderedQueryable<SortingViewModel>)source.Provider.CreateQuery<SortingViewModel>(call);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

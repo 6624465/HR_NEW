@@ -14,4 +14,11 @@ namespace HR.Models
         public Int64 recordsCount { get; set; }
         public Int16 offset { get; set; }
     }
+    public class SortingViewModel
+    {
+        public string employeeDesignation { get; set; }
+        public string employeeDescription { get; set; }
+        
+
+    }
 }

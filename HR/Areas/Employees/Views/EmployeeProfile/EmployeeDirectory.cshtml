@@ -69,11 +69,17 @@
 
                                             <label for="Country"> Country</label>
 
-                                            <select name="Country"
-                                                    ng-options="s.CountryCode as s.CountryName for s in Locations"
-                                                    ng-model="EmployeeDirectory.CountryCode"
-                                                    class="form-control">
-                                                <option value="">Country </option>
+                                            @*<select ng-model="EmployeeDirectory.CountryCode" class="form-control">
+                                                <option ng-repeat="l in Locations" ng-value="l.Id">
+                                                    {{l.CountryName}}
+                                                </option>
+                                            </select>*@
+                                      <select name="Country"
+                                                    ng-options="s.Id as s.CountryName for s in Locations"
+                                                    ng-model="EmployeeDirectory.Id"
+                                                    class="form-control"
+                                                    >
+                                                <option value=""></option>
                                             </select>
 
                                         </div>

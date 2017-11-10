@@ -20,11 +20,12 @@
             page: 0,
             count: 10,
         }, {
-            counts: [10, 20, 30],
+            //counts: [10, 20, 30],
             getData: function ($defer, params) {
                 DataTblobj.LookUpCategory = lookUpCategory == null ? $scope.MarriageStatus.LookUpCategory : lookUpCategory;
                 DataTblobj.offset = params.page() == 0 ? 0 : (params.count() * (params.page() - 1));
                 DataTblobj.limit = params.count();
+               
                 if (params.sorting()) {
                     var orderBy = params.orderBy()[0];
 
@@ -33,12 +34,18 @@
                 }
                 LookUp.GetTableData(DataTblobj).then(function (res) {
                     params.total(res.data.total_count);
+                    debugger
+                    params.settings({ counts: res.data.total_count> 10 ? [10, 20, 30] : [] });
                     $defer.resolve(res.data.lookUpLists);
+
                 }, function (err) { });
             }
         });
     }
 
+    $scope.$watch('ngTblMarriageStatusData', function (params) {
+        $scope.users = data.slice((params.page() - 1) * params.count(), params.page() * params.count());
+    }, true);
     $scope.onEditMarriageStatus = function (marriageStatus) {
         $scope.MarriageStatus = marriageStatus;
         $('#AddMarriageStatusDialog').modal('show');

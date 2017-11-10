@@ -1,9 +1,11 @@
 ﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams', 'LookUp', 'HolidayListService','$state','$stateParams',
     'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams, LookUp, HolidayListService, $state, $stateParams) {
-
+debugger
 
         $scope.init = function () {
-            $scope.EmployeeDirectory = {};
+            $scope.EmployeeDirectory = {
+                
+            };
             $scope.filter = {}
             $scope.search = {
                 FilterViewModel: new Array()
@@ -24,7 +26,7 @@
                 //count: res.length
             },
             {
-                counts: [10, 20, 30],
+                 
                 getData: function ($defer, params) {
                     search.limit = params.count();
                     search.offset = params.page() == 0 ? 0 : (params.count() * (params.page() - 1));
@@ -110,6 +112,11 @@
             if ( response.data.success == true) {
                 debugger;
                 $scope.Locations = response.data.BranchLocations;
+                var code = $scope.Locations[0].CountryCode;
+                $scope.EmployeeDirectory.Id =
+                               $filter('filter')($scope.Locations, { 'CountryCode': code })[0].Id;
+                //$scope.EmployeeDirectory.CountryCode = $scope.Locations[0].CountryName;
+
             }
             else
                 growlService.growl("Error Occured.", 'danger');

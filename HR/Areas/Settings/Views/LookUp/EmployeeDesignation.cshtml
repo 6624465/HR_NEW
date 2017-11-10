@@ -151,8 +151,8 @@
                                     <div class="table-responsive">
                                         <table class="table table-vmiddle" ng-table="ngTblData">
                                             <tr ng-repeat="w in $data">
-                                                <td data-title="'employee Designation'"><a ng-click="onEditEmployeeDesignation(w)">{{w.LookUpCode}}</a></td>
-                                                <td data-title="'employee Description'">{{w.LookUpDescription}}</td>
+                                                <td sortable="employeeDesignation" data-title="'employeeDesignation'"><a ng-click="onEditEmployeeDesignation(w)">{{w.employeeDesignation}}</a></td>
+                                                <td sortable="employeeDescription" data-title="'employeeDescription'">{{w.employeeDescription}}</td>
                                                 @*<td><input type="checkbox" ng-model="employeeDesignation.IsActive" disabled="true" /></td>*@
                                                 <td data-title="'Status'">
                                                     <div class="switch-container">

@@ -574,8 +574,8 @@ namespace HR.Areas.Employees.Controllers
                     if (filterViewModel.Type == "Where")
                         employeeHeader = employeeHeader.Where(e => e.MobileNo.ToLower() == filterViewModel.Value.ToLower());
                     break;
-                case "CountryCode":
-                    employeeHeader = employeeHeader.Where(e => e.CountryCode == filterViewModel.Value);
+                case "Id":
+                    employeeHeader = employeeHeader.Where(e => e.CountryId.ToString() == filterViewModel.Value);
                     break;
                 case "Designation":
                     employeeHeader = employeeHeader.Where(e => e.Designation == Convert.ToInt32(filterViewModel.Value));

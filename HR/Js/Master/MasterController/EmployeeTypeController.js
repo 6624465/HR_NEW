@@ -33,7 +33,7 @@ function ($scope, $http, LookUp, growl, growlService, NgTableParams) {
             page: 0,
             count: 10,
         }, {
-            counts: [10, 20, 30],
+           // counts: [10, 20, 30],
             getData: function ($defer, params) {
                 search.LookUpCategory = LookUpCategory == null ? $scope.defaultLookUpCategory : LookUpCategory;
                 search.offset = params.page() == 0 ? 0 : (params.count() * (params.page() - 1));
@@ -46,6 +46,7 @@ function ($scope, $http, LookUp, growl, growlService, NgTableParams) {
                 }
                 LookUp.GetTableData(search).then(function (res) {
                     params.total(res.data.total_count);
+                    params.settings({ counts: res.data.total_count > 10 ? [10, 20, 30] : [] });
                     $defer.resolve(res.data.lookUpLists);
                 }, function (err) { });
             }

@@ -30,7 +30,7 @@
             page: 0,
             count: 10,
         }, {
-            counts: [10, 20, 30],
+            //counts: [10, 20, 30],
             getData: function ($defer, params) {
                 search.LookUpCategory = lookUpCategory == null ? $scope.defaultLookUpCategory : lookUpCategory;
                 search.offset = params.page() == 0 ? 0 : (params.count() * (params.page() - 1));
@@ -45,6 +45,7 @@
                 LookUp.GetTableData(search).then(function (res) {
                     
                     params.total(res.data.total_count);
+                    params.settings({ counts: res.data.total_count > 10 ? [10, 20, 30] : [] });
                     $defer.resolve(res.data.lookUpLists);
                 }, function (err) { });
             }

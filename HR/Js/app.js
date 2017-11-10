@@ -106,7 +106,6 @@ app.config(
             .state('Employee', {
                 url: '/Employee',
                 templateUrl: function () {
-                    debugger;
                     return baseUrl + 'Settings/LookUp/EmployeeDesignation?v=' + version;
                 },
                 resolve: {

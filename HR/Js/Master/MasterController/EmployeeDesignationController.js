@@ -49,6 +49,7 @@ function ($scope, $http, LookUp, growl, growlService, NgTableParams,$rootScope) 
                 }
                 LookUp.GetTableData(DataTblobj).then(function (res) {
                     params.total(res.data.total_count);
+                    params.settings({ counts: res.data.total_count > 10 ? [10, 20, 30] : [] });
                     $defer.resolve(res.data.lookUpLists);
                 }, function (err) { });
             }
