@@ -30,24 +30,14 @@ function ($scope, $http, DashBoardService) {
                 res.data.srilankawiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.srilankawiseGenders, 'SRILANKA', "SRILANKA") : $scope.IsSrilanka = false;
                 res.data.pakistanwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.pakistanwiseGenders, 'PAKISTAN', "PAKISTAN") : $scope.IsPakistan = false;
                 res.data.mayanmarwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.mayanmarwiseGenders, 'MAYANMAR', "MAYANMAR") : $scope.IsMayanmar = false;
-                var hongkongsgender = [ { name: "Male", y: 0 },{ name: res.data.hongkongwiseGenders[0].name, y: res.data.hongkongwiseGenders[0].y }];
-                res.data.hongkongwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(hongkongsgender, 'HONGKONG', "HONGKONG") : $scope.IsHongkong = false;
+                //var hongkongsgender = [{ name: res.data.hongkongwiseGenders[0].name, y: res.data.hongkongwiseGenders[0].y }, { name: "Male", y: 0 }];
+                res.data.hongkongwiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.hongkongwiseGenders, 'HONGKONG', "HONGKONG") : $scope.IsHongkong = false;
                 res.data.singaporewiseGenders.length > 0 ? $scope.GetPieGraphDashboard(res.data.singaporewiseGenders, 'SINGAPORE', "SINGAPORE") : $scope.IsSingapore = false;
             }
         })
     }
     $scope.GetPieGraphDashboard = function (CountryWiseGenders, type, id) {
-
-        //if (type == 'HONGKONG') {
-        //    var m = angular.copy(CountryWiseGenders);
-        //    var CountryWiseGenders = [];
-        //    var obj = {
-        //        "name": "male", "y": 1
-        //    };
-        //    CountryWiseGenders.push(m);
-        //    CountryWiseGenders.push(obj);
-        //};
-        debugger
+        debugger;
         var c1 = '#337ef7', c2 = type == 'SINGAPORE' ? '#ff66b3' : '#f458f4'
         Highcharts.chart(id, {
             chart: {
