@@ -18,7 +18,9 @@ namespace HR.Models
     {
         public string employeeDesignation { get; set; }
         public string employeeDescription { get; set; }
-        
+        public bool IsActive { get; set; }
+        public int LookUpID { get; set; }
+
 
     }
 }

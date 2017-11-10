@@ -33,8 +33,8 @@
                     DataTblobj.sortType = orderBy != undefined ? orderBy[0] == '+' ? 'asc' : 'desc' : '';
                 }
                 LookUp.GetTableData(DataTblobj).then(function (res) {
-                    params.total(res.data.total_count);
                     debugger
+                    params.total(res.data.total_count);
                     params.settings({ counts: res.data.total_count> 10 ? [10, 20, 30] : [] });
                     $defer.resolve(res.data.lookUpLists);
 
@@ -47,7 +47,12 @@
         $scope.users = data.slice((params.page() - 1) * params.count(), params.page() * params.count());
     }, true);
     $scope.onEditMarriageStatus = function (marriageStatus) {
-        $scope.MarriageStatus = marriageStatus;
+      //  $scope.MarriageStatus = angular.copy(marriageStatus);
+        debugger
+        $scope.MarriageStatus.LookUpCode = marriageStatus.employeeDesignation;
+        $scope.MarriageStatus.LookUpDescription = marriageStatus.employeeDescription;
+        $scope.MarriageStatus.IsActive = marriageStatus.IsActive;
+        $scope.MarriageStatus.LookUpID = marriageStatus.LookUpID;
         $('#AddMarriageStatusDialog').modal('show');
     }
 

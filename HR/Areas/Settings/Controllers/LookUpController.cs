@@ -154,12 +154,13 @@ namespace HR.Areas.Settings.Controllers
 
         #endregion
         #region GetTableData 
+
         public JsonResult GetTableData(DTwithlimit dt)
         {
             JsonResult result = null;
             try
             {
-              
+
                 if (!string.IsNullOrWhiteSpace(dt.LookUpCategory))
                 {
 
@@ -171,28 +172,27 @@ namespace HR.Areas.Settings.Controllers
                                        LookUpDescription = eType.LookUpDescription,
                                        IsActive = eType.IsActive
                                    };
-                    //var data = dataList.Select(x => new SortingViewModel()
-                    //{
-                    //    employeeDescription = x.LookUpDescription,
-                    //    employeeDesignation = x.LookUpCode
-                    //}).AsQueryable();
+                    var data = dataList.Select(x => new SortingViewModel()
+                    {
+                        employeeDescription = x.LookUpDescription,
+                        employeeDesignation = x.LookUpCode,
+                        IsActive=x.IsActive,
+                        LookUpID=x.LookUpID
+                    }).AsQueryable();
 
-                    //if (obj.sortType.ToLower() == "asc")
-                    //    results = OrderingHelper(results, dt.sortColumn, false, false);
-                    //else
-                    //    results = OrderingHelper(results, dt.sortColumn, true, false);
+
                     int totalCount = dataList.Count();
 
-                    //dt.sortType = dt.sortType ?? "asc";
-                    //dt.sortColumn = dt.sortColumn ?? "employeeDescription";
+                    dt.sortType = dt.sortType ?? "asc";
+                    dt.sortColumn = dt.sortColumn ?? "employeeDescription";
 
-                    //if (dt.sortType.ToLower() == "asc")
-                    //    data = OrderBy(data, dt.sortColumn, false, false);
-                    //else
-                    //    data = OrderBy(data, dt.sortColumn, false, false);
-                    var lookups = dataList.Skip(dt.offset).Take(dt.limit);
-                    if (dataList.Any() && dataList != null)
-                        result = Json(new { success = true, lookUpLists = dataList, total_count= totalCount, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
+                    if (dt.sortType.ToLower() == "asc")
+                        data = OrderBy(data, dt.sortColumn, false, false);
+                    else
+                        data = OrderBy(data, dt.sortColumn, false, false);
+                    var lookups = data.Skip(dt.offset).Take(dt.limit);
+                    if (data.Any() && data != null)
+                        result = Json(new { success = true, lookUpLists = lookups, total_count = totalCount, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
                     else
                         result = Json(new { success = false, message = C.NO_DATA_FOUND }, JsonRequestBehavior.AllowGet);
                 }
@@ -207,6 +207,7 @@ namespace HR.Areas.Settings.Controllers
             return result;
         }
         #endregion
+
         public IOrderedQueryable<SortingViewModel> OrderBy(IQueryable<SortingViewModel> source, string propertyName, bool descending, bool anotherLevel)
         {
             try

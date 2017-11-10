@@ -63,6 +63,7 @@ function ($scope, $http, LookUp, growl, growlService, NgTableParams,$rootScope) 
     });
 
     $scope.onClickSaveEmployeeDesignation = function (employeeDesignation) {
+        debugger
         if ($scope.EmployeeDesignation.LookUpCode != null) {
             if ($scope.IsfrmEmployeeDesignation) {
                 LookUp.SaveLookUpData(employeeDesignation).then(function (response) {
@@ -84,8 +85,9 @@ function ($scope, $http, LookUp, growl, growlService, NgTableParams,$rootScope) 
     },
     //$scope.GetLookUpData();
     $scope.onEditEmployeeDesignation = function (employeeDesignation) {
-        $scope.EmployeeDesignation.LookUpCode = employeeDesignation.LookUpCode;
-        $scope.EmployeeDesignation.LookUpDescription = employeeDesignation.LookUpDescription;
+        debugger
+        $scope.EmployeeDesignation.LookUpCode = employeeDesignation.employeeDesignation;
+        $scope.EmployeeDesignation.LookUpDescription = employeeDesignation.employeeDescription;
         $scope.EmployeeDesignation.IsActive = employeeDesignation.IsActive;
         $scope.EmployeeDesignation.LookUpID = employeeDesignation.LookUpID;
         $('#AddEmployeeDesignationDialog').modal('show');

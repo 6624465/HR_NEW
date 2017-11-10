@@ -74,8 +74,9 @@ function ($scope, $http, LookUp, growl, growlService, NgTableParams) {
     }
     },
 $scope.onEditEmployeeType = function (employeeType) {
-    $scope.EmployeeType.LookUpCode = employeeType.LookUpCode;
-    $scope.EmployeeType.LookUpDescription = employeeType.LookUpDescription;
+    debugger
+    $scope.EmployeeType.LookUpCode = employeeType.employeeDesignation;
+    $scope.EmployeeType.LookUpDescription = employeeType.employeeDescription;
     $scope.EmployeeType.IsActive = employeeType.IsActive;
     $scope.EmployeeType.LookUpID = employeeType.LookUpID;
     $('#AddEmployeeTypeDialog').modal('show');

@@ -241,8 +241,8 @@
                                         <table class="table table-vmiddle" ng-table="ngTblTypeData">
                                             <tr ng-repeat="w in $data">
 
-                                                <td data-title="'Employee Type Name'"><a ng-click="onEditEmployeeType(w)">{{w.LookUpCode}}</a></td>
-                                                <td data-title="'Employee Type Description'">{{w.LookUpDescription}}</td>
+                                                <td data-title="'Employee Type Name'"><a ng-click="onEditEmployeeType(w)">{{w.employeeDesignation}}</a></td>
+                                                <td data-title="'Employee Type Description'">{{w.employeeDescription}}</td>
                                                 @*<td><input type="checkbox" ng-model="employeeType.IsActive" disabled="true" /></td>*@
                                                 <td data-title="'Status'">
                                                     <div class="switch-container">
@@ -328,10 +328,10 @@
 
                                                 <td data-title="'Employee Department Name'">
                                                     <a ng-click="onEditEmployeeDepartment(w)">
-                                                        {{w.LookUpCode}}
+                                                        {{w.employeeDesignation}}
                                                     </a>
                                                 </td>
-                                                <td data-title="'Employee Department Description'">{{w.LookUpDescription}}</td>
+                                                <td data-title="'Employee Department Description'">{{w.employeeDescription}}</td>
                                                 @*<td><input type="checkbox" ng-model="employeeDepartment.IsActive" disabled /></td>*@
                                                 <td data-title="'Status'">
                                                     <div class="switch-container">
@@ -416,8 +416,8 @@
                                         <table class="table table-vmiddle" ng-table="ngTblStatusData">
                                             <tr ng-repeat="w in $data">
 
-                                                <td data-title="'Employee Status Name'"><a ng-click="onEditEmployeeStatus(w)">{{w.LookUpCode}}</a></td>
-                                                <td data-title="'Employee Status Description'">{{w.LookUpDescription}}</td>
+                                                <td data-title="'Employee Status Name'"><a ng-click="onEditEmployeeStatus(w)">{{w.employeeDesignation}}</a></td>
+                                                <td data-title="'Employee Status Description'">{{w.employeeDescription}}</td>
                                                 @*<td><input type="checkbox" ng-model="employeeDepartment.IsActive" disabled /></td>*@
                                                 <td data-title="'Status'">
                                                     <div class="switch-container">
@@ -503,8 +503,8 @@
                                         <table class="table table-vmiddle" ng-table="ngTblMarriageStatusData">
                                             <tr ng-repeat="w in $data">
 
-                                                <td data-title="'Marriage Status Name'"><a ng-click="onEditMarriageStatus(w)">{{w.LookUpCode}}</a></td>
-                                                <td data-title="'Marriage Status Description'">{{w.LookUpDescription}}</td>
+                                                <td data-title="'Marriage Status Name'"><a ng-click="onEditMarriageStatus(w)">{{w.employeeDesignation}}</a></td>
+                                                <td data-title="'Marriage Status Description'">{{w.employeeDescription}}</td>
                                                 @*<td><input type="checkbox" ng-model="employeeDepartment.IsActive" disabled /></td>*@
                                                 <td data-title="'Status'">
                                                     <div class="switch-container">

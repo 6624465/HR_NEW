@@ -88,6 +88,15 @@
         //$scope.EmployeeDepartment.LookUpID = null;
         $('#AddEmployeeStatusDialog').modal('hide');
     }
+    $scope.onEditEmployeeStatus = function (employeestat) {
+        debugger
+        $scope.EmployeeStatus.LookUpCode = employeestat.employeeDesignation;
+        $scope.EmployeeStatus.LookUpDescription = employeestat.employeeDescription;
+        $scope.EmployeeStatus.IsActive = employeestat.IsActive;
+        $scope.EmployeeStatus.LookUpID = employeestat.LookUpID;
+        $('#AddEmployeeTypeDialog').modal('show');
 
+    }
+    
     $scope.init();
 }])

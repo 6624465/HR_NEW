@@ -58,11 +58,12 @@ function ($scope, $http, LookUp, growl, growlService, NgTableParams) {
 
 
     $scope.onEditEmployeeDepartment = function (employeeDepartment) {
-        $scope.EmployeeDepartment = angular.copy(employeeDepartment);
-        //$scope.EmployeeDepartment.LookUpCode = employeeDepartment.LookUpCode;
-        //$scope.EmployeeDepartment.LookUpDescription = employeeDepartment.LookUpDescription;
-        //$scope.EmployeeDepartment.IsActive = employeeDepartment.IsActive;
-        //$scope.EmployeeDepartment.LookUpID = employeeDepartment.LookUpID;
+        
+        //$scope.EmployeeDepartment = angular.copy(employeeDepartment);
+        $scope.EmployeeDepartment.LookUpCode = employeeDepartment.employeeDesignation;
+        $scope.EmployeeDepartment.LookUpDescription = employeeDepartment.employeeDescription;
+        $scope.EmployeeDepartment.IsActive = employeeDepartment.IsActive;
+        $scope.EmployeeDepartment.LookUpID = employeeDepartment.LookUpID;
         $('#AddEmployeeDepartmentDialog').modal('show');
     }
 
