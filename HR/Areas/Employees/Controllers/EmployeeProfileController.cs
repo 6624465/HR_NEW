@@ -37,7 +37,17 @@ namespace HR.Areas.Employees.Controllers
                 {
                     EmployeeViewModel employeeViewModel = new EmployeeViewModel();
                     employeeViewModel.Id = item.Id;
-                    employeeViewModel.EmployeeName = item.FirstName + " " + item.MiddleName + " " + item.LastName;
+                    employeeViewModel.EmployeeName = string.Empty;
+                    if (!string.IsNullOrEmpty(item.FirstName))
+                        employeeViewModel.EmployeeName += item.FirstName;
+                    if (!string.IsNullOrEmpty(item.MiddleName))
+                        employeeViewModel.EmployeeName += " " + item.MiddleName;
+                    if (!string.IsNullOrEmpty(item.LastName))
+                        employeeViewModel.EmployeeName += " " + item.LastName;
+                    //item.FirstName ==null ? "" : item.FirstName + " " + 
+                    //    item.MiddleName == null ? "" : item.MiddleName + " " +
+                    //    item.LastName==null ? "" : item.LastName;
+
                     foreach (var employeeWorkDetail in item.EmployeeWorkDetail)
                     {
                         employeeViewModel.JoiningDate = item.EmployeeWorkDetail != null ? employeeWorkDetail.JoiningDate.Value.Date : DateTime.Now.Date;
@@ -564,7 +574,7 @@ namespace HR.Areas.Employees.Controllers
                     if (filterViewModel.Type == "Where")
                         if (!String.IsNullOrWhiteSpace(filterViewModel.Value))
                         {
-                            employeeHeader = employeeHeader.Where(e => e.EmployeeName.ToUpper().Contains(filterViewModel.Value.ToUpper())).AsQueryable();
+                            employeeHeader = employeeHeader.Where(e => e.EmployeeName.Trim().Contains(filterViewModel.Value.Trim())).AsQueryable();
                             //  return employeeHeader;
                         }
                     break;
