@@ -15,6 +15,8 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Web.Hosting;
 using HR.Data;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 
 namespace HR.Areas.Employees.Controllers
 {
@@ -28,8 +30,8 @@ namespace HR.Areas.Employees.Controllers
             JsonResult jsonResult = new JsonResult();
             try
             {
-                
-                List<EmployeeHeader> employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.Address.Select(s=>s.CountryCode == USER_OBJECT.CountryCode).FirstOrDefault()).ToList();
+
+                List<EmployeeHeader> employeeHeader = EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.Address.Select(s => s.CountryCode == USER_OBJECT.CountryCode).FirstOrDefault()).ToList();
                 List<EmployeeViewModel> employeeViewModelList = new List<EmployeeViewModel>();
                 foreach (var item in employeeHeader)
                 {
@@ -38,9 +40,10 @@ namespace HR.Areas.Employees.Controllers
                     employeeViewModel.EmployeeName = item.FirstName + " " + item.MiddleName + " " + item.LastName;
                     foreach (var employeeWorkDetail in item.EmployeeWorkDetail)
                     {
-                        employeeViewModel.JoiningDate = item.EmployeeWorkDetail != null ? employeeWorkDetail.JoiningDate.Value : DateTime.Now;
+                        employeeViewModel.JoiningDate = item.EmployeeWorkDetail != null ? employeeWorkDetail.JoiningDate.Value.Date : DateTime.Now.Date;
+                        employeeViewModel.JoiningDate = employeeViewModel.JoiningDate.Date;
                         employeeViewModel.Designation = item.EmployeeWorkDetail != null && employeeWorkDetail.DesignationId.HasValue ? employeeWorkDetail.DesignationId.Value : 0;
-                        employeeViewModel.DesignationName = item.EmployeeWorkDetail != null && employeeWorkDetail.DesignationId.HasValue ? 
+                        employeeViewModel.DesignationName = item.EmployeeWorkDetail != null && employeeWorkDetail.DesignationId.HasValue ?
                             (LookUpCodeService.GetLookUpType(employeeWorkDetail.DesignationId.Value)).LookUpDescription : string.Empty;
                     }
                     foreach (var employeePersonalInfo in item.EmployeePersonalInfo)
@@ -61,7 +64,7 @@ namespace HR.Areas.Employees.Controllers
 
                 var employees = employeeViewModelList.AsQueryable();
                 int totalCount = employees.Count();
-               if (searchViewModel.FilterViewModel != null) 
+                if (searchViewModel.FilterViewModel != null)
                 {
                     foreach (FilterViewModel item in searchViewModel.FilterViewModel)
                     {
@@ -344,7 +347,7 @@ namespace HR.Areas.Employees.Controllers
                 _employeeHeader.CreatedBy = USER_OBJECT.UserName;
                 _employeeHeader.CreatedOn = DateTimeConverter.SingaporeDateTimeConversion(DateTime.Now);
             }
-            EmployeePersonalInfo employeePersonalInfo = employeeHeader.EmployeePersonalInfo.FirstOrDefault() ;
+            EmployeePersonalInfo employeePersonalInfo = employeeHeader.EmployeePersonalInfo.FirstOrDefault();
 
             _employeeHeader.BranchId = employeeHeader.BranchId;
             _employeeHeader.ManagerId = employeeHeader.ManagerId;
@@ -451,7 +454,7 @@ namespace HR.Areas.Employees.Controllers
             //_address.AddressLinkID = !string.IsNullOrWhiteSpace(address.AddressLinkID) ? address.AddressLinkID : string.Empty;
             _address.SeqNo = 0;
             _address.CityName = address.CityName.ToUpper();
-            _address.StateName = !string.IsNullOrWhiteSpace(address.StateName) ? address.StateName.ToUpper() : string .Empty;
+            _address.StateName = !string.IsNullOrWhiteSpace(address.StateName) ? address.StateName.ToUpper() : string.Empty;
             _address.ZipCode = address.ZipCode;
             _address.MobileNo = address.MobileNo;
             _address.CountryCode = address.CountryCode;
@@ -549,7 +552,7 @@ namespace HR.Areas.Employees.Controllers
         private IQueryable<EmployeeViewModel> ApplyWhere(FilterViewModel filterViewModel, IQueryable<EmployeeViewModel> employeeHeader)
 
         {
-            
+
             switch (filterViewModel.Field)
             {
                 case "EmployeeId":
@@ -561,13 +564,19 @@ namespace HR.Areas.Employees.Controllers
                     if (filterViewModel.Type == "Where")
                         if (!String.IsNullOrWhiteSpace(filterViewModel.Value))
                         {
-                            employeeHeader = employeeHeader.Where(e => e.EmployeeName.Contains(filterViewModel.Value)).AsQueryable();
-                          //  return employeeHeader;
+                            employeeHeader = employeeHeader.Where(e => e.EmployeeName.ToUpper().Contains(filterViewModel.Value.ToUpper())).AsQueryable();
+                            //  return employeeHeader;
                         }
                     break;
                 case "JoiningDate":
                     if (filterViewModel.Type == "Where")
-                        employeeHeader = employeeHeader.Where(e => e.JoiningDate==Convert.ToDateTime(filterViewModel.Value));
+                    {
+                        if (filterViewModel.Value != null)
+                        {
+                            DateTime? joiningDateTime = Convert.ToDateTime(filterViewModel.Value);
+                            employeeHeader = employeeHeader.Where(e => e.JoiningDate == joiningDateTime);
+                        }
+                    }
                     break;
 
                 case "MobileNo":
