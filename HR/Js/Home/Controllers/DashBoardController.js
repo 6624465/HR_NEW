@@ -14,10 +14,8 @@ function ($scope, $http, DashBoardService) {
         $scope.genderWiseEmployees = '';
     }
     $scope.GetRegionWiseEmployees = function () {
-        debugger
         DashBoardService.GetRegionWiseEmployees().then(function (res) {
             if (res.data.sucess == true) {
-                debugger
                 $scope.regionWiseEmployees = res.data.regionWiseEmployees;
                 $scope.GetBarGraphDashboard('country', 'Country', res.data.regionWiseEmployees);
                 //$scope.genderWiseEmployees = res.data.genderWiseEmployees;
@@ -37,7 +35,6 @@ function ($scope, $http, DashBoardService) {
         })
     }
     $scope.GetPieGraphDashboard = function (CountryWiseGenders, type, id) {
-        debugger;
         var c1 = '#337ef7', c2 = type == 'SINGAPORE' ? '#ff66b3' : '#f458f4'
         Highcharts.chart(id, {
             chart: {

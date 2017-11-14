@@ -5,7 +5,7 @@
             LookUpCategory: 'EmployeeStatus',
             IsActive : true
         };
-        EmployeeStatuses = {};
+        $scope.EmployeeStatus = {};
         $scope.GetTableData(true);
         $scope.defaultLookUpCategory = "EmployeeStatus";
     }
@@ -53,7 +53,12 @@
     };
   
     $scope.onEditEmployeeStatus = function (employeeStatus) {
-        $scope.EmployeeStatus = angular.copy(employeeStatus);
+        debugger
+        $scope.EmployeeStatus.LookUpCode = employeeStatus.employeeDesignation;
+        $scope.EmployeeStatus.LookUpDescription = employeeStatus.employeeDescription;
+        $scope.EmployeeStatus.IsActive = employeeStatus.IsActive;
+        $scope.EmployeeStatus.LookUpID = employeeStatus.LookUpID;
+        //$scope.EmployeeStatus = angular.copy(employeeStatus);
         $('#AddEmployeeStatusDialog').modal('show');
     }
 
@@ -88,15 +93,6 @@
         //$scope.EmployeeDepartment.LookUpID = null;
         $('#AddEmployeeStatusDialog').modal('hide');
     }
-    $scope.onEditEmployeeStatus = function (employeestat) {
-        debugger
-        $scope.EmployeeStatus.LookUpCode = employeestat.employeeDesignation;
-        $scope.EmployeeStatus.LookUpDescription = employeestat.employeeDescription;
-        $scope.EmployeeStatus.IsActive = employeestat.IsActive;
-        $scope.EmployeeStatus.LookUpID = employeestat.LookUpID;
-        $('#AddEmployeeTypeDialog').modal('show');
-
-    }
-    
+  
     $scope.init();
 }])
