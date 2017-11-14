@@ -164,14 +164,14 @@ namespace HR.Areas.Settings.Controllers
                 if (!string.IsNullOrWhiteSpace(dt.LookUpCategory))
                 {
 
-                    var dataList = from eType in LookUpCodeService.GetLookUp<LookUp>(et => et.LookUpCategory == dt.LookUpCategory)
+                    var dataList = (from eType in LookUpCodeService.GetLookUp<LookUp>(et => et.LookUpCategory == dt.LookUpCategory)
                                    select new
                                    {
                                        LookUpID = eType.LookUpID,
                                        LookUpCode = eType.LookUpCode,
                                        LookUpDescription = eType.LookUpDescription,
                                        IsActive = eType.IsActive
-                                   };
+                                   }).Distinct();
                     var data = dataList.Select(x => new SortingViewModel()
                     {
                         employeeDescription = x.LookUpDescription,
@@ -183,6 +183,7 @@ namespace HR.Areas.Settings.Controllers
 
                     int totalCount = dataList.Count();
 
+
                     dt.sortType = dt.sortType ?? "asc";
                     dt.sortColumn = dt.sortColumn ?? "employeeDescription";
 
@@ -190,8 +191,8 @@ namespace HR.Areas.Settings.Controllers
                         data = OrderBy(data, dt.sortColumn, false, false);
                     else
                         data = OrderBy(data, dt.sortColumn, false, false);
-                    var lookups = data.Skip(dt.offset).Take(dt.limit);
-                    if (data.Any() && data != null)
+                    var lookups = data.Skip(dt.offset).Take(dt.limit).AsQueryable();
+                    if (lookups.Any() && lookups != null)
                         result = Json(new { success = true, lookUpLists = lookups, total_count = totalCount, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
                     else
                         result = Json(new { success = false, message = C.NO_DATA_FOUND }, JsonRequestBehavior.AllowGet);
