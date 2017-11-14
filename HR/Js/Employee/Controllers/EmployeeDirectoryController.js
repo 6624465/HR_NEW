@@ -1,6 +1,5 @@
 ﻿angular.module('ngHR').controller('EmployeeDirectoryController', ['$scope', '$http', 'growl', '$filter', 'UtilityFunc', 'growlService', 'EmployeeProfileService', 'NgTableParams', 'LookUp', 'HolidayListService','$state','$stateParams',
     'growlService', function ($scope, $http, growl, $filter, UtilityFunc, growlService, EmployeeProfileService, NgTableParams, LookUp, HolidayListService, $state, $stateParams) {
-debugger
 
         $scope.init = function () {
             $scope.EmployeeDirectory = {
@@ -44,7 +43,7 @@ debugger
                     EmployeeProfileService.GetEmployeeDetails(search)
                     
                         .then(function (res) {
-                            debugger;
+                 
                             params.total(res.data.total_count);
                             $defer.resolve(res.data.employees);
                         }, function (err) {
@@ -58,7 +57,7 @@ debugger
         $scope.FilterViewModel = function () {
             var properties = Object.keys($scope.EmployeeDirectory);
             search.FilterViewModel = [];
-            debugger;
+            
             angular.forEach(properties, function (val, idx) {
                 var Fields = "Where";
                 if (val == "FirstName")
@@ -84,7 +83,6 @@ debugger
         
 
         $scope.BindFilterViewModel = function (val, action) {
-            debugger;
             $scope.filter = {};
             $scope.filter.Field = val;
             $scope.filter.Value = !(action == "asc" || action == "desc") ? $scope.EmployeeDirectory[val] : '';
@@ -110,7 +108,6 @@ debugger
         $scope.GetLookUpData();
         HolidayListService.GetBranchLocations().then(function (response) {
             if ( response.data.success == true) {
-                debugger;
                 $scope.Locations = response.data.BranchLocations;
                 var code = $scope.Locations[0].CountryCode;
                 $scope.EmployeeDirectory.Id =
