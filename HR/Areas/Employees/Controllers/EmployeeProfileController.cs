@@ -44,10 +44,7 @@ namespace HR.Areas.Employees.Controllers
                         employeeViewModel.EmployeeName += " " + item.MiddleName;
                     if (!string.IsNullOrEmpty(item.LastName))
                         employeeViewModel.EmployeeName += " " + item.LastName;
-                    //item.FirstName ==null ? "" : item.FirstName + " " + 
-                    //    item.MiddleName == null ? "" : item.MiddleName + " " +
-                    //    item.LastName==null ? "" : item.LastName;
-
+                    
                     foreach (var employeeWorkDetail in item.EmployeeWorkDetail)
                     {
                         employeeViewModel.JoiningDate = item.EmployeeWorkDetail != null ? employeeWorkDetail.JoiningDate.Value.Date : DateTime.Now.Date;
