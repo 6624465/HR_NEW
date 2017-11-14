@@ -587,7 +587,10 @@ namespace HR.Areas.Employees.Controllers
                     employeeHeader = employeeHeader.Where(e => e.CountryId.ToString() == filterViewModel.Value);
                     break;
                 case "Designation":
-                    employeeHeader = employeeHeader.Where(e => e.Designation == Convert.ToInt32(filterViewModel.Value));
+                    if (!String.IsNullOrWhiteSpace(filterViewModel.Value))
+                    {
+                        employeeHeader = employeeHeader.Where(e => e.Designation == Convert.ToInt32(filterViewModel.Value));
+                    }
                     break;
                 case "EmployeeType":
                     employeeHeader = employeeHeader.Where(et => et.EmployeeType == Convert.ToInt32(filterViewModel.Value));
