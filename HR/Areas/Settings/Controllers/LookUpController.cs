@@ -190,7 +190,7 @@ namespace HR.Areas.Settings.Controllers
                     if (dt.sortType.ToLower() == "asc")
                         data = OrderBy(data, dt.sortColumn, false, false);
                     else
-                        data = OrderBy(data, dt.sortColumn, false, false);
+                        data = OrderBy(data, dt.sortColumn, true, false);
                     var lookups = data.Skip(dt.offset).Take(dt.limit).AsQueryable();
                     if (lookups.Any() && lookups != null)
                         result = Json(new { success = true, lookUpLists = lookups, total_count = totalCount, message = C.SUCCESSFUL_SAVE_MESSAGE }, JsonRequestBehavior.AllowGet);
