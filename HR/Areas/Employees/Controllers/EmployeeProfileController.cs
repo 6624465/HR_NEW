@@ -76,7 +76,7 @@ namespace HR.Areas.Employees.Controllers
                     if (searchViewModel.sortType.ToLower() == "asc")
                         employees = OrderBy(employees, searchViewModel.sortColumn, false, false);
                     else
-                        employees = OrderBy(employees, searchViewModel.sortColumn, false, false);
+                        employees = OrderBy(employees, searchViewModel.sortColumn, true, false);
                 }
 
                 employees = employees.Skip(searchViewModel.offset).Take(searchViewModel.limit).AsQueryable();
