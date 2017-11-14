@@ -457,7 +457,7 @@
                                                                class="form-control" ng-value="EmployeeHeader.ManagerName"
                                                                ng-model="EmployeeHeader.ManagerName" name="EmployeeHeader.ManagerName"
                                                                typeahead-min-length="3"
-                                                               uib-typeahead="response.Name for response in EmployeeList($viewValue,'EmployeeHeader.ManagerName')"
+                                                               uib-typeahead="r.description as r.description for r in EmployeeList($viewValue,'EmployeeHeader.ManagerName')"
                                                                typeahead-wait-ms="100"
                                                                typeahead-editable="false"
                                                                typeahead-on-select="EmployeeSelected($item)" />

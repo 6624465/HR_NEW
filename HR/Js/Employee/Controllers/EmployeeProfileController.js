@@ -41,8 +41,9 @@
         }
 
         $scope.detailsUrl = baseUrl + 'Js/Employee/Templates/BasicInformation.html';
-
+        
         $scope.LookUpData = function () {
+            debugger
             LookUp.GetActiveLookUpData("EmployeeType").then(function (response) {
                 $scope.EmployeeTypeList = response.data.lookUpLists;
             })
@@ -162,11 +163,11 @@
                 EmployeeHeader.EmployeePersonalInfo.push(employeePersonalInfo);
                 EmployeeHeader.EmployeeWorkDetail.push(employeeWorkDetail);
                 EmployeeHeader.Address.push(employeeAddress);
-
+                
                 EmployeeProfileService.SaveEmlployee(EmployeeHeader, $scope.files, $scope.EmployeeDocument).then(function (response) {
                     if (response == "Success") {
                         $timeout(function () {
-                            growlService.growl("Saved Successfully." + "  Employee Crediantials sent to '" + EmployeeHeader.UserEmailId + "' mail", 'success');
+                            growlService.growl("Saved Successfully." + "  Employee Credentials sent to '" + EmployeeHeader.UserEmailId + "' mail", 'success');
                         }, 1500);
                         $state.go('EmployeeDirectory');
                     }
@@ -265,28 +266,35 @@
 
 
         $scope.EmployeeList = function (text) {
-            return EmployeeProfileService.GetEmployees(text).then(function (response) {
+            return EmployeeProfileService.GetEmployees(text).then(function (response)
+            {
+                debugger
                 return limitToFilter(response.data.employees, 15);
             }, function (err) { });
         };
 
         $scope.EmployeeSelected = function (obj) {
-            $scope.EmployeeHeader.ManagerId = obj.Id;
-            $scope.EmployeeHeader.ManagerName = obj.Name;
+            debugger
+            $scope.EmployeeHeader.ManagerId = obj.id;
+            $scope.EmployeeHeader.ManagerName = obj.description;
         }
 
         $scope.LookUpData();
         $scope.BranchLocations();
 
-
+        
         $scope.employeeId = $stateParams.id;
         if ($scope.employeeId != "new") {
             EmployeeProfileService.GetEmployeeById($scope.employeeId, false).then(function (response) {
+                debugger;
                 if (response && response.data) {
                     $scope.EmployeeHeader = response.data.employeeHeader;
                     $scope.EmployeeHeader.EmployeePersonalInfo = $scope.EmployeeHeader.EmployeePersonalInfo[0];
                     $scope.EmployeeHeader.EmployeeWorkDetail = $scope.EmployeeHeader.EmployeeWorkDetail[0];
                     $scope.EmployeeHeader.Address = $scope.EmployeeHeader.Address[0];
+                    debugger;
+                  
+                 //   $scope.EmployeeHeader.ManagerName = $filter('filter')($scope.EmployeeDesignation, { Value: EmployeeHeader.ManagerId })[0].Text();
 
                     if ($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate && $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate != null) {
                         $scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate = moment($scope.EmployeeHeader.EmployeeWorkDetail.JoiningDate);

@@ -27,18 +27,24 @@ namespace HR.Areas.Leave.Controllers
             {
                 try
                 {
-                    LookUp employeeDepartment =  LookUpCodeService.GetLookUp<LookUp>(s => s.LookUpCategory == "EmployeeDesignation" && s.LookUpCode == "Manager").FirstOrDefault();
-                    var employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.FirstName.ToLower().
-                                                    Contains(employeeName.ToLower())
-                                                    && (e.EmployeeWorkDetail.Any() &&  e.EmployeeWorkDetail.FirstOrDefault().DepartmentId == employeeDepartment.LookUpID )
-                                                    && e.BranchId == USER_OBJECT.BranchId)
-                                     select new
-                                     {
-                                         Id = employee.Id,
-                                         Name = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName
-                                     }).ToList();
+                  var employeeDepartment = LookUpCodeService.GetLookUp<LookUp>(s => s.LookUpCategory == "EmployeeDesignation" && s.LookUpCode.Contains(employeeName)).Select(x => new
+                                            {
+                                                name = x.LookUpCode,
+                                                description = x.LookUpDescription,
+                                                id = x.LookUpID
+                                            }).ToList();
+                   // var managerData = employeeDepartment
+                    //var employees = (from employee in EmployeeProfileService.GetEmployeeProfileList<EmployeeHeader>(e => e.FirstName.ToLower().
+                    //                                Contains(employeeName.ToLower())
+                    //                                && (e.EmployeeWorkDetail.Any() &&  e.EmployeeWorkDetail.FirstOrDefault().DepartmentId == employeeDepartment.LookUpID )
+                    //                                && e.BranchId == USER_OBJECT.BranchId)
+                    //                 select new
+                    //                 {
+                    //                     Id = employee.Id,
+                    //                     Name = employee.FirstName + " " + employee.MiddleName + " " + employee.LastName
+                    //                 }).ToList();
 
-                jsonResult = Json(new { sucess = true }, JsonRequestBehavior.AllowGet);
+                jsonResult = Json(new { sucess = true, employees= employeeDepartment }, JsonRequestBehavior.AllowGet);
                 }
                 catch (Exception ex)
                 {
